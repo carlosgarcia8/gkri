@@ -1,25 +1,12 @@
-Archivos preparatorios para proyectos
+## Global Klingon Radian Imaginary
 =====================================
 
-Archivos preparados para su utilización en proyectos de desarrollo web en los
-que se utilice [Yii2](http://www.yiiframework.com/),
-[Heroku](https://www.heroku.com), [Code Climate](https://codeclimate.com/) y
-[Atom](https://atom.io/).
+**Proyecto Integrado de Desarrollo de aplicaciones web (DAW)** realizado en el año 2017.
 
-Instalación
------------
-
-Simplemente copiar todos los archivos en el directorio raíz del proyecto. El
-archivo `README.md` (este que estás leyendo) no es necesario copiarlo, y
-probablemente entrará en conflicto con el del propio proyecto. Si se copia
-encima de este accidentalmente, siempre se puede volver a recuperar con el
-comando `git checkout -- README.md`. Los demás se pueden copiar encima de los
-actuales pero conviene comprobar las diferencias entre el contenido antiguo y
-el nuevo.
-
-Se recomienda descargar el repositorio en forma de archivo `.zip` y no clonarlo
-con `git clone`. Para ello, basta con acceder a
-https://github.com/ricpelo/pre/archive/master.zip, lo que descargará el
-archivo comprimido que luego se podrá extraer dentro del directorio del
-proyecto, sobreescribiendo los archivos necesarios.
-
+Aplicación enfocada a la subida de imágenes que los usuarios quieran compartir
+y a poder comentarlas entre ellos de manera global. Básicamente es una idea parecida a
+[9gag](http://9gag.com). Los usuarios se registran e iniciando sesión pueden ya publicar sus
+comúnmente llamados “memes” aunque hay de todo tipo, también se pueden subir
+imágenes propias y graciosas de la vida cotidiana a la vez que gifs. Tiene su apartado de
+comentarios con votos positivos/negativos tanto los posts como los comentarios, sus
+replies y demás.
