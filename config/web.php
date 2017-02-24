@@ -101,20 +101,18 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
-                'entrada/<id:\d>' => 'entradas/view',
-                'entrada/enviar' => 'entradas/create',
-                'entrada/categoria/<categoria_id:\d>' => 'entradas/index',
-                'entrada/etiqueta/<etiqueta_id:\d>' => 'entradas/index',
-                'entrada/meneo' => 'entradas/meneo'
+                // 'entrada/<id:\d>' => 'entradas/view',
+                // 'entrada/enviar' => 'entradas/create',
+                // 'entrada/categoria/<categoria_id:\d>' => 'entradas/index',
+                // 'entrada/etiqueta/<etiqueta_id:\d>' => 'entradas/index',
+                // 'entrada/meneo' => 'entradas/meneo'
             ],
         ],
-        */
         /*
         'i18n' => [
             'translations' => [
