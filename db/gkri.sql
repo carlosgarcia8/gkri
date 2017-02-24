@@ -23,6 +23,13 @@ create table posts (
         on delete no action on update cascade
 );
 
+drop table if exists session cascade;
+create table session (
+    id char(40) not null constraint pk_session primary key,
+    expire integer,
+    data bytea
+);
+
 -- drop table if exists comentarios cascade;
 -- create table comentarios (
 --     id          bigserial     constraint pk_comentarios primary key,

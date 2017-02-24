@@ -4,8 +4,51 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name' => 'GKRI',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    // 'defaultRoute' => 'site/index',
+    'aliases' => [
+        '@uploads' => 'uploads',
+    ],
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableUnconfirmedLogin' => true,
+            'enableAccountDelete' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['xharly8'],
+            'mailer' => [
+                'sender'                => 'globalklingonradianimaginary@gmail.com',
+                'welcomeSubject'        => 'Bienvenido a GKRI',
+                'confirmationSubject'   => 'Mensaje de Confirmación',
+                'reconfirmationSubject' => 'Cambio de Email',
+                'recoverySubject'       => 'Recuperación de Contraseña',
+            ],
+            'controllerMap' => [
+                'class' => \dektrium\user\Module::className(),
+                'controllerMap' => [
+                    'registration' => [
+                        'class' => \dektrium\user\controllers\RegistrationController::className(),
+                        'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
+                            Yii::$app->response->redirect(['/user/security/login'])->send();
+                            Yii::$app->end();
+                        }
+                    ],
+                ],
+                // 'profile' => 'app\controllers\user\ProfileController',
+                // 'settings' => 'app\controllers\user\SettingsController',
+            ],
+            // 'modelMap' => [
+            //     'Profile' => 'app\models\Profile',
+            //     'User' => 'app\models\User',
+            // ],
+        ],
+        // 'comment' => [
+        //     'class' => 'yii2mod\comments\Module',
+        // ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -14,19 +57,39 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+        // 'user' => [
+        //     'identityClass' => 'app\models\User',
+        //     'enableAutoLogin' => true,
+        // ],
+        'authClientCollection' => [
+            'class'   => \yii\authclient\Collection::className(),
+            'clients' => [
+                'google' => [
+                    'class'        => 'dektrium\user\clients\Google',
+                    'clientId'     => getenv('GOOGLE_ID'),
+                    'clientSecret' => getenv('GOOGLE_PASS'),
+                ],
+            ],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'globalklingonradianimaginary@gmail.com',
+                'password' => getenv('SMTP_PASS'),
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
+        ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+            // 'db' => 'mydb',
+            // 'sessionTable' => 'my_session',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -42,10 +105,26 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
+                'entrada/<id:\d>' => 'entradas/view',
+                'entrada/enviar' => 'entradas/create',
+                'entrada/categoria/<categoria_id:\d>' => 'entradas/index',
+                'entrada/etiqueta/<etiqueta_id:\d>' => 'entradas/index',
+                'entrada/meneo' => 'entradas/meneo'
             ],
         ],
         */
+        /*
+        'i18n' => [
+            'translations' => [
+                'yii2mod.comments' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+            ],
+        ],
+         */
     ],
     'language' => 'es-ES',
     'params' => $params,
