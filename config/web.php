@@ -27,15 +27,12 @@ $config = [
                 'recoverySubject'       => 'Recuperación de Contraseña',
             ],
             'controllerMap' => [
-                'class' => \dektrium\user\Module::className(),
-                'controllerMap' => [
-                    'registration' => [
-                        'class' => \dektrium\user\controllers\RegistrationController::className(),
-                        'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
-                            Yii::$app->response->redirect(['/user/security/login'])->send();
-                            Yii::$app->end();
-                        }
-                    ],
+                'registration' => [
+                    'class' => \dektrium\user\controllers\RegistrationController::className(),
+                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
+                        Yii::$app->response->redirect(['/user/security/login'])->send();
+                        Yii::$app->end();
+                    }
                 ],
                 // 'profile' => 'app\controllers\user\ProfileController',
                 // 'settings' => 'app\controllers\user\SettingsController',
@@ -113,18 +110,25 @@ $config = [
                 // 'entrada/meneo' => 'entradas/meneo'
             ],
         ],
-        /*
+
         'i18n' => [
             'translations' => [
-                'yii2mod.comments' => [
+                // 'yii2mod.comments' => [
+                //     'class' => 'yii\i18n\PhpMessageSource',
+                //     'basePath' => '@app/messages',
+                // ],
+                'user*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages',
-                ],
+                    'fileMap' => [
+                        'user' => 'user.php',
+                    ],
+                ]
             ],
         ],
-         */
+
     ],
-    'language' => 'es-ES',
+    'language' => 'es_ES',
     'params' => $params,
 ];
 

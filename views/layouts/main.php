@@ -37,11 +37,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             Yii::$app->user->isGuest ?
-            ['label' => 'Sign in', 'url' => ['/user/security/login']] :
-            ['label' => 'Sign out (' . Yii::$app->user->identity->username . ')',
+            ['label' => Yii::t('user', 'Sign in'), 'url' => ['/user/security/login']] :
+            ['label' => Yii::t('user', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
                 'url' => ['/user/security/logout'],
                 'linkOptions' => ['data-method' => 'post']],
-            ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
+            ['label' => Yii::t('user', 'Sign up'), 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
         ],
     ]);
     NavBar::end();
