@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
+$this->registerCssFile('@web/css/estilos.css');
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -37,11 +38,29 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             Yii::$app->user->isGuest ?
-            ['label' => Yii::t('user', 'Sign in'), 'url' => ['/user/security/login']] :
-            ['label' => Yii::t('user', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
-                'url' => ['/user/security/logout'],
-                'linkOptions' => ['data-method' => 'post']],
-            ['label' => Yii::t('user', 'Sign up'), 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
+            ['label' => 'Login', 'url' => ['/user/security/login'], 'linkOptions' => ['class' => 'blanco']]:
+            [
+                'label' => Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded little']),
+                'url' => ['/user/profile/show', 'id' => Yii::$app->user->id],
+                'encode' => false,
+                'items' => [
+                    [
+                       'label' => 'Mi Perfil',
+                       'url' => ['/user/' . Yii::$app->user->id],
+                    ],
+                    [
+                       'label' => 'Configuración',
+                       'url' => ['/user/settings/profile']
+                    ],
+                    '<li class="divider"></li>',
+                    [
+                       'label' => 'Logout',
+                       'url' => ['/user/security/logout'],
+                       'linkOptions' => ['data-method' => 'post'],
+                    ],
+                ],
+            ],
+            ['label' => 'Registrarse', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]
         ],
     ]);
     NavBar::end();
@@ -57,7 +76,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; GKRI <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

@@ -1,0 +1,212 @@
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  background-color: rgba(0,0,0,0.5);
+  -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+  transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+}
+
+.hovereffect img {
+  display: block;
+  /*position: relative;*/
+  -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+  transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+}
+
+/*.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  background: rgba(0,0,0,0.6);
+  -webkit-transform: translatey(-100px);
+  -ms-transform: translatey(-100px);
+  transform: translatey(-100px);
+  -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+  transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
+  padding: 10px;
+}*/
+
+.hovereffect a.info {
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  margin: 40px 0 0;
+  padding: 7px 14px;
+}
+
+.hovereffect a.info:hover {
+  box-shadow: 0 0 5px #fff;
+}
+
+.hovereffect:hover img {
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+.hovereffect:hover h2,.hovereffect:hover a.info {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -ms-transform: translatey(0);
+  -webkit-transform: translatey(0);
+  transform: translatey(0);
+}
+
+.hovereffect:hover a.info {
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+
+.little {
+    width: 25px;
+    height: 25px;
+}
+
+.fondoNav {
+    /*background-color: #EE9555;*/
+    background-color: #4358E4;
+}
+.lower {
+    top: 50px;
+    min-height: 0px !important;
+    max-height: 28px !important;
+}
+
+.lower li a {
+    padding-top: 4px;
+}
+
+.lower .active > a{
+    background-color: transparent !important;
+    text-shadow: 1px 1px 1px #4358E4 !important;
+}
+
+.blanco, .blanco a {
+    color: white !important;
+    text-shadow: 1px 1px 4px black;
+}
+
+.blancoBrand {
+    color: white !important;
+    font-size: 30px;
+    text-shadow: 2px 2px 2px black;
+}
+
+.avatar {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.botonCambiar {
+    position: absolute;
+    margin-left: 20%;
+}
+
+.imagen {
+    margin-left: 10px;
+}
+
+.caret {
+    color: black;
+}
+
+.dropdown:hover .caret {
+    color: white;
+}
+
+.entrada-create {
+    /*background-color: #EBAC6B;*/
+    background-color: #5FC8E4;
+    padding: 20px;
+    box-shadow: 0px 0px 10px blue;
+}
+
+.item {
+    padding-bottom: 20px;
+}
+
+.botones {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.title > a {
+    color: black;
+}
+
+.entrada > p:first-of-type {
+    font-size: 15px;
+}
+
+.entrada span {
+    font-weight: bold;
+    color: #3133BA;
+}
+
+.entrada > a:nth-child(n+6)::before {
+    content: ", ";
+}
+
+.entrada > a:last-child::after {
+    content: "";
+}
+
+
+.ui-autocomplete {
+    z-index: 2000 !important;
+}
+
+.articulo {
+    display:flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.articulo > * {
+    margin: 5px;
+}
+
+#menealo {
+    min-width: 100.27px;
+    padding: 5px;
+    border: 1px solid #3133BA;
+    border-radius: 5px;
+    background-color: #64a5e0;
+    text-align: center;
+    color: #3133BA;
+    font-weight: bold;
+}

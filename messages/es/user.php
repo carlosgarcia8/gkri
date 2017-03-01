@@ -72,7 +72,7 @@ return [
     'Welcome! Registration is complete.' => '',
     'Yandex' => 'Yandex',
     'You can assign multiple roles or permissions to user by using the form below' => 'Puede asignar varios roles o permisos a usuario mediante el siguiente formulario',
-    'You can connect multiple accounts to be able to log in using them' => 'Puede conectar varias cuentas para poder iniciar sesión en el uso de ellos',
+    'You can connect multiple accounts to be able to log in using them' => 'Puede conectar varias cuentas y así poder iniciar sesión con ellas',
     'You can not block your own account' => 'No se puede bloquear su propia cuenta',
     'You can not remove your own account' => 'No puede eliminar su propia cuenta',
     'You can now log in with the following credentials:' => 'Ahora puede iniciar sesión con las siguientes credenciales :',

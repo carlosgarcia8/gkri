@@ -34,13 +34,13 @@ $config = [
                         Yii::$app->end();
                     }
                 ],
-                // 'profile' => 'app\controllers\user\ProfileController',
-                // 'settings' => 'app\controllers\user\SettingsController',
+                'profile' => 'app\controllers\user\ProfileController',
+                'settings' => 'app\controllers\user\SettingsController',
             ],
-            // 'modelMap' => [
-            //     'Profile' => 'app\models\Profile',
-            //     'User' => 'app\models\User',
-            // ],
+            'modelMap' => [
+                'Profile' => 'app\models\Profile',
+                'User' => 'app\models\User',
+            ],
         ],
         // 'comment' => [
         //     'class' => 'yii2mod\comments\Module',
@@ -53,6 +53,14 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user',
+                    '@dektrium/user/views/profile' => '@app/views/profile',
+                ],
+            ],
         ],
         // 'user' => [
         //     'identityClass' => 'app\models\User',
