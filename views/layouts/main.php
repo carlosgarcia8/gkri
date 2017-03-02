@@ -11,6 +11,9 @@ use app\assets\AppAsset;
 
 $this->registerCssFile('@web/css/estilos.css');
 AppAsset::register($this);
+
+$this->title = 'GKRI';
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,7 +31,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'GKRI',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,8 +40,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            Yii::$app->user->isGuest ?
-            ['label' => 'Login', 'url' => ['/user/security/login'], 'linkOptions' => ['class' => 'blanco']]:
+            ['label' => 'Login', 'url' => ['/user/security/login'], 'linkOptions' => ['class' => 'blanco'],'visible' => Yii::$app->user->isGuest],
+            ['label' => '', 'url' => ['/'], 'linkOptions' => ['class' => 'glyphicon glyphicon-bell bell'], 'visible' => !Yii::$app->user->isGuest],
+            Yii::$app->user->isGuest?
+            ['label' => 'Registrarse', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]:
             [
                 'label' => Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded little']),
                 'url' => ['/user/profile/show', 'id' => Yii::$app->user->id],
@@ -59,8 +64,8 @@ AppAsset::register($this);
                        'linkOptions' => ['data-method' => 'post'],
                     ],
                 ],
+                'linkOptions' => ['id' => 'imagen-avatar'],
             ],
-            ['label' => 'Registrarse', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]
         ],
     ]);
     NavBar::end();

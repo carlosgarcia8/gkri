@@ -40,6 +40,7 @@ $config = [
             'modelMap' => [
                 'Profile' => 'app\models\Profile',
                 'User' => 'app\models\User',
+                'SettingsForm' => 'app\models\SettingsForm',
             ],
         ],
         // 'comment' => [
@@ -58,7 +59,6 @@ $config = [
             'theme' => [
                 'pathMap' => [
                     '@dektrium/user/views' => '@app/views/user',
-                    '@dektrium/user/views/profile' => '@app/views/profile',
                 ],
             ],
         ],

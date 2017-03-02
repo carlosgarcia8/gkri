@@ -88,8 +88,9 @@
 }
 
 .little {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
+    margin-top: -5px;
 }
 
 .fondoNav {
@@ -142,6 +143,10 @@
 
 .caret {
     color: black;
+}
+
+.dropdown, .dropdown-toggle {
+    height: 50px;
 }
 
 .dropdown:hover .caret {
@@ -200,13 +205,12 @@
     margin: 5px;
 }
 
-#menealo {
-    min-width: 100.27px;
-    padding: 5px;
-    border: 1px solid #3133BA;
-    border-radius: 5px;
-    background-color: #64a5e0;
-    text-align: center;
-    color: #3133BA;
-    font-weight: bold;
+.glyphicon.glyphicon-bell {
+    font-size: 16px;
+    margin-right: -8px;
+}
+
+.dropdown-menu-left {
+    right: auto !important;
+    left: -20px !important;
 }
