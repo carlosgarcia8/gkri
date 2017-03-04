@@ -35,6 +35,10 @@ class UploadForm extends Model
             $this->imageFile->saveAs($nombre);
             Image::thumbnail($nombre, 225, 225)
                 ->save($nombre, ['quality' => 80]);
+            $s3 = Yii::$app->get('s3');
+            $nombreS3 = \Yii::$app->user->id . '.' . $this->imageFile->extension;
+            $s3->upload($nombreS3, $nombre);
+
             return true;
         } else {
             return false;

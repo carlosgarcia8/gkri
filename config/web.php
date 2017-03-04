@@ -62,6 +62,16 @@ $config = [
                 ],
             ],
         ],
+        's3' => [
+        'class' => 'frostealth\yii2\aws\s3\Service',
+        'credentials' => [ // Aws\Credentials\CredentialsInterface|array|callable
+            'key' => getenv('AWS_KEY'),
+            'secret' => getenv('AWS_SECRET'),
+        ],
+            'region' => 'eu-west-2',
+            'defaultBucket' => 'gkri',
+            'defaultAcl' => 'public-read',
+        ],
         // 'user' => [
         //     'identityClass' => 'app\models\User',
         //     'enableAutoLogin' => true,

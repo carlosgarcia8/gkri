@@ -16,8 +16,16 @@ class Profile extends BaseProfile
     public function getAvatar()
     {
         $uploads = Yii::getAlias('@uploads');
-        $ruta = "$uploads/{$this->user_id}.jpg";
-        return file_exists($ruta) ? "/$ruta" : "/$uploads/default.jpg";
+        $fichero = "{$this->user_id}.jpg";
+        $rutaLocal = "$uploads/{$fichero}";
+
+        $s3 = Yii::$app->get('s3');
+
+        if (!$s3->exist($fichero)) {
+            return file_exists($rutaLocal) ? "/$rutaLocal" : "/$uploads/default.jpg";
+        } else {
+            return $s3->get($fichero)['@metadata']['effectiveUri'];
+        }
     }
 
     /**
