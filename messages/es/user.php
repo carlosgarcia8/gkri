@@ -221,4 +221,9 @@ return [
     'Delete account' => 'Eliminar cuenta',
     'Are you sure? There is no going back' => '¿Estás seguro? No hay vuelta atrás',
     'Repeat password' => 'Repetir contraseña',
+    'Last login' => 'Último inicio de sesión',
+    'Become this user' => 'Convertirse en este usuario',
+    'Generate and send new password to user' => 'Generar y enviar nueva contraseña',
+    'Are you sure?' => '¿Estás seguro?',
+    'New Password has been generated and sent to user' => 'Se ha generado y enviado la nueva contraseña al usuario',
 ];
