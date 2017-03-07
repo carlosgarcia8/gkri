@@ -110,7 +110,7 @@ return [
     'Please check your email and click the reset link.' => 'Por favor compruebe el correo electrónico y haga click en el vinculo.',
     'Profile updated successfully' => 'Perfil actualizado satisfactoriamente',
     'Recovery message has been sent' => 'Se ha enviado el mensaje de recuperación',
-    'Recovery token is invalid' => 'El token de recuperación es invalido',
+    'Recovery token is invalid' => 'El token de recuperación no es válido',
     'Registered at {0, date, MMMM dd, YYYY HH:mm} from {1}' => 'Registrado el {0, date, dd MMMM, YYYY HH:mm} desde {1}',
     'Registered from' => 'Registrado desde',
     'Role' => 'Rol',

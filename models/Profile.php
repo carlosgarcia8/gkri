@@ -4,14 +4,13 @@ namespace app\models;
 
 use dektrium\user\models\Profile as BaseProfile;
 use Yii;
-use phpDocumentor\Reflection\Types\String_;
 
 class Profile extends BaseProfile
 {
     /**
      * Se obtiene la ruta hacia el avatar del usuario, si no tiene se le
      * da un avatar por defecto
-     * @return String_ ruta hacia el avatar
+     * @return string ruta hacia el avatar
      */
     public function getAvatar()
     {
@@ -21,10 +20,19 @@ class Profile extends BaseProfile
 
         $s3 = Yii::$app->get('s3');
 
-        if (!$s3->exist($fichero)) {
-            return file_exists($rutaLocal) ? "/$rutaLocal" : "/$uploads/default.jpg";
+        /*
+         * Funcionalidad creada para que cuando el fichero no exista localmente
+         * lo guarde de tal manera que cuando este guardado en el contenedor
+         * se sirva de ese fichero y no tenga que pedirlo mas a amazon s3, de exista
+         * manera ganamos eficiencia.
+         */
+        if (file_exists($rutaLocal)) {
+            return "/$rutaLocal";
+        } elseif ($s3->exist($fichero)) {
+            $result = $s3->commands()->get($fichero)->saveAs($rutaLocal)->execute();
+            return $result['@metadata']['effectiveUri'];
         } else {
-            return $s3->get($fichero)['@metadata']['effectiveUri'];
+            return "/$uploads/default.jpg";
         }
     }
 

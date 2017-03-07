@@ -36,11 +36,13 @@ $config = [
                 ],
                 'profile' => 'app\controllers\user\ProfileController',
                 'settings' => 'app\controllers\user\SettingsController',
+                'recovery' => 'app\controllers\user\RecoveryController',
             ],
             'modelMap' => [
                 'Profile' => 'app\models\Profile',
                 'User' => 'app\models\User',
                 'SettingsForm' => 'app\models\SettingsForm',
+                'RecoveryForm' => 'app\models\RecoveryForm',
             ],
         ],
         // 'comment' => [
