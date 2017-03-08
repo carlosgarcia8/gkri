@@ -23,6 +23,6 @@ class LimpiarController extends Controller
      */
     public function actionIndex()
     {
-        echo User::deleteAll(['and', 'confirmed_at is null', ['>', '(current_timestamp - to_timestamp(created_at))', '48 hours']]);
+        echo User::deleteAll(['and', 'confirmed_at is null', ['>', '(current_timestamp - to_timestamp(created_at))', '24 hours']]);
     }
 }
