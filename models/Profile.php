@@ -29,8 +29,8 @@ class Profile extends BaseProfile
         if (file_exists($rutaLocal)) {
             return "/$rutaLocal";
         } elseif ($s3->exist($fichero)) {
-            $result = $s3->commands()->get($fichero)->saveAs($rutaLocal)->execute();
-            return $result['@metadata']['effectiveUri'];
+            $s3->commands()->get($fichero)->saveAs($rutaLocal)->execute();
+            return "/$rutaLocal";
         } else {
             return "/$uploads/default.jpg";
         }
