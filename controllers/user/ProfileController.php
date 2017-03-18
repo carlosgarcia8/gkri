@@ -5,7 +5,7 @@ namespace app\controllers\user;
 use dektrium\user\controllers\ProfileController as BaseProfileController;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
-use app\models\UploadForm;
+use app\models\UploadAvatarForm;
 use Yii;
 use yii\web\UploadedFile;
 
@@ -28,7 +28,7 @@ class ProfileController extends BaseProfileController
         //         'pageSize' => 10,
         //     ]
         // ]);
-        $model = new UploadForm;
+        $model = new UploadAvatarForm;
 
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');

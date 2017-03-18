@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="overlay">
                         <a class="upload info" href="#">Cambiar avatar</a>
                         <?php $form = ActiveForm::begin() ?>
-                            <?= $form->field($model, 'imageFile')->fileInput(['style' => 'visibility: hidden', 'label' => 'none'])->label(false) ?>
+                            <?= $form->field($model, 'imageFile')->fileInput(['style' => 'visibility: hidden', 'label' => 'none', 'class' => 'uploadAvatar'])->label(false) ?>
                         <?php ActiveForm::end() ?>
                     </div>
                 </div>

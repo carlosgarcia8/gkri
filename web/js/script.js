@@ -3,7 +3,7 @@ $('.upload').click(function(){
     return false;
 });
 
-$("input[type='file']").change(function() {
+$(".uploadAvatar").change(function() {
     this.form.submit();
 });
 

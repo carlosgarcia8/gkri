@@ -1,6 +1,6 @@
 <?php
 
-use app\models\UploadForm;
+use app\models\UploadAvatarForm;
 use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\widgets\ActiveForm;
@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /**
  * @var dektrium\user\models\User $user
  */
-$model = new UploadForm;
+$model = new UploadAvatarForm;
 $user = Yii::$app->user->identity;
 $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 ?>
@@ -44,6 +44,6 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
     'alt' => $user->username,
 ]) ?>
 <?php $form = ActiveForm::begin() ?>
-    <?= $form->field($model, 'imageFile')->fileInput(['class' => 'avatar'])->label(false) ?>
+    <?= $form->field($model, 'imageFile')->fileInput(['class' => 'avatar uploadAvatar'])->label(false) ?>
     <button class="botonCambiar upload btn btn-info">Cambiar el avatar</button>
 <?php ActiveForm::end() ?>

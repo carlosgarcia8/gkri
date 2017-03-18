@@ -2,8 +2,8 @@
 
 namespace app\controllers\user;
 
+use app\models\UploadAvatarForm;
 use dektrium\user\controllers\SettingsController as BaseSettingsController;
-use app\models\UploadForm;
 use dektrium\user\models\Profile;
 use Yii;
 use yii\web\UploadedFile;
@@ -17,7 +17,7 @@ class SettingsController extends BaseSettingsController
      */
     public function actionProfile()
     {
-        $upload = new UploadForm;
+        $upload = new UploadAvatarForm;
 
         if (Yii::$app->request->isPost) {
             $upload->imageFile = UploadedFile::getInstance($upload, 'imageFile');

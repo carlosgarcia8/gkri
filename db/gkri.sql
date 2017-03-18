@@ -11,7 +11,6 @@ drop table if exists posts cascade;
 create table posts (
     id                  bigserial    constraint pk_posts primary key,
     titulo              varchar(100) not null,
-    extension           varchar(20)  not null default 'jpg',
     usuario_id          bigint       constraint fk_posts_usuarios_creador
         references public.user(id)
         on delete set null on update cascade,

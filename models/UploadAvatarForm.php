@@ -8,7 +8,7 @@ use yii\web\UploadedFile;
 use Yii;
 use yii\imagine\Image;
 
-class UploadForm extends Model
+class UploadAvatarForm extends Model
 {
     /**
      * @var UploadedFile

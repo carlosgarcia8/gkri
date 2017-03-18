@@ -130,7 +130,6 @@ ALTER TABLE migration OWNER TO gkri;
 CREATE TABLE posts (
     id bigint NOT NULL,
     titulo character varying(100) NOT NULL,
-    extension character varying(20) DEFAULT 'jpg'::character varying NOT NULL,
     usuario_id bigint,
     fecha_publicacion timestamp with time zone DEFAULT now() NOT NULL,
     longpost boolean DEFAULT false NOT NULL,
@@ -325,7 +324,7 @@ m160929_103127_add_last_login_at_to_user_table	1487951701
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
-COPY posts (id, titulo, extension, usuario_id, fecha_publicacion, longpost, status_id, moderated_by) FROM stdin;
+COPY posts (id, titulo, usuario_id, fecha_publicacion, longpost, status_id, moderated_by) FROM stdin;
 \.
 
 
