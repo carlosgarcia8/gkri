@@ -30,7 +30,7 @@ class UploadForm extends Model
     {
         if ($this->validate()) {
             // $this->imageFile->saveAs('uploads/' . \Yii::$app->user->id . '.' . $this->imageFile->extension);
-            $nombre = Yii::getAlias('@uploads/')
+            $nombre = Yii::getAlias('@avatar/')
                 . \Yii::$app->user->id . '.' . $this->imageFile->extension;
             $this->imageFile->saveAs($nombre);
             Image::thumbnail($nombre, 225, 225)

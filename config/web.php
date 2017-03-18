@@ -10,6 +10,8 @@ $config = [
     // 'defaultRoute' => 'site/index',
     'aliases' => [
         '@uploads' => 'uploads',
+        '@avatar' => 'uploads/avatar',
+        '@posts' => 'uploads/posts',
     ],
     'modules' => [
         'user' => [
@@ -25,6 +27,13 @@ $config = [
                 'confirmationSubject'   => 'Mensaje de Confirmación',
                 'reconfirmationSubject' => 'Cambio de Email',
                 'recoverySubject'       => 'Recuperación de Contraseña',
+            ],
+            'urlRules' =>  [
+                '<action:(login|logout|auth)>'           => 'security/<action>',
+                '<action:(register|resend)>'             => 'registration/<action>',
+                'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
+                'forgot'                                 => 'recovery/request',
+                'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
             ],
             'controllerMap' => [
                 'registration' => [
@@ -123,6 +132,8 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                'u/<username:\w+>'      => 'user/profile/show',
+                'settings/<action:\w+>' => 'user/settings/<action>'
                 // 'entrada/<id:\d>' => 'entradas/view',
                 // 'entrada/enviar' => 'entradas/create',
                 // 'entrada/categoria/<categoria_id:\d>' => 'entradas/index',

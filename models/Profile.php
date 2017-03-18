@@ -14,9 +14,9 @@ class Profile extends BaseProfile
      */
     public function getAvatar()
     {
-        $uploads = Yii::getAlias('@uploads');
+        $uploadsAvatar = Yii::getAlias('@avatar');
         $fichero = "{$this->user_id}.jpg";
-        $rutaLocal = "$uploads/{$fichero}";
+        $ruta = "$uploadsAvatar/{$fichero}";
 
         $s3 = Yii::$app->get('s3');
 
@@ -26,13 +26,13 @@ class Profile extends BaseProfile
          * se sirva de ese fichero y no tenga que pedirlo mas a amazon s3, de exista
          * manera ganamos eficiencia.
          */
-        if (file_exists($rutaLocal)) {
-            return "/$rutaLocal";
-        } elseif ($s3->exist($fichero)) {
-            $s3->commands()->get($fichero)->saveAs($rutaLocal)->execute();
-            return "/$rutaLocal";
+        if (file_exists($ruta)) {
+            return "/$ruta";
+        } elseif ($s3->exist($ruta)) {
+            $s3->commands()->get($ruta)->saveAs($ruta)->execute();
+            return "/$ruta";
         } else {
-            return "/$uploads/default.jpg";
+            return "/$uploadsAvatar/default.jpg";
         }
     }
 

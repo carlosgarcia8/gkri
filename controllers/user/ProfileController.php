@@ -21,7 +21,7 @@ class ProfileController extends BaseProfileController
  * @throws \yii\web\NotFoundHttpException
  */
 
-    public function actionShow($id)
+    public function actionShow($username)
     {
         // $dataProvider =  new ActiveDataProvider([
         //     'pagination' => [
@@ -34,8 +34,9 @@ class ProfileController extends BaseProfileController
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             $model->upload();
         }
+        $user = $this->finder->findUserByUsername($username);
 
-        $profile = $this->finder->findProfileById($id);
+        $profile = $this->finder->findProfileById($user->id);
 
         if ($profile === null) {
             throw new NotFoundHttpException();

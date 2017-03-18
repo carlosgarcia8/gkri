@@ -46,16 +46,16 @@ $this->title = 'GKRI';
             ['label' => 'Registrarse', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]:
             [
                 'label' => Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded little']),
-                'url' => ['/user/profile/show', 'id' => Yii::$app->user->id],
+                'url' => ['/user/profile/show', 'username' => Yii::$app->user->identity->username],
                 'encode' => false,
                 'items' => [
                     [
                        'label' => 'Mi Perfil',
-                       'url' => ['/user/' . Yii::$app->user->id],
+                       'url' => ['/u/' . Yii::$app->user->identity->username],
                     ],
                     [
                        'label' => 'Configuración',
-                       'url' => ['/user/settings/profile']
+                       'url' => ['/settings/profile']
                     ],
                     '<li class="divider"></li>',
                     [
