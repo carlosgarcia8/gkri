@@ -13,7 +13,7 @@ $this->title = 'Posts';
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
-        'itemView' => '_view.php',
+        'itemView' => '_viewm.php',
         'layout' => "{items}\n{pager}",
     ]) ?>
 </div>

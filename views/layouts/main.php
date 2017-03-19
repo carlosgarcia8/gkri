@@ -66,6 +66,7 @@ $this->title = 'GKRI';
                 ],
                 'linkOptions' => ['id' => 'imagen-avatar'],
             ],
+            ['label' => 'Upload', 'url' => ['/posts/upload'], 'linkOptions' => ['class' => 'boton-upload btn-primary'], 'visible' => !Yii::$app->user->isGuest],
         ],
     ]);
     NavBar::end();

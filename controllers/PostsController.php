@@ -4,9 +4,9 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Post;
-use app\models\PostSearch;
-use app\models\UploadPostForm;
-use yii\web\User;
+use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+use dektrium\user\filters\AccessRule;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
@@ -29,6 +29,25 @@ class PostsController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['update', 'delete', 'moderar'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['moderar', 'update', 'delete'],
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -38,11 +57,14 @@ class PostsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find()->approved(),
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -115,6 +137,24 @@ class PostsController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Lists all Post models that need moderation.
+     * @return mixed
+     */
+    public function actionModerar()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find()->pending(),
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
+
+        return $this->render('moderar', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

@@ -19,8 +19,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'titulo') ?>
 
-    <?= $form->field($model, 'extension') ?>
-
     <?= $form->field($model, 'usuario_id') ?>
 
     <?= $form->field($model, 'fecha_publicacion') ?>

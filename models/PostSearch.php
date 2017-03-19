@@ -19,7 +19,7 @@ class PostSearch extends Post
     {
         return [
             [['id', 'usuario_id', 'status_id', 'moderated_by'], 'integer'],
-            [['titulo', 'extension', 'fecha_publicacion'], 'safe'],
+            [['titulo', 'fecha_publicacion'], 'safe'],
             [['longpost'], 'boolean'],
         ];
     }
@@ -68,8 +68,7 @@ class PostSearch extends Post
             'moderated_by' => $this->moderated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'extension', $this->extension]);
+        $query->andFilterWhere(['like', 'titulo', $this->titulo]);
 
         return $dataProvider;
     }
