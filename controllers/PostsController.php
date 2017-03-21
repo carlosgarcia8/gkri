@@ -34,7 +34,7 @@ class PostsController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['update', 'delete', 'moderar'],
+                'only' => ['update', 'delete', 'moderar', 'aceptar', 'rechazar', 'view'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -43,8 +43,16 @@ class PostsController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['moderar', 'update', 'delete'],
+                        'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar'],
                         'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => ['@', 'admin'],
+                        'matchCallback' => function ($rule, $action) {
+                            return self::findOne(Yii::$app->request->get('id'))->usuario_id == Yii::$app->user->id;
+                        },
                     ],
                 ],
             ],
@@ -88,7 +96,7 @@ class PostsController extends Controller
      */
     public function actionUpload()
     {
-        $model = new Post();
+        $model = new Post(['scenario' => Post::SCENARIO_UPLOAD]);
 
         if ($model->load(Yii::$app->request->post())) {
             $imagen = UploadedFile::getInstance($model, 'imageFile');
@@ -155,6 +163,24 @@ class PostsController extends Controller
         return $this->render('moderar', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionAceptar($id)
+    {
+        $post = $this->findModel($id);
+
+        $post->scenario = Post::SCENARIO_MODERAR;
+
+        $post->markApproved();
+    }
+
+    public function actionRechazar($id)
+    {
+        $post = $this->findModel($id);
+
+        $post->scenario = Post::SCENARIO_MODERAR;
+
+        $post->markRejected();
     }
 
     /**

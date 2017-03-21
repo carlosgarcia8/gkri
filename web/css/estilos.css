@@ -267,3 +267,7 @@ a {
 .list-view {
     margin-left: 50px;
 }
+
+.item {
+    width: 455px;
+}

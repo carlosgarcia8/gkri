@@ -6,6 +6,7 @@ use Yii;
 use yii\web\UploadedFile;
 use yii2mod\moderation\ModerationQuery;
 use yii2mod\moderation\ModerationBehavior;
+use yii2mod\moderation\enums\Status;
 
 /**
  * This is the model class for table "posts".
@@ -30,6 +31,32 @@ class Post extends \yii\db\ActiveRecord
 {
     public $imageFile;
 
+    const SCENARIO_UPLOAD = 'upload';
+    const SCENARIO_MODERAR = 'moderar';
+
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_UPLOAD => [
+                'titulo',
+                'usuario_id',
+                'status_id',
+                'fecha_publicacion',
+                'longpost',
+                'imageFile',
+                'moderated_by',
+            ],
+            self::SCENARIO_MODERAR => [
+                'titulo',
+                'usuario_id',
+                'status_id',
+                'fecha_publicacion',
+                'longpost',
+                'moderated_by',
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -51,7 +78,7 @@ class Post extends \yii\db\ActiveRecord
             [['titulo'], 'string', 'max' => 100],
             ['imageFile', 'image', 'skipOnEmpty' => false,
                 'extensions' => 'png, jpg, gif',
-                'minWidth' => 500, 'maxWidth' => 2000,
+                'minWidth' => 450, 'maxWidth' => 2000,
                 'minHeight' => 300, 'maxHeight' => 20000,
             ],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['usuario_id' => 'id']],
