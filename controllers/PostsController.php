@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii2mod\moderation\enums\Status;
 
 /**
  * PostsController implements the CRUD actions for Post model.
@@ -38,20 +39,32 @@ class PostsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['delete'],
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'allow' => true,
                         'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar'],
                         'roles' => ['admin'],
                     ],
                     [
                         'allow' => true,
                         'actions' => ['delete'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Post::findOne(Yii::$app->request->get('id'))->usuario_id == Yii::$app->user->id;
+                        },
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view'],
                         'roles' => ['@', 'admin'],
                         'matchCallback' => function ($rule, $action) {
-                            return self::findOne(Yii::$app->request->get('id'))->usuario_id == Yii::$app->user->id;
+                            $post = Post::findOne(Yii::$app->request->get('id'));
+                            if ($post != null) {
+                                if ($post->status_id == Status::APPROVED) {
+                                    return true;
+                                } else {
+                                    throw new NotFoundHttpException('La página que esta buscando no existe.');
+                                }
+                            } else {
+                                throw new NotFoundHttpException('La página que esta buscando no existe.');
+                            }
                         },
                     ],
                 ],
@@ -66,7 +79,7 @@ class PostsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->approved(),
+            'query' => Post::find()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
             'pagination' => [
                 'pageSize' => 10,
             ]
@@ -105,7 +118,8 @@ class PostsController extends Controller
                 $model->imageFile = $imagen;
                 $model->markPending();
                 if ($model->save() && $model->upload()) {
-                    return $this->redirect(['view', 'id' => $model->id]);
+                    \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluara.');
+                    return $this->redirect(['index']);
                 }
             }
         } else {
@@ -142,6 +156,10 @@ class PostsController extends Controller
      */
     public function actionDelete($id)
     {
+        var_dump($id);
+        var_dump(Post::findOne(Yii::$app->request->get('id'))->usuario_id == Yii::$app->user->id);
+        var_dump($this->findModel($id));
+        die();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -153,15 +171,10 @@ class PostsController extends Controller
      */
     public function actionModerar()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->pending(),
-            'pagination' => [
-                'pageSize' => 10,
-            ]
-        ]);
+        $post = Post::find()->pending()->orderBy(['fecha_publicacion' => SORT_ASC])->one();
 
         return $this->render('moderar', [
-            'dataProvider' => $dataProvider,
+            'post' => $post,
         ]);
     }
 
@@ -170,8 +183,11 @@ class PostsController extends Controller
         $post = $this->findModel($id);
 
         $post->scenario = Post::SCENARIO_MODERAR;
-
+        date_default_timezone_set('Europe/Madrid');
+        $post->fecha_confirmacion = date('Y-m-d H:i:s');
         $post->markApproved();
+
+        return $this->redirect(['moderar']);
     }
 
     public function actionRechazar($id)
@@ -179,8 +195,9 @@ class PostsController extends Controller
         $post = $this->findModel($id);
 
         $post->scenario = Post::SCENARIO_MODERAR;
-
         $post->markRejected();
+
+        return $this->redirect(['moderar']);
     }
 
     /**

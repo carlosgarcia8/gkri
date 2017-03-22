@@ -1,6 +1,6 @@
 <?php
 
-use yii\widgets\ListView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PostSearch */
@@ -10,10 +10,18 @@ $this->title = 'Posts';
 // $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container list-view">
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => '_viewm.php',
-        'layout' => "{items}\n{pager}",
-    ]) ?>
+    <article class="item">
+        <?php if ($post) : ?>
+        <header><h2><?= Html::a($post->titulo, ['posts/view', 'id' => $post->id]) ?></h2></header>
+        <div class="panel panel-default">
+            <?= Html::a(Html::img($post->ruta), ['posts/view', 'id' => $post->id]) ?>
+            <div class="panel-body">
+                <?= Html::a('Aceptar', ['posts/aceptar', 'id' => $post->id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Rechazar', ['posts/rechazar', 'id' => $post->id], ['class' => 'btn btn-danger']) ?>
+            </div>
+        </div>
+        <?php else : ?>
+        <header><h4>No hay posts que moderar. Vuelva mas tarde.</h4></header>
+        <?php endif; ?>
+    </article>
 </div>

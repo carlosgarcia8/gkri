@@ -15,6 +15,7 @@ create table posts (
         references public.user(id)
         on delete set null on update cascade,
     fecha_publicacion   timestamp with time zone not null default current_timestamp,
+    fecha_aceptacion    timestamp with time zone,
     longpost            bool         not null default false,
     status_id           smallint,
     moderated_by        bigint       not null constraint fk_posts_usuarios_moderador
