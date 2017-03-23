@@ -139,24 +139,21 @@ class Post extends \yii\db\ActiveRecord
     public function getRuta()
     {
         $uploadsPosts = Yii::getAlias('@posts');
+        // TODO solo puede ser jpg, habria que cambiarlo
         $fichero = "{$this->id}.jpg";
         $ruta = "$uploadsPosts/{$fichero}";
 
-        // $s3 = Yii::$app->get('s3');
+        $s3 = Yii::$app->get('s3');
+
         if (file_exists($ruta)) {
             return "/$ruta";
+        } elseif ($s3->exist($ruta)) {
+            $s3->commands()->get($ruta)->saveAs($ruta)->execute();
+            return "/$ruta";
         } else {
-            return false;
+            return "/$uploadsAvatar/default.jpg";
         }
-
-        // if (file_exists($ruta)) {
-        //     return "/$ruta";
-        // } elseif ($s3->exist($ruta)) {
-        //     $s3->commands()->get($ruta)->saveAs($ruta)->execute();
-        //     return "/$ruta";
-        // } else {
-        //     return "/$uploadsAvatar/default.jpg";
-        // }
+        // TODO que hacer si no existe ni localmente ni remotamente
     }
 
     /**

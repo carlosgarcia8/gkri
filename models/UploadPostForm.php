@@ -54,24 +54,12 @@ class UploadPostForm extends Model
             //     $imagen->crop(new Point(0, 0), new Box(500, 260));
             //     $imagen->save(Yii::getAlias('@posts/') . $id . '-longpost.' . $this->extension, ['quality' => 90]);
             // }
+            $s3 = Yii::$app->get('s3');
+            $nombreS3 = Yii::getAlias('@posts/') . $id . '.' . $extension;
+            $s3->upload($nombreS3, $ruta);
             return true;
         } else {
             return false;
         }
-        // if ($this->validate()) {
-        //     // $this->imageFile->saveAs('uploads/' . \Yii::$app->user->id . '.' . $this->imageFile->extension);
-        //     $nombre = Yii::getAlias('@avatar/')
-        //         . \Yii::$app->user->id . '.' . $this->imageFile->extension;
-        //     $this->imageFile->saveAs($nombre);
-        //     Image::thumbnail($nombre, 225, 225)
-        //         ->save($nombre, ['quality' => 80]);
-        //     $s3 = Yii::$app->get('s3');
-        //     $nombreS3 = Yii::getAlias('@avatar/') . \Yii::$app->user->id . '.' . $this->imageFile->extension;
-        //     $s3->upload($nombreS3, $nombre);
-        //
-        //     return true;
-        // } else {
-        //     return false;
-        // }
     }
 }

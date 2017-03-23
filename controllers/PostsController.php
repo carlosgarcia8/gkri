@@ -39,7 +39,7 @@ class PostsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar'],
+                        'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar', 'view'],
                         'roles' => ['admin'],
                     ],
                     [
@@ -53,7 +53,7 @@ class PostsController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['view'],
-                        'roles' => ['@', 'admin'],
+                        'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             $post = Post::findOne(Yii::$app->request->get('id'));
                             if ($post != null) {
@@ -156,11 +156,20 @@ class PostsController extends Controller
      */
     public function actionDelete($id)
     {
-        var_dump($id);
-        var_dump(Post::findOne(Yii::$app->request->get('id'))->usuario_id == Yii::$app->user->id);
-        var_dump($this->findModel($id));
-        die();
         $this->findModel($id)->delete();
+
+        $fichero = glob(Yii::getAlias('@posts/') . $id . '.*');
+
+        if (!empty($fichero)) {
+            unlink($fichero[0]);
+        }
+
+        $s3 = Yii::$app->get('s3');
+        $ficheroS3 = $fichero[0];
+
+        if ($s3->exist($ficheroS3)) {
+            $s3->delete($ficheroS3);
+        }
 
         return $this->redirect(['index']);
     }

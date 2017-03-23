@@ -15,6 +15,7 @@ class Profile extends BaseProfile
     public function getAvatar()
     {
         $uploadsAvatar = Yii::getAlias('@avatar');
+        // TODO solo puede ser jpg, habria que cambiarlo
         $fichero = "{$this->user_id}.jpg";
         $ruta = "$uploadsAvatar/{$fichero}";
 
