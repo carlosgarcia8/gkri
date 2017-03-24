@@ -265,9 +265,13 @@ a {
 }
 
 .list-view {
-    margin-left: 50px;
+    margin-left: 120px;
 }
 
 .item {
     width: 455px;
+}
+
+.item h2 a {
+    font-family: 'Baloo Bhaina';
 }

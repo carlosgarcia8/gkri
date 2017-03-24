@@ -139,6 +139,8 @@ class Post extends \yii\db\ActiveRecord
     public function getRuta()
     {
         $uploadsPosts = Yii::getAlias('@posts');
+        $uploadsAvatar = Yii::getAlias('@avatar');
+        // TODO esta puesto un default de avatar para los posts, wtf
         // TODO solo puede ser jpg, habria que cambiarlo
         $fichero = "{$this->id}.jpg";
         $ruta = "$uploadsPosts/{$fichero}";

@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ServerErrorHttpException;
 use yii2mod\moderation\enums\Status;
 
 /**
@@ -114,13 +115,18 @@ class PostsController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $imagen = UploadedFile::getInstance($model, 'imageFile');
             $model->usuario_id = Yii::$app->user->id;
+
             if ($imagen !== null) {
                 $model->imageFile = $imagen;
                 $model->markPending();
+                $model->moderated_by = null;
+
                 if ($model->save() && $model->upload()) {
                     \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluara.');
-                    return $this->redirect(['index']);
+                    return $this->redirect(['/']);
                 }
+            } else {
+                throw new ServerErrorHttpException('Error Interno');
             }
         } else {
             return $this->render('create', [

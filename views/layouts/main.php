@@ -24,6 +24,7 @@ $this->title = 'GKRI';
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet"> 
 </head>
 <body>
 <?php $this->beginBody() ?>
