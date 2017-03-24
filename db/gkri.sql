@@ -7,6 +7,16 @@
 --     activo   bool         not null default true
 -- );
 
+drop table if exists categorias cascade;
+
+create table categorias (
+    id      bigserial   constraint pk_categorias primary key,
+    nombre  varchar(20) not null
+);
+
+-- insert into categorias (nombre)
+-- values ('Gracioso'), ('Cultura'), ('Amor'), ('Chicas'), ('Politica');
+
 drop table if exists posts cascade;
 create table posts (
     id                  bigserial    constraint pk_posts primary key,
@@ -15,8 +25,11 @@ create table posts (
         references public.user(id)
         on delete set null on update cascade,
     fecha_publicacion   timestamp with time zone not null default current_timestamp,
-    fecha_aceptacion    timestamp with time zone,
+    fecha_confirmacion  timestamp with time zone,
     longpost            bool         not null default false,
+    categoria_id        bigint         not null constraint fk_posts_categorias
+        references categorias(id)
+        on delete no action on update cascade,
     status_id           smallint,
     moderated_by        bigint       not null constraint fk_posts_usuarios_moderador
         references public.user(id)

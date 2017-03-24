@@ -260,11 +260,7 @@ a {
     display: inline-block !important;
 }
 
-.navbar-right > li:last-child {
-
-}
-
-.list-view {
+.list-view, .post-view {
     margin-left: 120px;
 }
 
@@ -274,4 +270,8 @@ a {
 
 .item h2 a {
     font-family: 'Baloo Bhaina';
+}
+
+.categoria-moderar {
+    font-size: 14px !important;
 }

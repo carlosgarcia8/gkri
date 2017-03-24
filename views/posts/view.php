@@ -6,9 +6,6 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-view">
 
@@ -25,17 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'titulo',
-            'usuario_id',
-            'fecha_publicacion',
-            'longpost:boolean',
-            'status_id',
-            'moderated_by',
-        ],
-    ]) ?>
+    <article class="item">
+        <header><h2><?= Html::a($model->titulo, ['posts/view', 'id' => $model->id]) ?></h2></header>
+        <div class="">
+            <?= Html::a(Html::img($model->ruta), ['posts/view', 'id' => $model->id]) ?>
+        </div>
+    </article>
 
 </div>

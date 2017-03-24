@@ -18,7 +18,7 @@ $this->title = 'Posts';
             <div class="panel-body">
                 <?= Html::a('Aceptar', ['posts/aceptar', 'id' => $post->id], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Rechazar', ['posts/rechazar', 'id' => $post->id], ['class' => 'btn btn-danger']) ?>
-            </div>
+                <strong class="pull-right label label-default categoria-moderar">Categoría: <?= $post->categoria->nombre ?></strong>
         </div>
         <?php else : ?>
         <header><h4>No hay posts que moderar. Vuelva mas tarde.</h4></header>

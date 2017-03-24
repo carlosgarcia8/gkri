@@ -45,6 +45,7 @@ class Post extends \yii\db\ActiveRecord
                 'longpost',
                 'imageFile',
                 'moderated_by',
+                'categoria_id',
             ],
             self::SCENARIO_MODERAR => [
                 'titulo',
@@ -53,6 +54,7 @@ class Post extends \yii\db\ActiveRecord
                 'fecha_publicacion',
                 'longpost',
                 'moderated_by',
+                'categoria_id',
             ],
         ];
     }
@@ -71,7 +73,7 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['titulo'], 'required'],
+            [['titulo', 'categoria_id'], 'required'],
             [['usuario_id', 'status_id', 'moderated_by'], 'integer'],
             [['fecha_publicacion'], 'safe'],
             [['longpost'], 'boolean'],
@@ -180,6 +182,14 @@ class Post extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(User::className(), ['id' => 'usuario_id'])->inverseOf('posts');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoria()
+    {
+        return $this->hasOne(Categoria::className(), ['id' => 'categoria_id'])->inverseOf('posts');
     }
 
     /**

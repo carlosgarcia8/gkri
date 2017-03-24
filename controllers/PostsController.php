@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ServerErrorHttpException;
 use yii2mod\moderation\enums\Status;
+use app\models\Categoria;
 
 /**
  * PostsController implements the CRUD actions for Post model.
@@ -111,6 +112,7 @@ class PostsController extends Controller
     public function actionUpload()
     {
         $model = new Post(['scenario' => Post::SCENARIO_UPLOAD]);
+        $categorias = Categoria::find()->select('nombre')->indexBy('id')->column();
 
         if ($model->load(Yii::$app->request->post())) {
             $imagen = UploadedFile::getInstance($model, 'imageFile');
@@ -131,6 +133,7 @@ class PostsController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'categorias' => $categorias,
             ]);
         }
     }

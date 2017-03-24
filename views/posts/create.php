@@ -16,6 +16,7 @@ $this->title = 'Upload Post';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'categorias' => $categorias,
     ]) ?>
 
 </div>

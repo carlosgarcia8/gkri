@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
@@ -25,6 +26,20 @@ use kartik\file\FileInput;
             'pluginOptions' => [
                 'showUpload' => false,
             ]
+        ]); ?>
+    </div>
+    <div class="form-group col-lg-8">
+        <label class="control-label">Categoría</label>
+        <?= Select2::widget([
+            'name' => 'Post[categoria_id]',
+            'value' => 1,
+            'data' => $categorias,
+            'options' => ['placeholder' => 'Selecciona una categoría'],
+            'pluginOptions' => [
+                'tags' => true,
+                'tokenSeparators' => [',', ' '],
+                'maximumInputLength' => 10
+            ],
         ]); ?>
     </div>
 
