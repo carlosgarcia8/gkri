@@ -260,8 +260,12 @@ a {
     display: inline-block !important;
 }
 
-.list-view, .post-view {
+.list-view {
     margin-left: 120px;
+}
+
+.post-view {
+    margin-left: 40px;
 }
 
 .item {
@@ -274,4 +278,12 @@ a {
 
 .categoria-moderar {
     font-size: 14px !important;
+}
+
+.btn-link {
+    color: #999 !important;
+}
+
+.btn-link:hover {
+    color: #6E6E6E !important;
 }

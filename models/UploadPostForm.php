@@ -48,7 +48,7 @@ class UploadPostForm extends Model
             $this->imageFile->saveAs(Yii::getAlias('@posts/') . $id . '.' . $extension);
             $imagen = Image::getImagine()
                 ->open(Yii::getAlias('@posts/') . $id . '.' . $extension);
-            $imagen->thumbnail(new Box(500, $imagen->getSize()->getHeight()))
+            $imagen->thumbnail(new Box(455, $imagen->getSize()->getHeight()))
                     ->save(Yii::getAlias('@posts/') . $id . '.' . $extension, ['quality' => 90]);
             // if ($this->longpost) {
             //     $imagen->crop(new Point(0, 0), new Box(500, 260));

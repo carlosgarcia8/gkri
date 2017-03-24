@@ -99,8 +99,20 @@ class PostsController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        
+        if (Yii::$app->user->isGuest) {
+            $esAdmin = false;
+            $esAutor = false;
+        } else {
+            $esAdmin = Yii::$app->user->identity->isAdmin;
+            $esAutor = $model->usuario_id === Yii::$app->user->identity->id;
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'esAdmin' => $esAdmin,
+            'esAutor' => $esAutor,
         ]);
     }
 
@@ -147,12 +159,16 @@ class PostsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = Post::SCENARIO_UPDATE;
+
+        $categorias = Categoria::find()->select('nombre')->indexBy('id')->column();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'categorias' => $categorias,
             ]);
         }
     }

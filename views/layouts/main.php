@@ -24,7 +24,7 @@ $this->title = 'GKRI';
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -38,6 +38,12 @@ $this->title = 'GKRI';
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    // echo Nav::widget([
+    //     'options' => ['class' => 'navbar-nav navbar-left'],
+    //     'items' => [
+    //         ['label' => 'Categorías', 'url' => ['/'], 'linkOptions' => ['class' => 'menu-categorias']],
+    //     ],
+    // ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [

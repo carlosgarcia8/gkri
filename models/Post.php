@@ -33,6 +33,7 @@ class Post extends \yii\db\ActiveRecord
 
     const SCENARIO_UPLOAD = 'upload';
     const SCENARIO_MODERAR = 'moderar';
+    const SCENARIO_UPDATE = 'update';
 
     public function scenarios()
     {
@@ -48,6 +49,15 @@ class Post extends \yii\db\ActiveRecord
                 'categoria_id',
             ],
             self::SCENARIO_MODERAR => [
+                'titulo',
+                'usuario_id',
+                'status_id',
+                'fecha_publicacion',
+                'longpost',
+                'moderated_by',
+                'categoria_id',
+            ],
+            self::SCENARIO_UPDATE => [
                 'titulo',
                 'usuario_id',
                 'status_id',
