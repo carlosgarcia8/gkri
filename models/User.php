@@ -22,6 +22,22 @@ class User extends BaseUser
         return $this->hasMany(Post::className(), ['moderated_by' => 'id'])->inverseOf('moderadoPor');
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostPendiente()
+    {
+        return $this->getPosts()->pending()->all();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostsAceptados()
+    {
+        return $this->getPosts()->approved()->all();
+    }
+
     //
     // /**
     //  * Devuelve el avatar del usuario

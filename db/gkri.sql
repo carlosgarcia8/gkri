@@ -14,8 +14,8 @@ create table categorias (
     nombre  varchar(20) not null
 );
 
--- insert into categorias (nombre)
--- values ('Gracioso'), ('Cultura'), ('Amor'), ('Chicas'), ('Politica');
+insert into categorias (nombre)
+values ('Gracioso'), ('Cultura'), ('Amor'), ('Chicas'), ('Politica');
 
 drop table if exists posts cascade;
 create table posts (
@@ -31,7 +31,7 @@ create table posts (
         references categorias(id)
         on delete no action on update cascade,
     status_id           smallint,
-    moderated_by        bigint       not null constraint fk_posts_usuarios_moderador
+    moderated_by        bigint       constraint fk_posts_usuarios_moderador
         references public.user(id)
         on delete no action on update cascade
 );

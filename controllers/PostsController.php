@@ -37,12 +37,17 @@ class PostsController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['update', 'delete', 'moderar', 'aceptar', 'rechazar', 'view'],
+                'only' => ['update', 'delete', 'moderar', 'aceptar', 'rechazar', 'view', 'upload'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar', 'view'],
+                        'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar', 'view', 'upload'],
                         'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['upload'],
+                        'roles' => ['@'],
                     ],
                     [
                         'allow' => true,
@@ -100,7 +105,7 @@ class PostsController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        
+
         if (Yii::$app->user->isGuest) {
             $esAdmin = false;
             $esAutor = false;
@@ -123,6 +128,11 @@ class PostsController extends Controller
      */
     public function actionUpload()
     {
+        if (!empty(Yii::$app->user->identity->getPostPendiente())) {
+            \Yii::$app->getSession()->setFlash('upload', 'Aun se está evaluando su anterior Post. Espere a que se evalúe y podrá volver a enviar otro. Gracias por su paciencia :D.');
+            return $this->redirect(['/']);
+        }
+
         $model = new Post(['scenario' => Post::SCENARIO_UPLOAD]);
         $categorias = Categoria::find()->select('nombre')->indexBy('id')->column();
 
@@ -133,7 +143,6 @@ class PostsController extends Controller
             if ($imagen !== null) {
                 $model->imageFile = $imagen;
                 $model->markPending();
-                $model->moderated_by = null;
 
                 if ($model->save() && $model->upload()) {
                     \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluara.');
