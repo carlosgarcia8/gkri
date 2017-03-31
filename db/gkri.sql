@@ -10,16 +10,19 @@
 drop table if exists categorias cascade;
 
 create table categorias (
-    id      bigserial   constraint pk_categorias primary key,
-    nombre  varchar(20) not null
+    id       bigserial   constraint pk_categorias primary key,
+    nombre   varchar(20) not null,
+    nombre_c varchar(20) not null
 );
 
-insert into categorias (nombre)
-values ('Gracioso'), ('Cultura'), ('Amor'), ('Chicas'), ('Politica'), ('GIF'),
-    ('Estudios'), ('Películas'), ('Series'), ('WTF'), ('Gamers'), ('Anime/Mange'),
-    ('Humor Negro'), ('Animales'), ('Otro');
+insert into categorias (nombre, nombre_c)
+values ('Gracioso', 'gracioso'), ('Cultura', 'cultura'), ('Amor', 'amor'),
+    ('Chicas', 'chicas'), ('Politica', 'politica'), ('GIF', 'gif'),
+    ('Estudios', 'estudios'), ('Películas', 'peliculas'), ('Series', 'series'),
+    ('WTF', 'wtf'), ('Gamers', 'gamers'), ('Anime/Manga', 'anime-manga'),
+    ('Humor Negro', 'humor-negro'), ('Animales', 'animales'), ('Otro', 'otro');
 
-alter table profile add column gender char(1);
+-- alter table profile add column gender char(1);
 
 drop table if exists posts cascade;
 create table posts (

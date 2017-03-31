@@ -83,14 +83,25 @@ class PostsController extends Controller
      * Lists all Post models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($categoria = null)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Post::find()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
-            'pagination' => [
-                'pageSize' => 10,
-            ]
-        ]);
+        $categoria = Categoria::findOne(['nombre_c' => $categoria]);
+
+        if ($categoria != null) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $categoria->getPosts()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
+                'pagination' => [
+                    'pageSize' => 10,
+                ]
+            ]);
+        } else {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Post::find()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
+                'pagination' => [
+                    'pageSize' => 10,
+                ]
+            ]);
+        }
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -230,7 +241,7 @@ class PostsController extends Controller
         $post->fecha_confirmacion = date('Y-m-d H:i:s');
         $post->markApproved();
 
-        return $this->redirect(['moderar']);
+        return $this->redirect(['/moderar']);
     }
 
     public function actionRechazar($id)
@@ -240,7 +251,7 @@ class PostsController extends Controller
         $post->scenario = Post::SCENARIO_MODERAR;
         $post->markRejected();
 
-        return $this->redirect(['moderar']);
+        return $this->redirect(['/moderar']);
     }
 
     /**

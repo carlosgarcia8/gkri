@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\Categoria;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -11,7 +12,7 @@ use app\assets\AppAsset;
 
 $this->registerCssFile('@web/css/estilos.css');
 AppAsset::register($this);
-
+$categorias = Categoria::find()->all();
 $this->title = 'GKRI';
 
 ?>
@@ -38,10 +39,60 @@ $this->title = 'GKRI';
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+
+    ?>
+    <ul class="navbar-nav navbar-left nav">
+        <li><a href="/posts/gracioso">Gracioso</a></li>
+        <li><a href="/posts/amor">Amor</a></li>
+        <li><a href="/posts/series">Series</a></li>
+        <li><a href="/posts/wtf">WTF</a></li>
+        <li class="dropdown">
+            <a href="/" data-toggle="dropdown" class="dropdown-toggle">Más<b class="caret"></b></a>
+            <ul class="dropdown-menu multi-column columns-3">
+                <div class="row">
+                    <?php foreach ($categorias as $i => $categoria) {
+                        if ($i == 0) { ?>
+                            <div class="col-sm-4">
+                                <ul class="multi-column-dropdown">
+                                    <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                        <?php }
+                        elseif ($i == 5 || $i == 11) { ?>
+                                    <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul class="multi-column-dropdown">
+                        <?php
+                        } elseif ($i == count($categorias) - 1) { ?>
+                                    <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                                </ul>
+                            </div>
+                        <?php
+                        } else { ?>
+                            <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                        <?php }
+                    } ?>
+                </div>
+            </ul>
+        </li>
+    </ul>
+    <?php
+
     // echo Nav::widget([
     //     'options' => ['class' => 'navbar-nav navbar-left'],
     //     'items' => [
-    //         ['label' => 'Categorías', 'url' => ['/'], 'linkOptions' => ['class' => 'menu-categorias']],
+    //         ['label' => 'Gracioso', 'url' => ['/posts/gracioso'], 'linkOptions' => ['class' => 'categoria']],
+    //         ['label' => 'Amor', 'url' => ['/posts/amor'], 'linkOptions' => ['class' => 'categoria']],
+    //         ['label' => 'Series', 'url' => ['/posts/series'], 'linkOptions' => ['class' => 'categoria']],
+    //         ['label' => 'WTF', 'url' => ['/posts/wtf'], 'linkOptions' => ['class' => 'categoria']],
+    //         [
+    //         'label' => 'Más',
+    //         'url' => '/',
+    //         'items' => [
+    //             ['label' => 'Level 1 - Dropdown A', 'url' => ''],
+    //             ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+    //         ],
+    //     ],
     //     ],
     // ]);
     echo Nav::widget([

@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $nombre
+ * @property string $nombre_c
  *
  * @property Posts[] $posts
  */
@@ -28,8 +29,8 @@ class Categoria extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre'], 'required'],
-            [['nombre'], 'string', 'max' => 20],
+            [['nombre', 'nombre_c'], 'required'],
+            [['nombre', 'nombre_c'], 'string', 'max' => 20],
         ];
     }
 
