@@ -42,8 +42,11 @@ class SettingsController extends BaseSettingsController
             return $this->refresh();
         }
 
+        $genders = ['M' => Yii::t('user', 'Male'), 'F' => Yii::t('user', 'Female')];
+
         return $this->render('profile', [
             'model' => $model,
+            'genders' => $genders,
         ]);
     }
 }

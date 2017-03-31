@@ -60,7 +60,7 @@ class PostsController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['view'],
-                        'roles' => ['@'],
+                        'roles' => ['@', '?'],
                         'matchCallback' => function ($rule, $action) {
                             $post = Post::findOne(Yii::$app->request->get('id'));
                             if ($post != null) {

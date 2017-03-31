@@ -52,6 +52,7 @@ $config = [
                 'User' => 'app\models\User',
                 'SettingsForm' => 'app\models\SettingsForm',
                 'RecoveryForm' => 'app\models\RecoveryForm',
+                'RegistrationForm' => 'app\models\RegistrationForm',
             ],
         ],
         // 'comment' => [

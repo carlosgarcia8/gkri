@@ -15,7 +15,11 @@ create table categorias (
 );
 
 insert into categorias (nombre)
-values ('Gracioso'), ('Cultura'), ('Amor'), ('Chicas'), ('Politica');
+values ('Gracioso'), ('Cultura'), ('Amor'), ('Chicas'), ('Politica'), ('GIF'),
+    ('Estudios'), ('Películas'), ('Series'), ('WTF'), ('Gamers'), ('Anime/Mange'),
+    ('Humor Negro'), ('Animales'), ('Otro');
+
+alter table profile add column gender char(1);
 
 drop table if exists posts cascade;
 create table posts (

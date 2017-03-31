@@ -172,7 +172,7 @@ return [
     'Information' => 'Información',
     'Invalid login or password' => 'Usuario o contraseña incorrectos',
     'Joined on {0, date}' => 'Registrado el {0, date}',
-    'Location' => 'Localización',
+    'Location' => 'País',
     'Login' => 'Usuario',
     'Logout' => 'Cerrar sesión',
     'Manage users' => 'Administrar usuarios',
@@ -226,4 +226,8 @@ return [
     'Generate and send new password to user' => 'Generar y enviar nueva contraseña',
     'Are you sure?' => '¿Estás seguro?',
     'New Password has been generated and sent to user' => 'Se ha generado y enviado la nueva contraseña al usuario',
+    'Male' => 'Masculino',
+    'Female' => 'Femenino',
+    'Select' => 'Selecciona',
+    'Gender' => 'Sexo',
 ];
