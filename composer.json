@@ -26,7 +26,8 @@
         "frostealth/yii2-aws-s3": "~2.0",
         "yii2mod/yii2-moderation": "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "yiisoft/yii2-jui": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

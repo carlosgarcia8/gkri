@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
 use yii\web\ServerErrorHttpException;
 use yii2mod\moderation\enums\Status;
 use app\models\Categoria;
+use yii\helpers\Json;
 
 /**
  * PostsController implements the CRUD actions for Post model.
@@ -252,6 +253,40 @@ class PostsController extends Controller
         $post->markRejected();
 
         return $this->redirect(['/moderar']);
+    }
+
+    /**
+     * Realiza la busqueda por titulo de los Posts
+     * @param  string $q la cadena que correspondera con la busqueda del titulo
+     * @return mixed
+     */
+    public function actionSearch($q = null)
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Post::find()
+                ->approved()
+                ->where(['ilike', 'titulo', "$q%", false])
+                ->orderBy(['fecha_publicacion' => SORT_DESC]),
+            'pagination' => [
+                'pageSize' => 10,
+            ]
+        ]);
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'titulo' => $q,
+        ]);
+    }
+
+    public function actionSearchAjax($q = null)
+    {
+        $posts = [];
+        if ($q != null || $q != '') {
+            $posts = Post::find()
+            ->select('titulo')
+            ->where(['ilike', 'titulo', "$q%", false])
+            ->column();
+        }
+        return Json::encode($posts);
     }
 
     /**

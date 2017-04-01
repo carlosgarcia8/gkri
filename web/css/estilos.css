@@ -327,3 +327,7 @@ a {
 		overflow-x: hidden;
 	}
 }
+
+.lupa {
+    margin-bottom: 20px !important;   
+}

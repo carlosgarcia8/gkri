@@ -4,14 +4,43 @@
 /* @var $content string */
 
 use app\models\Categoria;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
+$url = Url::to(['/posts/search-ajax']);
+$js = <<<EOT
+    $('#search').on('keyup', function () {
+        $.ajax({
+            method: 'get',
+            url: '$url',
+            data: {
+                q: $('#search').val()
+            },
+            success: function (data, status, event) {
+                var d = JSON.parse(data);
+                console.log(d);
+                $('#search').autocomplete({
+                    source:d,
+                    minLength: 2
+                }).data("ui-autocomplete")._renderItem = function( ul, item ) {
+                    return $( "<li>" )
+                    .attr( "data-value", item.value )
+                    .append( $( "<a>" ).html( item.label.replace(new RegExp('^' + this.term, 'gi'),"<strong>$&</strong>") ) )
+                    .appendTo( ul );
+                };
+            }
+        });
+    });
+EOT;
+
 $this->registerCssFile('@web/css/estilos.css');
 AppAsset::register($this);
+$this->registerJs($js);
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';
 
@@ -42,10 +71,10 @@ $this->title = 'GKRI';
 
     ?>
     <ul class="navbar-nav navbar-left nav">
-        <li><a href="/posts/gracioso">Gracioso</a></li>
-        <li><a href="/posts/amor">Amor</a></li>
-        <li><a href="/posts/series">Series</a></li>
-        <li><a href="/posts/wtf">WTF</a></li>
+        <li><a href="/gracioso">Gracioso</a></li>
+        <li><a href="/amor">Amor</a></li>
+        <li><a href="/series">Series</a></li>
+        <li><a href="/wtf">WTF</a></li>
         <li class="dropdown">
             <a href="/" data-toggle="dropdown" class="dropdown-toggle">Más<b class="caret"></b></a>
             <ul class="dropdown-menu multi-column columns-3">
@@ -54,22 +83,22 @@ $this->title = 'GKRI';
                         if ($i == 0) { ?>
                             <div class="col-sm-4">
                                 <ul class="multi-column-dropdown">
-                                    <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                                    <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
                         <?php }
                         elseif ($i == 5 || $i == 11) { ?>
-                                    <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                                    <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-4">
                                 <ul class="multi-column-dropdown">
                         <?php
                         } elseif ($i == count($categorias) - 1) { ?>
-                                    <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                                    <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
                                 </ul>
                             </div>
                         <?php
                         } else { ?>
-                            <li><a href="/posts/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                            <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
                         <?php }
                     } ?>
                 </div>
@@ -77,7 +106,6 @@ $this->title = 'GKRI';
         </li>
     </ul>
     <?php
-
     // echo Nav::widget([
     //     'options' => ['class' => 'navbar-nav navbar-left'],
     //     'items' => [
@@ -127,7 +155,19 @@ $this->title = 'GKRI';
             ['label' => 'Upload', 'url' => ['/posts/upload'], 'linkOptions' => ['class' => 'boton-upload btn-primary'], 'visible' => !Yii::$app->user->isGuest],
         ],
     ]);
+
+    $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
+       <div class="input-group">
+           <div class="input-group-btn">
+               <input type="text" id="search" class="form-control" placeholder="Search" name="q">
+               <button class="btn btn-default lupa" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+               <div class="sugerenciasa"></div>
+           </div>
+       </div>
+   <?php ActiveForm::end();
+
     NavBar::end();
+
     ?>
 
     <div class="container">
