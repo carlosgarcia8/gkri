@@ -14,28 +14,36 @@ use app\assets\AppAsset;
 
 $url = Url::to(['/posts/search-ajax']);
 $js = <<<EOT
-    $('#search').on('keyup', function () {
-        $.ajax({
-            method: 'get',
-            url: '$url',
-            data: {
-                q: $('#search').val()
-            },
-            success: function (data, status, event) {
-                var d = JSON.parse(data);
-                console.log(d);
-                $('#search').autocomplete({
-                    source:d,
-                    minLength: 2
-                }).data("ui-autocomplete")._renderItem = function( ul, item ) {
-                    return $( "<li>" )
-                    .attr( "data-value", item.value )
-                    .append( $( "<a>" ).html( item.label.replace(new RegExp('^' + this.term, 'gi'),"<strong>$&</strong>") ) )
-                    .appendTo( ul );
-                };
+        $('#search').on('keyup', function () {
+            if ($('#search').val().length >= 2) {
+                $.ajax({
+                    method: 'get',
+                    url: '$url',
+                    data: {
+                        q: $('#search').val()
+                    },
+                    success: function (data, status, event) {
+                        var d = JSON.parse(data);
+                        console.log(d);
+                        $('#search').autocomplete({
+                            source:d,
+                            minLength: 2,
+                            search: function(event, ui) {
+                                $('#lupa').removeClass('glyphicon-search').addClass('glyphicon-refresh glyphicon-refresh-animate');
+                            },
+                            response: function(event, ui) {
+                                $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
+                            }
+                        }).data("ui-autocomplete")._renderItem = function( ul, item ) {
+                            return $( "<li>" )
+                            .attr( "data-value", item.value )
+                            .append( $( "<a>" ).html( item.label.replace(new RegExp('^' + this.term, 'gi'),"<strong>$&</strong>") ) )
+                            .appendTo( ul );
+                        };
+                    }
+                });
             }
         });
-    });
 EOT;
 
 $this->registerCssFile('@web/css/estilos.css');
@@ -160,7 +168,7 @@ $this->title = 'GKRI';
        <div class="input-group">
            <div class="input-group-btn">
                <input type="text" id="search" class="form-control" placeholder="Search" name="q">
-               <button class="btn btn-default lupa" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+               <button class="btn btn-default lupa" type="submit"><i id="lupa" class="glyphicon glyphicon-search"></i></button>
                <div class="sugerenciasa"></div>
            </div>
        </div>
