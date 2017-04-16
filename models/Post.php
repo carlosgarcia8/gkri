@@ -173,10 +173,50 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    // public function getDownvotes()
-    // {
-    //     return $this->hasMany(Downvotes::className(), ['post_id' => 'id'])->inverseOf('post');
-    // }
+    public function getVotos()
+    {
+        return $this->hasMany(Voto::className(), ['post_id' => 'id'])->inverseOf('post');
+    }
+
+    /**
+     * @return bool
+     */
+    public function estaUpvoteado()
+    {
+        return $this->getVotos()->where(['usuario_id' => Yii::$app->user->id, 'positivo' => true])->one() !== null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function estaDownvoteado()
+    {
+        return $this->getVotos()->where(['usuario_id' => Yii::$app->user->id, 'positivo' => false])->one() !== null;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotosPositivos()
+    {
+        return $this->getVotos()->where(['positivo' => true]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotosNegativos()
+    {
+        return $this->getVotos()->where(['positivo' => false]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotosTotal()
+    {
+        return $this->getVotosPositivos()->count() - $this->getVotosNegativos()->count();
+    }
 
     /**
      * @return \yii\db\ActiveQuery

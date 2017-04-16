@@ -61,20 +61,21 @@ create table session (
 --         on delete cascade on update cascade
 -- );
 
-drop table if exists upvotes cascade;
-create table upvotes (
-    usuario_id  bigint        constraint fk_upvotes_usuarios references public.user(id)
+drop table if exists votos cascade;
+create table votos (
+    usuario_id  bigint        constraint fk_votos_usuarios references public.user(id)
         on delete cascade on update cascade,
-    post_id     bigint        constraint fk_upvotes_posts references posts(id)
+    post_id     bigint        constraint fk_votos_posts references posts(id)
         on delete cascade on update cascade,
-    constraint pk_upvotes primary key (usuario_id, post_id)
+    positivo    boolean       not null default true,
+    constraint pk_votos primary key (usuario_id, post_id)
 );
 
-drop table if exists downvotes cascade;
-create table downvotes (
-    usuario_id  bigint        constraint fk_downvotes_usuarios references public.user(id)
-        on delete cascade on update cascade,
-    post_id     bigint        constraint fk_downvotes_posts references posts(id)
-        on delete cascade on update cascade,
-    constraint pk_downvotes primary key (usuario_id, post_id)
-);
+-- drop table if exists downvotes cascade;
+-- create table downvotes (
+--     usuario_id  bigint        constraint fk_downvotes_usuarios references public.user(id)
+--         on delete cascade on update cascade,
+--     post_id     bigint        constraint fk_downvotes_posts references posts(id)
+--         on delete cascade on update cascade,
+--     constraint pk_downvotes primary key (usuario_id, post_id)
+-- );

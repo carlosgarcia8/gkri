@@ -346,3 +346,61 @@ a {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+.btn-vote li {
+    margin: 0 10px 0 0;
+    list-style: none;
+}
+
+.btn-vote a {
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    width: 45px;
+    height: 40px;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: #999999;
+}
+
+p.item-p {
+    color: #999;
+    margin: 10px 0;
+}
+
+p.item-p a {
+    color: #999;
+}
+
+.voted-up {
+    background-color: #9BF093;
+}
+.voted-down {
+    background-color: #CD2E2E;
+}
+
+.btn-vote i {
+    margin-left: 9px !important;
+    margin-top: 7px !important;
+}
+
+.btn-vote li:last-child a i {
+    margin-left: 7px !important;
+    margin-top: 5px !important;
+}
+
+.btn-vote a:hover, .btn-vote a:focus {
+    color: black;
+    border: 1px solid black;
+}
+
+.left {
+    display: flex;
+    flex-flow: row;
+    padding: 0px;
+}
+
+.item-votes {
+    margin-top: 10px;
+}

@@ -15,7 +15,10 @@ use app\assets\AppAsset;
 $url = Url::to(['/posts/search-ajax']);
 $js = <<<EOT
         $('#search').on('keyup', function () {
+            $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
+            
             if ($('#search').val().length >= 2) {
+                $('#lupa').removeClass('glyphicon-search').addClass('glyphicon-refresh glyphicon-refresh-animate');
                 $.ajax({
                     method: 'get',
                     url: '$url',
@@ -28,9 +31,10 @@ $js = <<<EOT
                         $('#search').autocomplete({
                             source:d,
                             minLength: 2,
-                            search: function(event, ui) {
-                                $('#lupa').removeClass('glyphicon-search').addClass('glyphicon-refresh glyphicon-refresh-animate');
-                            },
+                            delay: 800,
+                            // search: function(event, ui) {
+                            //
+                            // },
                             response: function(event, ui) {
                                 $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
                             }
@@ -63,6 +67,7 @@ $this->title = 'GKRI';
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+    <script src="https://use.fontawesome.com/a727822b2c.js"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>

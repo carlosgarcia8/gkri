@@ -55,6 +55,7 @@ drop table if exists downvotes cascade;
 drop table if exists posts cascade;
 drop table if exists session cascade;
 drop table if exists upvotes cascade;
+drop table if exists categorias cascade;
 drop table if exists public.user cascade;
 -- drop table if exists public.comment cascade;
 drop table if exists public.token cascade;
@@ -77,6 +78,39 @@ CREATE TABLE social_account (
 
 
 ALTER TABLE social_account OWNER TO gkri;
+
+-- Name: categorias; Type: TABLE; Schema: public; Owner: gkri
+--
+
+CREATE TABLE categorias (
+ id bigint NOT NULL,
+ nombre character varying(20) NOT NULL,
+ nombre_c character varying(20) NOT NULL
+);
+
+
+ALTER TABLE categorias OWNER TO gkri;
+
+--
+-- Name: categorias_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
+--
+
+CREATE SEQUENCE categorias_id_seq
+ START WITH 1
+ INCREMENT BY 1
+ NO MINVALUE
+ NO MAXVALUE
+ CACHE 1;
+
+
+ALTER TABLE categorias_id_seq OWNER TO gkri;
+
+--
+-- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gkri
+--
+
+ALTER SEQUENCE categorias_id_seq OWNED BY categorias.id;
+
 
 --
 -- Name: account_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
@@ -134,8 +168,9 @@ CREATE TABLE posts (
     fecha_publicacion timestamp with time zone DEFAULT now() NOT NULL,
     fecha_confirmacion timestamp with time zone,
     longpost boolean DEFAULT false NOT NULL,
+    categoria_id bigint NOT NULL,
     status_id smallint,
-    moderated_by bigint NOT NULL
+    moderated_by bigint
 );
 
 
@@ -175,7 +210,8 @@ CREATE TABLE profile (
     location character varying(255) DEFAULT NULL::character varying,
     website character varying(255) DEFAULT NULL::character varying,
     bio text,
-    timezone character varying(40) DEFAULT NULL::character varying
+    timezone character varying(40) DEFAULT NULL::character varying,
+    gender character(1)
 );
 
 
@@ -285,12 +321,38 @@ ALTER TABLE ONLY social_account ALTER COLUMN id SET DEFAULT nextval('account_id_
 ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
 
 
+ALTER TABLE ONLY categorias ALTER COLUMN id SET DEFAULT nextval('categorias_id_seq'::regclass);
+
 --
 -- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
 --
 
 SELECT pg_catalog.setval('account_id_seq', 1, false);
 
+
+COPY categorias (id, nombre, nombre_c) FROM stdin;
+1	Gracioso	gracioso
+2	Cultura	cultura
+3	Amor	amor
+4	Chicas	chicas
+5	Politica	politica
+6	GIF	gif
+7	Estudios	estudios
+8	Películas	peliculas
+9	Series	series
+10	WTF	wtf
+11	Gamers	gamers
+12	Anime/Manga	anime-manga
+13	Humor Negro	humor-negro
+14	Animales	animales
+15	Otro	otro
+\.
+
+--
+-- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
+--
+
+SELECT pg_catalog.setval('categorias_id_seq', 15, true);
 
 --
 -- Data for Name: downvotes; Type: TABLE DATA; Schema: public; Owner: gkri
@@ -325,7 +387,7 @@ m160929_103127_add_last_login_at_to_user_table	1487951701
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
-COPY posts (id, titulo, usuario_id, fecha_publicacion, fecha_confirmacion, longpost, status_id, moderated_by) FROM stdin;
+COPY posts (id, titulo, usuario_id, fecha_publicacion, fecha_confirmacion, longpost, categoria_id, status_id, moderated_by) FROM stdin;
 \.
 
 
@@ -340,8 +402,8 @@ SELECT pg_catalog.setval('posts_id_seq', 1, false);
 -- Data for Name: profile; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
-COPY profile (user_id, name, public_email, gravatar_email, gravatar_id, location, website, bio, timezone) FROM stdin;
-3	\N	\N	\N	\N	\N	\N	\N	\N
+COPY profile (user_id, name, public_email, gravatar_email, gravatar_id, location, website, bio, timezone, gender) FROM stdin;
+3		\N	\N	\N		\N		\N	M
 \.
 
 
@@ -416,6 +478,15 @@ ALTER TABLE ONLY migration
 
 ALTER TABLE ONLY downvotes
     ADD CONSTRAINT pk_downvotes PRIMARY KEY (usuario_id, post_id);
+
+
+--
+-- Name: pk_categorias; Type: CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY categorias
+    ADD CONSTRAINT pk_categorias PRIMARY KEY (id);
+
 
 
 --
@@ -507,6 +578,15 @@ ALTER TABLE ONLY downvotes
 
 ALTER TABLE ONLY downvotes
     ADD CONSTRAINT fk_downvotes_usuarios FOREIGN KEY (usuario_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_posts_categorias; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT fk_posts_categorias FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON UPDATE CASCADE;
+
 
 
 --

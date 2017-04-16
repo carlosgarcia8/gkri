@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Voto;
 use app\models\Post;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use dektrium\user\filters\AccessRule;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
@@ -253,6 +255,38 @@ class PostsController extends Controller
         $post->markRejected();
 
         return $this->redirect(['/moderar']);
+    }
+
+    public function actionVotar($id, $positivo)
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(Url::toRoute(['/user/login']));
+        }
+
+        $positivo = $positivo === 'true';
+        $post = $this->findModel($id);
+        $voto = new Voto();
+        $usuario_id = Yii::$app->user->id;
+
+        $votoGuardadoB = Voto::findOne(['usuario_id' => $usuario_id, 'post_id' => $id, 'positivo' => $positivo]);
+
+        if ($votoGuardadoB) {
+            $votoGuardadoB->delete();
+            return $post->getVotosTotal();
+        }
+
+        $votoGuardado = Voto::findOne(['usuario_id' => $usuario_id, 'post_id' => $id]);
+
+        if ($votoGuardado) {
+            $votoGuardado->delete();
+        }
+
+        $voto->usuario_id = $usuario_id;
+        $voto->post_id = $id;
+        $voto->positivo = $positivo;
+
+        $voto->save();
+        return $post->getVotosTotal();
     }
 
     /**

@@ -38,6 +38,22 @@ class User extends BaseUser
         return $this->getPosts()->approved()->all();
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotos()
+    {
+        return $this->hasMany(Voto::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostsVotados()
+    {
+        return $this->hasMany(Post::className(), ['id' => 'post_id'])->via('votos');
+    }
+
     //
     // /**
     //  * Devuelve el avatar del usuario
