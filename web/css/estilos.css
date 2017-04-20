@@ -404,3 +404,116 @@ p.item-p a {
 .item-votes {
     margin-top: 10px;
 }
+
+#commentmodel-content {
+    resize: none;
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+#commentmodel-content:focus {
+    outline: none !important;
+    border-color: #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+.comments-list, .comment-form-container {
+    width: 65% !important;
+}
+
+.comment-content {
+    box-shadow: none !important;
+    border-top: 0px solid white !important;
+    word-break: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.comments-list .comment {
+    margin: 0 !important;
+}
+
+.comment-box {
+    border: 1px solid #ccc !important;
+}
+
+.comment-box-partial {
+    border-top: 1px solid #ccc !important;
+}
+
+.comment-box > .form-group {
+    margin: 0 !important;
+}
+
+.comment-box-partial .show {
+    display: flex !important;
+    flex-flow: row !important;
+    justify-content: flex-end !important;
+
+    padding: 5px 10px;
+}
+
+.comment-box .comment-box-partial .comment-submit {
+    margin: 0 !important;
+}
+
+.comments .comment-content {
+    padding: 15px 0px !important;
+}
+
+.show .pull-right {
+    margin-right: 20px !important;
+}
+
+.col-md-12 .comments-list .children .comment:before {
+    content: "" !important;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    background-color: #FFFFFF;
+    border-bottom: 0px solid #FFFFFF;
+    border-top: 0px solid #FFFFFF;
+}
+
+.col-md-12  .comments-list .children .comment:after {
+    content: "" !important;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    background-color: #FFFFFF;
+    border-bottom: 0px solid #FFFFFF;
+    border-top: 0px solid #FFFFFF;
+}
+
+.comments-list .children {
+    margin: 0 !important;
+    padding-left: 20px !important;
+    margin-top: -10px !important;
+    border-left: 0px solid white !important;
+}
+
+.comments-list .children .comment-author-avatar img{
+    width: 30px;
+    height: 30px;
+}
+
+.comments .comment-details {
+    padding: 0 !important;
+}
+
+.children .comment-author-avatar {
+    width: 40px !important;
+}
+
+.item-imagen {
+    width: 65%;
+}
+
+.item-imagen img {
+    margin-left: 33%;
+}

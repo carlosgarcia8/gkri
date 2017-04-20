@@ -24,7 +24,7 @@ use yii\helpers\Html;
             <li><a href="javascript:void(0);" class="vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a></li>
         <?php endif; ?>
 
-            <li><a href="<?= Url::toRoute(['posts/view', 'id' => $model->id]) ?>"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="<?= Url::toRoute(['posts/view', 'id' => $model->id, '#' => 'comments']) ?>"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></li>
         </ul>
     </div>
 </article>

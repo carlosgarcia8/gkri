@@ -9,7 +9,8 @@ use yii\widgets\ListView;
 
 $this->title = 'Posts';
 // $this->params['breadcrumbs'][] = $this->title;
-
+// TODO cuando no esta logeado y le da a votar, cambia el color antes de mandarnos
+// al login
 $js = <<<EOT
 
 $('.vote-up').on('click', function() {

@@ -24,8 +24,8 @@ use yii\widgets\DetailView;
 
     <article class="item">
         <header><h2><?= Html::a($model->titulo, ['posts/view', 'id' => $model->id]) ?></h2></header>
-        <div class="">
-            <?= Html::a(Html::img($model->ruta), ['posts/view', 'id' => $model->id]) ?>
+        <div class="item-imagen">
+            <?= Html::img($model->ruta) ?>
         </div>
         <?php if ($esAutor && !$esAdmin) : ?>
         <div class="text-right">
@@ -36,9 +36,17 @@ use yii\widgets\DetailView;
                         'confirm' => '¿Estás seguro de eliminar este Post?',
                         'method' => 'post',
                     ],
-                    ]) ?>
+                ]) ?>
                 </p>
         </div><?php endif; ?>
+        <div class="" id="comments"></div>
     </article>
+    <div class="">
+        <?php echo \yii2mod\comments\widgets\Comment::widget([
+            'model' => $model,
+            'commentView' => '@app/views/comments/index',
+            'maxLevel' => 2,
+        ]); ?>
+    </div>
 
 </div>

@@ -14,6 +14,16 @@ class User extends BaseUser
         return $this->hasMany(Post::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 
+    public function getAvatar()
+    {
+        return $this->profile->getAvatar();
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

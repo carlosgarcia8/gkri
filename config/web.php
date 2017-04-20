@@ -55,9 +55,13 @@ $config = [
                 'RegistrationForm' => 'app\models\RegistrationForm',
             ],
         ],
-        // 'comment' => [
-        //     'class' => 'yii2mod\comments\Module',
-        // ],
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
+            'commentModelClass' =>  'app\models\CommentModel',
+            'controllerMap' => [
+                'default' => 'app\controllers\comments\DefaultController',
+            ],
+        ],
     ],
     'components' => [
         'request' => [
@@ -144,20 +148,15 @@ $config = [
                 'posts/search-ajax/<q:\w+>' => 'posts/search-ajax',
                 'upload'                    => 'posts/upload',
                 '<categoria:[\w-]+>'        => 'posts/index',
-                // 'entrada/<id:\d>' => 'entradas/view',
-                // 'entrada/enviar' => 'entradas/create',
-                // 'entrada/categoria/<categoria_id:\d>' => 'entradas/index',
-                // 'entrada/etiqueta/<etiqueta_id:\d>' => 'entradas/index',
-                // 'entrada/meneo' => 'entradas/meneo'
             ],
         ],
 
         'i18n' => [
             'translations' => [
-                // 'yii2mod.comments' => [
-                //     'class' => 'yii\i18n\PhpMessageSource',
-                //     'basePath' => '@app/messages',
-                // ],
+                'yii2mod.comments' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
                 'user*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages',
