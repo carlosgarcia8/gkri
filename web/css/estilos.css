@@ -374,10 +374,10 @@ p.item-p a {
 }
 
 .voted-up {
-    background-color: #9BF093;
+    color: #2B9D63 !important;
 }
 .voted-down {
-    background-color: #CD2E2E;
+    color: #CD2E2E !important;
 }
 
 .btn-vote i {
@@ -390,8 +390,11 @@ p.item-p a {
     margin-top: 5px !important;
 }
 
-.btn-vote a:hover, .btn-vote a:focus {
-    color: black;
+.btn-vote a:hover, .btn-vote a:focus, .btn-vote a:active, .btn-vote a:visited {
+    color: #999;
+}
+
+.btn-vote a:hover {
     border: 1px solid black;
 }
 
@@ -516,4 +519,21 @@ p.item-p a {
 
 .item-imagen img {
     margin-left: 33%;
+}
+
+.btn-vote-comment i {
+    margin-left: 9px !important;
+}
+
+.btn-vote-comment a {
+    text-decoration: none;
+    color: #999999;
+}
+
+.comment-date, .comment-votos-total {
+    margin-left: 8px;
+    font-size: 14px;
+    font-style: normal !important;
+    color: #979797;
+    font-weight: normal;
 }

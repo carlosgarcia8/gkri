@@ -3,11 +3,15 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii2mod\editable\Editable;
+use yii\web\View;
 
 // TODO cuando el admin borra un comentario con hijos, el borrar del hijo da error
 /* @var $this \yii\web\View */
 /* @var $model \yii2mod\comments\models\CommentModel */
 /* @var $maxLevel null|integer comments max level */
+
+$this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
+
 ?>
 <li class="comment" id="comment-<?php echo $model->id; ?>">
     <div class="comment-content" data-comment-content-id="<?php echo $model->id ?>">
@@ -30,8 +34,22 @@ use yii2mod\editable\Editable;
                 <?php endif; ?>
             </div>
             <div class="comment-author-name">
-                <span><?php echo $model->getAuthorName(); ?></span>
-                <?php echo Html::a($model->getPostedDate(), $model->getAnchorUrl(), ['class' => 'comment-date']); ?>
+                <ul class="btn-vote-comment left">
+                    <span><?php echo $model->getAuthorName(); ?></span>
+                    <?php if ($model->estaUpvoteado()) : ?>
+                        <li><a href="javascript:void(0);" class="comment-vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></li>
+                    <?php else: ?>
+                        <li><a href="javascript:void(0);" class="comment-vote-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></li>
+                    <?php endif; ?>
+
+                    <?php if ($model->estaDownvoteado()) : ?>
+                        <li><a href="javascript:void(0);" class="comment-vote-down voted-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
+                    <?php else: ?>
+                        <li><a href="javascript:void(0);" class="comment-vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
+                    <?php endif; ?>
+                    <span class="comment-votos-total"><?= $model->getVotosTotal(); ?> votos  |  </span>
+                    <span class="comment-date"><?= $model->getPostedDate(); ?></span>
+                </ul>
             </div>
             <div class="comment-body">
                 <?php if (Yii::$app->getModule('comment')->enableInlineEdit): ?>

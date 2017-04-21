@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii2mod\comments\controllers\DefaultController as BaseDefaultController;
 use app\models\CommentModel;
 use yii2mod\comments\events\CommentEvent;
+use app\models\VotoComentario;
 
 /**
  * Class DefaultController
@@ -100,5 +101,37 @@ class DefaultController extends BaseDefaultController
 
             return Yii::t('yii2mod.comments', 'Comment has not been deleted. Please try again!');
         }
+    }
+
+    public function actionVotar($id, $positivo)
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(Url::toRoute(['/user/login']));
+        }
+
+        $positivo = $positivo === 'true';
+        $comentario = $this->findModel($id);
+        $voto = new VotoComentario();
+        $usuario_id = Yii::$app->user->id;
+
+        $votoGuardadoB = VotoComentario::findOne(['usuario_id' => $usuario_id, 'comentario_id' => $id, 'positivo' => $positivo]);
+
+        if ($votoGuardadoB) {
+            $votoGuardadoB->delete();
+            return $comentario->getVotosTotal();
+        }
+
+        $votoGuardado = VotoComentario::findOne(['usuario_id' => $usuario_id, 'comentario_id' => $id]);
+
+        if ($votoGuardado) {
+            $votoGuardado->delete();
+        }
+
+        $voto->usuario_id = $usuario_id;
+        $voto->comentario_id = $id;
+        $voto->positivo = $positivo;
+
+        $voto->save();
+        return $comentario->getVotosTotal();
     }
 }

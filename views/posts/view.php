@@ -7,6 +7,8 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
+// TODO los comentarios arriba del post no se actualizan
+
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
 <div class="post-view">
@@ -32,15 +34,15 @@ $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::c
             <div class="item-votes">
                 <ul class="btn-vote left">
                 <?php if ($model->estaUpvoteado()) : ?>
-                    <li><a href="javascript:void(0);" class="vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href="javascript:void(0);" class="vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
                 <?php else: ?>
-                    <li><a href="javascript:void(0);" class="vote-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href="javascript:void(0);" class="vote-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
                 <?php endif; ?>
 
                 <?php if ($model->estaDownvoteado()) : ?>
-                    <li><a href="javascript:void(0);" class="vote-down voted-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href="javascript:void(0);" class="vote-down voted-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
                 <?php else: ?>
-                    <li><a href="javascript:void(0);" class="vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href="javascript:void(0);" class="vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
                 <?php endif; ?>
                 </ul>
             </div>

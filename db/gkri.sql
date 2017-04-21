@@ -50,16 +50,6 @@ create table session (
     data bytea
 );
 
--- drop table if exists comentarios cascade;
--- create table comentarios (
---     id          bigserial     constraint pk_comentarios primary key,
---     cuerpo      varchar(1000) not null,
---     votos       bigint        not null default 0,
---     usuario_id  bigint        constraint fk_comentarios_usuarios references usuarios(id)
---         on delete set null on update cascade,
---     post_id     bigint        constraint fk_comentarios_posts references posts(id)
---         on delete cascade on update cascade
--- );
 
 drop table if exists votos cascade;
 create table votos (
@@ -71,11 +61,12 @@ create table votos (
     constraint pk_votos primary key (usuario_id, post_id)
 );
 
--- drop table if exists downvotes cascade;
--- create table downvotes (
---     usuario_id  bigint        constraint fk_downvotes_usuarios references public.user(id)
---         on delete cascade on update cascade,
---     post_id     bigint        constraint fk_downvotes_posts references posts(id)
---         on delete cascade on update cascade,
---     constraint pk_downvotes primary key (usuario_id, post_id)
--- );
+drop table if exists votos_c cascade;
+create table votos_c (
+    usuario_id    bigint        constraint fk_votos_c_usuarios references public.user(id)
+        on delete cascade on update cascade,
+    comentario_id bigint        constraint fk_votos_c_posts references public.comment(id)
+        on delete cascade on update cascade,
+    positivo      boolean       not null default true,
+    constraint pk_votos_c primary key (usuario_id, comentario_id)
+);

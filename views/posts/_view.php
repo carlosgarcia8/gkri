@@ -13,15 +13,15 @@ use yii\helpers\Html;
     <div class="item-votes">
         <ul class="btn-vote left">
         <?php if ($model->estaUpvoteado()) : ?>
-            <li><a href="javascript:void(0);" class="vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
         <?php else: ?>
-            <li><a href="javascript:void(0);" class="vote-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
         <?php endif; ?>
 
         <?php if ($model->estaDownvoteado()) : ?>
-            <li><a href="javascript:void(0);" class="vote-down voted-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-down voted-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
         <?php else: ?>
-            <li><a href="javascript:void(0);" class="vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
         <?php endif; ?>
 
             <li><a href="<?= Url::toRoute(['posts/view', 'id' => $model->id, '#' => 'comments']) ?>"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></li>
