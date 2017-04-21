@@ -30,7 +30,7 @@ $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::c
         <header><h2><?= Html::a($model->titulo, ['posts/view', 'id' => $model->id]) ?></h2></header>
         <div class="">
             <p class="item-p"><span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos
-            </span> | <?= $model->getNumeroComentarios() ?> comentarios</p>
+            </span> | <?= $model->getNumeroComentarios() ?> comentarios | Categoría: <?= $model->categoria->nombre ?></p>
             <div class="item-votes">
                 <ul class="btn-vote left">
                 <?php if ($model->estaUpvoteado()) : ?>

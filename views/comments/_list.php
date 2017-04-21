@@ -47,7 +47,7 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
                     <?php else: ?>
                         <li><a href="javascript:void(0);" class="comment-vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
                     <?php endif; ?>
-                    <span class="comment-votos-total"><?= $model->getVotosTotal(); ?> votos  |  </span>
+                    <span class="comment-votos-total comment-votos-total-<?= $model->id ?>"><?= $model->getVotosTotal(); ?> votos  |  </span>
                     <span class="comment-date"><?= $model->getPostedDate(); ?></span>
                 </ul>
             </div>

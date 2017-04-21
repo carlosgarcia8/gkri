@@ -1,0 +1,381 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 18
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$basePath'
+        )
+
+    [1] => Array
+        (
+            [line] => 18
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$basePath'
+        )
+
+    [2] => Array
+        (
+            [line] => 19
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$baseUrl'
+        )
+
+    [3] => Array
+        (
+            [line] => 19
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$baseUrl'
+        )
+
+    [4] => Array
+        (
+            [line] => 20
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$css'
+        )
+
+    [5] => Array
+        (
+            [line] => 20
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$css'
+        )
+
+    [6] => Array
+        (
+            [line] => 23
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$js'
+        )
+
+    [7] => Array
+        (
+            [line] => 23
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$js'
+        )
+
+    [8] => Array
+        (
+            [line] => 26
+            [file] => assets/AppAsset.php
+            [message] => No docblock for element '$depends'
+        )
+
+    [9] => Array
+        (
+            [line] => 26
+            [file] => assets/AppAsset.php
+            [message] => No short description for element '$depends'
+        )
+
+    [10] => Array
+        (
+            [line] => 13
+            [file] => controllers/SiteController.php
+            [message] => No docblock for element 'app\controllers\SiteController'
+        )
+
+    [11] => Array
+        (
+            [line] => 12
+            [file] => controllers/user/ProfileController.php
+            [message] => No docblock for element 'app\controllers\user\ProfileController'
+        )
+
+    [12] => Array
+        (
+            [line] => 73
+            [file] => controllers/user/RecoveryController.php
+            [message] => No short description for element '$finder'
+        )
+
+    [13] => Array
+        (
+            [line] => 11
+            [file] => controllers/user/SettingsController.php
+            [message] => No docblock for element 'app\controllers\user\SettingsController'
+        )
+
+    [14] => Array
+        (
+            [line] => 8
+            [file] => models/CommentModel.php
+            [message] => No docblock for element 'app\models\CommentModel'
+        )
+
+    [15] => Array
+        (
+            [line] => 13
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$name'
+        )
+
+    [16] => Array
+        (
+            [line] => 13
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$name'
+        )
+
+    [17] => Array
+        (
+            [line] => 14
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$email'
+        )
+
+    [18] => Array
+        (
+            [line] => 14
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$email'
+        )
+
+    [19] => Array
+        (
+            [line] => 15
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$subject'
+        )
+
+    [20] => Array
+        (
+            [line] => 15
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$subject'
+        )
+
+    [21] => Array
+        (
+            [line] => 16
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$body'
+        )
+
+    [22] => Array
+        (
+            [line] => 16
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$body'
+        )
+
+    [23] => Array
+        (
+            [line] => 17
+            [file] => models/ContactForm.php
+            [message] => No docblock for element '$verifyCode'
+        )
+
+    [24] => Array
+        (
+            [line] => 17
+            [file] => models/ContactForm.php
+            [message] => No short description for element '$verifyCode'
+        )
+
+    [25] => Array
+        (
+            [line] => 16
+            [file] => models/LoginForm.php
+            [message] => No docblock for element '$username'
+        )
+
+    [26] => Array
+        (
+            [line] => 16
+            [file] => models/LoginForm.php
+            [message] => No short description for element '$username'
+        )
+
+    [27] => Array
+        (
+            [line] => 17
+            [file] => models/LoginForm.php
+            [message] => No docblock for element '$password'
+        )
+
+    [28] => Array
+        (
+            [line] => 17
+            [file] => models/LoginForm.php
+            [message] => No short description for element '$password'
+        )
+
+    [29] => Array
+        (
+            [line] => 18
+            [file] => models/LoginForm.php
+            [message] => No docblock for element '$rememberMe'
+        )
+
+    [30] => Array
+        (
+            [line] => 18
+            [file] => models/LoginForm.php
+            [message] => No short description for element '$rememberMe'
+        )
+
+    [31] => Array
+        (
+            [line] => 32
+            [file] => models/Post.php
+            [message] => No docblock for element '$imageFile'
+        )
+
+    [32] => Array
+        (
+            [line] => 32
+            [file] => models/Post.php
+            [message] => No short description for element '$imageFile'
+        )
+
+    [33] => Array
+        (
+            [line] => 135
+            [file] => models/Post.php
+            [message] => No docblock for element 'find'
+        )
+
+    [34] => Array
+        (
+            [line] => 8
+            [file] => models/Profile.php
+            [message] => No docblock for element 'app\models\Profile'
+        )
+
+    [35] => Array
+        (
+            [line] => 33
+            [file] => models/RecoveryForm.php
+            [message] => No short description for element '$email'
+        )
+
+    [36] => Array
+        (
+            [line] => 38
+            [file] => models/RecoveryForm.php
+            [message] => No short description for element '$password'
+        )
+
+    [37] => Array
+        (
+            [line] => 43
+            [file] => models/RecoveryForm.php
+            [message] => No short description for element '$repeat_password'
+        )
+
+    [38] => Array
+        (
+            [line] => 48
+            [file] => models/RecoveryForm.php
+            [message] => No short description for element '$mailer'
+        )
+
+    [39] => Array
+        (
+            [line] => 53
+            [file] => models/RecoveryForm.php
+            [message] => No short description for element '$finder'
+        )
+
+    [40] => Array
+        (
+            [line] => 34
+            [file] => models/SettingsForm.php
+            [message] => No short description for element '$email'
+        )
+
+    [41] => Array
+        (
+            [line] => 37
+            [file] => models/SettingsForm.php
+            [message] => No short description for element '$username'
+        )
+
+    [42] => Array
+        (
+            [line] => 40
+            [file] => models/SettingsForm.php
+            [message] => No short description for element '$new_password'
+        )
+
+    [43] => Array
+        (
+            [line] => 43
+            [file] => models/SettingsForm.php
+            [message] => No short description for element '$repeat_password'
+        )
+
+    [44] => Array
+        (
+            [line] => 46
+            [file] => models/SettingsForm.php
+            [message] => No short description for element '$current_password'
+        )
+
+    [45] => Array
+        (
+            [line] => 49
+            [file] => models/SettingsForm.php
+            [message] => No short description for element '$mailer'
+        )
+
+    [46] => Array
+        (
+            [line] => 11
+            [file] => models/UploadAvatarForm.php
+            [message] => No docblock for element 'app\models\UploadAvatarForm'
+        )
+
+    [47] => Array
+        (
+            [line] => 16
+            [file] => models/UploadAvatarForm.php
+            [message] => No short description for element '$imageFile'
+        )
+
+    [48] => Array
+        (
+            [line] => 18
+            [file] => models/UploadAvatarForm.php
+            [message] => No docblock for element 'rules'
+        )
+
+    [49] => Array
+        (
+            [line] => 13
+            [file] => models/UploadPostForm.php
+            [message] => No docblock for element 'app\models\UploadPostForm'
+        )
+
+    [50] => Array
+        (
+            [line] => 18
+            [file] => models/UploadPostForm.php
+            [message] => No short description for element '$imageFile'
+        )
+
+    [51] => Array
+        (
+            [line] => 23
+            [file] => models/UploadPostForm.php
+            [message] => No short description for element '$titulo'
+        )
+
+    [52] => Array
+        (
+            [line] => 25
+            [file] => models/UploadPostForm.php
+            [message] => No docblock for element 'rules'
+        )
+
+    [53] => Array
+        (
+            [line] => 7
+            [file] => models/User.php
+            [message] => No docblock for element 'app\models\User'
+        )
+
+)

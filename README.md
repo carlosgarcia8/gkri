@@ -1,5 +1,4 @@
 ## Global Klingon Radian Imaginary
-=====================================
 
 **Proyecto Integrado de Desarrollo de aplicaciones web (DAW)** realizado en el año 2017.
 

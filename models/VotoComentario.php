@@ -51,6 +51,7 @@ class VotoComentario extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el comentario
      * @return \yii\db\ActiveQuery
      */
     public function getComentario()
@@ -59,6 +60,7 @@ class VotoComentario extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el usuario
      * @return \yii\db\ActiveQuery
      */
     public function getUsuario()

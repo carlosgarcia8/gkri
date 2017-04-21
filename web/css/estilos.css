@@ -537,3 +537,8 @@ p.item-p a {
     color: #979797;
     font-weight: normal;
 }
+
+.btn-vote-comment a:hover, .btn-vote-comment a:focus, .btn-vote-comment a:active,
+ .btn-vote-comment a:visited {
+    color: #999;
+}

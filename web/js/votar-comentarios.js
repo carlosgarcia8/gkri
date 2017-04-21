@@ -32,7 +32,7 @@ function votarComentario(id, positivo) {
         url:   '/comments/default/votar',
         type:  'get',
         success: function (data) {
-            // $('.comment-votos-total-' + id).html(data + ' votos');
+            $('.comment-votos-total-' + id).html(data + ' votos');
         }
     });
 }

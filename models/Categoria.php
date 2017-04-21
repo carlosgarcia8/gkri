@@ -45,6 +45,7 @@ class Categoria extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene los posts que tienen la categoria seleccionada
      * @return \yii\db\ActiveQuery
      */
     public function getPosts()

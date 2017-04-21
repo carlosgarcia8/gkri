@@ -9,7 +9,7 @@ use yii\helpers\Html;
         <?= Html::a(Html::img($model->ruta), ['posts/view', 'id' => $model->id]) ?>
     </div>
     <p class="item-p"><span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos
-    </span> | <?= $model->getNumeroComentarios() ?> comentarios</p>
+    </span> | <?= $model->getNumeroComentarios() ?> comentarios | Categoría: <?= $model->categoria->nombre ?></p>
     <div class="item-votes">
         <ul class="btn-vote left">
         <?php if ($model->estaUpvoteado()) : ?>

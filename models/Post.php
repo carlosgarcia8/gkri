@@ -35,6 +35,10 @@ class Post extends \yii\db\ActiveRecord
     const SCENARIO_MODERAR = 'moderar';
     const SCENARIO_UPDATE = 'update';
 
+    /**
+     * Los distintos escenarios de este modelo
+     * @return mixed
+     */
     public function scenarios()
     {
         return [
@@ -133,6 +137,10 @@ class Post extends \yii\db\ActiveRecord
         return new ModerationQuery(get_called_class());
     }
 
+    /**
+     * Realiza la subida de la imagen del post
+     * @return bool
+     */
     public function upload()
     {
         $model = new UploadPostForm;
@@ -148,6 +156,10 @@ class Post extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Obtiene la ruta de la imagen del post
+     * @return string ruta hacia la imagen
+     */
     public function getRuta()
     {
         $uploadsPosts = Yii::getAlias('@posts');
@@ -171,6 +183,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene los votos del post
      * @return \yii\db\ActiveQuery
      */
     public function getVotos()
@@ -179,6 +192,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Saber si el post esta votado positivo por el usuario logeado
      * @return bool
      */
     public function estaUpvoteado()
@@ -187,6 +201,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Saber si el post esta votado negativo por el usuario logeado
      * @return bool
      */
     public function estaDownvoteado()
@@ -195,6 +210,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene los votos positivos del post
      * @return \yii\db\ActiveQuery
      */
     public function getVotosPositivos()
@@ -203,6 +219,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene los votos negativos del post
      * @return \yii\db\ActiveQuery
      */
     public function getVotosNegativos()
@@ -211,7 +228,8 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Obtiene la resta entre los votos positivos y negativos
+     * @return integer
      */
     public function getVotosTotal()
     {
@@ -227,6 +245,7 @@ class Post extends \yii\db\ActiveRecord
     // }
 
     /**
+     * Obtiene el usuario que ha creado este post
      * @return \yii\db\ActiveQuery
      */
     public function getUsuario()
@@ -235,6 +254,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene la categoria de este post
      * @return \yii\db\ActiveQuery
      */
     public function getCategoria()
@@ -243,6 +263,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el usuario que ha moderado este post
      * @return \yii\db\ActiveQuery
      */
     public function getModeradoPor()
@@ -251,6 +272,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene los comentarios de este post
      * @return \yii\db\ActiveQuery
      */
     public function getComentarios()
@@ -259,7 +281,8 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * Obtiene el numero de comentarios
+     * @return integer
      */
     public function getNumeroComentarios()
     {

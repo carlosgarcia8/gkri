@@ -1,0 +1,248 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 29
+            [file] => controllers/PostsController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\PostsController.
+        )
+
+    [1] => Array
+        (
+            [line] => 18
+            [file] => controllers/SiteController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [2] => Array
+        (
+            [line] => 44
+            [file] => controllers/SiteController.php
+            [message] => Method actions has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [3] => Array
+        (
+            [line] => 25
+            [file] => controllers/comments/DefaultController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\comments\DefaultController.
+        )
+
+    [4] => Array
+        (
+            [line] => 24
+            [file] => controllers/user/ProfileController.php
+            [message] => Undefined parameter documented: $id in actionShow().
+        )
+
+    [5] => Array
+        (
+            [line] => 76
+            [file] => controllers/user/RecoveryController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\user\RecoveryController.
+        )
+
+    [6] => Array
+        (
+            [line] => 21
+            [file] => models/Categoria.php
+            [message] => Method tableName has no parent to inherit from in app\models\Categoria.
+        )
+
+    [7] => Array
+        (
+            [line] => 29
+            [file] => models/Categoria.php
+            [message] => Method rules has no parent to inherit from in app\models\Categoria.
+        )
+
+    [8] => Array
+        (
+            [line] => 40
+            [file] => models/Categoria.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Categoria.
+        )
+
+    [9] => Array
+        (
+            [line] => 79
+            [file] => models/Post.php
+            [message] => Method tableName has no parent to inherit from in app\models\Post.
+        )
+
+    [10] => Array
+        (
+            [line] => 87
+            [file] => models/Post.php
+            [message] => Method rules has no parent to inherit from in app\models\Post.
+        )
+
+    [11] => Array
+        (
+            [line] => 108
+            [file] => models/Post.php
+            [message] => Method behaviors has no parent to inherit from in app\models\Post.
+        )
+
+    [12] => Array
+        (
+            [line] => 121
+            [file] => models/Post.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Post.
+        )
+
+    [13] => Array
+        (
+            [line] => 79
+            [file] => models/Post.php
+            [message] => Method tableName has no parent to inherit from in app\models\Post.
+        )
+
+    [14] => Array
+        (
+            [line] => 87
+            [file] => models/Post.php
+            [message] => Method rules has no parent to inherit from in app\models\Post.
+        )
+
+    [15] => Array
+        (
+            [line] => 108
+            [file] => models/Post.php
+            [message] => Method behaviors has no parent to inherit from in app\models\Post.
+        )
+
+    [16] => Array
+        (
+            [line] => 121
+            [file] => models/Post.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Post.
+        )
+
+    [17] => Array
+        (
+            [line] => 13
+            [file] => models/Profile.php
+            [message] => Method rules has no parent to inherit from in app\models\Profile.
+        )
+
+    [18] => Array
+        (
+            [line] => 33
+            [file] => models/Profile.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Profile.
+        )
+
+    [19] => Array
+        (
+            [line] => 58
+            [file] => models/RecoveryForm.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\RecoveryForm.
+        )
+
+    [20] => Array
+        (
+            [line] => 70
+            [file] => models/RecoveryForm.php
+            [message] => Method scenarios has no parent to inherit from in app\models\RecoveryForm.
+        )
+
+    [21] => Array
+        (
+            [line] => 81
+            [file] => models/RecoveryForm.php
+            [message] => Method rules has no parent to inherit from in app\models\RecoveryForm.
+        )
+
+    [22] => Array
+        (
+            [line] => 160
+            [file] => models/RecoveryForm.php
+            [message] => Method formName has no parent to inherit from in app\models\RecoveryForm.
+        )
+
+    [23] => Array
+        (
+            [line] => 49
+            [file] => models/RegistrationForm.php
+            [message] => Method rules has no parent to inherit from in app\models\RegistrationForm.
+        )
+
+    [24] => Array
+        (
+            [line] => 85
+            [file] => models/RegistrationForm.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\RegistrationForm.
+        )
+
+    [25] => Array
+        (
+            [line] => 98
+            [file] => models/RegistrationForm.php
+            [message] => Method formName has no parent to inherit from in app\models\RegistrationForm.
+        )
+
+    [26] => Array
+        (
+            [line] => 65
+            [file] => models/SettingsForm.php
+            [message] => Method rules has no parent to inherit from in app\models\SettingsForm.
+        )
+
+    [27] => Array
+        (
+            [line] => 91
+            [file] => models/SettingsForm.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\SettingsForm.
+        )
+
+    [28] => Array
+        (
+            [line] => 103
+            [file] => models/SettingsForm.php
+            [message] => Method formName has no parent to inherit from in app\models\SettingsForm.
+        )
+
+    [29] => Array
+        (
+            [line] => 22
+            [file] => models/Voto.php
+            [message] => Method tableName has no parent to inherit from in app\models\Voto.
+        )
+
+    [30] => Array
+        (
+            [line] => 30
+            [file] => models/Voto.php
+            [message] => Method rules has no parent to inherit from in app\models\Voto.
+        )
+
+    [31] => Array
+        (
+            [line] => 44
+            [file] => models/Voto.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Voto.
+        )
+
+    [32] => Array
+        (
+            [line] => 22
+            [file] => models/VotoComentario.php
+            [message] => Method tableName has no parent to inherit from in app\models\VotoComentario.
+        )
+
+    [33] => Array
+        (
+            [line] => 30
+            [file] => models/VotoComentario.php
+            [message] => Method rules has no parent to inherit from in app\models\VotoComentario.
+        )
+
+    [34] => Array
+        (
+            [line] => 44
+            [file] => models/VotoComentario.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\VotoComentario.
+        )
+
+)

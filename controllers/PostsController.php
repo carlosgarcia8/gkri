@@ -235,6 +235,11 @@ class PostsController extends Controller
         ]);
     }
 
+    /**
+     * Acepta aquellos posts que estan en moderación
+     * @param  integer $id id del post a aceptar
+     * @return mixed
+     */
     public function actionAceptar($id)
     {
         $post = $this->findModel($id);
@@ -247,6 +252,11 @@ class PostsController extends Controller
         return $this->redirect(['/moderar']);
     }
 
+    /**
+     * Rechaza aquellos posts que estan en moderación
+     * @param  integer $id id del post a aceptar
+     * @return mixed
+     */
     public function actionRechazar($id)
     {
         $post = $this->findModel($id);
@@ -257,6 +267,12 @@ class PostsController extends Controller
         return $this->redirect(['/moderar']);
     }
 
+    /**
+     * Realiza la votación de un post
+     * @param  integer $id       id del post
+     * @param  bool    $positivo si es o no positivo
+     * @return integer           numero total de votos (resta positivos - negativos)
+     */
     public function actionVotar($id, $positivo)
     {
         if (Yii::$app->user->isGuest) {
@@ -311,6 +327,11 @@ class PostsController extends Controller
         ]);
     }
 
+    /**
+     * Acción que lleva a cabo la busqueda del post por titulo mediante ajax
+     * @param  string $q cadena a buscar titulo
+     * @return mixed
+     */
     public function actionSearchAjax($q = null)
     {
         $posts = [];

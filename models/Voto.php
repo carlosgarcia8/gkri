@@ -51,6 +51,7 @@ class Voto extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el post
      * @return \yii\db\ActiveQuery
      */
     public function getPost()
@@ -59,6 +60,7 @@ class Voto extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el usuario
      * @return \yii\db\ActiveQuery
      */
     public function getUsuario()

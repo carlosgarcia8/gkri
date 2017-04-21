@@ -7,12 +7,17 @@ use Yii;
 
 class CommentModel extends BaseCommentModel
 {
+    /**
+     * Saber si el comentario es hijo de otro comentario
+     * @return boolean
+     */
     public function isChild()
     {
         return $this->parentId != null;
     }
 
     /**
+     * Saber si el comentario tiene hijos
      * @return bool
      */
     public function tieneHijos()
@@ -23,6 +28,7 @@ class CommentModel extends BaseCommentModel
     }
 
     /**
+     * Poder obtener los votos del comentario seleccionado
      * @return \yii\db\ActiveQuery
      */
     public function getVotos()
@@ -31,6 +37,7 @@ class CommentModel extends BaseCommentModel
     }
 
     /**
+     * Saber si el comentario esta votado positivo por el usuario logeado
      * @return bool
      */
     public function estaUpvoteado()
@@ -39,6 +46,7 @@ class CommentModel extends BaseCommentModel
     }
 
     /**
+     * Saber si el comentario esta votado negativo por el usuario logeado
      * @return bool
      */
     public function estaDownvoteado()
@@ -47,6 +55,7 @@ class CommentModel extends BaseCommentModel
     }
 
     /**
+     * Obtener los votos positivos de este comentario
      * @return \yii\db\ActiveQuery
      */
     public function getVotosPositivos()
@@ -55,6 +64,7 @@ class CommentModel extends BaseCommentModel
     }
 
     /**
+     * Obtener los votos negativos de este comentario
      * @return \yii\db\ActiveQuery
      */
     public function getVotosNegativos()
@@ -63,6 +73,7 @@ class CommentModel extends BaseCommentModel
     }
 
     /**
+     * Obtener la resta entre los votos positivos y los votos negativos
      * @return \yii\db\ActiveQuery
      */
     public function getVotosTotal()

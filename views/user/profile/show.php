@@ -17,9 +17,8 @@ use yii\widgets\ActiveForm;
  * @var \yii\web\View $this
  * @var \dektrium\user\models\Profile $profile
  */
-
+// TODO Mejorar la vista del perfil del usuario para poder ver sus posts subidos, votados, etc
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">

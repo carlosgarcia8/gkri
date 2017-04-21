@@ -10,11 +10,12 @@ use yii2mod\comments\controllers\DefaultController as BaseDefaultController;
 use app\models\CommentModel;
 use yii2mod\comments\events\CommentEvent;
 use app\models\VotoComentario;
+use yii\helpers\Url;
 
 /**
  * Class DefaultController
  *
- * @package yii2mod\comments\controllers
+ * @package app\comments\controllers
  */
 class DefaultController extends BaseDefaultController
 {
@@ -72,7 +73,7 @@ class DefaultController extends BaseDefaultController
     }
 
     /**
-     * Delete comment.
+     * Borra un comentario
      *
      * @param int $id Comment ID
      *
@@ -87,13 +88,13 @@ class DefaultController extends BaseDefaultController
             CommentModel::deleteAll(['status' => 2]);
             return Yii::t('yii2mod.comments', 'Comment Root has been deleted so this child was deleted too. Refresh to see the changes.');
         }
-        CommentModel::deleteAll(['status' => 2]);
 
         $event = Yii::createObject(['class' => CommentEvent::class, 'commentModel' => $commentModel]);
         $this->trigger(self::EVENT_BEFORE_DELETE, $event);
 
         if ($commentModel->markRejected()) {
             $this->trigger(self::EVENT_AFTER_DELETE, $event);
+            CommentModel::deleteAll(['status' => 2]);
 
             return Yii::t('yii2mod.comments', 'Comment has been deleted.');
         } else {
@@ -103,8 +104,15 @@ class DefaultController extends BaseDefaultController
         }
     }
 
+    /**
+     * Efectua el proceso de votar un comentario
+     * @param  int $id        el id del comentario
+     * @param  bool $positivo si es o no positivo el voto
+     * @return int            el numero de votos totales del comentario
+     */
     public function actionVotar($id, $positivo)
     {
+        // TODO al añadir un comentario e intentar votar, parece como que nose ha cargado el js
         if (Yii::$app->user->isGuest) {
             return $this->redirect(Url::toRoute(['/user/login']));
         }
