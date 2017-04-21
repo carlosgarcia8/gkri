@@ -253,6 +253,22 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getComentarios()
+    {
+        return \app\models\CommentModel::find()->where(['entityId' => $this->id]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNumeroComentarios()
+    {
+        return $this->getComentarios()->count();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     // public function getUpvotes()
     // {
     //     return $this->hasMany(Upvotes::className(), ['post_id' => 'id'])->inverseOf('post');

@@ -419,7 +419,7 @@ p.item-p a {
 }
 
 .comments-list, .comment-form-container {
-    width: 65% !important;
+    width: 60% !important;
 }
 
 .comment-content {
@@ -511,7 +511,7 @@ p.item-p a {
 }
 
 .item-imagen {
-    width: 65%;
+    width: 60%;
 }
 
 .item-imagen img {

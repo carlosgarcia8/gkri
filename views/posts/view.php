@@ -1,11 +1,13 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
+$this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
 <div class="post-view">
 
@@ -16,7 +18,7 @@ use yii\widgets\DetailView;
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Seguro que deseas eliminar este Post?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -24,6 +26,25 @@ use yii\widgets\DetailView;
 
     <article class="item">
         <header><h2><?= Html::a($model->titulo, ['posts/view', 'id' => $model->id]) ?></h2></header>
+        <div class="">
+            <p class="item-p"><span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos
+            </span> | <?= $model->getNumeroComentarios() ?> comentarios</p>
+            <div class="item-votes">
+                <ul class="btn-vote left">
+                <?php if ($model->estaUpvoteado()) : ?>
+                    <li><a href="javascript:void(0);" class="vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
+                <?php else: ?>
+                    <li><a href="javascript:void(0);" class="vote-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
+                <?php endif; ?>
+
+                <?php if ($model->estaDownvoteado()) : ?>
+                    <li><a href="javascript:void(0);" class="vote-down voted-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a></li>
+                <?php else: ?>
+                    <li><a href="javascript:void(0);" class="vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a></li>
+                <?php endif; ?>
+                </ul>
+            </div>
+        </div>
         <div class="item-imagen">
             <?= Html::img($model->ruta) ?>
         </div>

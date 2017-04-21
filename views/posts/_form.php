@@ -19,7 +19,7 @@ use kartik\select2\Select2;
         <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
     </div>
     <div class="form-group col-lg-8">
-        <?= $form->field($model, 'imageFile')->widget(FileInput::classname(), [
+        <?= $form->field($model, 'imageFile')->label('Imagen')->widget(FileInput::classname(), [
             'options' => [
                 'accept' => 'image/*',
             ],
@@ -33,12 +33,11 @@ use kartik\select2\Select2;
         <?= Select2::widget([
             'name' => 'Post[categoria_id]',
             'value' => 1,
+            'language' => 'es',
             'data' => $categorias,
+            // 'hideSearch' => true,
             'options' => ['placeholder' => 'Selecciona una categoría'],
             'pluginOptions' => [
-                'tags' => true,
-                'tokenSeparators' => [',', ' '],
-                'maximumInputLength' => 10
             ],
         ]); ?>
     </div>

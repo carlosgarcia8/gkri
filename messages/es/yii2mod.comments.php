@@ -52,4 +52,5 @@ return [
     'Active' => 'Activo',
     'Deleted' => 'Borrado',
     'Go Back' => 'Vuelve atrás',
+    'Comment Root has been deleted so this child was deleted too. Refresh to see the changes.' => 'El comentario Padre ha sido borrado, así que este comentario ya estaba borrado. Refresqué la página para ver los cambios',
 ];
