@@ -35,7 +35,7 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
             </div>
             <div class="comment-author-name">
                 <ul class="btn-vote-comment left">
-                    <span><?php echo $model->getAuthorName(); ?></span>
+                    <a href="/u/<?= $model->getAuthorName() ?> " class="author-comment"><span><?php echo $model->getAuthorName(); ?></span></a>
                     <?php if ($model->estaUpvoteado()) : ?>
                         <li><a href="javascript:void(0);" class="comment-vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></li>
                     <?php else: ?>

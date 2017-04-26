@@ -36,3 +36,8 @@ function votarComentario(id, positivo) {
         }
     });
 }
+
+$('.comment-reply').on('click', function () {
+    var username = $(this).parent().parent().prev().children('img').attr('alt');
+    $('#commentmodel-content').val('@' + username + ' ');
+});

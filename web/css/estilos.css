@@ -542,3 +542,11 @@ p.item-p a {
  .btn-vote-comment a:visited {
     color: #999;
 }
+
+.author-comment {
+    color: black !important;
+}
+
+.author-comment:hover {
+    text-decoration: underline !important;
+}
