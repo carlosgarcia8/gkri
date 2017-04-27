@@ -132,7 +132,7 @@
 	z-index: -1;
 }
 
-.botonCambiar {
+.boton-cambiar {
     position: absolute;
     margin-left: 20%;
 }
@@ -268,12 +268,21 @@ a {
     margin-left: 40px;
 }
 
-.item {
+.list-view .item {
     width: 455px;
 }
 
+.post-view .item {
+    width: 655px;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 .item h2 a {
-    font-family: 'Baloo Bhaina';
+    /*font-family: 'Poppins', sans-serif;*/
+    font-weight: bold;
 }
 
 .categoria-moderar {
@@ -311,14 +320,32 @@ a {
 	display: block;
 	clear: both;
 	line-height: 1.428571429;
-	color: #333;
+	color: white;
 	white-space: normal;
 }
 
+.multi-column {
+    background-color: #080808 !important;
+}
+
+.multi-column .row .col-sm-4 {
+    padding: 0px;
+}
+
+.multi-column .row .col-sm-4:first-child {
+    padding-left: 15px;
+}
+
+.multi-column .row .col-sm-4:last-child {
+    padding-right: 15px;
+}
+
+
+
 .multi-column-dropdown li a:hover {
 	text-decoration: none;
-	color: #262626;
-	background-color: #999;
+	color: white;
+	background-color: #555555;
 }
 
 @media (max-width: 767px) {
@@ -378,6 +405,23 @@ p.item-p a {
 }
 .voted-down {
     color: #CD2E2E !important;
+}
+
+.navbar-brand {
+    padding: 12px 15px !important;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.navbar-inverse .navbar-left > li:hover {
+    background-color: #555555;
+}
+
+.navbar-inverse .navbar-left > li > a {
+    color: white !important;
 }
 
 .btn-vote i {
@@ -493,6 +537,10 @@ p.item-p a {
     border-top: 0px solid #FFFFFF;
 }
 
+article.item {
+    border-bottom: 1px solid #D0D0D0;
+}
+
 .comments-list .children {
     margin: 0 !important;
     padding-left: 20px !important;
@@ -514,7 +562,7 @@ p.item-p a {
 }
 
 .item-imagen {
-    width: 60%;
+    width: 50%;
 }
 
 .item-imagen img {
@@ -543,6 +591,26 @@ p.item-p a {
     color: #999;
 }
 
+#search {
+    width: 85%;
+}
+
+/*@media screen and (max-width: 1200px) {
+    #search {
+        display: none;
+    }
+}*/
+
+@media screen and (max-width: 991px) {
+    .avatar-menu {
+        margin: 0 auto;
+        margin-bottom: 60px;
+        width: 50%;
+    }
+
+    .boton-cambiar {
+        margin-left:7%;
+    }
 .author-comment {
     color: black !important;
 }

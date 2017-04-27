@@ -1,25 +1,9 @@
 $('.vote-up').on('click', function() {
-    votar($(this).attr('alt'), true);
-
-    $(this).parent().next().find('a').removeClass('voted-down');
-
-    if ($(this).hasClass('voted-up')) {
-        $(this).removeClass('voted-up');
-    } else {
-        $(this).addClass('voted-up');
-    }
+    votar($(this).attr('data-id'), true);
 });
 
 $('.vote-down').on('click', function() {
-    votar($(this).attr('alt'), false);
-
-    $(this).parent().prev().find('a').removeClass('voted-up');
-
-    if ($(this).hasClass('voted-down')) {
-        $(this).removeClass('voted-down');
-    } else {
-        $(this).addClass('voted-down');
-    }
+    votar($(this).attr('data-id'), false);
 });
 
 function votar(id, positivo) {
@@ -27,12 +11,42 @@ function votar(id, positivo) {
         "id" : id,
         "positivo": positivo
     };
+
+    var botonPositivo = $('.item-post-' + id).find('.vote-up');
+    var botonNegativo = $('.item-post-' + id).find('.vote-down');
+    var trigger;
+
+    if (positivo) {
+        trigger = botonPositivo;
+    } else {
+        trigger = botonNegativo;
+    }
+
     $.ajax({
         data:  parametros,
         url:   '/posts/votar',
         type:  'get',
         success: function (data) {
-            $('.votos-total-' + id).html(data + ' votos');
+            if (!isNaN(data)) {
+                if (trigger == botonPositivo) {
+                    botonNegativo.removeClass('voted-down');
+
+                    if (botonPositivo.hasClass('voted-up')) {
+                        botonPositivo.removeClass('voted-up');
+                    } else {
+                        botonPositivo.addClass('voted-up');
+                    }
+                } else {
+                    botonPositivo.removeClass('voted-up');
+
+                    if (botonNegativo.hasClass('voted-down')) {
+                        botonNegativo.removeClass('voted-down');
+                    } else {
+                        botonNegativo.addClass('voted-down');
+                    }
+                }
+                $('.votos-total-' + id).html(data + ' votos');
+            }
         }
     });
 }

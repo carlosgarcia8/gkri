@@ -39,11 +39,13 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
         ]) ?>
     </div>
 </div>
-<?= Html::img($user->profile->avatar, [
-    'class' => 'img-thumbnail imagen',
-    'alt' => $user->username,
-]) ?>
-<?php $form = ActiveForm::begin() ?>
-    <?= $form->field($model, 'imageFile')->fileInput(['class' => 'avatar uploadAvatar'])->label(false) ?>
-    <button class="botonCambiar upload btn btn-info">Cambiar el avatar</button>
-<?php ActiveForm::end() ?>
+<div class="avatar-menu">
+    <?= Html::img($user->profile->avatar, [
+        'class' => 'img-thumbnail imagen',
+        'alt' => $user->username,
+        ]) ?>
+        <?php $form = ActiveForm::begin() ?>
+        <?= $form->field($model, 'imageFile')->fileInput(['class' => 'avatar uploadAvatar'])->label(false) ?>
+        <button class="boton-cambiar upload btn btn-info">Cambiar el avatar</button>
+        <?php ActiveForm::end() ?>
+</div>

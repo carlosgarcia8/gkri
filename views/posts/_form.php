@@ -23,6 +23,7 @@ use kartik\select2\Select2;
             'options' => [
                 'accept' => 'image/*',
             ],
+            'language' => 'es',
             'pluginOptions' => [
                 'showUpload' => false,
             ]

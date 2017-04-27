@@ -122,7 +122,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'titulo' => 'Titulo',
+            'titulo' => 'Título',
             'extension' => 'Extension',
             'usuario_id' => 'Usuario ID',
             'fecha_publicacion' => 'Fecha Publicacion',

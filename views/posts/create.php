@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
-$this->title = 'Upload Post';
+$this->title = 'Enviar un Post';
 // $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -16,7 +16,7 @@ $url = Url::to(['/posts/search-ajax']);
 $js = <<<EOT
         $('#search').on('keyup', function () {
             $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
-            
+
             if ($('#search').val().length >= 2) {
                 $('#lupa').removeClass('glyphicon-search').addClass('glyphicon-refresh glyphicon-refresh-animate');
                 $.ajax({
@@ -66,7 +66,7 @@ $this->title = 'GKRI';
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <script src="https://use.fontawesome.com/a727822b2c.js"></script>
 </head>
 <body>
@@ -75,7 +75,7 @@ $this->title = 'GKRI';
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'GKRI',
+        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name, 'class' => 'logo']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -167,17 +167,17 @@ $this->title = 'GKRI';
             ],
             ['label' => 'Upload', 'url' => ['/posts/upload'], 'linkOptions' => ['class' => 'boton-upload btn-primary'], 'visible' => !Yii::$app->user->isGuest],
         ],
-    ]);
-
-    $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
-       <div class="input-group">
-           <div class="input-group-btn">
+    ]);?>
+    
+    <div class="input-group">
+        <div class="input-group-btn"><?php
+            $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
                <input type="text" id="search" class="form-control" placeholder="Search" name="q">
                <button class="btn btn-default lupa" type="submit"><i id="lupa" class="glyphicon glyphicon-search"></i></button>
                <div class="sugerenciasa"></div>
-           </div>
-       </div>
-   <?php ActiveForm::end();
+            <?php ActiveForm::end();?>
+        </div>
+   </div><?php
 
     NavBar::end();
 
