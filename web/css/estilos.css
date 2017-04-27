@@ -541,6 +541,10 @@ article.item {
     border-bottom: 1px solid #D0D0D0;
 }
 
+article.item:last-child {
+    border-bottom: 0px;
+}
+
 .comments-list .children {
     margin: 0 !important;
     padding-left: 20px !important;
@@ -573,7 +577,16 @@ article.item {
     margin-left: 9px !important;
 }
 
-.btn-vote-comment a {
+.btn-vote-comment .author-comment {
+    color: black !important;
+}
+
+.author-comment:hover {
+    text-decoration: underline !important;
+}
+
+
+.btn-vote-comment li a {
     text-decoration: none;
     color: #999999;
 }
@@ -586,8 +599,8 @@ article.item {
     font-weight: normal;
 }
 
-.btn-vote-comment a:hover, .btn-vote-comment a:focus, .btn-vote-comment a:active,
- .btn-vote-comment a:visited {
+.btn-vote-comment li a:hover, .btn-vote-comment li a:focus, .btn-vote-comment li a:active,
+ .btn-vote-comment li a:visited {
     color: #999;
 }
 
@@ -611,10 +624,4 @@ article.item {
     .boton-cambiar {
         margin-left:7%;
     }
-.author-comment {
-    color: black !important;
-}
-
-.author-comment:hover {
-    text-decoration: underline !important;
 }

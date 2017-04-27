@@ -168,7 +168,7 @@ $this->title = 'GKRI';
             ['label' => 'Upload', 'url' => ['/posts/upload'], 'linkOptions' => ['class' => 'boton-upload btn-primary'], 'visible' => !Yii::$app->user->isGuest],
         ],
     ]);?>
-    
+
     <div class="input-group">
         <div class="input-group-btn"><?php
             $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>

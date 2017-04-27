@@ -48,21 +48,64 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: social_account; Type: TABLE; Schema: public; Owner: gkri
+-- Name: comment; Type: TABLE; Schema: public; Owner: gkri
 --
 
-drop table if exists downvotes cascade;
+drop table if exists votos cascade;
 drop table if exists posts cascade;
 drop table if exists session cascade;
-drop table if exists upvotes cascade;
+drop table if exists votos_c cascade;
 drop table if exists categorias cascade;
 drop table if exists public.user cascade;
--- drop table if exists public.comment cascade;
+drop table if exists public.comment cascade;
 drop table if exists public.token cascade;
 drop table if exists public.social_account cascade;
 drop table if exists public.profile cascade;
 drop table if exists public.migration cascade;
 
+CREATE TABLE comment (
+    id integer NOT NULL,
+    entity character(10) NOT NULL,
+    "entityId" integer NOT NULL,
+    content text NOT NULL,
+    "parentId" integer,
+    level smallint DEFAULT 1 NOT NULL,
+    "createdBy" integer NOT NULL,
+    "updatedBy" integer NOT NULL,
+    status smallint DEFAULT 1 NOT NULL,
+    "createdAt" integer NOT NULL,
+    "updatedAt" integer NOT NULL,
+    "relatedTo" character varying(500) NOT NULL,
+    url text
+);
+
+
+ALTER TABLE comment OWNER TO gkri;
+
+--
+-- Name: Comment_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
+--
+
+CREATE SEQUENCE "Comment_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Comment_id_seq" OWNER TO gkri;
+
+--
+-- Name: Comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gkri
+--
+
+ALTER SEQUENCE "Comment_id_seq" OWNED BY comment.id;
+
+
+--
+-- Name: social_account; Type: TABLE; Schema: public; Owner: gkri
+--
 
 CREATE TABLE social_account (
     id integer NOT NULL,
@@ -78,39 +121,6 @@ CREATE TABLE social_account (
 
 
 ALTER TABLE social_account OWNER TO gkri;
-
--- Name: categorias; Type: TABLE; Schema: public; Owner: gkri
---
-
-CREATE TABLE categorias (
- id bigint NOT NULL,
- nombre character varying(20) NOT NULL,
- nombre_c character varying(20) NOT NULL
-);
-
-
-ALTER TABLE categorias OWNER TO gkri;
-
---
--- Name: categorias_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
---
-
-CREATE SEQUENCE categorias_id_seq
- START WITH 1
- INCREMENT BY 1
- NO MINVALUE
- NO MAXVALUE
- CACHE 1;
-
-
-ALTER TABLE categorias_id_seq OWNER TO gkri;
-
---
--- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gkri
---
-
-ALTER SEQUENCE categorias_id_seq OWNED BY categorias.id;
-
 
 --
 -- Name: account_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
@@ -134,16 +144,38 @@ ALTER SEQUENCE account_id_seq OWNED BY social_account.id;
 
 
 --
--- Name: downvotes; Type: TABLE; Schema: public; Owner: gkri
+-- Name: categorias; Type: TABLE; Schema: public; Owner: gkri
 --
 
-CREATE TABLE downvotes (
-    usuario_id bigint NOT NULL,
-    post_id bigint NOT NULL
+CREATE TABLE categorias (
+    id bigint NOT NULL,
+    nombre character varying(20) NOT NULL,
+    nombre_c character varying(20) NOT NULL
 );
 
 
-ALTER TABLE downvotes OWNER TO gkri;
+ALTER TABLE categorias OWNER TO gkri;
+
+--
+-- Name: categorias_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
+--
+
+CREATE SEQUENCE categorias_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE categorias_id_seq OWNER TO gkri;
+
+--
+-- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gkri
+--
+
+ALTER SEQUENCE categorias_id_seq OWNED BY categorias.id;
+
 
 --
 -- Name: migration; Type: TABLE; Schema: public; Owner: gkri
@@ -245,18 +277,6 @@ CREATE TABLE token (
 ALTER TABLE token OWNER TO gkri;
 
 --
--- Name: upvotes; Type: TABLE; Schema: public; Owner: gkri
---
-
-CREATE TABLE upvotes (
-    usuario_id bigint NOT NULL,
-    post_id bigint NOT NULL
-);
-
-
-ALTER TABLE upvotes OWNER TO gkri;
-
---
 -- Name: user; Type: TABLE; Schema: public; Owner: gkri
 --
 
@@ -301,6 +321,46 @@ ALTER SEQUENCE user_id_seq OWNED BY "user".id;
 
 
 --
+-- Name: votos; Type: TABLE; Schema: public; Owner: gkri
+--
+
+CREATE TABLE votos (
+    usuario_id bigint NOT NULL,
+    post_id bigint NOT NULL,
+    positivo boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE votos OWNER TO gkri;
+
+--
+-- Name: votos_c; Type: TABLE; Schema: public; Owner: gkri
+--
+
+CREATE TABLE votos_c (
+    usuario_id bigint NOT NULL,
+    comentario_id bigint NOT NULL,
+    positivo boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE votos_c OWNER TO gkri;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY categorias ALTER COLUMN id SET DEFAULT nextval('categorias_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY comment ALTER COLUMN id SET DEFAULT nextval('"Comment_id_seq"'::regclass);
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: gkri
 --
 
@@ -321,7 +381,12 @@ ALTER TABLE ONLY social_account ALTER COLUMN id SET DEFAULT nextval('account_id_
 ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
 
 
-ALTER TABLE ONLY categorias ALTER COLUMN id SET DEFAULT nextval('categorias_id_seq'::regclass);
+--
+-- Name: Comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
+--
+
+SELECT pg_catalog.setval('"Comment_id_seq"', 1, false);
+
 
 --
 -- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
@@ -329,6 +394,10 @@ ALTER TABLE ONLY categorias ALTER COLUMN id SET DEFAULT nextval('categorias_id_s
 
 SELECT pg_catalog.setval('account_id_seq', 1, false);
 
+
+--
+-- Data for Name: categorias; Type: TABLE DATA; Schema: public; Owner: gkri
+--
 
 COPY categorias (id, nombre, nombre_c) FROM stdin;
 1	Gracioso	gracioso
@@ -348,17 +417,19 @@ COPY categorias (id, nombre, nombre_c) FROM stdin;
 15	Otro	otro
 \.
 
+
 --
 -- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
 --
 
 SELECT pg_catalog.setval('categorias_id_seq', 15, true);
 
+
 --
--- Data for Name: downvotes; Type: TABLE DATA; Schema: public; Owner: gkri
+-- Data for Name: comment; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
-COPY downvotes (usuario_id, post_id) FROM stdin;
+COPY comment (id, entity, "entityId", content, "parentId", level, "createdBy", "updatedBy", status, "createdAt", "updatedAt", "relatedTo", url) FROM stdin;
 \.
 
 
@@ -367,19 +438,23 @@ COPY downvotes (usuario_id, post_id) FROM stdin;
 --
 
 COPY migration (version, apply_time) FROM stdin;
-m000000_000000_base	1487951698
-m140209_132017_init	1487951699
-m140403_174025_create_account_table	1487951699
-m140504_113157_update_tables	1487951700
-m140504_130429_create_token_table	1487951700
-m140830_171933_fix_ip_field	1487951700
-m140830_172703_change_account_table_name	1487951700
-m141222_110026_update_ip_field	1487951700
-m141222_135246_alter_username_length	1487951700
-m150614_103145_update_social_account_table	1487951701
-m150623_212711_fix_username_notnull	1487951701
-m151218_234654_add_timezone_to_profile	1487951701
-m160929_103127_add_last_login_at_to_user_table	1487951701
+m000000_000000_base	1493235602
+m010101_100001_init_comment	1493235607
+m160629_121330_add_relatedTo_column_to_comment	1493235607
+m161109_092304_rename_comment_table	1493235607
+m161114_094902_add_url_column_to_comment_table	1493235607
+m140209_132017_init	1493235608
+m140403_174025_create_account_table	1493235608
+m140504_113157_update_tables	1493235608
+m140504_130429_create_token_table	1493235608
+m140830_171933_fix_ip_field	1493235608
+m140830_172703_change_account_table_name	1493235608
+m141222_110026_update_ip_field	1493235608
+m141222_135246_alter_username_length	1493235608
+m150614_103145_update_social_account_table	1493235608
+m150623_212711_fix_username_notnull	1493235608
+m151218_234654_add_timezone_to_profile	1493235608
+m160929_103127_add_last_login_at_to_user_table	1493235608
 \.
 
 
@@ -403,7 +478,7 @@ SELECT pg_catalog.setval('posts_id_seq', 1, false);
 --
 
 COPY profile (user_id, name, public_email, gravatar_email, gravatar_id, location, website, bio, timezone, gender) FROM stdin;
-3		\N	\N	\N		\N		\N	M
+1	\N	\N	\N	\N	\N	\N	\N	\N	M
 \.
 
 
@@ -412,7 +487,7 @@ COPY profile (user_id, name, public_email, gravatar_email, gravatar_id, location
 --
 
 COPY session (id, expire, data) FROM stdin;
-5jjbpk04487i66lj8d4mq6npn7              	1487960466	\\x5f5f666c6173687c613a303a7b7d5f5f69647c693a333b616374696f6e732d72656469726563747c733a32393a222f696e6465782e7068703f723d757365722f61646d696e2f696e646578223b
+btjp3vs9j0qs56t6lr3tv3kti4              	1493237691	\\x5f5f666c6173687c613a303a7b7d5f5f69647c693a313b
 \.
 
 
@@ -433,19 +508,11 @@ COPY token (user_id, code, created_at, type) FROM stdin;
 
 
 --
--- Data for Name: upvotes; Type: TABLE DATA; Schema: public; Owner: gkri
---
-
-COPY upvotes (usuario_id, post_id) FROM stdin;
-\.
-
-
---
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
 COPY "user" (id, username, email, password_hash, auth_key, confirmed_at, unconfirmed_email, blocked_at, registration_ip, created_at, updated_at, flags, last_login_at) FROM stdin;
-3	xharly8	gjcarlos8@gmail.com	$2y$12$mv9TthPXZsKwkjJ1W33gTOyAh3.0wiJ.mBFL32myq1gGA2fHJy30K	_ZDdiR4-Jpq8mgjt5u2lRPrAkNAKKlh6	1487957797	\N	\N	127.0.0.1	1487957008	1487957008	0	1487958605
+1	xharly8	gjcarlos8@gmail.com	$2y$12$JJhA1ThuSMG5Ul5f4m5JOOMOCdZgT.Ppn2SGAS32yo/Q9KfSoEOni	yBKbCIpQuxZDje0jLni8Xq6s8p777eh6	1493235661	\N	\N	127.0.0.1	1493235633	1493235633	0	\N
 \.
 
 
@@ -453,7 +520,31 @@ COPY "user" (id, username, email, password_hash, auth_key, confirmed_at, unconfi
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
 --
 
-SELECT pg_catalog.setval('user_id_seq', 3, true);
+SELECT pg_catalog.setval('user_id_seq', 1, true);
+
+
+--
+-- Data for Name: votos; Type: TABLE DATA; Schema: public; Owner: gkri
+--
+
+COPY votos (usuario_id, post_id, positivo) FROM stdin;
+\.
+
+
+--
+-- Data for Name: votos_c; Type: TABLE DATA; Schema: public; Owner: gkri
+--
+
+COPY votos_c (usuario_id, comentario_id, positivo) FROM stdin;
+\.
+
+
+--
+-- Name: Comment_pkey; Type: CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY comment
+    ADD CONSTRAINT "Comment_pkey" PRIMARY KEY (id);
 
 
 --
@@ -473,20 +564,11 @@ ALTER TABLE ONLY migration
 
 
 --
--- Name: pk_downvotes; Type: CONSTRAINT; Schema: public; Owner: gkri
---
-
-ALTER TABLE ONLY downvotes
-    ADD CONSTRAINT pk_downvotes PRIMARY KEY (usuario_id, post_id);
-
-
---
 -- Name: pk_categorias; Type: CONSTRAINT; Schema: public; Owner: gkri
 --
 
 ALTER TABLE ONLY categorias
     ADD CONSTRAINT pk_categorias PRIMARY KEY (id);
-
 
 
 --
@@ -506,11 +588,19 @@ ALTER TABLE ONLY session
 
 
 --
--- Name: pk_upvotes; Type: CONSTRAINT; Schema: public; Owner: gkri
+-- Name: pk_votos; Type: CONSTRAINT; Schema: public; Owner: gkri
 --
 
-ALTER TABLE ONLY upvotes
-    ADD CONSTRAINT pk_upvotes PRIMARY KEY (usuario_id, post_id);
+ALTER TABLE ONLY votos
+    ADD CONSTRAINT pk_votos PRIMARY KEY (usuario_id, post_id);
+
+
+--
+-- Name: pk_votos_c; Type: CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY votos_c
+    ADD CONSTRAINT pk_votos_c PRIMARY KEY (usuario_id, comentario_id);
 
 
 --
@@ -544,6 +634,20 @@ CREATE UNIQUE INDEX account_unique_code ON social_account USING btree (code);
 
 
 --
+-- Name: idx-Comment-entity; Type: INDEX; Schema: public; Owner: gkri
+--
+
+CREATE INDEX "idx-Comment-entity" ON comment USING btree (entity);
+
+
+--
+-- Name: idx-Comment-status; Type: INDEX; Schema: public; Owner: gkri
+--
+
+CREATE INDEX "idx-Comment-status" ON comment USING btree (status);
+
+
+--
 -- Name: token_unique; Type: INDEX; Schema: public; Owner: gkri
 --
 
@@ -565,28 +669,11 @@ CREATE UNIQUE INDEX user_unique_username ON "user" USING btree (username);
 
 
 --
--- Name: fk_downvotes_posts; Type: FK CONSTRAINT; Schema: public; Owner: gkri
---
-
-ALTER TABLE ONLY downvotes
-    ADD CONSTRAINT fk_downvotes_posts FOREIGN KEY (post_id) REFERENCES posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: fk_downvotes_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: gkri
---
-
-ALTER TABLE ONLY downvotes
-    ADD CONSTRAINT fk_downvotes_usuarios FOREIGN KEY (usuario_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
 -- Name: fk_posts_categorias; Type: FK CONSTRAINT; Schema: public; Owner: gkri
 --
 
 ALTER TABLE ONLY posts
     ADD CONSTRAINT fk_posts_categorias FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON UPDATE CASCADE;
-
 
 
 --
@@ -603,22 +690,6 @@ ALTER TABLE ONLY posts
 
 ALTER TABLE ONLY posts
     ADD CONSTRAINT fk_posts_usuarios_moderador FOREIGN KEY (moderated_by) REFERENCES "user"(id) ON UPDATE CASCADE;
-
-
---
--- Name: fk_upvotes_posts; Type: FK CONSTRAINT; Schema: public; Owner: gkri
---
-
-ALTER TABLE ONLY upvotes
-    ADD CONSTRAINT fk_upvotes_posts FOREIGN KEY (post_id) REFERENCES posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: fk_upvotes_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: gkri
---
-
-ALTER TABLE ONLY upvotes
-    ADD CONSTRAINT fk_upvotes_usuarios FOREIGN KEY (usuario_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -643,6 +714,38 @@ ALTER TABLE ONLY profile
 
 ALTER TABLE ONLY token
     ADD CONSTRAINT fk_user_token FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE RESTRICT ON DELETE CASCADE;
+
+
+--
+-- Name: fk_votos_c_posts; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY votos_c
+    ADD CONSTRAINT fk_votos_c_posts FOREIGN KEY (comentario_id) REFERENCES comment(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_votos_c_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY votos_c
+    ADD CONSTRAINT fk_votos_c_usuarios FOREIGN KEY (usuario_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_votos_posts; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY votos
+    ADD CONSTRAINT fk_votos_posts FOREIGN KEY (post_id) REFERENCES posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_votos_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY votos
+    ADD CONSTRAINT fk_votos_usuarios FOREIGN KEY (usuario_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

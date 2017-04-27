@@ -37,15 +37,15 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
                 <ul class="btn-vote-comment left">
                     <a href="/u/<?= $model->getAuthorName() ?> " class="author-comment"><span><?php echo $model->getAuthorName(); ?></span></a>
                     <?php if ($model->estaUpvoteado()) : ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-up voted-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></li>
+                        <li><a href="javascript:void(0);" class="comment-vote-up voted-up" data-comment-id="<?= $model->id ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></li>
                     <?php else: ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-up" alt="<?= $model->id ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></li>
+                        <li><a href="javascript:void(0);" class="comment-vote-up" data-comment-id="<?= $model->id ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></li>
                     <?php endif; ?>
 
                     <?php if ($model->estaDownvoteado()) : ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-down voted-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
+                        <li><a href="javascript:void(0);" class="comment-vote-down voted-down" data-comment-id="<?= $model->id ?>"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
                     <?php else: ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-down" alt="<?= $model->id ?>"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
+                        <li><a href="javascript:void(0);" class="comment-vote-down" data-comment-id="<?= $model->id ?>"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a></li>
                     <?php endif; ?>
                     <span class="comment-votos-total comment-votos-total-<?= $model->id ?>"><?= $model->getVotosTotal(); ?> votos  |  </span>
                     <span class="comment-date"><?= $model->getPostedDate(); ?></span>
