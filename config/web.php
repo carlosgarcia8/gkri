@@ -1,4 +1,5 @@
 <?php
+use yii2mod\comments\models\CommentModel;
 
 $params = require(__DIR__ . '/params.php');
 
@@ -59,11 +60,29 @@ $config = [
             'class' => 'yii2mod\comments\Module',
             'commentModelClass' =>  'app\models\CommentModel',
             'controllerMap' => [
-                'default' => 'app\controllers\comments\DefaultController',
+                'default' => [
+                    'class' => 'app\controllers\comments\DefaultController',
+                    'on afterDelete' => function ($event) {
+                        $comment = $event->getCommentModel();
+                        CommentModel::deleteAll(['id' => $comment->id]);
+                    },
+                    'on beforeCreate' => function ($event) {
+                        CommentModel::deleteAll(['status' => 2]);
+                    },
+                ],
             ],
         ],
     ],
     'components' => [
+        // 'assetManager' => [
+        //     'bundles' => [
+        //         'yii2mod\comments\CommentAsset' => [
+        //             'js' => [
+        //                 'js/comment.js',
+        //             ]
+        //         ],
+        //     ],
+        // ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'faL_UO-zHBG6WGBep13AtKQdDhUsiqd8',

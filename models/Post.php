@@ -277,7 +277,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getComentarios()
     {
-        return \app\models\CommentModel::find()->where(['entityId' => $this->id]);
+        return \app\models\CommentModel::find()->where(['entityId' => $this->id, 'status' => 1]);
     }
 
     /**

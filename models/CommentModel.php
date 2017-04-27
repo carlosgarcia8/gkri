@@ -28,6 +28,54 @@ class CommentModel extends BaseCommentModel
     }
 
     /**
+     * Get comments tree.
+     *
+     * @param string $entity
+     * @param string $entityId
+     * @param null $maxLevel
+     *
+     * @return array|ActiveRecord[]
+     */
+    public static function getTree($entity, $entityId, $maxLevel = null)
+    {
+        $query = CommentVoto::find()
+            ->alias('c')
+            ->approved()
+            ->andWhere([
+                'c.entityId' => $entityId,
+                'c.entity' => $entity,
+            ])
+            ->with(['author']);
+
+        if ($maxLevel > 0) {
+            $query->andWhere(['<=', 'c.level', $maxLevel]);
+        }
+        // $connection = Yii::$app->getDb();
+        // $command = $connection->createCommand(`
+        //     SELECT * from comment_votos c where status=1
+        //     and c."entityId" = $entityId and c."entity" = "$entity"
+        //     `);
+        //
+        // var_dump($connection->createCommand(`
+        //     SELECT * from comment_votos c where status=1
+        //     and c."entityId" = $entityId and c."entity" = "$entity"
+        //     `));
+        // $result = $command->queryAll();
+        // var_dump($result);
+
+
+        $models = $query->all();
+        // var_dump($models);
+        // die();
+
+        if (!empty($models)) {
+            $models = static::buildTree($models);
+        }
+
+        return $models;
+    }
+
+    /**
      * Poder obtener los votos del comentario seleccionado
      * @return \yii\db\ActiveQuery
      */
