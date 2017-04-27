@@ -82,10 +82,10 @@ class DefaultController extends BaseDefaultController
     public function actionDelete($id)
     {
         $commentModel = $this->findModel($id);
+        CommentModel::deleteAll(['status' => 2]);
 
-
+        // TODO no se borran y se quedan con status=2
         if ($commentModel->status == 2) {
-            CommentModel::deleteAll(['status' => 2]);
             return Yii::t('yii2mod.comments', 'Comment Root has been deleted so this child was deleted too. Refresh to see the changes.');
         }
 
@@ -94,7 +94,6 @@ class DefaultController extends BaseDefaultController
 
         if ($commentModel->markRejected()) {
             $this->trigger(self::EVENT_AFTER_DELETE, $event);
-            CommentModel::deleteAll(['status' => 2]);
 
             return Yii::t('yii2mod.comments', 'Comment has been deleted.');
         } else {

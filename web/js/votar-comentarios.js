@@ -12,8 +12,8 @@ function votarComentario(id, positivo) {
         "positivo": positivo
     };
 
-    var botonPositivo = $('#comment-' + id).find('.comment-vote-up');
-    var botonNegativo = $('#comment-' + id).find('.comment-vote-down');
+    var botonPositivo = $('#comment-list-' + id).find('.comment-vote-up');
+    var botonNegativo = $('#comment-list-' + id).find('.comment-vote-down');
     var trigger;
 
     if (positivo) {

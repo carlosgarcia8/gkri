@@ -13,8 +13,8 @@ use yii\web\View;
 $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 
 ?>
-<li class="comment" id="comment-<?php echo $model->id; ?>">
-    <div class="comment-content" data-comment-content-id="<?php echo $model->id ?>">
+<li class="comment">
+    <div class="comment-content" id="comment-list-<?= $model->id ?>" data-comment-content-id="<?php echo $model->id ?>">
         <div class="comment-author-avatar">
             <?php echo Html::img($model->getAvatar(), ['alt' => $model->getAuthorName(), 'width' => '50', 'height' => '50']); ?>
         </div>
