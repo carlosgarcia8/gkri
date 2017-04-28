@@ -1,5 +1,5 @@
 .hovereffect {
-  width: 100%;
+  width: 235px;
   height: 100%;
   float: left;
   overflow: hidden;
@@ -55,7 +55,7 @@
   filter: alpha(opacity=0);
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  margin: 40px 0 0;
+  margin: 100px 0 0;
   padding: 7px 14px;
 }
 
@@ -608,11 +608,54 @@ div.item:last-of-type article.item {
     width: 85%;
 }
 
+.hovereffect + .menu-profile-info {
+    margin-top: 250px;
+}
+
+.menu-profile-info {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+.hovereffect, .nohovereffect {
+    margin-left: 7%;
+}
+
+.menu-profile-info ul {
+    width: 110% !important;
+    margin-left: -10px;
+}
+
+.menu-profile-options ul {
+    list-style: none;
+    margin-left: -55px;
+}
+
+.menu-profile-options {
+    text-align: center;
+}
+
+.menu-profile-options li {
+    padding: 15px;
+}
+
+.menu-profile-options li:nth-child(n+2) {
+    border-top: 1px solid #555555;
+}
+
 /*@media screen and (max-width: 1200px) {
     #search {
         display: none;
     }
 }*/
+
+@media screen and (max-width: 1200px) {
+
+    .hovereffect, .nohovereffect {
+        margin-left: -5%;
+    }
+}
 
 @media screen and (max-width: 991px) {
     .avatar-menu {
@@ -623,5 +666,29 @@ div.item:last-of-type article.item {
 
     .boton-cambiar {
         margin-left:7%;
+    }
+
+    .hovereffect, .nohovereffect {
+        margin-left: -12%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .hovereffect, .nohovereffect {
+        margin-left: 32.5%;
+    }
+
+    .menu-profile-info ul {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .hovereffect, .nohovereffect {
+        margin-left: 25.5%;
+    }
+
+    .list-view {
+        margin: 0;
     }
 }

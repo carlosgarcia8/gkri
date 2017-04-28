@@ -30,6 +30,6 @@ class CommentVoto extends CommentModel
      */
     public static function tableName()
     {
-        return 'comment_votos';
+        return 'v_comment_votos';
     }
 }

@@ -12,12 +12,12 @@ $this->title = 'Posts';
 <div class="container list-view">
     <article class="item">
         <?php if ($post) : ?>
-        <header><h2><?= Html::a($post->titulo, ['posts/view', 'id' => $post->id]) ?></h2></header>
+        <header><h2><?= Html::a($post->titulo, ['/posts/view', 'id' => $post->id]) ?></h2></header>
         <div class="panel panel-default">
-            <?= Html::a(Html::img($post->ruta), ['posts/view', 'id' => $post->id]) ?>
+            <?= Html::a(Html::img($post->ruta), ['/posts/view', 'id' => $post->id]) ?>
             <div class="panel-body">
-                <?= Html::a('Aceptar', ['posts/aceptar', 'id' => $post->id], ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Rechazar', ['posts/rechazar', 'id' => $post->id], ['class' => 'btn btn-danger']) ?>
+                <?= Html::a('Aceptar', ['/posts/aceptar', 'id' => $post->id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Rechazar', ['/posts/rechazar', 'id' => $post->id], ['class' => 'btn btn-danger']) ?>
                 <strong class="pull-right label label-default categoria-moderar">Categoría: <?= $post->categoria->nombre ?></strong>
         </div>
         <?php else : ?>

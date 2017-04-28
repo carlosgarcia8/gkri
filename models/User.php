@@ -88,6 +88,7 @@ class User extends BaseUser
     }
 
     // TODO coger los comentarios mediante los votos 'via'
+    // TODO coger los posts comentados y ponerlos en el user/profile/comentarios
 
     //
     // /**

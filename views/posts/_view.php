@@ -4,9 +4,9 @@ use yii\helpers\Html;
 
 ?>
 <article class="item item-post-<?= $model->id ?>">
-    <header><h2><?= Html::a($model->titulo, ['posts/view', 'id' => $model->id]) ?></h2></header>
+    <header><h2><?= Html::a($model->titulo, ['/posts/view', 'id' => $model->id]) ?></h2></header>
     <div class="">
-        <?= Html::a(Html::img($model->ruta), ['posts/view', 'id' => $model->id]) ?>
+        <?= Html::a(Html::img($model->ruta), ['/posts/view', 'id' => $model->id]) ?>
     </div>
     <p class="item-p">
         <span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos</span> | <?= $model->getNumeroComentarios() ?> comentarios | Categoría: <?= $model->categoria->nombre ?>
@@ -25,7 +25,7 @@ use yii\helpers\Html;
             <li><a href="javascript:void(0);" class="vote-down" data-id="<?= $model->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
         <?php endif; ?>
 
-            <li><a href="<?= Url::toRoute(['posts/view', 'id' => $model->id, '#' => 'comments']) ?>"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="<?= Url::toRoute(['/posts/view', 'id' => $model->id, '#' => 'comments']) ?>"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></li>
         </ul>
     </div>
 </article>

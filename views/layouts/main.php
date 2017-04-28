@@ -20,7 +20,7 @@ $js = <<<EOT
         if ($('#search').val().length >= 2) {
             $('#lupa').removeClass('glyphicon-search').addClass('glyphicon-refresh glyphicon-refresh-animate');
         }
-        
+
         $('#search').autocomplete({
             source: function( request, response ) {
                 $.ajax({

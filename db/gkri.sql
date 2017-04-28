@@ -71,9 +71,10 @@ create table votos_c (
     constraint pk_votos_c primary key (usuario_id, comentario_id)
 );
 
-create view comment_votos
+drop view if exists v_comment_votos;
+create view v_comment_votos
 as
-select * from comment c left join (select comentario_id, count(*) as votos
+select * from comment c left join (select comentario_id, sum(case when positivo=true then 1 else -1 end) as votos
 from votos_c
 group by comentario_id) as v on c.id=v.comentario_id and "parentId" is null
 order by "parentId", votos desc nulls last, "createdAt";
