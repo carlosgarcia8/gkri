@@ -9,7 +9,7 @@ class CommentModel extends BaseCommentModel
 {
     /**
      * Saber si el comentario es hijo de otro comentario
-     * @return boolean
+     * @return bool
      */
     public function isChild()
     {
@@ -34,7 +34,7 @@ class CommentModel extends BaseCommentModel
      * @param string $entityId
      * @param null $maxLevel
      *
-     * @return array|ActiveRecord[]
+     * @return array | ActiveRecord[]
      */
     public static function getTree($entity, $entityId, $maxLevel = null)
     {
@@ -50,23 +50,8 @@ class CommentModel extends BaseCommentModel
         if ($maxLevel > 0) {
             $query->andWhere(['<=', 'c.level', $maxLevel]);
         }
-        // $connection = Yii::$app->getDb();
-        // $command = $connection->createCommand(`
-        //     SELECT * from comment_votos c where status=1
-        //     and c."entityId" = $entityId and c."entity" = "$entity"
-        //     `);
-        //
-        // var_dump($connection->createCommand(`
-        //     SELECT * from comment_votos c where status=1
-        //     and c."entityId" = $entityId and c."entity" = "$entity"
-        //     `));
-        // $result = $command->queryAll();
-        // var_dump($result);
-
 
         $models = $query->all();
-        // var_dump($models);
-        // die();
 
         if (!empty($models)) {
             $models = static::buildTree($models);
@@ -127,5 +112,32 @@ class CommentModel extends BaseCommentModel
     public function getVotosTotal()
     {
         return $this->getVotosPositivos()->count() - $this->getVotosNegativos()->count();
+    }
+
+    /**
+     * Obtener el usuario que ha creado el comentario
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuario()
+    {
+        return $this->hasOne(User::className(), ['id' => 'createdBy'])->inverseOf('comentarios');
+    }
+
+    /**
+     * Obtener los usuarios que han votado el comentario
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuariosVotos()
+    {
+        return $this->hasMany(User::className(), ['id' => 'usuario_id'])->via('votos');
+    }
+
+    /**
+     * Obtener el post al que se le ha añadido este comentario
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPost()
+    {
+        return $this->hasOne(Post::className(), ['id' => 'entityId'])->inverseOf('comentarios');
     }
 }

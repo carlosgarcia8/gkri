@@ -5,7 +5,6 @@ use yii\helpers\Url;
 use yii2mod\editable\Editable;
 use yii\web\View;
 
-// TODO cuando el admin borra un comentario con hijos, el borrar del hijo da error
 /* @var $this \yii\web\View */
 /* @var $model \yii2mod\comments\models\CommentModel */
 /* @var $maxLevel null|integer comments max level */

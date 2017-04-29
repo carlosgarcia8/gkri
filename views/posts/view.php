@@ -1,13 +1,12 @@
 <?php
 
-use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
-// TODO los comentarios arriba del post no se actualizan
+// TODO el contador de los comentarios arriba del post no se actualizan
 
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>

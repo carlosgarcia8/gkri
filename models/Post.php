@@ -3,10 +3,8 @@
 namespace app\models;
 
 use Yii;
-use yii\web\UploadedFile;
 use yii2mod\moderation\ModerationQuery;
 use yii2mod\moderation\ModerationBehavior;
-use yii2mod\moderation\enums\Status;
 
 /**
  * This is the model class for table "posts".
@@ -29,10 +27,28 @@ use yii2mod\moderation\enums\Status;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    /**
+     * La imagen del post a subir
+     * @var mixed
+     */
     public $imageFile;
 
+    /**
+     * Cuando el post esta en el escenario UPLOAD
+     * @var string
+     */
     const SCENARIO_UPLOAD = 'upload';
+
+    /**
+     * Cuando el post esta en el escenario MODERAR
+     * @var string
+     */
     const SCENARIO_MODERAR = 'moderar';
+
+    /**
+     * Cuando el post esta en el escenario UPDATE
+     * @var string
+     */
     const SCENARIO_UPDATE = 'update';
 
     /**
@@ -229,7 +245,7 @@ class Post extends \yii\db\ActiveRecord
 
     /**
      * Obtiene la resta entre los votos positivos y negativos
-     * @return integer
+     * @return int
      */
     public function getVotosTotal()
     {
@@ -272,36 +288,29 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene los comentarios de este post
-     * @return \yii\db\ActiveQuery
+     * Obtiene los comentarios que tiene el post
+     * @return [type] [description]
      */
     public function getComentarios()
     {
-        return \app\models\CommentModel::find()->where(['entityId' => $this->id, 'status' => 1]);
+        return $this->hasMany(CommentModel::className(), ['entityId' => 'id'])->inverseOf('post');
+    }
+
+    /**
+     * Obtiene los comentarios de este post
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComentariosAprobados()
+    {
+        return $this->getComentarios()->where(['status' => 1]);
     }
 
     /**
      * Obtiene el numero de comentarios
-     * @return integer
+     * @return int
      */
     public function getNumeroComentarios()
     {
         return $this->getComentarios()->count();
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    // public function getUpvotes()
-    // {
-    //     return $this->hasMany(Upvotes::className(), ['post_id' => 'id'])->inverseOf('post');
-    // }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    // public function getUsuarios0()
-    // {
-    //     return $this->hasMany(User::className(), ['id' => 'usuario_id'])->viaTable('upvotes', ['post_id' => 'id']);
-    // }
 }

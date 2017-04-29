@@ -9,9 +9,6 @@ use yii\widgets\ListView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Posts';
-// $this->params['breadcrumbs'][] = $this->title;
-// TODO cuando no esta logeado y le da a votar, cambia el color antes de mandarnos
-// al login
 
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>

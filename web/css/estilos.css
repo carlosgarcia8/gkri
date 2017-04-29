@@ -644,11 +644,9 @@ div.item:last-of-type article.item {
     border-top: 1px solid #555555;
 }
 
-/*@media screen and (max-width: 1200px) {
-    #search {
-        display: none;
-    }
-}*/
+.item h5 {
+    margin-bottom: -10px !important;
+}
 
 @media screen and (max-width: 1200px) {
 

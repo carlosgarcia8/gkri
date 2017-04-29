@@ -5,6 +5,7 @@ namespace app\controllers\user;
 use dektrium\user\controllers\ProfileController as BaseProfileController;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use app\models\CommentModel;
 use yii\filters\AccessControl;
 use app\models\UploadAvatarForm;
 use Yii;
@@ -29,7 +30,7 @@ class ProfileController extends BaseProfileController
     /**
      * Muestra el perfil del usuario con los posts subidos y aprobados
      *
-     * @param int $id
+     * @param string $username
      *
      * @return \yii\web\Response
      * @throws \yii\web\NotFoundHttpException
@@ -70,7 +71,7 @@ class ProfileController extends BaseProfileController
     /**
      * Muestra el perfil del usuario con los posts votados
      *
-     * @param int $id
+     * @param string $username
      *
      * @return \yii\web\Response
      * @throws \yii\web\NotFoundHttpException
@@ -111,7 +112,7 @@ class ProfileController extends BaseProfileController
     /**
      * Muestra el perfil del usuario con los posts donde ha comentado
      *
-     * @param int $id
+     * @param string $username
      *
      * @return \yii\web\Response
      * @throws \yii\web\NotFoundHttpException
@@ -128,8 +129,17 @@ class ProfileController extends BaseProfileController
 
         $profile = $this->finder->findProfileById($user->id);
 
+        $subquery = CommentModel::find()
+            ->select(['"entityId"', 'max("createdAt")'])
+            ->where(['"createdBy"' => $user->id])
+            ->groupBy(['"createdBy"', '"entityId"']);
+        $query = CommentModel::find()
+            ->where(['"createdBy"' => $user->id])
+            ->andWhere(['in', '("entityId", "createdAt")', $subquery])
+            ->orderBy('"createdAt" desc');
+
         $dataProvider = new ActiveDataProvider([
-            'query' => $user->getPosts()->approved(),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 10,
             ]
@@ -141,7 +151,7 @@ class ProfileController extends BaseProfileController
 
         $suPerfil = Yii::$app->user->id === $profile->user_id;
 
-        return $this->render('show', [
+        return $this->render('show-comentarios', [
             'profile' => $profile,
             'model' => $model,
             'suPerfil' => $suPerfil,

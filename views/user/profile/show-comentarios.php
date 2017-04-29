@@ -77,8 +77,11 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'item'],
-            'itemView' => '../../posts/_view.php',
+            'itemView' => '../../posts/_view-comentarios.php',
             'layout' => "{items}\n{pager}",
+            'viewParams' => [
+                'profile' => $profile,
+            ],
         ]) ?>
     </div>
 </div>

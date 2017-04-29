@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\CommentModel;
 use dektrium\user\models\User as BaseUser;
 
 class User extends BaseUser
@@ -87,32 +88,21 @@ class User extends BaseUser
         return $this->hasMany(VotoComentario::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 
-    // TODO coger los comentarios mediante los votos 'via'
-    // TODO coger los posts comentados y ponerlos en el user/profile/comentarios
+    /**
+     * Obtiene los comentarios que ha votado el usuario
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComentariosVotados()
+    {
+        return $this->hasMany(CommentModel::className(), ['id' => 'comentario_id'])->via('votosComentarios');
+    }
 
-    //
-    // /**
-    //  * Devuelve el avatar del usuario
-    //  * @return String_ Ruta hacia el avatar del usuario
-    //  */
-    // public function getAvatar()
-    // {
-    //     return $this->profile->getAvatarMini();
-    // }
-    //
-    // /**
-    //  * @return \yii\db\ActiveQuery
-    //  */
-    // public function getMeneos()
-    // {
-    //     return $this->hasMany(Meneo::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
-    // }
-    //
-    // /**
-    //  * @return \yii\db\ActiveQuery
-    //  */
-    // public function getMeneadas()
-    // {
-    //     return $this->hasMany(Entrada::className(), ['id' => 'entrada_id'])->via('meneos');
-    // }
+    /**
+     * Obtiene los comentarios que ha creado el usuario
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComentarios()
+    {
+        return $this->hasMany(CommentModel::className(), ['createdBy' => 'id'])->inverseOf('usuario');
+    }
 }

@@ -38,9 +38,6 @@ $js = <<<EOT
             },
             minLength: 2,
             delay: 800,
-            // search: function(event, ui) {
-            //
-            // },
             response: function(event, ui) {
                 $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
             }
@@ -123,23 +120,6 @@ $this->title = 'GKRI';
         </li>
     </ul>
     <?php
-    // echo Nav::widget([
-    //     'options' => ['class' => 'navbar-nav navbar-left'],
-    //     'items' => [
-    //         ['label' => 'Gracioso', 'url' => ['/posts/gracioso'], 'linkOptions' => ['class' => 'categoria']],
-    //         ['label' => 'Amor', 'url' => ['/posts/amor'], 'linkOptions' => ['class' => 'categoria']],
-    //         ['label' => 'Series', 'url' => ['/posts/series'], 'linkOptions' => ['class' => 'categoria']],
-    //         ['label' => 'WTF', 'url' => ['/posts/wtf'], 'linkOptions' => ['class' => 'categoria']],
-    //         [
-    //         'label' => 'Más',
-    //         'url' => '/',
-    //         'items' => [
-    //             ['label' => 'Level 1 - Dropdown A', 'url' => ''],
-    //             ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
-    //         ],
-    //     ],
-    //     ],
-    // ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [

@@ -74,7 +74,10 @@ create table votos_c (
 drop view if exists v_comment_votos;
 create view v_comment_votos
 as
-select * from comment c left join (select comentario_id, sum(case when positivo=true then 1 else -1 end) as votos
-from votos_c
-group by comentario_id) as v on c.id=v.comentario_id and "parentId" is null
+select * from comment c left join (select id as id_c, sum(case when positivo=true then 1 when positivo=false then -1 else 0 end) as votos
+from votos_c right join comment on votos_c.comentario_id = comment.id
+group by id) as v on c.id=v.id_c and "parentId" is null
 order by "parentId", votos desc nulls last, "createdAt";
+
+-- select * from comment where "createdBy"=1 and ("entityId","createdAt") in
+-- (select "entityId", max("createdAt") from comment where "createdBy"=1 group by "createdBy","entityId") order by "createdAt" desc;
