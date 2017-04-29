@@ -662,6 +662,11 @@ div.item:last-of-type article.item {
         width: 50%;
     }
 
+    .comments-list, .comment-form-container {
+        width: 100% !important;
+        min-width: 550px !important;
+    }
+
     .boton-cambiar {
         margin-left:7%;
     }

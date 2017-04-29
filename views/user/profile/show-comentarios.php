@@ -67,9 +67,9 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
         <div class="menu-profile-options">
             <ul>
-                <li><?= Html::a('POSTS', ['/u/' . $this->title . '/posts']) ?></li>
-                <li><?= Html::a('VOTADOS', ['/u/' . $this->title . '/votados']) ?></li>
-                <li><?= Html::a('COMENTARIOS', ['/u/' . $this->title . '/comentarios']) ?></li>
+                <li><?= Html::a('POSTS', ['/u/' . $profile->user->username . '/posts']) ?></li>
+                <li><?= Html::a('VOTADOS', ['/u/' . $profile->user->username . '/votados']) ?></li>
+                <li><?= Html::a('COMENTARIOS', ['/u/' . $profile->user->username . '/comentarios']) ?></li>
             </ul>
         </div>
     </div>

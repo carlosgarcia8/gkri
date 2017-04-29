@@ -6,6 +6,7 @@ use Yii;
 use app\models\Voto;
 use app\models\Post;
 use yii\data\ActiveDataProvider;
+use yii\db\Expression;
 use yii\filters\AccessControl;
 use dektrium\user\filters\AccessRule;
 use yii\helpers\Url;
@@ -83,7 +84,8 @@ class PostsController extends Controller
     }
 
     /**
-     * Lists all Post models.
+     * List all Post models
+     * @param  string $categoria categoria a buscar
      * @return mixed
      */
     public function actionIndex($categoria = null)
@@ -113,7 +115,7 @@ class PostsController extends Controller
 
     /**
      * Displays a single Post model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionView($id)
@@ -176,7 +178,7 @@ class PostsController extends Controller
     /**
      * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -199,7 +201,7 @@ class PostsController extends Controller
     /**
      * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -237,7 +239,7 @@ class PostsController extends Controller
 
     /**
      * Acepta aquellos posts que estan en moderación
-     * @param  integer $id id del post a aceptar
+     * @param  int $id id del post a aceptar
      * @return mixed
      */
     public function actionAceptar($id)
@@ -254,7 +256,7 @@ class PostsController extends Controller
 
     /**
      * Rechaza aquellos posts que estan en moderación
-     * @param  integer $id id del post a aceptar
+     * @param  int $id id del post a aceptar
      * @return mixed
      */
     public function actionRechazar($id)
@@ -269,9 +271,9 @@ class PostsController extends Controller
 
     /**
      * Realiza la votación de un post
-     * @param  integer $id       id del post
+     * @param  int $id       id del post
      * @param  bool    $positivo si es o no positivo
-     * @return integer           numero total de votos (resta positivos - negativos)
+     * @return int           numero total de votos (resta positivos - negativos)
      */
     public function actionVotar($id, $positivo)
     {
@@ -282,22 +284,22 @@ class PostsController extends Controller
         $positivo = $positivo === 'true';
         $post = $this->findModel($id);
         $voto = new Voto();
-        $usuario_id = Yii::$app->user->id;
+        $usuarioId = Yii::$app->user->id;
 
-        $votoGuardadoB = Voto::findOne(['usuario_id' => $usuario_id, 'post_id' => $id, 'positivo' => $positivo]);
+        $votoGuardadoB = Voto::findOne(['usuario_id' => $usuarioId, 'post_id' => $id, 'positivo' => $positivo]);
 
         if ($votoGuardadoB) {
             $votoGuardadoB->delete();
             return $post->getVotosTotal();
         }
 
-        $votoGuardado = Voto::findOne(['usuario_id' => $usuario_id, 'post_id' => $id]);
+        $votoGuardado = Voto::findOne(['usuario_id' => $usuarioId, 'post_id' => $id]);
 
         if ($votoGuardado) {
             $votoGuardado->delete();
         }
 
-        $voto->usuario_id = $usuario_id;
+        $voto->usuario_id = $usuarioId;
         $voto->post_id = $id;
         $voto->positivo = $positivo;
 
@@ -337,7 +339,7 @@ class PostsController extends Controller
         $posts = [];
         if ($q != null || $q != '') {
             $posts = Post::find()
-            ->select('titulo')
+            ->select(new Expression('left(titulo,20)'))
             ->where(['ilike', 'titulo', "$q%", false])
             ->column();
         }
@@ -347,7 +349,7 @@ class PostsController extends Controller
     /**
      * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

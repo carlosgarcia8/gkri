@@ -9,7 +9,6 @@ use yii\web\View;
 /* @var $model \yii2mod\comments\models\CommentModel */
 /* @var $maxLevel null|integer comments max level */
 
-$this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 
 ?>
 <li class="comment">

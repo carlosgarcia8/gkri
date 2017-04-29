@@ -28,7 +28,7 @@ function votar(id, positivo) {
         type:  'get',
         success: function (data) {
             if (!isNaN(data)) {
-                if (trigger == botonPositivo) {
+                if (trigger === botonPositivo) {
                     botonNegativo.removeClass('voted-down');
 
                     if (botonPositivo.hasClass('voted-up')) {

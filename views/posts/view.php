@@ -9,6 +9,7 @@ use yii\web\View;
 // TODO el contador de los comentarios arriba del post no se actualizan
 
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
+$this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
 <div class="post-view">
 
@@ -71,5 +72,31 @@ $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::c
             'maxLevel' => 2,
         ]); ?>
     </div>
-
 </div>
+<?php
+$this->registerJs(
+    "
+    $(document).on('click', '.comment-vote-up', function() {
+        votarComentario($(this).attr('data-comment-id'), true);
+    });
+
+    $(document).on('click', '.comment-vote-down', function() {
+        votarComentario($(this).attr('data-comment-id'), false);
+    });
+
+    $(document).on('afterReply', '#comment-form', function (e) {
+        $('#cancel-reply').on('click', function() {
+            $('#commentmodel-content').val('');
+        });
+    });
+
+    $(document).on('beforeReply', '#comment-form', function (e) {
+        var id = e.delegateTarget.activeElement.attributes[3].value;
+        var username = $('#comment-list-' + id).find('img').attr('alt');
+        $('#commentmodel-content').val('@' + username + ' ');
+    });
+     ",
+    \yii\web\View::POS_READY,
+    'custom-js'
+);
+?>

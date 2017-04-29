@@ -118,22 +118,22 @@ class DefaultController extends BaseDefaultController
         $positivo = $positivo === 'true';
         $comentario = $this->findModel($id);
         $voto = new VotoComentario();
-        $usuario_id = Yii::$app->user->id;
+        $usuarioId = Yii::$app->user->id;
 
-        $votoGuardadoB = VotoComentario::findOne(['usuario_id' => $usuario_id, 'comentario_id' => $id, 'positivo' => $positivo]);
+        $votoGuardadoB = VotoComentario::findOne(['usuario_id' => $usuarioId, 'comentario_id' => $id, 'positivo' => $positivo]);
 
         if ($votoGuardadoB) {
             $votoGuardadoB->delete();
             return $comentario->getVotosTotal();
         }
 
-        $votoGuardado = VotoComentario::findOne(['usuario_id' => $usuario_id, 'comentario_id' => $id]);
+        $votoGuardado = VotoComentario::findOne(['usuario_id' => $usuarioId, 'comentario_id' => $id]);
 
         if ($votoGuardado) {
             $votoGuardado->delete();
         }
 
-        $voto->usuario_id = $usuario_id;
+        $voto->usuario_id = $usuarioId;
         $voto->comentario_id = $id;
         $voto->positivo = $positivo;
 

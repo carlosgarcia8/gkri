@@ -1,10 +1,10 @@
-$('.comment-vote-up').on('click', function() {
-    votarComentario($(this).attr('data-comment-id'), true);
-});
-
-$('.comment-vote-down').on('click', function() {
-    votarComentario($(this).attr('data-comment-id'), false);
-});
+// $('.comment-vote-up').on('click', function() {
+//     votarComentario($(this).attr('data-comment-id'), true);
+// });
+//
+// $('.comment-vote-down').on('click', function() {
+//     votarComentario($(this).attr('data-comment-id'), false);
+// });
 
 function votarComentario(id, positivo) {
     var parametros = {
@@ -29,7 +29,7 @@ function votarComentario(id, positivo) {
         type:  'get',
         success: function (data) {
             if (!isNaN(data)) {
-                if (trigger == botonPositivo) {
+                if (trigger === botonPositivo) {
                     botonNegativo.removeClass('voted-down');
 
                     if (botonPositivo.hasClass('voted-up')) {
@@ -52,12 +52,16 @@ function votarComentario(id, positivo) {
         }
     });
 }
-
-$('.comment-reply').on('click', function () {
-    var username = $(this).parent().parent().prev().children('img').attr('alt');
-    $('#commentmodel-content').val('@' + username + ' ');
-});
-
-$('#cancel-reply').on('click', function () {
-    $('#commentmodel-content').val('');
-});
+//
+//
+// $(document).on('click', '.comment-reply', function() {
+//     console.log('hola');
+//     var username = $(this).parent().parent().prev().children('img').attr('alt');
+//     console.log(username);
+//     $('#commentmodel-content').val('@' + username + ' ');
+// });
+//
+// $(document).on('click', '#cancel-reply', function() {
+//     console.log('hola');
+//     $('#commentmodel-content').val('');
+// });

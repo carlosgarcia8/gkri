@@ -158,7 +158,6 @@ $this->title = 'GKRI';
             $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
                <input type="text" id="search" class="form-control" placeholder="Search" name="q">
                <button class="btn btn-default lupa" type="submit"><i id="lupa" class="glyphicon glyphicon-search"></i></button>
-               <div class="sugerenciasa"></div>
             <?php ActiveForm::end();?>
         </div>
    </div><?php
