@@ -9,7 +9,13 @@ $post = \app\models\Post::findOne(['id' => $model->entityId]);
 <article class="item item-post-<?= $post->id ?>">
     <header><h2><?= Html::a($post->titulo, ['/posts/view', 'id' => $post->id]) ?></h2></header>
     <div class="">
-        <?= Html::a(Html::img($post->ruta), ['/posts/view', 'id' => $post->id]) ?>
+        <?php if ($post->extension == 'gif') : ?>
+            <video width="455" height="240" loop="loop" autoplay="autoplay">
+                <source src="<?= $post->ruta ?>" type="video/mp4">
+            </video>
+        <?php else : ?>
+            <?= Html::a(Html::img($post->ruta), ['/posts/view', 'id' => $post->id]) ?>
+        <?php endif; ?>
     </div>
     <p class="item-p">
         <span class="votos-total-<?= $post->id ?>"><?= $post->getVotosTotal() ?> votos</span> | <?= $post->getNumeroComentarios() ?> comentarios | Categoría: <?= $post->categoria->nombre ?>

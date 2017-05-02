@@ -158,6 +158,7 @@ class PostsController extends Controller
 
             if ($imagen !== null) {
                 $model->imageFile = $imagen;
+                $model->extension = $imagen->extension;
                 $model->markPending();
 
                 if ($model->save() && $model->upload()) {

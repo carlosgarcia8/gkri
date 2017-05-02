@@ -14,7 +14,13 @@ $this->title = 'Posts';
         <?php if ($post) : ?>
         <header><h2><?= Html::a($post->titulo, ['/posts/view', 'id' => $post->id]) ?></h2></header>
         <div class="panel panel-default">
-            <?= Html::a(Html::img($post->ruta), ['/posts/view', 'id' => $post->id]) ?>
+            <?php if ($post->extension == 'gif') : ?>
+                <video width="455" loop="loop" autoplay="autoplay">
+                    <source src="<?= $post->ruta ?>" type="video/mp4">
+                </video>
+            <?php else : ?>
+                <?= Html::a(Html::img($post->ruta), ['/posts/view', 'id' => $post->id]) ?>
+            <?php endif; ?>
             <div class="panel-body">
                 <?= Html::a('Aceptar', ['/posts/aceptar', 'id' => $post->id], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Rechazar', ['/posts/rechazar', 'id' => $post->id], ['class' => 'btn btn-danger']) ?>

@@ -6,7 +6,13 @@ use yii\helpers\Html;
 <article class="item item-post-<?= $model->id ?>">
     <header><h2><?= Html::a($model->titulo, ['/posts/view', 'id' => $model->id]) ?></h2></header>
     <div class="">
+    <?php if ($model->extension == 'gif') : ?>
+        <video width="455" loop="loop" autoplay="autoplay">
+            <source src="<?= $model->ruta ?>" type="video/mp4">
+        </video>
+    <?php else : ?>
         <?= Html::a(Html::img($model->ruta), ['/posts/view', 'id' => $model->id]) ?>
+    <?php endif; ?>
     </div>
     <p class="item-p">
         <span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos</span> | <?= $model->getNumeroComentarios() ?> comentarios | Categoría: <?= $model->categoria->nombre ?>

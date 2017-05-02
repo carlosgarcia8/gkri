@@ -14,7 +14,6 @@ use yii2mod\moderation\ModerationBehavior;
  * @property string $extension
  * @property integer $usuario_id
  * @property string $fecha_publicacion
- * @property boolean $longpost
  * @property integer $status_id
  * @property integer $moderated_by
  *
@@ -63,7 +62,7 @@ class Post extends \yii\db\ActiveRecord
                 'usuario_id',
                 'status_id',
                 'fecha_publicacion',
-                'longpost',
+                'extension',
                 'imageFile',
                 'moderated_by',
                 'categoria_id',
@@ -73,7 +72,7 @@ class Post extends \yii\db\ActiveRecord
                 'usuario_id',
                 'status_id',
                 'fecha_publicacion',
-                'longpost',
+                'extension',
                 'moderated_by',
                 'categoria_id',
             ],
@@ -82,7 +81,7 @@ class Post extends \yii\db\ActiveRecord
                 'usuario_id',
                 'status_id',
                 'fecha_publicacion',
-                'longpost',
+                'extension',
                 'moderated_by',
                 'categoria_id',
             ],
@@ -105,14 +104,15 @@ class Post extends \yii\db\ActiveRecord
         return [
             [['titulo', 'categoria_id'], 'required'],
             [['usuario_id', 'status_id', 'moderated_by'], 'integer'],
-            [['fecha_publicacion'], 'safe'],
-            [['longpost'], 'boolean'],
+            [['fecha_publicacion', 'extension'], 'safe'],
+            [['extension'], 'string', 'max' => 25],
             [['titulo'], 'string', 'max' => 100],
             ['imageFile', 'image', 'skipOnEmpty' => false,
-                'extensions' => 'png, jpg, gif',
-                'minWidth' => 450, 'maxWidth' => 2000,
-                'minHeight' => 300, 'maxHeight' => 20000,
+                'extensions' => ['png', 'jpg', 'gif'],
+                'minWidth' => 400, 'maxWidth' => 2000,
+                'minHeight' => 200, 'maxHeight' => 20000,
             ],
+            ['imageFile', 'file', 'maxSize' => 1024*1024*3],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['usuario_id' => 'id']],
             [['moderated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['moderated_by' => 'id']],
         ];
@@ -142,7 +142,6 @@ class Post extends \yii\db\ActiveRecord
             'extension' => 'Extension',
             'usuario_id' => 'Usuario ID',
             'fecha_publicacion' => 'Fecha Publicacion',
-            'longpost' => 'Longpost',
             'status_id' => 'Status ID',
             'moderated_by' => 'Moderated By',
         ];
@@ -181,8 +180,11 @@ class Post extends \yii\db\ActiveRecord
         $uploadsPosts = Yii::getAlias('@posts');
         $uploadsAvatar = Yii::getAlias('@avatar');
         // TODO esta puesto un default de avatar para los posts, wtf
-        // TODO solo puede ser jpg, habria que cambiarlo
-        $fichero = "{$this->id}.jpg";
+        if ($this->extension == 'gif') {
+            $fichero = "{$this->id}.mp4";
+        } else {
+            $fichero = "{$this->id}.{$this->extension}";
+        }
         $ruta = "$uploadsPosts/{$fichero}";
 
         $s3 = Yii::$app->get('s3');

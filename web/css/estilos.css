@@ -569,7 +569,7 @@ div.item:last-of-type article.item {
     width: 50%;
 }
 
-.item-imagen img {
+.item-imagen img, .item-imagen video {
     margin-left: 33%;
 }
 

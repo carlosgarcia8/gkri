@@ -110,7 +110,6 @@ class DefaultController extends BaseDefaultController
      */
     public function actionVotar($id, $positivo)
     {
-        // TODO al añadir un comentario e intentar votar, parece como que nose ha cargado el js
         if (Yii::$app->user->isGuest) {
             return $this->redirect(Url::toRoute(['/user/login']));
         }

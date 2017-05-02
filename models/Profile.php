@@ -53,15 +53,19 @@ class Profile extends BaseProfile
     {
         $uploadsAvatar = Yii::getAlias('@avatar');
         // TODO solo puede ser jpg, habria que cambiarlo
-        $fichero = "{$this->user_id}.jpg";
-        $ruta = "$uploadsAvatar/{$fichero}";
+        $result = glob($uploadsAvatar . "/$this->user_id.*");
+        if (count($result) != 0) {
+            $ruta = $result[0];
+        } else {
+            $ruta = $uploadsAvatar . "/$this->user_id.jpg";
+        }
 
         $s3 = Yii::$app->get('s3');
 
         /*
          * Funcionalidad creada para que cuando el fichero no exista localmente
          * lo guarde de tal manera que cuando este guardado en el contenedor
-         * se sirva de ese fichero y no tenga que pedirlo mas a amazon s3, de exista
+         * se sirva de ese fichero y no tenga que pedirlo mas a amazon s3, de esta
          * manera ganamos eficiencia.
          */
         if (file_exists($ruta)) {
@@ -73,16 +77,4 @@ class Profile extends BaseProfile
             return "/$uploadsAvatar/default.jpg";
         }
     }
-
-    /**
-     * Se obtiene la ruta hacia el avatar del usuario, si no tiene se le
-     * da un avatar por defecto
-     * @return String_ ruta hacia el avatar
-     */
-    // public function getAvatarMini()
-    // {
-    //     $uploads = Yii::getAlias('@uploads');
-    //     $ruta = "$uploads/{$this->user_id}-mini.jpg";
-    //     return file_exists($ruta) ? "/$ruta" : "/$uploads/default-mini.jpg";
-    // }
 }

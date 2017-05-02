@@ -54,6 +54,8 @@ class ProfileController extends BaseProfileController
             ]
         ]);
 
+        // TODO los posts subidos en profile/show no salen ordenados por fecha publicacion
+
         if ($profile === null) {
             throw new NotFoundHttpException();
         }
@@ -94,6 +96,8 @@ class ProfileController extends BaseProfileController
                 'pageSize' => 10,
             ]
         ]);
+
+        // TODO Los posts votados no estan ordenados segun la fecha del voto. AÑadir createdAt a votos
 
         if ($profile === null) {
             throw new NotFoundHttpException();

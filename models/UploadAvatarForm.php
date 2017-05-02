@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use phpDocumentor\Reflection\Types\Boolean;
 use yii\base\Model;
 use yii\web\UploadedFile;
 use Yii;
@@ -18,20 +17,31 @@ class UploadAvatarForm extends Model
     public function rules()
     {
         return [
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg'],
+            [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => ['jpg', 'png']],
+            [['imageFile'], 'file', 'maxSize' => 1024*1024*3],
         ];
     }
 
     /**
      * Se realiza la subida de la imagen haciendose una miniatura de 225x225
-     * @return boolean true en caso de subida compledada y false en caso contrario
+     * @return bool true en caso de subida compledada y false en caso contrario
      */
     public function upload()
     {
         if ($this->validate()) {
-            // $this->imageFile->saveAs('uploads/' . \Yii::$app->user->id . '.' . $this->imageFile->extension);
             $nombre = Yii::getAlias('@avatar/')
                 . \Yii::$app->user->id . '.' . $this->imageFile->extension;
+            $userId = \Yii::$app->user->id;
+            $result = glob(Yii::getAlias('@avatar/') . "$userId.*");
+
+            $s3 = Yii::$app->get('s3');
+
+            foreach ($result as $r) {
+                unlink($r);
+                if ($s3->exist($r)) {
+                    $s3->delete($r);
+                }
+            }
             $this->imageFile->saveAs($nombre);
             Image::thumbnail($nombre, 225, 225)
                 ->save($nombre, ['quality' => 80]);

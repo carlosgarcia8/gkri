@@ -49,7 +49,13 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
             </div>
         </div>
         <div class="item-imagen">
-            <?= Html::img($model->ruta) ?>
+            <?php if ($model->extension == 'gif') : ?>
+                <video width="455" loop="loop" autoplay="autoplay">
+                    <source src="<?= $model->ruta ?>" type="video/mp4">
+                </video>
+            <?php else : ?>
+                <?= Html::img($model->ruta) ?>
+            <?php endif; ?>
         </div>
         <?php if ($esAutor && !$esAdmin) : ?>
         <div class="text-right">

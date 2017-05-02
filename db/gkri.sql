@@ -33,7 +33,7 @@ create table posts (
         on delete set null on update cascade,
     fecha_publicacion   timestamp with time zone not null default current_timestamp,
     fecha_confirmacion  timestamp with time zone,
-    longpost            bool         not null default false,
+    extension           varchar(20)    not null,
     categoria_id        bigint         not null constraint fk_posts_categorias
         references categorias(id)
         on delete no action on update cascade,
