@@ -52,7 +52,7 @@ class Profile extends BaseProfile
     public function getAvatar()
     {
         $uploadsAvatar = Yii::getAlias('@avatar');
-        // TODO solo puede ser jpg, habria que cambiarlo
+
         $result = glob($uploadsAvatar . "/$this->user_id.*");
         if (count($result) != 0) {
             $ruta = $result[0];

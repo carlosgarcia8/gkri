@@ -82,7 +82,7 @@ class User extends BaseUser
 
     public function getPostsVotadosPositivos()
     {
-        return $this->getPostsVotados()->joinWith('votos')->where(['positivo' => true]);
+        return $this->getPostsVotados()->joinWith('votos')->where(['positivo' => true])->orderBy('created_at desc');
     }
 
     /**

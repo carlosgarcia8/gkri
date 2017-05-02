@@ -10,6 +10,7 @@ use Yii;
  * @property integer $usuario_id
  * @property integer $post_id
  * @property boolean $positivo
+ * @property string $createdAt
  *
  * @property Posts $post
  * @property User $usuario
@@ -33,6 +34,7 @@ class Voto extends \yii\db\ActiveRecord
             [['usuario_id', 'post_id'], 'required'],
             [['usuario_id', 'post_id'], 'integer'],
             [['positivo'], 'boolean'],
+            [['createdAt'], 'safe'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];

@@ -178,8 +178,7 @@ class Post extends \yii\db\ActiveRecord
     public function getRuta()
     {
         $uploadsPosts = Yii::getAlias('@posts');
-        $uploadsAvatar = Yii::getAlias('@avatar');
-        // TODO esta puesto un default de avatar para los posts, wtf
+
         if ($this->extension == 'gif') {
             $fichero = "{$this->id}.mp4";
         } else {
@@ -195,9 +194,8 @@ class Post extends \yii\db\ActiveRecord
             $s3->commands()->get($ruta)->saveAs($ruta)->execute();
             return "/$ruta";
         } else {
-            return "/$uploadsAvatar/default.jpg";
+            return false;
         }
-        // TODO que hacer si no existe ni localmente ni remotamente
     }
 
     /**

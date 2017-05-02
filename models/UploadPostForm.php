@@ -52,7 +52,7 @@ class UploadPostForm extends Model
 
                 unlink(Yii::getAlias('@posts/') . $id . '.gif');
 
-                $api = new Api('tHXpcnaBWGmwEtW5_USDQ0x9xNhjOpxRmXwyGiegKxZrYJ-D25HC1WOIt2OIsr4pyW4DC6d8LgzL4_FhSIvWmw');
+                $api = new Api(getenv('CC_KEY'));
                 $api->convert([
                     'inputformat' => 'gif',
                     'outputformat' => 'mp4',

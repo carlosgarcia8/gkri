@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
+if ($model->getRuta() !== false) :
 ?>
 <article class="item item-post-<?= $model->id ?>">
     <header><h2><?= Html::a($model->titulo, ['/posts/view', 'id' => $model->id]) ?></h2></header>
@@ -35,3 +36,4 @@ use yii\helpers\Html;
         </ul>
     </div>
 </article>
+<?php endif; ?>

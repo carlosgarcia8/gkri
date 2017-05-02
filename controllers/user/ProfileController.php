@@ -48,13 +48,11 @@ class ProfileController extends BaseProfileController
         $profile = $this->finder->findProfileById($user->id);
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $user->getPosts()->approved(),
+            'query' => $user->getPosts()->orderBy('fecha_confirmacion desc')->approved(),
             'pagination' => [
                 'pageSize' => 10,
             ]
         ]);
-
-        // TODO los posts subidos en profile/show no salen ordenados por fecha publicacion
 
         if ($profile === null) {
             throw new NotFoundHttpException();
@@ -96,8 +94,6 @@ class ProfileController extends BaseProfileController
                 'pageSize' => 10,
             ]
         ]);
-
-        // TODO Los posts votados no estan ordenados segun la fecha del voto. AÑadir createdAt a votos
 
         if ($profile === null) {
             throw new NotFoundHttpException();

@@ -1,11 +1,3 @@
-// $('.comment-vote-up').on('click', function() {
-//     votarComentario($(this).attr('data-comment-id'), true);
-// });
-//
-// $('.comment-vote-down').on('click', function() {
-//     votarComentario($(this).attr('data-comment-id'), false);
-// });
-
 function votarComentario(id, positivo) {
     var parametros = {
         "id" : id,
@@ -52,16 +44,3 @@ function votarComentario(id, positivo) {
         }
     });
 }
-//
-//
-// $(document).on('click', '.comment-reply', function() {
-//     console.log('hola');
-//     var username = $(this).parent().parent().prev().children('img').attr('alt');
-//     console.log(username);
-//     $('#commentmodel-content').val('@' + username + ' ');
-// });
-//
-// $(document).on('click', '#cancel-reply', function() {
-//     console.log('hola');
-//     $('#commentmodel-content').val('');
-// });

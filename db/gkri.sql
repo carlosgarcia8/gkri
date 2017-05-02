@@ -58,6 +58,7 @@ create table votos (
     post_id     bigint        constraint fk_votos_posts references posts(id)
         on delete cascade on update cascade,
     positivo    boolean       not null default true,
+    created_at  timestamp with time zone not null default current_timestamp,
     constraint pk_votos primary key (usuario_id, post_id)
 );
 

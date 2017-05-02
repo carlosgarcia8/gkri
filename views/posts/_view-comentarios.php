@@ -10,7 +10,7 @@ $post = \app\models\Post::findOne(['id' => $model->entityId]);
     <header><h2><?= Html::a($post->titulo, ['/posts/view', 'id' => $post->id]) ?></h2></header>
     <div class="">
         <?php if ($post->extension == 'gif') : ?>
-            <video width="455" height="240" loop="loop" autoplay="autoplay">
+            <video width="455" loop="loop" autoplay="autoplay">
                 <source src="<?= $post->ruta ?>" type="video/mp4">
             </video>
         <?php else : ?>

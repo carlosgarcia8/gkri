@@ -30,7 +30,7 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
         <header><h2><?= Html::a($model->titulo, ['/posts/view', 'id' => $model->id]) ?></h2></header>
         <div class="">
             <p class="item-p">
-                <span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos</span> | <?= $model->getNumeroComentarios() ?> comentarios | Categoría: <?= $model->categoria->nombre ?>
+                <span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos</span> | <span id="count-comment-total"><?= $model->getNumeroComentarios() ?> comentarios</span> | Categoría: <?= $model->categoria->nombre ?>
             </p>
             <div class="item-votes">
                 <ul class="btn-vote left">
