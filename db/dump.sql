@@ -62,6 +62,7 @@ drop table if exists public.token cascade;
 drop table if exists public.social_account cascade;
 drop table if exists public.profile cascade;
 drop table if exists public.migration cascade;
+drop view if exists v_comment_votos;
 
 CREATE TABLE comment (
     id integer NOT NULL,
@@ -321,19 +322,6 @@ ALTER SEQUENCE user_id_seq OWNED BY "user".id;
 
 
 --
--- Name: votos; Type: TABLE; Schema: public; Owner: gkri
---
-
-CREATE TABLE votos (
-    usuario_id bigint NOT NULL,
-    post_id bigint NOT NULL,
-    positivo boolean DEFAULT true NOT NULL
-);
-
-
-ALTER TABLE votos OWNER TO gkri;
-
---
 -- Name: votos_c; Type: TABLE; Schema: public; Owner: gkri
 --
 
@@ -345,6 +333,55 @@ CREATE TABLE votos_c (
 
 
 ALTER TABLE votos_c OWNER TO gkri;
+
+--
+-- Name: v_comment_votos; Type: VIEW; Schema: public; Owner: gkri
+--
+
+CREATE VIEW v_comment_votos AS
+ SELECT c.id,
+    c.entity,
+    c."entityId",
+    c.content,
+    c."parentId",
+    c.level,
+    c."createdBy",
+    c."updatedBy",
+    c.status,
+    c."createdAt",
+    c."updatedAt",
+    c."relatedTo",
+    c.url,
+    v.id_c,
+    v.votos
+   FROM (comment c
+     LEFT JOIN ( SELECT comment.id AS id_c,
+            sum(
+                CASE
+                    WHEN (votos_c.positivo = true) THEN 1
+                    WHEN (votos_c.positivo = false) THEN '-1'::integer
+                    ELSE 0
+                END) AS votos
+           FROM (votos_c
+             RIGHT JOIN comment ON ((votos_c.comentario_id = comment.id)))
+          GROUP BY comment.id) v ON (((c.id = v.id_c) AND (c."parentId" IS NULL))))
+  ORDER BY c."parentId", v.votos DESC NULLS LAST, c."createdAt";
+
+
+ALTER TABLE v_comment_votos OWNER TO gkri;
+
+--
+-- Name: votos; Type: TABLE; Schema: public; Owner: gkri
+--
+
+CREATE TABLE votos (
+    usuario_id bigint NOT NULL,
+    post_id bigint NOT NULL,
+    positivo boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE votos OWNER TO gkri;
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: gkri
@@ -438,23 +475,23 @@ COPY comment (id, entity, "entityId", content, "parentId", level, "createdBy", "
 --
 
 COPY migration (version, apply_time) FROM stdin;
-m000000_000000_base	1493235602
-m010101_100001_init_comment	1493235607
-m160629_121330_add_relatedTo_column_to_comment	1493235607
-m161109_092304_rename_comment_table	1493235607
-m161114_094902_add_url_column_to_comment_table	1493235607
-m140209_132017_init	1493235608
-m140403_174025_create_account_table	1493235608
-m140504_113157_update_tables	1493235608
-m140504_130429_create_token_table	1493235608
-m140830_171933_fix_ip_field	1493235608
-m140830_172703_change_account_table_name	1493235608
-m141222_110026_update_ip_field	1493235608
-m141222_135246_alter_username_length	1493235608
-m150614_103145_update_social_account_table	1493235608
-m150623_212711_fix_username_notnull	1493235608
-m151218_234654_add_timezone_to_profile	1493235608
-m160929_103127_add_last_login_at_to_user_table	1493235608
+m000000_000000_base	1493545305
+m010101_100001_init_comment	1493545309
+m160629_121330_add_relatedTo_column_to_comment	1493545309
+m161109_092304_rename_comment_table	1493545309
+m161114_094902_add_url_column_to_comment_table	1493545309
+m140209_132017_init	1493545310
+m140403_174025_create_account_table	1493545310
+m140504_113157_update_tables	1493545310
+m140504_130429_create_token_table	1493545310
+m140830_171933_fix_ip_field	1493545310
+m140830_172703_change_account_table_name	1493545310
+m141222_110026_update_ip_field	1493545310
+m141222_135246_alter_username_length	1493545310
+m150614_103145_update_social_account_table	1493545310
+m150623_212711_fix_username_notnull	1493545310
+m151218_234654_add_timezone_to_profile	1493545310
+m160929_103127_add_last_login_at_to_user_table	1493545310
 \.
 
 
@@ -487,7 +524,6 @@ COPY profile (user_id, name, public_email, gravatar_email, gravatar_id, location
 --
 
 COPY session (id, expire, data) FROM stdin;
-btjp3vs9j0qs56t6lr3tv3kti4              	1493237691	\\x5f5f666c6173687c613a303a7b7d5f5f69647c693a313b
 \.
 
 
@@ -520,7 +556,7 @@ COPY "user" (id, username, email, password_hash, auth_key, confirmed_at, unconfi
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
 --
 
-SELECT pg_catalog.setval('user_id_seq', 1, true);
+SELECT pg_catalog.setval('user_id_seq', 1, false);
 
 
 --

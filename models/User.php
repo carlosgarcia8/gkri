@@ -79,6 +79,12 @@ class User extends BaseUser
         return $this->hasMany(Post::className(), ['id' => 'post_id'])->via('votos');
     }
 
+
+    public function getPostsVotadosPositivos()
+    {
+        return $this->getPostsVotados()->joinWith('votos')->where(['positivo' => true]);
+    }
+
     /**
      * Obtiene los votos sobre los comentarios
      * @return \yii\db\ActiveQuery

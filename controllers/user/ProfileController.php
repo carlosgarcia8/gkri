@@ -89,7 +89,7 @@ class ProfileController extends BaseProfileController
         $profile = $this->finder->findProfileById($user->id);
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $user->getPostsVotados(),
+            'query' => $user->getPostsVotadosPositivos(),
             'pagination' => [
                 'pageSize' => 10,
             ]
