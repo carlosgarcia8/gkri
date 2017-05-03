@@ -4,20 +4,25 @@ use yii\helpers\Html;
 
 $post = \app\models\Post::findOne(['id' => $model->entityId]);
 
-?>
+if ($post != null) : ?>
 <h5><?= $profile->user->username ?> <?= Html::a('commented', ['/posts/' . $post->id . '#comment-list-' . $model->id]) ?></h5>
+<?php if ($post->extension == 'gif') : ?>
+<div class="viewport"></div>
+<?php endif; ?>
 <article class="item item-post-<?= $post->id ?>">
     <header><h2><?= Html::a($post->titulo, ['/posts/view', 'id' => $post->id]) ?></h2></header>
-    <div class="">
         <?php if ($post->extension == 'gif') : ?>
+        <div class="gifplayer-wrapper">
             <video width="455" loop="loop" autoplay="autoplay">
                 <source src="<?= $post->ruta ?>" type="video/mp4">
             </video>
             <ins class="play-gif" style="display:none; top: 40%; left: 42%;">GIF</ins>
+        </div>
         <?php else : ?>
+        <div class="">
             <?= Html::img($post->ruta) ?>
+        </div>
         <?php endif; ?>
-    </div>
     <p class="item-p">
         <span class="votos-total-<?= $post->id ?>"><?= $post->getVotosTotal() ?> votos</span> | <?= $post->getNumeroComentarios() ?> comentarios | Categoría: <?= $post->categoria->nombre ?>
     </p>
@@ -39,3 +44,4 @@ $post = \app\models\Post::findOne(['id' => $model->entityId]);
         </ul>
     </div>
 </article>
+<?php endif; ?>

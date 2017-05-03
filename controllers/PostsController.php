@@ -169,7 +169,7 @@ class PostsController extends Controller
                     ->get('https://api.cloudconvert.com/user');
                     $respuesta = json_decode($response);
 
-                    if ($respuesta->minutes != 0) {
+                    if ($respuesta->minutes == 0) {
                         \Yii::$app->getSession()->setFlash('error', 'En estos momentos los Gifs no se pueden subir a la plataforma :(. Pruébelo de nuevo más tarde. Gracias por su paciencia :D.');
                         return $this->redirect(['/upload']);
                     }
