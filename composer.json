@@ -29,7 +29,8 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "yiisoft/yii2-jui": "^2.0",
         "yii2mod/yii2-comments": "dev-master",
-        "cloudconvert/cloudconvert-php": "2.2.*"
+        "cloudconvert/cloudconvert-php": "2.2.*",
+        "linslin/yii2-curl": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

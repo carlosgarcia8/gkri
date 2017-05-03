@@ -42,7 +42,6 @@ class UploadPostForm extends Model
             $ruta = Yii::getAlias('@posts/') . $id . '.' . $extension;
 
             if ($extension === 'gif') {
-                // TODO revisar si me quedan minutos en cloudconvert, sino dar error
                 $this->imageFile->saveAs(Yii::getAlias('@posts/') . $id . '.' . $extension);
                 $imagen = Image::getImagine()
                     ->open(Yii::getAlias('@posts/') . $id . '.' . $extension);

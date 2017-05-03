@@ -21,7 +21,16 @@ class SettingsController extends BaseSettingsController
 
         if (Yii::$app->request->isPost) {
             $upload->imageFile = UploadedFile::getInstance($upload, 'imageFile');
-            $upload->upload();
+            if (!$upload->upload()) {
+                $errores = '';
+
+                foreach ($upload->errors as $error) {
+                    $errores .= $errores . ' ' . $error[0];
+                }
+
+                \Yii::$app->getSession()->setFlash('danger', $errores);
+                return $this->redirect(['/settings/profile']);
+            }
         }
 
         $model = $this->finder->findProfileById(\Yii::$app->user->identity->getId());

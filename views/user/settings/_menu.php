@@ -44,7 +44,10 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
         'class' => 'img-thumbnail imagen',
         'alt' => $user->username,
         ]) ?>
-        <?php $form = ActiveForm::begin() ?>
+        <?php $form = ActiveForm::begin([
+                'enableAjaxValidation' => false,
+                'enableClientValidation' => false,
+            ]) ?>
         <?= $form->field($model, 'imageFile')->fileInput(['class' => 'avatar uploadAvatar'])->label(false) ?>
         <button class="boton-cambiar upload btn btn-info">Cambiar el avatar</button>
         <?php ActiveForm::end() ?>

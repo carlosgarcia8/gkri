@@ -18,6 +18,7 @@ use yii\web\ServerErrorHttpException;
 use yii2mod\moderation\enums\Status;
 use app\models\Categoria;
 use yii\helpers\Json;
+use linslin\yii2\curl;
 
 /**
  * PostsController implements the CRUD actions for Post model.
@@ -159,10 +160,28 @@ class PostsController extends Controller
             if ($imagen !== null) {
                 $model->imageFile = $imagen;
                 $model->extension = $imagen->extension;
+
+                if ($model->extension == 'gif') {
+                    $curl = new curl\Curl;
+                    $response = $curl->setGetParams([
+                        'apikey' => getenv('CC_KEY')
+                    ])
+                    ->get('https://api.cloudconvert.com/user');
+                    $respuesta = json_decode($response);
+
+                    if ($respuesta->minutes != 0) {
+                        \Yii::$app->getSession()->setFlash('error', 'En estos momentos los Gifs no se pueden subir a la plataforma :(. Pruébelo de nuevo más tarde. Gracias por su paciencia :D.');
+                        return $this->redirect(['/upload']);
+                    }
+                }
                 $model->markPending();
 
                 if ($model->save() && $model->upload()) {
                     \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluara.');
+                    return $this->redirect(['/']);
+                } else {
+                    $model->delete();
+                    \Yii::$app->getSession()->setFlash('error', 'Ha habido un problema en la subida del archivo. Esperamos poder resolverlo pronto. Gracias por su paciencia.');
                     return $this->redirect(['/']);
                 }
             } else {

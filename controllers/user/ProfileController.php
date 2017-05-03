@@ -41,7 +41,16 @@ class ProfileController extends BaseProfileController
 
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            $model->upload();
+            if (!$model->upload()) {
+                $errores = '';
+
+                foreach ($model->errors as $error) {
+                    $errores .= $errores . ' ' . $error[0];
+                }
+
+                \Yii::$app->getSession()->setFlash('error', $errores);
+                return $this->redirect(['/u/' . $username]);
+            }
         }
         $user = $this->finder->findUserByUsername($username);
 

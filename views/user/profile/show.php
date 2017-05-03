@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use yii\bootstrap\Alert;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\web\View;
@@ -75,6 +76,13 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
     </div>
     <div class="col-xs-12 col-sm-8">
+        <?php
+        if (Yii::$app->session->getFlash('error')) {
+            echo Alert::widget([
+                'options' => ['class' => 'alert-danger'],
+                'body' => Yii::$app->session->getFlash('error'),
+            ]);
+        } ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'item'],

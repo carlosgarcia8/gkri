@@ -16,9 +16,9 @@ class UploadAvatarForm extends Model
 
     public function rules()
     {
+        // TODO preguntar ricardo pues cuando es gif y mayor de un mega solo me da un error y no ambos
         return [
-            [['imageFile'], 'image', 'skipOnEmpty' => false, 'extensions' => ['jpg', 'png']],
-            [['imageFile'], 'file', 'maxSize' => 1024*1024*3],
+            [['imageFile'], 'file', 'extensions' => ['jpg', 'png'], 'maxSize' => 1024*1024*1],
         ];
     }
 
