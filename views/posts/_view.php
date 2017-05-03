@@ -3,18 +3,25 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 if ($model->getRuta() !== false) :
-?>
+
+if ($model->extension == 'gif') : ?>
+<div class="viewport"></div>
+<?php endif; ?>
+
 <article class="item item-post-<?= $model->id ?>">
     <header><h2><?= Html::a($model->titulo, ['/posts/view', 'id' => $model->id]) ?></h2></header>
-    <div class="">
     <?php if ($model->extension == 'gif') : ?>
-        <video width="455" loop="loop" autoplay="autoplay">
+    <div class="gifplayer-wrapper">
+        <video width="455" loop="loop">
             <source src="<?= $model->ruta ?>" type="video/mp4">
         </video>
-    <?php else : ?>
-        <?= Html::a(Html::img($model->ruta), ['/posts/view', 'id' => $model->id]) ?>
-    <?php endif; ?>
+        <ins class="play-gif" style="display:none; top: 45%; left: 45%;">GIF</ins>
     </div>
+    <?php else : ?>
+    <div class="">
+        <?= Html::a(Html::img($model->ruta), ['/posts/view', 'id' => $model->id]) ?>
+    </div>
+    <?php endif; ?>
     <p class="item-p">
         <span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos</span> | <?= $model->getNumeroComentarios() ?> comentarios | Categoría: <?= $model->categoria->nombre ?>
     </p>
