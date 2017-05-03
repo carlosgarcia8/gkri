@@ -21,7 +21,8 @@ class SettingsController extends BaseSettingsController
 
         if (Yii::$app->request->isPost) {
             $upload->imageFile = UploadedFile::getInstance($upload, 'imageFile');
-            if (!$upload->upload()) {
+
+            if ($upload->imageFile != null && !$upload->upload()) {
                 $errores = '';
 
                 foreach ($upload->errors as $error) {
@@ -39,7 +40,6 @@ class SettingsController extends BaseSettingsController
             $model = \Yii::createObject(Profile::className());
             $model->link('user', \Yii::$app->user->identity);
         }
-
         $event = $this->getProfileEvent($model);
 
         $this->performAjaxValidation($model);

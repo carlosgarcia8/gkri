@@ -64,6 +64,7 @@ drop table if exists public.profile cascade;
 drop table if exists public.migration cascade;
 drop view if exists v_comment_votos;
 
+
 CREATE TABLE comment (
     id integer NOT NULL,
     entity character(10) NOT NULL,
@@ -200,7 +201,7 @@ CREATE TABLE posts (
     usuario_id bigint,
     fecha_publicacion timestamp with time zone DEFAULT now() NOT NULL,
     fecha_confirmacion timestamp with time zone,
-    longpost boolean DEFAULT false NOT NULL,
+    extension character varying(20) NOT NULL,
     categoria_id bigint NOT NULL,
     status_id smallint,
     moderated_by bigint
@@ -305,7 +306,7 @@ ALTER TABLE "user" OWNER TO gkri;
 --
 
 CREATE SEQUENCE user_id_seq
-    START WITH 1
+    START WITH 2
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -377,7 +378,8 @@ ALTER TABLE v_comment_votos OWNER TO gkri;
 CREATE TABLE votos (
     usuario_id bigint NOT NULL,
     post_id bigint NOT NULL,
-    positivo boolean DEFAULT true NOT NULL
+    positivo boolean DEFAULT true NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
 );
 
 
@@ -422,7 +424,7 @@ ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regcl
 -- Name: Comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
 --
 
-SELECT pg_catalog.setval('"Comment_id_seq"', 1, false);
+SELECT pg_catalog.setval('"Comment_id_seq"', 4, true);
 
 
 --
@@ -499,7 +501,7 @@ m160929_103127_add_last_login_at_to_user_table	1493545310
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
-COPY posts (id, titulo, usuario_id, fecha_publicacion, fecha_confirmacion, longpost, categoria_id, status_id, moderated_by) FROM stdin;
+COPY posts (id, titulo, usuario_id, fecha_publicacion, fecha_confirmacion, extension, categoria_id, status_id, moderated_by) FROM stdin;
 \.
 
 
@@ -548,7 +550,7 @@ COPY token (user_id, code, created_at, type) FROM stdin;
 --
 
 COPY "user" (id, username, email, password_hash, auth_key, confirmed_at, unconfirmed_email, blocked_at, registration_ip, created_at, updated_at, flags, last_login_at) FROM stdin;
-1	xharly8	gjcarlos8@gmail.com	$2y$12$JJhA1ThuSMG5Ul5f4m5JOOMOCdZgT.Ppn2SGAS32yo/Q9KfSoEOni	yBKbCIpQuxZDje0jLni8Xq6s8p777eh6	1493235661	\N	\N	127.0.0.1	1493235633	1493235633	0	\N
+1	xharly8	gjcarlos8@gmail.com	$2y$12$JJhA1ThuSMG5Ul5f4m5JOOMOCdZgT.Ppn2SGAS32yo/Q9KfSoEOni	yBKbCIpQuxZDje0jLni8Xq6s8p777eh6	1493235661	\N	\N	127.0.0.1	1493235633	1493235633	0	1493755572
 \.
 
 
@@ -563,7 +565,7 @@ SELECT pg_catalog.setval('user_id_seq', 1, false);
 -- Data for Name: votos; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
-COPY votos (usuario_id, post_id, positivo) FROM stdin;
+COPY votos (usuario_id, post_id, positivo, created_at) FROM stdin;
 \.
 
 
