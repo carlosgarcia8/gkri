@@ -6,8 +6,7 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
-// TODO el contador de los comentarios arriba del post no se actualizan
-
+$this->registerJsFile('@web/js/gifs.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
@@ -53,6 +52,7 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
                 <video width="455" loop="loop" autoplay="autoplay">
                     <source src="<?= $model->ruta ?>" type="video/mp4">
                 </video>
+                <ins class="play-gif" style="display:none; top: 40%; left: 32%;">GIF</ins>
             <?php else : ?>
                 <?= Html::img($model->ruta) ?>
             <?php endif; ?>

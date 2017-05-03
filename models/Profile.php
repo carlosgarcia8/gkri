@@ -52,15 +52,18 @@ class Profile extends BaseProfile
     public function getAvatar()
     {
         $uploadsAvatar = Yii::getAlias('@avatar');
+        $s3 = Yii::$app->get('s3');
 
         $result = glob($uploadsAvatar . "/$this->user_id.*");
         if (count($result) != 0) {
             $ruta = $result[0];
         } else {
             $ruta = $uploadsAvatar . "/$this->user_id.jpg";
-        }
 
-        $s3 = Yii::$app->get('s3');
+            if (!$s3->exist($ruta)) {
+                $ruta = $uploadsAvatar . "/$this->user_id.png";
+            }
+        }
 
         /*
          * Funcionalidad creada para que cuando el fichero no exista localmente

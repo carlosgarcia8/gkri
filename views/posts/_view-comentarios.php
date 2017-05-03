@@ -13,8 +13,9 @@ $post = \app\models\Post::findOne(['id' => $model->entityId]);
             <video width="455" loop="loop" autoplay="autoplay">
                 <source src="<?= $post->ruta ?>" type="video/mp4">
             </video>
+            <ins class="play-gif" style="display:none; top: 40%; left: 42%;">GIF</ins>
         <?php else : ?>
-            <?= Html::a(Html::img($post->ruta), ['/posts/view', 'id' => $post->id]) ?>
+            <?= Html::img($post->ruta) ?>
         <?php endif; ?>
     </div>
     <p class="item-p">

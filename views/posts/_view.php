@@ -15,7 +15,7 @@ if ($model->extension == 'gif') : ?>
         <video width="455" loop="loop">
             <source src="<?= $model->ruta ?>" type="video/mp4">
         </video>
-        <ins class="play-gif" style="display:none; top: 45%; left: 45%;">GIF</ins>
+        <ins class="play-gif" style="display:none; top: 43%; left: 43%;">GIF</ins>
     </div>
     <?php else : ?>
     <div class="">
