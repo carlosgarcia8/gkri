@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Voto;
 use app\models\Post;
+use app\models\Notificacion;
+use app\models\enums\NotificationType;
 use yii\data\ActiveDataProvider;
 use yii\db\Expression;
 use yii\filters\AccessControl;
@@ -270,6 +272,14 @@ class PostsController extends Controller
         date_default_timezone_set('Europe/Madrid');
         $post->fecha_confirmacion = date('Y-m-d H:i:s');
         $post->markApproved();
+
+        $notificacion = new Notificacion();
+
+        $notificacion->type = NotificationType::POST_ACEPTADO;
+        $notificacion->user_id = $post->usuario_id;
+        $notificacion->url = "/posts/$post->id";
+
+        $notificacion->save();
 
         return $this->redirect(['/moderar']);
     }

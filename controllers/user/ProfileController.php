@@ -2,8 +2,10 @@
 
 namespace app\controllers\user;
 
+use app\models\User;
 use dektrium\user\controllers\ProfileController as BaseProfileController;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use app\models\CommentModel;
 use yii\filters\AccessControl;
@@ -20,11 +22,24 @@ class ProfileController extends BaseProfileController
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    ['allow' => true, 'actions' => ['index'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['index', 'notifications-ajax'], 'roles' => ['@']],
                     ['allow' => true, 'actions' => ['show', 'votados', 'comentarios'], 'roles' => ['?', '@']],
                 ],
             ],
         ];
+    }
+
+    public function actionNotificationsAjax()
+    {
+        if (Yii::$app->user->isGuest) {
+            return null;
+        }
+
+        $user = User::findOne(['id' => Yii::$app->user->identity->id]);
+
+        $notificaciones = $user->getNotificaciones()->where(['seen' => false])->all();
+
+        return Json::encode($notificaciones);
     }
 
     /**

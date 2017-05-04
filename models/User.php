@@ -111,4 +111,9 @@ class User extends BaseUser
     {
         return $this->hasMany(CommentModel::className(), ['createdBy' => 'id'])->inverseOf('usuario');
     }
+
+    public function getNotificaciones()
+    {
+        return $this->hasMany(Notificacion::className(), ['user_id' => 'id'])->inverseOf('usuario');
+    }
 }

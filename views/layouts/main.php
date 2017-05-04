@@ -13,6 +13,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 $url = Url::to(['/posts/search-ajax']);
+
 $js = <<<EOT
     $('#search').on('keyup', function () {
         $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
@@ -49,9 +50,39 @@ $js = <<<EOT
         }
 
     });
+
+    function obtenerNotificaciones() {
+        $.get('/user/profile/notifications-ajax', function(data){
+            populateNotifications(data);
+        });
+    }
+
+    obtenerNotificaciones();
+
+    var populateNotifications = function(notificationData){
+        var notificaciones = JSON.parse(notificationData);
+        $('.notification-icon').attr('data-count', notificaciones.length);
+
+        if (notificaciones.length != 0) {
+
+            $(notificaciones).each(function(index, item){
+                $('.dropdown-notifications-list').empty();
+
+                if (item['type'] == 0) {
+                    $('.dropdown-notifications-list').append('<li class="notification">'+
+                    '<a href="' + item['url'] + '">Tu post ha sido aceptado.</a></li>');
+                }
+            });
+        }
+    }
+
+    // TODO falla al no estar logueado
+
+    setInterval(function(){
+        obtenerNotificaciones()
+    }, 5000);
 EOT;
 
-$this->registerCssFile('@web/css/estilos.css');
 AppAsset::register($this);
 $this->registerJs($js);
 $categorias = Categoria::find()->all();
@@ -119,48 +150,72 @@ $this->title = 'GKRI';
             </ul>
         </li>
     </ul>
-    <?php
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Login', 'url' => ['/user/security/login'], 'linkOptions' => ['class' => 'blanco'],'visible' => Yii::$app->user->isGuest],
-            ['label' => '', 'url' => ['/'], 'linkOptions' => ['class' => 'glyphicon glyphicon-bell bell'], 'visible' => !Yii::$app->user->isGuest],
-            Yii::$app->user->isGuest?
-            ['label' => 'Registrarse', 'url' => ['/user/register'], 'linkOptions' => ['class' =>'blanco'],'visible' => Yii::$app->user->isGuest]:
-            [
-                'label' => Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded little']),
-                'url' => ['/user/profile/show', 'username' => Yii::$app->user->identity->username],
-                'encode' => false,
-                'items' => [
-                    [
-                       'label' => 'Mi Perfil',
-                       'url' => ['/u/' . Yii::$app->user->identity->username],
-                    ],
-                    [
-                       'label' => 'Configuración',
-                       'url' => ['/settings/profile']
-                    ],
-                    '<li class="divider"></li>',
-                    [
-                       'label' => 'Logout',
-                       'url' => ['/user/security/logout'],
-                       'linkOptions' => ['data-method' => 'post'],
-                    ],
-                ],
-                'linkOptions' => ['id' => 'imagen-avatar'],
-            ],
-            ['label' => 'Upload', 'url' => ['/posts/upload'], 'linkOptions' => ['class' => 'boton-upload btn-primary'], 'visible' => !Yii::$app->user->isGuest],
-        ],
-    ]);?>
+   <ul class="navbar-nav navbar-right nav">
+       <li>
+           <div class="input-group">
+                <div class="input-group-btn"><?php
+                   $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
+                   <input type="text" id="search" class="form-control" placeholder="Search" name="q">
+                   <button class="btn btn-default lupa" type="submit"><i id="lupa" class="glyphicon glyphicon-search"></i></button>
+                   <?php ActiveForm::end();?>
+               </div>
+           </div>
+       </li>
+    <?php if (Yii::$app->user->isGuest) : ?>
+        <li><a class="blanco" href="<?= Url::to('/user/security/login') ?>">Login</a></li>
+        <li><a class="blanco" href="<?= Url::to('/user/register') ?>">Registrarse</a></li>
+    <?php else :?>
+        <li class="dropdown dropdown-notifications">
+            <a data-toggle="dropdown" class="dropdown-toggle">
+              <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
+            </a>
 
-    <div class="input-group">
-        <div class="input-group-btn"><?php
-            $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
-               <input type="text" id="search" class="form-control" placeholder="Search" name="q">
-               <button class="btn btn-default lupa" type="submit"><i id="lupa" class="glyphicon glyphicon-search"></i></button>
-            <?php ActiveForm::end();?>
-        </div>
-   </div><?php
+            <div class="dropdown-container">
+
+                <div class="dropdown-toolbar">
+                    <div class="dropdown-toolbar-actions">
+                        <a href="#">Marcar todas como leídas</a>
+                    </div>
+                    <h3 class="dropdown-toolbar-title">Notificaciones</h3>
+                </div>
+
+                <ul class="dropdown-menu dropdown-notifications-list">
+
+                    <!-- <li class="notification">
+                        <div class="media">
+                            <div class="media-left">
+                              <div class="media-object">
+                                <img data-src="holder.js/50x50?bg=cccccc" class="img-circle" alt="Name" />
+                              </div>
+                            </div>
+                            <div class="media-body">
+                              <strong class="notification-title"><a href="#">Dave Lister</a> commented on <a href="#">DWARF-13 - Maintenance</a></strong>
+                              <p class="notification-desc">I totally don't wanna do it. Rimmer can do it.</p>
+
+                              <div class="notification-meta">
+                                <small class="timestamp">27. 11. 2015, 15:00</small>
+                              </div>
+                            </div>
+                      </div>
+                  </li> -->
+                </ul>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a id="imagen-avatar" class="dropdown-toggle" href="/u/xharly8" data-toggle="dropdown">
+                <?= Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded little']) ?>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> " tabindex="-1">Mi Perfil</a></li>
+                <li><a href="<?= Url::to('/settings/profile') ?>" tabindex="-1">Configuración</a></li>
+                <li class="divider"></li>
+                <li><a href="<?= Url::to('/user/security/logout') ?>" data-method="post" tabindex="-1">Logout</a></li>
+            </ul>
+        </li>
+        <li><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
+    <?php endif; ?>
+    </ul> <?php
 
     NavBar::end();
 

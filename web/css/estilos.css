@@ -254,10 +254,17 @@ a {
     color: white !important;
 }
 
-.navbar-right {
+.navbar {
     height: 20px !important;
-    line-height: 50px !important;
+}
+
+.navbar-right > li:first-child {
+    height: 50px !important;
+}
+
+.navbar-right > li:last-child {
     display: inline-block !important;
+    line-height: 50px !important;
 }
 
 .list-view {
@@ -670,6 +677,11 @@ ins.play-gif{
     margin-bottom: -10px !important;
 }
 
+.dropdown-container {
+    right: auto !important;
+    left: -230px !important;
+}
+
 @media screen and (max-width: 1200px) {
 
     .hovereffect, .nohovereffect {
@@ -695,6 +707,11 @@ ins.play-gif{
 
     .hovereffect, .nohovereffect {
         margin-left: -12%;
+    }
+
+    .nav > li > a {
+        padding-left: 10px;
+        padding-right:10px
     }
 }
 

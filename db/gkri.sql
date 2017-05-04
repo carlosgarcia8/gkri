@@ -72,6 +72,17 @@ create table votos_c (
     constraint pk_votos_c primary key (usuario_id, comentario_id)
 );
 
+drop table if exists notificaciones cascade;
+create table notificaciones (
+    id         bigserial                constraint pk_notificaciones primary key,
+    type       smallint                 not null,
+    user_id    bigint                   constraint fk_notificaciones_usuarios references public.user(id)
+        on delete cascade on update cascade,
+    seen       boolean                  not null default false,
+    created_at timestamp with time zone not null default current_timestamp,
+    url        text
+);
+
 drop view if exists v_comment_votos;
 create view v_comment_votos
 as
