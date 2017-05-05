@@ -50,7 +50,8 @@ $js = <<<EOT
         }
 
     });
-
+EOT;
+$js2 = <<<EOT
     function obtenerNotificaciones() {
         $.get('/user/profile/notifications-ajax', function(data){
             populateNotifications(data);
@@ -85,6 +86,9 @@ EOT;
 
 AppAsset::register($this);
 $this->registerJs($js);
+if (!Yii::$app->user->isGuest) {
+    $this->registerJs($js2);
+}
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';
 
@@ -151,15 +155,16 @@ $this->title = 'GKRI';
         </li>
     </ul>
    <ul class="navbar-nav navbar-right nav">
-       <li>
-           <div class="input-group">
-                <div class="input-group-btn"><?php
-                   $form = ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
+       <li></li>
+       <li class="dropdown">
+           <a data-toggle="dropdown" class="dropdown-toggle"><i id="lupa" class="glyphicon glyphicon-search"></i></a>
+           <ul class="dropdown-menu dropdown-menu-search">
+               <li>
+                   <?php ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
                    <input type="text" id="search" class="form-control" placeholder="Search" name="q">
-                   <button class="btn btn-default lupa" type="submit"><i id="lupa" class="glyphicon glyphicon-search"></i></button>
                    <?php ActiveForm::end();?>
-               </div>
-           </div>
+               </li>
+           </ul>
        </li>
     <?php if (Yii::$app->user->isGuest) : ?>
         <li><a class="blanco" href="<?= Url::to('/user/security/login') ?>">Login</a></li>

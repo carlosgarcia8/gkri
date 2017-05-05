@@ -254,9 +254,9 @@ a {
     color: white !important;
 }
 
-.navbar {
+/*.navbar {
     height: 20px !important;
-}
+}*/
 
 .navbar-right > li:first-child {
     height: 50px !important;
@@ -611,8 +611,8 @@ div.item:last-of-type article.item {
     color: #999;
 }
 
-#search {
-    width: 85%;
+.navbar-form {
+    width: auto;
 }
 
 .hovereffect + .menu-profile-info {
@@ -680,6 +680,34 @@ ins.play-gif{
 .dropdown-container {
     right: auto !important;
     left: -230px !important;
+}
+
+.navbar-form {
+    margin: 0;
+    display: flex;
+    padding-top: 8px;
+    justify-content: flex-end;
+}
+
+.navbar-right {
+    display: block;
+}
+
+.navbar-right > li:first-child {
+    overflow: hidden;
+}
+
+.form-control, .lupa {
+    display: block !important;
+}
+
+.dropdown-notifications {
+    width: 50px;
+}
+
+.dropdown-menu-search {
+    right: -80px !important;
+    left: auto !important;
 }
 
 @media screen and (max-width: 1200px) {
