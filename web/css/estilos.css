@@ -710,6 +710,14 @@ ins.play-gif{
     left: auto !important;
 }
 
+.notification-icon.show-icon:after {
+    visibility: visible;
+}
+
+.notification-icon.hidden-icon:after {
+    visibility: hidden;
+}
+
 @media screen and (max-width: 1200px) {
 
     .hovereffect, .nohovereffect {
@@ -750,6 +758,18 @@ ins.play-gif{
 
     .menu-profile-info ul {
         width: 100% !important;
+    }
+
+    .nav > li.dropdown-notifications > a {
+        text-align: center;
+    }
+
+    .nav > li.dropdown-notifications > a > i {
+        margin-left: -8px;
+    }
+
+    .list-view {
+        margin-left: 70px;
     }
 }
 

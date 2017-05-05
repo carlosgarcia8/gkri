@@ -3,6 +3,7 @@
 namespace app\controllers\user;
 
 use app\models\User;
+use app\models\Notificacion;
 use dektrium\user\controllers\ProfileController as BaseProfileController;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
@@ -22,7 +23,7 @@ class ProfileController extends BaseProfileController
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    ['allow' => true, 'actions' => ['index', 'notifications-ajax'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['index', 'notifications-ajax', 'notifications-read-ajax'], 'roles' => ['@']],
                     ['allow' => true, 'actions' => ['show', 'votados', 'comentarios'], 'roles' => ['?', '@']],
                 ],
             ],
@@ -40,6 +41,21 @@ class ProfileController extends BaseProfileController
         $notificaciones = $user->getNotificaciones()->where(['seen' => false])->all();
 
         return Json::encode($notificaciones);
+    }
+
+    public function actionNotificationsReadAjax($id)
+    {
+        if (Yii::$app->user->isGuest) {
+            return null;
+        }
+
+        if ($id == 0) {
+            Notificacion::updateAll(['seen' => true], ['user_id' => Yii::$app->user->identity->id]);
+        } else {
+            $notificacion = Notificacion::findOne(['id' => $id]);
+            $notificacion->seen = true;
+            $notificacion->update();
+        }
     }
 
     /**

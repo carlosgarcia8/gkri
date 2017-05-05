@@ -63,25 +63,44 @@ $js2 = <<<EOT
     var populateNotifications = function(notificationData){
         var notificaciones = JSON.parse(notificationData);
         $('.notification-icon').attr('data-count', notificaciones.length);
+        $('.dropdown-notifications-list').empty();
 
         if (notificaciones.length != 0) {
+            $('.notification-icon').removeClass('hidden-icon').addClass('show-icon');
 
             $(notificaciones).each(function(index, item){
-                $('.dropdown-notifications-list').empty();
 
                 if (item['type'] == 0) {
                     $('.dropdown-notifications-list').append('<li class="notification">'+
-                    '<a href="' + item['url'] + '">Tu post ha sido aceptado.</a></li>');
+                    '<a href="' + item['url'] + '" class="notification-link" data-id='+item['id']+'>Tu post ha sido aceptado.</a></li>');
                 }
             });
+            $('.notification > a').on('click', function(e) {
+                $.get('/user/profile/notifications-read-ajax', {id: $(this).attr('data-id')});
+            });
+        } else {
+            $('.notification-icon').removeClass('show-icon').addClass('hidden-icon');
+            $('.dropdown-notifications-list').append('<li class="notification">'+
+            'No tienes ninguna notificación pendiente.</li>');
         }
     }
-
-    // TODO falla al no estar logueado
 
     setInterval(function(){
         obtenerNotificaciones()
     }, 5000);
+
+    $('#notification-all-read').on('click', function(e) {
+        e.preventDefault();
+        $('.notification-icon').removeClass('show-icon').addClass('hidden-icon');
+
+        $('.notification-icon').attr('data-count', 0);
+        $('.dropdown-notifications-list').empty();
+        $('.dropdown-notifications-list').append('<li class="notification">'+
+        'No tienes ninguna notificación pendiente.</li>');
+
+        $.get('/user/profile/notifications-read-ajax', {id: 0});
+    });
+
 EOT;
 
 AppAsset::register($this);
@@ -172,14 +191,14 @@ $this->title = 'GKRI';
     <?php else :?>
         <li class="dropdown dropdown-notifications">
             <a data-toggle="dropdown" class="dropdown-toggle">
-              <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
+              <i data-count="0" class="glyphicon glyphicon-bell notification-icon hidden-icon"></i>
             </a>
 
             <div class="dropdown-container">
 
                 <div class="dropdown-toolbar">
                     <div class="dropdown-toolbar-actions">
-                        <a href="#">Marcar todas como leídas</a>
+                        <a href="/" id="notification-all-read">Marcar todas como leídas</a>
                     </div>
                     <h3 class="dropdown-toolbar-title">Notificaciones</h3>
                 </div>
