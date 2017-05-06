@@ -1,3 +1,33 @@
+/************ GLOBAL************/
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+    display: block;
+    font-size: 22px !important;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+h2 a {
+    color: black;
+}
+
+h2 a:hover {
+    color: #09f;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/************ EFECTO AVATAR PROFILE/SHOW ************/
+
 .hovereffect {
   width: 235px;
   height: 100%;
@@ -28,21 +58,6 @@
   -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
   transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
 }
-
-/*.hovereffect h2 {
-  text-transform: uppercase;
-  color: #fff;
-  text-align: center;
-  position: relative;
-  font-size: 17px;
-  background: rgba(0,0,0,0.6);
-  -webkit-transform: translatey(-100px);
-  -ms-transform: translatey(-100px);
-  transform: translatey(-100px);
-  -webkit-transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
-  transition: all 0.4s cubic-bezier(0.88,-0.99, 0, 1.81);
-  padding: 10px;
-}*/
 
 .hovereffect a.info {
   text-decoration: none;
@@ -87,59 +102,45 @@
   transition-delay: .2s;
 }
 
-.little {
-    width: 30px;
-    height: 30px;
-    margin-top: -5px;
+/************ PROFILE/SHOW ************/
+
+.hovereffect + .menu-profile-info {
+    margin-top: 250px;
 }
 
-.fondoNav {
-    /*background-color: #EE9555;*/
-    background-color: #4358E4;
-}
-.lower {
-    top: 50px;
-    min-height: 0px !important;
-    max-height: 28px !important;
+.menu-profile-info {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
 }
 
-.lower li a {
-    padding-top: 4px;
+.hovereffect, .nohovereffect {
+    margin-left: 7%;
 }
 
-.lower .active > a{
-    background-color: transparent !important;
-    text-shadow: 1px 1px 1px #4358E4 !important;
+.menu-profile-info ul {
+    width: 110% !important;
+    margin-left: -10px;
 }
 
-.blanco, .blanco a {
-    color: white !important;
-    text-shadow: 1px 1px 4px black;
+.menu-profile-options ul {
+    list-style: none;
+    margin-left: -55px;
 }
 
-.blancoBrand {
-    color: white !important;
-    font-size: 30px;
-    text-shadow: 2px 2px 2px black;
+.menu-profile-options {
+    text-align: center;
 }
 
-.avatar {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+.menu-profile-options li {
+    padding: 15px;
 }
 
-.boton-cambiar {
-    position: absolute;
-    margin-left: 20%;
+.menu-profile-options li:nth-child(n+2) {
+    border-top: 1px solid #555555;
 }
 
-.imagen {
-    margin-left: 10px;
-}
+/************ DROPDOWN ************/
 
 .caret {
     color: black;
@@ -153,89 +154,196 @@
     color: white;
 }
 
-.entrada-create {
-    /*background-color: #EBAC6B;*/
-    background-color: #5FC8E4;
-    padding: 20px;
-    box-shadow: 0px 0px 10px blue;
+.dropdown-menu {
+	min-width: 120px;
+}
+
+.dropdown-menu li a {
+	padding: 5px 15px;
+	font-weight: 300;
+}
+
+/************ NAVBAR ************/
+
+.little { /* clase para la imagen en el menu pequeña */
+    width: 30px;
+    height: 30px;
+    margin-top: -5px;
+}
+
+.blanco, .blanco a {/* Color para el login y registrarse */
+    color: white !important;
+    text-shadow: 1px 1px 4px black;
+}
+
+.navbar-brand {
+    color: white !important;
+    padding: 12px 15px !important;
+}
+
+.navbar-form {
+    width: auto;
+}
+
+.navbar-form {
+    margin: 0;
+    display: flex;
+    padding-top: 8px;
+    justify-content: flex-end;
+}
+
+.navbar-right {
+    display: block;
+}
+
+.navbar-right > li:first-child {
+    overflow: hidden;
+}
+
+.form-control, .lupa {
+    display: block !important;
+}
+
+.logo {/* Clase para el logo en el menu */
+    width: 100px;
+    height: auto;
+}
+
+.navbar-inverse .navbar-left > li:hover {
+    background-color: #555555;
+}
+
+.navbar-inverse .navbar-left > li > a {
+    color: white !important;
+}
+
+.navbar-right > li:first-child {
+    height: 50px !important;
+}
+
+.navbar-right > li:last-child {
+    display: inline-block !important;
+    line-height: 50px !important;
+}
+
+.lupa {
+    margin-bottom: 20px !important;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+/************ IMAGEN MENU USER SETTINGS ************/
+
+
+.avatar { /* menu del usuario para el file input */
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.boton-cambiar { /* boton cambiar avatar del menu */
+    position: absolute;
+    margin-left: 20%;
+}
+
+.imagen { /* imagen del menu */
+    margin-left: 10px;
+}
+
+/************ POST ************/
+
+.list-view { /* Cuando estamos en la lista de posts */
+    margin-left: 120px;
 }
 
 .item {
     padding-bottom: 20px;
 }
 
-.botones {
-    margin-left: 20px;
-    display: inline-block;
+.item h5 {
+    margin-bottom: -10px !important;
 }
 
-.title > a {
-    color: black;
+.list-view .item {
+    width: 455px;
 }
 
-.entrada > p:first-of-type {
-    font-size: 15px;
+.post-view { /* Cuando estamos en un post */
+    margin-left: 40px;
 }
 
-.entrada span {
-    font-weight: bold;
-    color: #3133BA;
+.post-view .item {
+    width: 655px;
 }
 
-.entrada > a:nth-child(n+6)::before {
-    content: ", ";
+.btn-link { /* Boton DELETE para los usuarios */
+    color: #999 !important;
 }
 
-.entrada > a:last-child::after {
-    content: "";
+.btn-link:hover {
+    color: #6E6E6E !important;
 }
 
+p.item-p { /* Información resumen del post */
+    color: #999;
+    margin: 10px 0;
+}
+
+p.item-p a {
+    color: #999;
+}
+
+div.item article.item {
+    border-bottom: 1px solid #D0D0D0;
+}
+
+div.item:last-of-type article.item {
+    border-bottom: 0px;
+}
+
+.item-imagen {
+    width: 50%;
+}
+
+.item-imagen img, .item-imagen video {
+    margin-left: 33%;
+}
+
+/************ AUTOCOMPLETE ************/
 
 .ui-autocomplete {
     z-index: 2000 !important;
 }
 
-.articulo {
-    display:flex;
-    justify-content: flex-start;
-    align-items: baseline;
+.dropdown-menu-search {
+    right: -80px !important;
+    left: auto !important;
 }
 
-.articulo > * {
-    margin: 5px;
-}
+/************ CAMPANA BELL NOTIFICACIONES ************/
 
 .glyphicon.glyphicon-bell {
     font-size: 16px;
     margin-right: -8px;
 }
 
-.dropdown-menu-left {
-    right: auto !important;
-    left: -20px !important;
-}
-
-h2 {
-    display: block;
-    font-size: 22px !important;
-    -webkit-margin-before: 0.83em;
-    -webkit-margin-after: 0.83em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    font-weight: bold;
-}
-
-h2 a {
-    color: black;
-}
-
-h2 a:hover {
-    color: #09f;
-}
-
-a {
-    text-decoration: none !important;
-}
+/************ BOTON UPLOAD POST ************/
 
 .boton-upload {
     color: #fff !important;
@@ -250,71 +358,16 @@ a {
     background-color: #09f !important;
 }
 
-.navbar-brand {
-    color: white !important;
-}
-
-/*.navbar {
-    height: 20px !important;
-}*/
-
-.navbar-right > li:first-child {
-    height: 50px !important;
-}
-
-.navbar-right > li:last-child {
-    display: inline-block !important;
-    line-height: 50px !important;
-}
-
-.list-view {
-    margin-left: 120px;
-}
-
-.post-view {
-    margin-left: 40px;
-}
-
-.list-view .item {
-    width: 455px;
-}
-
-.post-view .item {
-    width: 655px;
-}
-
-* {
-    font-family: 'Poppins', sans-serif;
-}
-
-.item h2 a {
-    /*font-family: 'Poppins', sans-serif;*/
-    font-weight: bold;
-}
+/************ MODERACION POST ************/
 
 .categoria-moderar {
     font-size: 14px !important;
 }
 
-.btn-link {
-    color: #999 !important;
-}
-
-.btn-link:hover {
-    color: #6E6E6E !important;
-}
-
-.dropdown-menu {
-	min-width: 120px;
-}
+/************ OPCION MAS CATEGORIAS ************/
 
 .dropdown-menu.columns-3 {
 	min-width: 450px;
-}
-
-.dropdown-menu li a {
-	padding: 5px 15px;
-	font-weight: 300;
 }
 
 .multi-column-dropdown {
@@ -347,39 +400,13 @@ a {
     padding-right: 15px;
 }
 
-
-
 .multi-column-dropdown li a:hover {
 	text-decoration: none;
 	color: white;
 	background-color: #555555;
 }
 
-@media (max-width: 767px) {
-	.dropdown-menu.multi-column {
-		min-width: 240px !important;
-		overflow-x: hidden;
-	}
-}
-
-.lupa {
-    margin-bottom: 20px !important;
-}
-
-.glyphicon-refresh-animate {
-    -animation: spin .7s infinite linear;
-    -webkit-animation: spin2 .7s infinite linear;
-}
-
-@-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
-}
-
-@keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
-}
+/************ VOTAR POSTS ************/
 
 .btn-vote li {
     margin: 0 10px 0 0;
@@ -396,39 +423,6 @@ a {
     position: relative;
     text-decoration: none;
     color: #999999;
-}
-
-p.item-p {
-    color: #999;
-    margin: 10px 0;
-}
-
-p.item-p a {
-    color: #999;
-}
-
-.voted-up {
-    color: #2B9D63 !important;
-}
-.voted-down {
-    color: #CD2E2E !important;
-}
-
-.navbar-brand {
-    padding: 12px 15px !important;
-}
-
-.logo {
-    width: 100px;
-    height: auto;
-}
-
-.navbar-inverse .navbar-left > li:hover {
-    background-color: #555555;
-}
-
-.navbar-inverse .navbar-left > li > a {
-    color: white !important;
 }
 
 .btn-vote i {
@@ -449,15 +443,24 @@ p.item-p a {
     border: 1px solid black;
 }
 
-.left {
+.voted-up {
+    color: #2B9D63 !important;
+}
+.voted-down {
+    color: #CD2E2E !important;
+}
+
+.item-votes { /* Contenedor de la lista con clase 'left'*/
+    margin-top: 10px;
+}
+
+.left { /* Contenedor de los botones para votar */
     display: flex;
     flex-flow: row;
     padding: 0px;
 }
 
-.item-votes {
-    margin-top: 10px;
-}
+/************ COMENTARIOS ************/
 
 #commentmodel-content {
     resize: none;
@@ -544,14 +547,6 @@ p.item-p a {
     border-top: 0px solid #FFFFFF;
 }
 
-div.item article.item {
-    border-bottom: 1px solid #D0D0D0;
-}
-
-div.item:last-of-type article.item {
-    border-bottom: 0px;
-}
-
 .comments-list .children {
     margin: 0 !important;
     padding-left: 20px !important;
@@ -572,14 +567,6 @@ div.item:last-of-type article.item {
     width: 40px !important;
 }
 
-.item-imagen {
-    width: 50%;
-}
-
-.item-imagen img, .item-imagen video {
-    margin-left: 33%;
-}
-
 .btn-vote-comment i {
     margin-left: 9px !important;
 }
@@ -591,7 +578,6 @@ div.item:last-of-type article.item {
 .author-comment:hover {
     text-decoration: underline !important;
 }
-
 
 .btn-vote-comment li a {
     text-decoration: none;
@@ -611,45 +597,7 @@ div.item:last-of-type article.item {
     color: #999;
 }
 
-.navbar-form {
-    width: auto;
-}
-
-.hovereffect + .menu-profile-info {
-    margin-top: 250px;
-}
-
-.menu-profile-info {
-    padding-left: 5px;
-    padding-right: 5px;
-    text-align: center;
-}
-
-.hovereffect, .nohovereffect {
-    margin-left: 7%;
-}
-
-.menu-profile-info ul {
-    width: 110% !important;
-    margin-left: -10px;
-}
-
-.menu-profile-options ul {
-    list-style: none;
-    margin-left: -55px;
-}
-
-.menu-profile-options {
-    text-align: center;
-}
-
-.menu-profile-options li {
-    padding: 15px;
-}
-
-.menu-profile-options li:nth-child(n+2) {
-    border-top: 1px solid #555555;
-}
+/************ GIF ************/
 
 ins.play-gif{
 	position: absolute;
@@ -673,41 +621,15 @@ ins.play-gif{
 	display: inline-block;
 }
 
-.item h5 {
-    margin-bottom: -10px !important;
-}
+/************ NOTIFICACIONES ************/
 
 .dropdown-container {
     right: auto !important;
     left: -230px !important;
 }
 
-.navbar-form {
-    margin: 0;
-    display: flex;
-    padding-top: 8px;
-    justify-content: flex-end;
-}
-
-.navbar-right {
-    display: block;
-}
-
-.navbar-right > li:first-child {
-    overflow: hidden;
-}
-
-.form-control, .lupa {
-    display: block !important;
-}
-
 .dropdown-notifications {
     width: 50px;
-}
-
-.dropdown-menu-search {
-    right: -80px !important;
-    left: auto !important;
 }
 
 .notification-icon.show-icon:after {
@@ -736,6 +658,7 @@ ins.play-gif{
 }
 
 @media screen and (max-width: 1200px) {
+    /************ AVATAR PROFILE/SHOW ************/
 
     .hovereffect, .nohovereffect {
         margin-left: -5%;
@@ -743,24 +666,32 @@ ins.play-gif{
 }
 
 @media screen and (max-width: 991px) {
+    /************ MENU USER SETTINGS  ************/
+
     .avatar-menu {
         margin: 0 auto;
         margin-bottom: 60px;
         width: 50%;
     }
 
+    .boton-cambiar {
+        margin-left:7%;
+    }
+
+    /************ COMENTARIOS  ************/
+
     .comments-list, .comment-form-container {
         width: 100% !important;
         min-width: 550px !important;
     }
 
-    .boton-cambiar {
-        margin-left:7%;
-    }
+    /************ AVATAR PROFILE/SHOW ************/
 
     .hovereffect, .nohovereffect {
         margin-left: -12%;
     }
+
+    /************ MENU ************/
 
     .nav > li > a {
         padding-left: 10px;
@@ -769,13 +700,13 @@ ins.play-gif{
 }
 
 @media screen and (max-width: 767px) {
+    /************ AVATAR PROFILE/SHOW ************/
+
     .hovereffect, .nohovereffect {
         margin-left: 32.5%;
     }
 
-    .menu-profile-info ul {
-        width: 100% !important;
-    }
+    /************ MENU ************/
 
     .nav > li.dropdown-notifications > a {
         text-align: center;
@@ -785,15 +716,34 @@ ins.play-gif{
         margin-left: -8px;
     }
 
+    /************ PROFILE/SHOW ************/
+
+    .menu-profile-info ul {
+        width: 100% !important;
+    }
+
+    /************ POSTS ************/
+
     .list-view {
         margin-left: 70px;
+    }
+
+    /************ OPCION MAS CATEGORIAS ************/
+
+    .dropdown-menu.multi-column {
+        min-width: 240px !important;
+        overflow-x: hidden;
     }
 }
 
 @media screen and (max-width: 576px) {
+    /************ AVATAR PROFILE/SHOW ************/
+    
     .hovereffect, .nohovereffect {
         margin-left: 25.5%;
     }
+
+    /************ POSTS ************/
 
     .list-view {
         margin: 0;

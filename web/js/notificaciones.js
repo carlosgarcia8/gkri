@@ -1,3 +1,30 @@
+function NotificationElement(texto, icon, enlace, dataid) {
+    this.texto = texto;
+    this.icon = icon;
+    this.enlace = enlace;
+    this.dataid = dataid;
+}
+
+NotificationElement.prototype.getElement = function () {
+    return `
+        <li class="notification">
+            <div class="media">
+                <div class="media-left">
+                  <div class="media-object">
+                    `+this.icon+`
+                  </div>
+                </div>
+                <div class="media-body">
+                  <a href="` + this.enlace + `" class="notification-link" data-id='`+this.dataid+`'>`+this.texto+`</a>
+                  <!--<div class="notification-meta">
+                    <small class="timestamp">+item['created_at']+</small>
+                  </div>-->
+                </div>
+            </div>
+        </li>
+        `
+};
+
 function obtenerNotificaciones() {
     $.get('/user/profile/notifications-ajax', function(data){
         populateNotifications(data);
@@ -17,29 +44,13 @@ var populateNotifications = function(notificationData){
         $(notificaciones).each(function(index, item){
 
             if (item['type'] == 0) {
-                // $('.dropdown-notifications-list').append('<li class="notification">'+
-                // '<a href="/posts/' + item['post_id'] + '" class="notification-link" data-id='+
-                // item['id']+'>Tu post "<i>'+item['titulo']+'</i>..." ha sido <b>aceptado</b>.</a></li>');
-                $('.dropdown-notifications-list').append(`
-                    <li class="notification">
-                        <div class="media">
-                            <div class="media-left">
-                              <div class="media-object">
-                                <i class="fa fa-exclamation fa-lg" aria-hidden="true"></i>
-                              </div>
-                            </div>
-                            <div class="media-body">
-                              <a href="/posts/` + item['post_id'] +
-                              `" class="notification-link" data-id='`+item['id']+`'>
-                              Tu post "<i>'`+item['titulo']+`'</i>..." ha sido <b>aceptado</b>.</a>
-
-                              <!--<div class="notification-meta">
-                                <small class="timestamp">`+item['created_at']+`</small>
-                              </div>-->
-                            </div>
-                        </div>
-                    </li>
-                    `)
+                $('.dropdown-notifications-list')
+                .append(new NotificationElement(
+                    'Tu post "<i>'+item['titulo']+'</i>..." ha sido <b>aceptado</b>.',
+                    '<i class="fa fa-exclamation fa-lg" aria-hidden="true"></i>',
+                    '/posts/' + item['post_id'],
+                    item['id']
+                ).getElement())
             }
         });
         $('.notification-link').on('click', function(e) {
