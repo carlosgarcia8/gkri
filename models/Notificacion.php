@@ -12,7 +12,6 @@ use app\models\enums\NotificationType;
  * @property integer $user_id
  * @property boolean $seen
  * @property string $created_at
- * @property string $url
  *
  * @property User $user
  */
@@ -37,7 +36,6 @@ class Notificacion extends \yii\db\ActiveRecord
             [['type'], 'in', 'range' => NotificationType::getConstantsByName()],
             [['seen'], 'boolean'],
             [['created_at', 'url'], 'safe'],
-            [['url'], 'string'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -53,7 +51,6 @@ class Notificacion extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'seen' => 'Seen',
             'created_at' => 'Created At',
-            'url' => 'Url',
         ];
     }
 
@@ -63,5 +60,10 @@ class Notificacion extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('notificaciones');
+    }
+
+    public function getPost()
+    {
+        return $this->hasOne(Post::className(), ['id' => 'post_id'])->inverseOf('notificaciones');
     }
 }

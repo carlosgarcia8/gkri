@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\models\Categoria;
+use yii\web\View;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -12,101 +13,10 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-$url = Url::to(['/posts/search-ajax']);
-
-$js = <<<EOT
-    $('#search').on('keyup', function () {
-        $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
-
-        if ($('#search').val().length >= 2) {
-            $('#lupa').removeClass('glyphicon-search').addClass('glyphicon-refresh glyphicon-refresh-animate');
-        }
-
-        $('#search').autocomplete({
-            source: function( request, response ) {
-                $.ajax({
-                    method: 'get',
-                    url: '$url',
-                    data: {
-                        q: $('#search').val()
-                    },
-                    success: function (data, status, event) {
-                        $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
-                        var d = JSON.parse(data);
-                        response(d);
-                    }
-                });
-            },
-            minLength: 2,
-            delay: 800,
-            response: function(event, ui) {
-                $('#lupa').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-search');
-            }
-        }).data("ui-autocomplete")._renderItem = function( ul, item ) {
-            return $( "<li>" )
-            .attr( "data-value", item.value )
-            .append( $( "<a>" ).html( item.label.replace(new RegExp('^' + this.term, 'gi'),"<strong>$&</strong>") ) )
-            .appendTo( ul );
-        }
-
-    });
-EOT;
-$js2 = <<<EOT
-    function obtenerNotificaciones() {
-        $.get('/user/profile/notifications-ajax', function(data){
-            populateNotifications(data);
-        });
-    }
-
-    obtenerNotificaciones();
-
-    var populateNotifications = function(notificationData){
-        var notificaciones = JSON.parse(notificationData);
-        $('.notification-icon').attr('data-count', notificaciones.length);
-        $('.dropdown-notifications-list').empty();
-
-        if (notificaciones.length != 0) {
-            $('.notification-icon').removeClass('hidden-icon').addClass('show-icon');
-
-            $(notificaciones).each(function(index, item){
-
-                if (item['type'] == 0) {
-                    $('.dropdown-notifications-list').append('<li class="notification">'+
-                    '<a href="' + item['url'] + '" class="notification-link" data-id='+item['id']+'>Tu post ha sido aceptado.</a></li>');
-                }
-            });
-            $('.notification > a').on('click', function(e) {
-                $.get('/user/profile/notifications-read-ajax', {id: $(this).attr('data-id')});
-            });
-        } else {
-            $('.notification-icon').removeClass('show-icon').addClass('hidden-icon');
-            $('.dropdown-notifications-list').append('<li class="notification">'+
-            'No tienes ninguna notificación pendiente.</li>');
-        }
-    }
-
-    setInterval(function(){
-        obtenerNotificaciones()
-    }, 5000);
-
-    $('#notification-all-read').on('click', function(e) {
-        e.preventDefault();
-        $('.notification-icon').removeClass('show-icon').addClass('hidden-icon');
-
-        $('.notification-icon').attr('data-count', 0);
-        $('.dropdown-notifications-list').empty();
-        $('.dropdown-notifications-list').append('<li class="notification">'+
-        'No tienes ninguna notificación pendiente.</li>');
-
-        $.get('/user/profile/notifications-read-ajax', {id: 0});
-    });
-
-EOT;
-
 AppAsset::register($this);
-$this->registerJs($js);
+$this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 if (!Yii::$app->user->isGuest) {
-    $this->registerJs($js2);
+    $this->registerJsFile('@web/js/notificaciones.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 }
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';

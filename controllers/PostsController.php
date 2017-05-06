@@ -17,6 +17,7 @@ use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\ServerErrorHttpException;
+use yii\web\MethodNotAllowedHttpException;
 use yii2mod\moderation\enums\Status;
 use app\models\Categoria;
 use yii\helpers\Json;
@@ -366,10 +367,14 @@ class PostsController extends Controller
      */
     public function actionSearchAjax($q = null)
     {
+        if (!Yii::$app->request->isAjax) {
+            throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
+        }
+
         $posts = [];
         if ($q != null || $q != '') {
             $posts = Post::find()
-            ->select(new Expression('left(titulo,20)'))
+            ->select(new Expression('distinct left(titulo,20)'))
             ->where(['ilike', 'titulo', "$q%", false])
             ->column();
         }

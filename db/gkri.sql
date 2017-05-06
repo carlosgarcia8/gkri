@@ -80,7 +80,8 @@ create table notificaciones (
         on delete cascade on update cascade,
     seen       boolean                  not null default false,
     created_at timestamp with time zone not null default current_timestamp,
-    url        text
+    post_id    bigint                   constraint fk_notificaciones_posts references posts(id)
+        on delete cascade on update cascade
 );
 
 drop view if exists v_comment_votos;
