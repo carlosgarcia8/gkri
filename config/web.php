@@ -1,5 +1,8 @@
 <?php
+use app\models\Notificacion;
+use app\models\enums\NotificationType;
 use yii2mod\comments\models\CommentModel;
+use Yii;
 
 $params = require(__DIR__ . '/params.php');
 
@@ -68,6 +71,21 @@ $config = [
                     },
                     'on beforeCreate' => function ($event) {
                         CommentModel::deleteAll(['status' => 2]);
+                    },
+                    'on afterCreate' => function ($event) {
+                        $comment = $event->getCommentModel();
+                        $post = $comment->post;
+
+                        if (Yii::$app->user->identity->id !== $post->usuario_id) {
+                            $notificacion = new Notificacion();
+
+                            $notificacion->type = NotificationType::COMENTADO;
+                            $notificacion->user_id = $post->usuario_id;
+                            $notificacion->post_id = $post->id;
+                            $notificacion->comment_id = $comment->id;
+
+                            $notificacion->save();
+                        }
                     },
                 ],
             ],

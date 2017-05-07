@@ -642,7 +642,7 @@ ins.play-gif{
 
 .media-object {
     display:inline-block;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 30px;
     background-color:black;
     border-radius: 20px 20px 20px 20px;
@@ -738,7 +738,7 @@ ins.play-gif{
 
 @media screen and (max-width: 576px) {
     /************ AVATAR PROFILE/SHOW ************/
-    
+
     .hovereffect, .nohovereffect {
         margin-left: 25.5%;
     }

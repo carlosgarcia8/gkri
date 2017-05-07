@@ -47,15 +47,16 @@ class ProfileController extends BaseProfileController
         }
 
         $query = new Query;
-        $query->select(['notificaciones.*', 'left(posts.titulo,15) as titulo', 'posts.extension'])
+        $query->select(['notificaciones.type', 'notificaciones.post_id', 'left(posts.titulo,15) as titulo', 'count(*)'])
             ->from('notificaciones')
             ->join('JOIN', 'posts', 'notificaciones.post_id = posts.id')
-            ->where(['notificaciones.user_id' => Yii::$app->user->identity->id, 'seen' => false]);
+            ->where(['notificaciones.user_id' => Yii::$app->user->identity->id, 'seen' => false])
+            ->groupBy('type, post_id, titulo');
 
         return Json::encode($query->all());
     }
 
-    public function actionNotificationsReadAjax($id)
+    public function actionNotificationsReadAjax($type, $post_id)
     {
         if (Yii::$app->user->isGuest) {
             throw new NotFoundHttpException();
@@ -64,12 +65,10 @@ class ProfileController extends BaseProfileController
             throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
         }
 
-        if ($id == 0) {
+        if ($post_id == 0 && $type == -1) {
             Notificacion::updateAll(['seen' => true], ['user_id' => Yii::$app->user->identity->id]);
         } else {
-            $notificacion = Notificacion::findOne(['id' => $id]);
-            $notificacion->seen = true;
-            $notificacion->update();
+            Notificacion::updateAll(['seen' => true], ['type' => $type, 'post_id' => $post_id]);
         }
     }
 

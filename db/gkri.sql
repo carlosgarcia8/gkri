@@ -81,6 +81,8 @@ create table notificaciones (
     seen       boolean                  not null default false,
     created_at timestamp with time zone not null default current_timestamp,
     post_id    bigint                   constraint fk_notificaciones_posts references posts(id)
+        on delete cascade on update cascade,
+    comment_id bigint                   constraint fk_notificaciones_comment references public.comment(id)
         on delete cascade on update cascade
 );
 
@@ -94,3 +96,8 @@ order by "parentId", votos desc nulls last, "createdAt";
 
 -- select * from comment where "createdBy"=1 and ("entityId","createdAt") in
 -- (select "entityId", max("createdAt") from comment where "createdBy"=1 group by "createdBy","entityId") order by "createdAt" desc;
+
+-- SELECT  "notificaciones".type, "notificaciones".post_id, left("posts".titulo,20) as titulo, count(*)
+-- FROM "notificaciones" JOIN "posts" ON notificaciones.post_id = posts.id
+-- WHERE ("notificaciones"."user_id"=2) AND ("seen"=false)
+-- GROUP BY type, post_id, titulo;

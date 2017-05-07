@@ -10,6 +10,7 @@ use app\models\enums\NotificationType;
  * @property integer $id
  * @property integer $type
  * @property integer $user_id
+ * @property integer $comment_id
  * @property boolean $seen
  * @property string $created_at
  *
@@ -32,7 +33,7 @@ class Notificacion extends \yii\db\ActiveRecord
     {
         return [
             [['type'], 'required'],
-            [['type', 'user_id'], 'integer'],
+            [['type', 'user_id', 'comment_id'], 'integer'],
             [['type'], 'in', 'range' => NotificationType::getConstantsByName()],
             [['seen'], 'boolean'],
             [['created_at', 'url'], 'safe'],

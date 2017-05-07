@@ -278,7 +278,7 @@ class PostsController extends Controller
 
         $notificacion->type = NotificationType::POST_ACEPTADO;
         $notificacion->user_id = $post->usuario_id;
-        $notificacion->url = "/posts/$post->id";
+        $notificacion->post_id = $post->id;
 
         $notificacion->save();
 
@@ -333,6 +333,17 @@ class PostsController extends Controller
         $voto->usuario_id = $usuarioId;
         $voto->post_id = $id;
         $voto->positivo = $positivo;
+
+        if (Notificacion::findOne(['type' => 1, 'user_id' => $usuarioId]) == null) {
+            $notificacion = new Notificacion;
+
+            $notificacion->type = NotificationType::VOTADO;
+            $notificacion->user_id = $post->usuario_id;
+            $notificacion->post_id = $post->id;
+
+            $notificacion->save();
+        }
+
 
         $voto->save();
         return $post->getVotosTotal();
