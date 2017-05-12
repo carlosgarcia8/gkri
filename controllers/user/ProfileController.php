@@ -54,7 +54,7 @@ class ProfileController extends BaseProfileController
             ->where([
                 'notificaciones.user_id' => Yii::$app->user->identity->id,
                 'seen' => false,
-                'type' => [NotificationType::POST_ACEPTADO, NotificationType::VOTADO, NotificationType::COMENTADO],
+                'type' => [NotificationType::POST_ACEPTADO, NotificationType::VOTADO, NotificationType::COMENTADO, NotificationType::REPLY],
             ])
             ->groupBy('type, post_id, titulo');
 
@@ -70,7 +70,7 @@ class ProfileController extends BaseProfileController
                 'notificaciones.type' => [NotificationType::SEGUIDOR_NUEVO, NotificationType::POST_NUEVO],
             ]);
 
-
+        // TODO ordenar el array por el created_by
         return Json::encode(array_merge($a, $query->all()));
     }
 

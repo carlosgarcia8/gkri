@@ -76,6 +76,21 @@ $config = [
                         $comment = $event->getCommentModel();
                         $post = $comment->post;
 
+                        if ($comment->parentId !== null) {
+                            $commentPadre = CommentModel::findOne(['id' => $comment->parentId]);
+
+                            if ($commentPadre->createdBy !== $comment->createdBy) {
+                                $notificacion = new Notificacion();
+
+                                $notificacion->type = NotificationType::REPLY;
+                                $notificacion->user_id = $commentPadre->createdBy;
+                                $notificacion->post_id = $post->id;
+                                $notificacion->comment_id = $comment->id;
+
+                                $notificacion->save();
+                            }
+                        }
+
                         if (Yii::$app->user->identity->id !== $post->usuario_id) {
                             $notificacion = new Notificacion();
 

@@ -90,6 +90,15 @@ var populateNotifications = function(notificationData){
                     item['post_id'],
                     item['type']
                 ).getElement())
+            } else if (item['type'] == 5) {
+                $('.dropdown-notifications-list')
+                .append(new NotificationElement(
+                    'Hay '+item['count']+' nuevos <b> replies</b> a tu comentario en el post "<i>'+item['titulo']+'</i>...".',
+                    '<i class="fa fa-commenting fa-lg" aria-hidden="true"></i>',
+                    '/posts/' + item['post_id'],
+                    item['post_id'],
+                    item['type']
+                ).getElement())
             }
         });
         $('.notification-link').on('click', function(e) {
