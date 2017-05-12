@@ -97,6 +97,17 @@ create table follows (
     constraint pk_follows primary key (user_id, follow_id)
 );
 
+drop table if exists messages cascade;
+create table messages (
+    id          bigserial                constraint pk_messages primary key,
+    user_id     bigint                   not null constraint fk_messages_usuarios references public.user(id)
+        on delete cascade on update cascade,
+    receptor_id bigint                   not null constraint fk_messages_usuarios_receptor references public.user(id)
+        on delete cascade on update cascade,
+    texto       varchar(255)             not null,
+    created_at  timestamp with time zone not null default current_timestamp
+);
+
 drop view if exists v_comment_votos;
 create view v_comment_votos
 as

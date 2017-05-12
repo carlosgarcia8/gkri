@@ -632,6 +632,18 @@ ins.play-gif{
 	display: inline-block;
 }
 
+/************ MODAL ************/
+#messages .modal-body {
+    height: 500px;
+    max-height: 900px;
+    overflow-y: auto;
+}
+
+#messages .modal-dialog {
+    width: 900px;
+    margin: auto;
+}
+
 /************ NOTIFICACIONES ************/
 
 .dropdown-container {

@@ -4,6 +4,7 @@ namespace app\controllers\user;
 
 use app\models\User;
 use app\models\Follow;
+use app\models\MessageForm;
 use app\models\Notificacion;
 use app\models\enums\NotificationType;
 use dektrium\user\controllers\ProfileController as BaseProfileController;
@@ -103,6 +104,7 @@ class ProfileController extends BaseProfileController
     public function actionShow($username)
     {
         $model = new UploadAvatarForm;
+        $messageForm = new MessageForm;
 
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
@@ -156,6 +158,7 @@ class ProfileController extends BaseProfileController
             'numeroSeguidores' => $numeroSeguidores,
             'numeroSiguiendo' => $numeroSiguiendo,
             'esSeguidor' => $esSeguidor,
+            'messageForm' => $messageForm,
         ]);
     }
 
@@ -170,6 +173,7 @@ class ProfileController extends BaseProfileController
     public function actionVotados($username)
     {
         $model = new UploadAvatarForm;
+        $messageForm = new MessageForm;
 
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
@@ -214,6 +218,7 @@ class ProfileController extends BaseProfileController
             'numeroSeguidores' => $numeroSeguidores,
             'numeroSiguiendo' => $numeroSiguiendo,
             'esSeguidor' => $esSeguidor,
+            'messageForm' => $messageForm,
         ]);
     }
 
@@ -228,6 +233,7 @@ class ProfileController extends BaseProfileController
     public function actionComentarios($username)
     {
         $model = new UploadAvatarForm;
+        $messageForm = new MessageForm;
 
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
@@ -281,6 +287,7 @@ class ProfileController extends BaseProfileController
             'numeroSeguidores' => $numeroSeguidores,
             'numeroSiguiendo' => $numeroSiguiendo,
             'esSeguidor' => $esSeguidor,
+            'messageForm' => $messageForm,
         ]);
     }
 }

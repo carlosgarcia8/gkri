@@ -131,4 +131,14 @@ class User extends BaseUser
     {
         return $this->hasMany(User::className(), ['id' => 'user_id'])->via('seguidores');
     }
+
+    public function getEnviados()
+    {
+        return $this->hasMany(Message::className(), ['user_id' => 'id'])->inverseOf('emisor');
+    }
+
+    public function getRecibidos()
+    {
+        return $this->hasMany(Message::className(), ['receptor_id' => 'id'])->inverseOf('receptor');
+    }
 }

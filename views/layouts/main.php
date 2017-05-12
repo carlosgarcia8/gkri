@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\User;
 use app\models\Categoria;
 use yii\web\View;
 use yii\bootstrap\ActiveForm;
@@ -17,6 +18,10 @@ AppAsset::register($this);
 $this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 if (!Yii::$app->user->isGuest) {
     $this->registerJsFile('@web/js/notificaciones.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
+    // $user = User::findOne(['id' => Yii::$app->user->id]);
+
+    // $enviados = $user->getEnviados();
+    // $enviados = $user->getEnviados();
 }
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';
@@ -143,6 +148,7 @@ $this->title = 'GKRI';
             <ul class="dropdown-menu">
                 <li><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> " tabindex="-1">Mi Perfil</a></li>
                 <li><a href="<?= Url::to('/settings/profile') ?>" tabindex="-1">Configuración</a></li>
+                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#messages" tabindex="-1">Mensajes</a></li>
                 <li class="divider"></li>
                 <li><a href="<?= Url::to('/user/security/logout') ?>" data-method="post" tabindex="-1">Logout</a></li>
             </ul>
@@ -159,6 +165,7 @@ $this->title = 'GKRI';
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?= $this->render('messages') ?>
         <?= $content ?>
     </div>
 </div>

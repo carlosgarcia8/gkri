@@ -230,4 +230,5 @@ return [
     'Female' => 'Femenino',
     'Select' => 'Selecciona',
     'Gender' => 'Sexo',
+    'Send' => 'Enviar',
 ];

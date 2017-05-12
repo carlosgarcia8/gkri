@@ -29,6 +29,10 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
 ?>
 
 <div class="row">
+    <div class="alert alert-success fade in" id="message-create" style="display:none;">
+        <button type="button" class="close">×</button>
+        Tu mensaje ha sido enviado correctamente.
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-3">
         <?php if ($suPerfil) : ?>
         <div class="hovereffect">
@@ -76,11 +80,11 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                 <?php if ($esSeguidor) : ?>
                     <a href="javascript:void(0);" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
                     <a href="javascript:void(0);" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
-                    <a href="" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
                 <?php else : ?>
                     <a href="javascript:void(0);" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
                     <a href="javascript:void(0);" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
-                    <a href="" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
                 <?php endif; ?>
             <?php endif; ?>
                 <div class="row">
