@@ -321,6 +321,7 @@ class PostsController extends Controller
 
         if ($votoGuardadoB) {
             $votoGuardadoB->delete();
+            Notificacion::deleteAll(['type' => 1, 'user_id' =>  $post->usuario_id]);
             return $post->getVotosTotal();
         }
 
@@ -334,7 +335,7 @@ class PostsController extends Controller
         $voto->post_id = $id;
         $voto->positivo = $positivo;
 
-        if (Notificacion::findOne(['type' => 1, 'user_id' => $usuarioId]) == null) {
+        if ($usuarioId !== $post->usuario_id && Notificacion::findOne(['type' => 1, 'user_id' =>  $post->usuario_id]) == null) {
             $notificacion = new Notificacion;
 
             $notificacion->type = NotificationType::VOTADO;

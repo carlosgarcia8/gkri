@@ -1,8 +1,8 @@
-function NotificationElement(texto, icon, enlace, datapostid, datatype) {
+function NotificationElement(texto, icon, enlace, dataid, datatype) {
     this.texto = texto;
     this.icon = icon;
     this.enlace = enlace;
-    this.datapostid = datapostid;
+    this.dataid = dataid;
     this.datatype = datatype;
 }
 
@@ -17,7 +17,7 @@ NotificationElement.prototype.getElement = function () {
                 </div>
                 <div class="media-body">
                   <a href="` + this.enlace + `" class="notification-link" data-id='`+
-                  this.datapostid+`' data-type='`+this.datatype+`'>`+this.texto+`</a>
+                  this.dataid+`' data-type='`+this.datatype+`'>`+this.texto+`</a>
                   <!--<div class="notification-meta">
                     <small class="timestamp">+item['created_at']+</small>
                   </div>-->
@@ -64,6 +64,24 @@ var populateNotifications = function(notificationData){
                     item['type']
                 ).getElement())
             } else if (item['type'] == 2) {
+                $('.dropdown-notifications-list')
+                .append(new NotificationElement(
+                    'Hay '+item['count']+' <b>comentarios nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
+                    '<i class="fa fa-comment fa-lg" aria-hidden="true"></i>',
+                    '/posts/' + item['post_id'],
+                    item['post_id'],
+                    item['type']
+                ).getElement())
+            } else if (item['type'] == 3) {
+                $('.dropdown-notifications-list')
+                .append(new NotificationElement(
+                    'El usuario <b>'+item['username']+'</b> ha comenzado a seguirte.',
+                    '<i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>',
+                    '/u/' + item['username'],
+                    item['user_related_id'],
+                    item['type']
+                ).getElement())
+            } else if (item['type'] == 4) {
                 $('.dropdown-notifications-list')
                 .append(new NotificationElement(
                     'Hay '+item['count']+' <b>comentarios nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',

@@ -108,6 +108,10 @@ a {
     margin-top: 250px;
 }
 
+.nohovereffect + .menu-profile-info {
+    margin-top: 20px;
+}
+
 .menu-profile-info {
     padding-left: 5px;
     padding-right: 5px;
@@ -119,7 +123,6 @@ a {
 }
 
 .menu-profile-info ul {
-    width: 110% !important;
     margin-left: -10px;
 }
 
@@ -138,6 +141,14 @@ a {
 
 .menu-profile-options li:nth-child(n+2) {
     border-top: 1px solid #555555;
+}
+
+.btn-hide {
+    display: none;
+}
+
+.menu-follows {
+    margin-top: 20px;
 }
 
 /************ DROPDOWN ************/
@@ -642,7 +653,7 @@ ins.play-gif{
 
 .media-object {
     display:inline-block;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 30px;
     background-color:black;
     border-radius: 20px 20px 20px 20px;
@@ -688,7 +699,7 @@ ins.play-gif{
     /************ AVATAR PROFILE/SHOW ************/
 
     .hovereffect, .nohovereffect {
-        margin-left: -12%;
+        margin-left: 33%;
     }
 
     /************ MENU ************/

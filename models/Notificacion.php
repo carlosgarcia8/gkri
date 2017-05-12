@@ -10,6 +10,8 @@ use app\models\enums\NotificationType;
  * @property integer $id
  * @property integer $type
  * @property integer $user_id
+ * @property integer $post_id
+ * @property integer $user_related_id
  * @property integer $comment_id
  * @property boolean $seen
  * @property string $created_at

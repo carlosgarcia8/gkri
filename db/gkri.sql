@@ -74,16 +74,27 @@ create table votos_c (
 
 drop table if exists notificaciones cascade;
 create table notificaciones (
-    id         bigserial                constraint pk_notificaciones primary key,
-    type       smallint                 not null,
-    user_id    bigint                   constraint fk_notificaciones_usuarios references public.user(id)
+    id              bigserial                constraint pk_notificaciones primary key,
+    type            smallint                 not null,
+    user_id         bigint                   constraint fk_notificaciones_usuarios references public.user(id)
         on delete cascade on update cascade,
-    seen       boolean                  not null default false,
-    created_at timestamp with time zone not null default current_timestamp,
-    post_id    bigint                   constraint fk_notificaciones_posts references posts(id)
+    seen            boolean                  not null default false,
+    created_at      timestamp with time zone not null default current_timestamp,
+    post_id         bigint                   constraint fk_notificaciones_posts references posts(id)
         on delete cascade on update cascade,
-    comment_id bigint                   constraint fk_notificaciones_comment references public.comment(id)
+    comment_id      bigint                   constraint fk_notificaciones_comment references public.comment(id)
+        on delete cascade on update cascade,
+    user_related_id bigint                   constraint fk_notificaciones_usuarios_related references public.user(id)
         on delete cascade on update cascade
+);
+
+drop table if exists follows cascade;
+create table follows (
+    user_id   bigint not null constraint fk_follows_user_user references public.user(id)
+        on delete cascade on update cascade,
+    follow_id bigint not null constraint fk_follows_user_follow references public.user(id)
+        on delete cascade on update cascade,
+    constraint pk_follows primary key (user_id, follow_id)
 );
 
 drop view if exists v_comment_votos;

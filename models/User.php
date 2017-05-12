@@ -116,4 +116,14 @@ class User extends BaseUser
     {
         return $this->hasMany(Notificacion::className(), ['user_id' => 'id'])->inverseOf('usuario');
     }
+
+    public function getSiguiendo()
+    {
+        return $this->hasMany(Follow::className(), ['user_id' => 'id'])->inverseOf('usuario');
+    }
+
+    public function getSeguidores()
+    {
+        return $this->hasMany(Follow::className(), ['follow_id' => 'id'])->inverseOf('follow');
+    }
 }

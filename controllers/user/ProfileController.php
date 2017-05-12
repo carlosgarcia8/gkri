@@ -3,7 +3,9 @@
 namespace app\controllers\user;
 
 use app\models\User;
+use app\models\Follow;
 use app\models\Notificacion;
+use app\models\enums\NotificationType;
 use dektrium\user\controllers\ProfileController as BaseProfileController;
 use dektrium\user\filters\AccessRule;
 use yii\data\ActiveDataProvider;
@@ -29,7 +31,7 @@ class ProfileController extends BaseProfileController
                     'class' => AccessRule::className(),
                 ],
                 'rules' => [
-                    ['allow' => true, 'actions' => ['index', 'notifications-ajax', 'notifications-read-ajax'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['index', 'notifications-ajax', 'notifications-read-ajax', 'notifications-follow-ajax'], 'roles' => ['@']],
                     ['allow' => true, 'actions' => ['show', 'votados', 'comentarios'], 'roles' => ['?', '@']],
                 ],
             ],
@@ -40,7 +42,6 @@ class ProfileController extends BaseProfileController
     {
         if (Yii::$app->user->isGuest) {
             throw new NotFoundHttpException();
-            ;
         }
         if (!Yii::$app->request->isAjax) {
             throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
@@ -53,7 +54,20 @@ class ProfileController extends BaseProfileController
             ->where(['notificaciones.user_id' => Yii::$app->user->identity->id, 'seen' => false])
             ->groupBy('type, post_id, titulo');
 
-        return Json::encode($query->all());
+        $a = $query->all();
+
+        $query = new Query;
+        $query->select(['notificaciones.type', 'notificaciones.user_related_id', 'public.user.username'])
+            ->from('notificaciones')
+            ->join('JOIN', 'public.user', 'notificaciones.user_related_id = public.user.id')
+            ->where([
+                'notificaciones.user_id' => Yii::$app->user->identity->id,
+                'seen' => false,
+                'notificaciones.type' => NotificationType::SEGUIDOR_NUEVO
+            ]);
+
+
+        return Json::encode(array_merge($a, $query->all()));
     }
 
     public function actionNotificationsReadAjax($type, $post_id)
@@ -99,6 +113,14 @@ class ProfileController extends BaseProfileController
         }
         $user = $this->finder->findUserByUsername($username);
 
+        if ($user === null) {
+            \Yii::$app->getSession()->setFlash('nouser', 'No existe ningun usuario con ese nombre. Se le redireccionará a la página principal en 5 segundos...');
+            return $this->render('show', [
+                'profile' => null,
+                'username' => $username,
+            ]);
+        }
+
         $profile = $this->finder->findProfileById($user->id);
 
         $dataProvider = new ActiveDataProvider([
@@ -114,11 +136,20 @@ class ProfileController extends BaseProfileController
 
         $suPerfil = Yii::$app->user->id === $profile->user_id;
 
+        $esSeguidor = Follow::findOne(['user_id' => Yii::$app->user->id, 'follow_id' => $user->id]) !== null;
+
+        $numeroSeguidores = $user->getSeguidores()->count();
+
+        $numeroSiguiendo = $user->getSiguiendo()->count();
+
         return $this->render('show', [
             'profile' => $profile,
             'model' => $model,
             'suPerfil' => $suPerfil,
             'dataProvider' => $dataProvider,
+            'numeroSeguidores' => $numeroSeguidores,
+            'numeroSiguiendo' => $numeroSiguiendo,
+            'esSeguidor' => $esSeguidor,
         ]);
     }
 
@@ -140,6 +171,14 @@ class ProfileController extends BaseProfileController
         }
         $user = $this->finder->findUserByUsername($username);
 
+        if ($user === null) {
+            \Yii::$app->getSession()->setFlash('nouser', 'No existe ningun usuario con ese nombre. Se le redireccionará a la página principal en 5 segundos...');
+            return $this->render('show', [
+                'profile' => null,
+                'username' => $username,
+            ]);
+        }
+
         $profile = $this->finder->findProfileById($user->id);
 
         $dataProvider = new ActiveDataProvider([
@@ -155,11 +194,20 @@ class ProfileController extends BaseProfileController
 
         $suPerfil = Yii::$app->user->id === $profile->user_id;
 
+        $esSeguidor = Follow::findOne(['user_id' => Yii::$app->user->id, 'follow_id' => $user->id]) !== null;
+
+        $numeroSeguidores = $user->getSeguidores()->count();
+
+        $numeroSiguiendo = $user->getSiguiendo()->count();
+
         return $this->render('show', [
             'profile' => $profile,
             'model' => $model,
             'suPerfil' => $suPerfil,
             'dataProvider' => $dataProvider,
+            'numeroSeguidores' => $numeroSeguidores,
+            'numeroSiguiendo' => $numeroSiguiendo,
+            'esSeguidor' => $esSeguidor,
         ]);
     }
 
@@ -180,6 +228,14 @@ class ProfileController extends BaseProfileController
             $model->upload();
         }
         $user = $this->finder->findUserByUsername($username);
+
+        if ($user === null) {
+            \Yii::$app->getSession()->setFlash('nouser', 'No existe ningun usuario con ese nombre. Se le redireccionará a la página principal en 5 segundos...');
+            return $this->render('show', [
+                'profile' => null,
+                'username' => $username,
+            ]);
+        }
 
         $profile = $this->finder->findProfileById($user->id);
 
@@ -205,11 +261,20 @@ class ProfileController extends BaseProfileController
 
         $suPerfil = Yii::$app->user->id === $profile->user_id;
 
+        $esSeguidor = Follow::findOne(['user_id' => Yii::$app->user->id, 'follow_id' => $user->id]) !== null;
+
+        $numeroSeguidores = $user->getSeguidores()->count();
+
+        $numeroSiguiendo = $user->getSiguiendo()->count();
+
         return $this->render('show-comentarios', [
             'profile' => $profile,
             'model' => $model,
             'suPerfil' => $suPerfil,
             'dataProvider' => $dataProvider,
+            'numeroSeguidores' => $numeroSeguidores,
+            'numeroSiguiendo' => $numeroSiguiendo,
+            'esSeguidor' => $esSeguidor,
         ]);
     }
 }
