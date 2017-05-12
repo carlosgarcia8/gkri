@@ -84,8 +84,8 @@ var populateNotifications = function(notificationData){
             } else if (item['type'] == 4) {
                 $('.dropdown-notifications-list')
                 .append(new NotificationElement(
-                    'Hay '+item['count']+' <b>comentarios nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
-                    '<i class="fa fa-comment fa-lg" aria-hidden="true"></i>',
+                    'El usuario <b>'+item['username']+'</b> ha publicado un <b>post nuevo</b>.',
+                    '<i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>',
                     '/posts/' + item['post_id'],
                     item['post_id'],
                     item['type']
@@ -95,7 +95,7 @@ var populateNotifications = function(notificationData){
         $('.notification-link').on('click', function(e) {
             $.get('/user/profile/notifications-read-ajax', {
                 type: $(this).attr('data-type'),
-                post_id: $(this).attr('data-id')
+                id: $(this).attr('data-id')
             });
         });
     } else {
@@ -118,5 +118,5 @@ $('#notification-all-read').on('click', function(e) {
     $('.dropdown-notifications-list').append('<li class="notification">'+
     'No tienes ninguna notificación pendiente.</li>');
 
-    $.get('/user/profile/notifications-read-ajax', {type: -1, post_id: 0});
+    $.get('/user/profile/notifications-read-ajax', {type: -1, id: 0});
 });

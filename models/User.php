@@ -126,4 +126,9 @@ class User extends BaseUser
     {
         return $this->hasMany(Follow::className(), ['follow_id' => 'id'])->inverseOf('follow');
     }
+
+    public function getSeguidoresUser()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->via('seguidores');
+    }
 }

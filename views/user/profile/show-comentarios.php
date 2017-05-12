@@ -50,17 +50,6 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
         <?php endif; ?>
         <div class="menu-profile-info">
-            <?php if (!$suPerfil) : ?>
-                <?php if ($esSeguidor) : ?>
-                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="javascript:void(0);" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
-                    <a href="" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-                <?php else : ?>
-                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="javascript:void(0);" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
-                    <a href="" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-                <?php endif; ?>
-            <?php endif; ?>
             <h4><?= $this->title ?>
             <?php if (!empty($profile->gender)) : ?>
                 <?php if ($profile->gender == 'M') : ?>
@@ -80,6 +69,27 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <?php if (!empty($profile->bio)) : ?>
                 <p><?= Html::encode($profile->bio) ?></p>
             <?php endif; ?>
+            <div class="menu-follows">
+            <?php if (!$suPerfil) : ?>
+                <?php if ($esSeguidor) : ?>
+                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                    <a href="javascript:void(0);" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                    <a href="" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                <?php else : ?>
+                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                    <a href="javascript:void(0);" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                    <a href="" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                <?php endif; ?>
+            <?php endif; ?>
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <h6>Siguiendo: <span class="following-total"><?= $numeroSiguiendo ?></span></h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <h6>Seguidores: <span class="followers-total"><?= $numeroSeguidores ?></span></h6>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="menu-profile-options">
             <ul>

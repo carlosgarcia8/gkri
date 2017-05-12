@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\User;
 use app\models\Voto;
 use app\models\Post;
 use app\models\Notificacion;
@@ -274,6 +275,10 @@ class PostsController extends Controller
         $post->fecha_confirmacion = date('Y-m-d H:i:s');
         $post->markApproved();
 
+        $user = User::findOne(['id' => $post->usuario_id]);
+
+        $seguidores = $user->getSeguidoresUser()->all();
+
         $notificacion = new Notificacion();
 
         $notificacion->type = NotificationType::POST_ACEPTADO;
@@ -281,6 +286,17 @@ class PostsController extends Controller
         $notificacion->post_id = $post->id;
 
         $notificacion->save();
+
+        foreach ($seguidores as $seguidor) {
+            $notificacion = new Notificacion();
+
+            $notificacion->type = NotificationType::POST_NUEVO;
+            $notificacion->user_id = $seguidor->id;
+            $notificacion->post_id = $post->id;
+            $notificacion->user_related_id = $post->usuario_id;
+
+            $notificacion->save();
+        }
 
         return $this->redirect(['/moderar']);
     }

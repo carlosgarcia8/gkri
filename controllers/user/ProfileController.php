@@ -51,26 +51,30 @@ class ProfileController extends BaseProfileController
         $query->select(['notificaciones.type', 'notificaciones.post_id', 'left(posts.titulo,15) as titulo', 'count(*)'])
             ->from('notificaciones')
             ->join('JOIN', 'posts', 'notificaciones.post_id = posts.id')
-            ->where(['notificaciones.user_id' => Yii::$app->user->identity->id, 'seen' => false])
+            ->where([
+                'notificaciones.user_id' => Yii::$app->user->identity->id,
+                'seen' => false,
+                'type' => [NotificationType::POST_ACEPTADO, NotificationType::VOTADO, NotificationType::COMENTADO],
+            ])
             ->groupBy('type, post_id, titulo');
 
         $a = $query->all();
 
         $query = new Query;
-        $query->select(['notificaciones.type', 'notificaciones.user_related_id', 'public.user.username'])
+        $query->select(['notificaciones.type', 'notificaciones.post_id', 'notificaciones.user_related_id', 'public.user.username'])
             ->from('notificaciones')
             ->join('JOIN', 'public.user', 'notificaciones.user_related_id = public.user.id')
             ->where([
                 'notificaciones.user_id' => Yii::$app->user->identity->id,
                 'seen' => false,
-                'notificaciones.type' => NotificationType::SEGUIDOR_NUEVO
+                'notificaciones.type' => [NotificationType::SEGUIDOR_NUEVO, NotificationType::POST_NUEVO],
             ]);
 
 
         return Json::encode(array_merge($a, $query->all()));
     }
 
-    public function actionNotificationsReadAjax($type, $post_id)
+    public function actionNotificationsReadAjax($type, $id)
     {
         if (Yii::$app->user->isGuest) {
             throw new NotFoundHttpException();
@@ -79,10 +83,12 @@ class ProfileController extends BaseProfileController
             throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
         }
 
-        if ($post_id == 0 && $type == -1) {
+        if ($id == 0 && $type == -1) {
             Notificacion::updateAll(['seen' => true], ['user_id' => Yii::$app->user->identity->id]);
+        } elseif ($type == 3) {
+            Notificacion::updateAll(['seen' => true], ['type' => $type, 'user_id' => Yii::$app->user->identity->id, 'user_related_id' => $id]);
         } else {
-            Notificacion::updateAll(['seen' => true], ['type' => $type, 'post_id' => $post_id]);
+            Notificacion::updateAll(['seen' => true], ['type' => $type, 'post_id' => $id]);
         }
     }
 

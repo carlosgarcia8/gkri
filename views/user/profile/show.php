@@ -71,8 +71,8 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <?php if (!empty($profile->bio)) : ?>
                 <p><?= Html::encode($profile->bio) ?></p>
             <?php endif; ?>
+            <div class="menu-follows">
             <?php if (!$suPerfil) : ?>
-            <div class="row menu-follows">
                 <?php if ($esSeguidor) : ?>
                     <a href="javascript:void(0);" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
                     <a href="javascript:void(0);" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
