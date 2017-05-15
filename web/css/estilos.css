@@ -642,7 +642,7 @@ ins.play-gif{
 }
 
 #messages .modal-dialog {
-    width: 700px;
+    width: 820px;
     margin: auto;
 }
 
@@ -724,13 +724,18 @@ ins.play-gif{
 }
 
 .msg-emisor .msg-body {
-    background-color: #3EBBBF;
-    border-radius: 10px 10px 10px 10px;
+    background-color: rgba(57, 156, 204, 0.4);
+    border-radius: 10px 2px 2px 10px;
 }
 
+/*#messages .modal-header {
+    background-color: black;
+    color: white;
+}*/
+
 .msg-receptor .msg-body {
-    background-color: #999;
-    border-radius: 10px 10px 10px 10px;
+    background-color: rgba(141, 143, 144, 0.3);
+    border-radius: 2px 10px 10px 2px;
 }
 
 .msg-body {
@@ -738,6 +743,12 @@ ins.play-gif{
     padding: 4px 10px 4px 10px;
     max-width: 80%;
 }
+
+a.btn-disabled {
+    pointer-events: none;
+    color: rgba(51, 122, 183, 0.6);    
+}
+
 
 .msg-emisor {
     display: flex;
@@ -805,7 +816,7 @@ ins.play-gif{
 
 /* Conversation Properties */
 .conversation:hover {
-     background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 /* Contact Item */

@@ -23,8 +23,6 @@ if (!Yii::$app->user->isGuest) {
     $user = User::findOne(['id' => Yii::$app->user->id]);
 
     $conversaciones = $user->getConversaciones();
-    // $enviados = $user->getEnviados();
-    // $enviados = $user->getEnviados();
 }
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';
@@ -183,7 +181,9 @@ $this->title = 'GKRI';
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= $this->render('messages', ['conversaciones' => $conversaciones]) ?>
+        <?php if (isset($conversaciones)) : ?>
+        <?= $this->render('messages', ['conversaciones' => $conversaciones, 'user' => $user]) ?>
+        <?php endif; ?>
         <?= $content ?>
     </div>
 </div>

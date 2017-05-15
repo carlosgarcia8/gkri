@@ -1,6 +1,8 @@
 <?php
-// TODO formulario de enviar en los mensajes privados
-// TODO ocultar y mostrar segun los vaya trayendo y asi no hace mas peticiones
+use app\models\MessageForm;
+use yii\widgets\ActiveForm;
+
+$model = new MessageForm;
 ?>
 <!-- Modal -->
 <div class="modal fade" id="messages" tabindex="-1" role="dialog"
@@ -53,12 +55,29 @@
                     <!--Message box & Send Button-->
                     <div class="row send-wrap">
                         <div class="send-message">
+                            <?php $form = ActiveForm::begin([
+                                'enableClientValidation' => true,
+                                'id' => 'mensajes-form',
+                                'fieldConfig' => [
+                                    'options' => [
+                                        'tag' => false,
+                                    ],
+                                ],
+                            ]); ?>
                             <div class="message-text">
-                                <textarea class="no-resize-bar form-control" rows="2" placeholder="Escriba un mensaje..."></textarea>
+                                <?= $form->field($model, 'texto')->textarea([
+                                    'class' => 'no-resize-bar form-control',
+                                    'rows' => 2,
+                                    'data-username' => $user->username,
+                                    'id' => 'textarea-message',
+                                    'placeholder' => 'Escriba un mensaje...',
+                                    ])->label(false) ?>
                             </div>
+
                             <div class="send-button">
-                                <a class="btn">Enviar <i class="fa fa-send"></i></a>
+                                <a class="btn btn-disabled btn-enviar-mensaje">Enviar <i class="fa fa-send"></i></a>
                             </div>
+                            <?php ActiveForm::end(); ?>
                         </div>
                     </div>
                 </div>

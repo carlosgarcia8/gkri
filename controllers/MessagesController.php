@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\User;
 use app\models\Message;
 use app\models\MessageForm;
 use dektrium\user\filters\AccessRule;
@@ -10,6 +11,8 @@ use yii\db\Query;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\Json;
+use yii\web\BadRequestHttpException;
+use yii\web\MethodNotAllowedHttpException;
 
 class MessagesController extends \yii\web\Controller
 {
@@ -41,7 +44,7 @@ class MessagesController extends \yii\web\Controller
             ],
         ];
     }
-
+    // TODO cuando se haga create desde el perfil del usuario actualizar las conversaciones para traerla de nuevo, por si no existe
     public function actionCreate()
     {
         $messageForm = new MessageForm;
@@ -53,13 +56,24 @@ class MessagesController extends \yii\web\Controller
                 $message->receptor_id = $messageForm->receptor_id;
                 $message->texto = $messageForm->texto;
                 $message->save();
+            } else {
+                throw new BadRequestHttpException;
             }
+        } else {
+            throw new BadRequestHttpException;
         }
     }
 
-    // TODO solo sea para los no guest y solo ajax
     public function actionObtener($contact_id)
     {
+        if (!Yii::$app->request->isAjax) {
+            throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
+        }
+
+        if (User::findOne(['id' => $contact_id]) == null) {
+            throw new BadRequestHttpException();
+        }
+
         $user_id = Yii::$app->user->id;
 
         $query = new Query;

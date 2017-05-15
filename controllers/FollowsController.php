@@ -48,7 +48,6 @@ class FollowsController extends \yii\web\Controller
         }
 
         $user_id = Yii::$app->user->id;
-        Yii::trace($user_id);
 
         if (Follow::findOne(['user_id' => $user_id, 'follow_id' => $follow_id]) !== null) {
             return $this->redirect(['/']);
