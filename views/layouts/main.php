@@ -18,14 +18,17 @@ AppAsset::register($this);
 $this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 if (!Yii::$app->user->isGuest) {
     $this->registerJsFile('@web/js/notificaciones.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
-    // $user = User::findOne(['id' => Yii::$app->user->id]);
+    $this->registerJsFile('@web/js/mensajes.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 
+    $user = User::findOne(['id' => Yii::$app->user->id]);
+
+    $conversaciones = $user->getConversaciones();
     // $enviados = $user->getEnviados();
     // $enviados = $user->getEnviados();
 }
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';
-
+// TODO poner imagen en los mensajes
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -40,6 +43,21 @@ $this->title = 'GKRI';
     <script src="https://use.fontawesome.com/a727822b2c.js"></script>
 </head>
 <body>
+<div class="template-oculto">
+    <div class="msg">
+        <!-- <span class="chat-img pull-left"> -->
+            <!-- <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> -->
+        <!-- </span> -->
+        <div class="msg-body">
+            <div class="msg-header">
+                <small class="text-muted">
+                    <span class="glyphicon glyphicon-time"></span>
+                </small>
+            </div>
+            <p></p>
+        </div>
+    </div>
+</div>
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -165,7 +183,7 @@ $this->title = 'GKRI';
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= $this->render('messages') ?>
+        <?= $this->render('messages', ['conversaciones' => $conversaciones]) ?>
         <?= $content ?>
     </div>
 </div>

@@ -636,11 +636,13 @@ ins.play-gif{
 #messages .modal-body {
     height: 500px;
     max-height: 900px;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
+    overflow: hidden;
+    padding: 0px;
 }
 
 #messages .modal-dialog {
-    width: 900px;
+    width: 700px;
     margin: auto;
 }
 
@@ -678,6 +680,183 @@ ins.play-gif{
 
 .media-left {
     padding-right: 0;
+}
+
+/************ CHAT ************/
+
+/* Header Wrapper */
+.header-wrap {
+    height: 10%;
+}
+/* Content Wrapper */
+.content-wrap {
+    height: 90%;
+    overflow: auto;
+}
+
+.conversaciones {
+    border-right: 1px solid #999;
+}
+
+.template-oculto {
+    display: none;
+}
+
+/* Panel Wrapper: Side Menu - Content Window */
+.panel-wrap {
+    height: 100%;
+    padding: 0;
+}
+
+/* Messages Wrapper */
+.content-wrap.messages {
+    height: 75%;
+}
+
+
+#messages {
+    margin-top: 20px;
+}
+
+#messages .modal-body .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.msg-emisor .msg-body {
+    background-color: #3EBBBF;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.msg-receptor .msg-body {
+    background-color: #999;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.msg-body {
+    word-wrap: break-word;
+    padding: 4px 10px 4px 10px;
+    max-width: 80%;
+}
+
+.msg-emisor {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.msg-receptor {
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.fa-minus {
+    font-size: 8px !important;
+    width: 2em !important;
+}
+
+/* Message Item */
+.msg {
+    width: auto;
+    padding: 12px 12px 5px;
+}
+/* Message Sender */
+.message-wrap .media-heading {
+    color: #2285b3;
+    font-weight: 700;
+}
+/* Message Time */
+.time {
+    color:#bfbfbf;
+}
+
+.contact-username {
+    text-align: center;
+}
+
+/* Header Item */
+.chat-header {
+    height: 100%;
+    width: 100%;
+
+    background: deepskyblue;
+    box-shadow: 0 1px 1px;
+
+    display: table;
+}
+/* Header Title */
+.chat-header h4 {
+    display: table-cell;
+    vertical-align: middle;
+
+    width: 90%;
+}
+
+/* Conversation Item */
+.conversation {
+    text-align: left;
+    padding: 8px 10px 5px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+
+    transition: background-color 0.5s ease;
+}
+
+/* Conversation Properties */
+.conversation:hover {
+     background-color: whitesmoke;
+}
+
+/* Contact Item */
+.contact {
+    padding: 21px 10px 12px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    display: inline-block;
+
+    transition: background-color 0.5s ease;
+}
+/* Contact Properties */
+.contact.btn:hover {
+    background-color: whitesmoke;
+}
+
+/* Send Message Item */
+.send-message {
+    width: 100%;
+    height: 100%;
+
+    background-color: whitesmoke;
+    box-shadow: 0 -1px 1px;
+
+    display: table;
+}
+/* Message Text */
+.message-text {
+    padding: 2px;
+    display: table-cell;
+    vertical-align: middle;
+}
+/* Send Button */
+.send-button {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+
+    width: 10%;
+}
+/* Send Message Properties */
+.no-resize-bar {
+    resize: none;
+    height: 100% !important;
+}
+.send-button a {
+    padding: 0;
+}
+.send-message .btn:hover {
+    transition: color 0.5s ease;
+    color: #0451b7;
 }
 
 @media screen and (max-width: 1200px) {

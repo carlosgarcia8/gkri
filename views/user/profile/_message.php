@@ -4,8 +4,6 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 
-
-$this->registerJsFile('@web/js/mensaje.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
 
 <!-- Button trigger modal -->

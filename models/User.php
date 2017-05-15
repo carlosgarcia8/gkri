@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use app\models\CommentModel;
 use dektrium\user\models\User as BaseUser;
 
@@ -140,5 +141,18 @@ class User extends BaseUser
     public function getRecibidos()
     {
         return $this->hasMany(Message::className(), ['receptor_id' => 'id'])->inverseOf('receptor');
+    }
+
+    public function getConversaciones()
+    {
+        $connection = Yii::$app->getDb();
+        $command = $connection->createCommand("
+            select user_id, last_message, username from (select user_id, max(created_at) as last_message
+            from ((select user_id, created_at from messages where receptor_id=$this->id)
+            union (select receptor_id, created_at from messages where user_id=$this->id))
+            as foo group by user_id) as f join public.user on f.user_id=public.user.id
+            order by last_message desc;");
+
+        return $command->queryAll();
     }
 }
