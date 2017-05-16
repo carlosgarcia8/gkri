@@ -30,8 +30,8 @@ $js = <<<EOT
     if (tour === null) {
         if (location.pathname !== '/') {
             location.pathname = '/';
-        }
-        introJs()
+        } else {
+            introJs()
             .setOption('showStepNumbers', false)
             .setOption('nextLabel', 'Siguiente')
             .setOption('prevLabel', 'Anterior')
@@ -39,7 +39,8 @@ $js = <<<EOT
             .setOption('doneLabel', 'Terminar Tour')
             .setOption('overlayOpacity', 0.2)
             .start();
-        localStorage.setItem('tour', 1);
+            localStorage.setItem('tour', 1);
+        }
     }
 EOT;
 $this->registerJs($js);
@@ -160,23 +161,6 @@ $this->title = 'GKRI';
 
                 <ul class="dropdown-menu dropdown-notifications-list">
 
-                    <!-- <li class="notification">
-                        <div class="media">
-                            <div class="media-left">
-                              <div class="media-object">
-                                <img data-src="holder.js/50x50?bg=cccccc" class="img-circle" alt="Name" />
-                              </div>
-                            </div>
-                            <div class="media-body">
-                              <strong class="notification-title"><a href="#">Dave Lister</a> commented on <a href="#">DWARF-13 - Maintenance</a></strong>
-                              <p class="notification-desc">I totally don't wanna do it. Rimmer can do it.</p>
-
-                              <div class="notification-meta">
-                                <small class="timestamp">27. 11. 2015, 15:00</small>
-                              </div>
-                            </div>
-                      </div>
-                  </li> -->
                 </ul>
             </div>
         </li>

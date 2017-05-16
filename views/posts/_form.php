@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
@@ -10,7 +11,7 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="post-form col-lg-6">
+<div class="post-form col-lg-offset-3 col-lg-6 col-sm-12 col-md-8 col-md-offset-2 template-oculto">
     <div class="post-form-spinner">
 
     </div>
@@ -22,7 +23,7 @@ use kartik\select2\Select2;
     <div class="form-group col-lg-12">
         <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
     </div>
-    <div class="form-group col-lg-8">
+    <div class="form-group col-lg-12">
         <?= $form->field($model, 'imageFile')->label('Imagen')->widget(FileInput::classname(), [
             'options' => [
                 'accept' => 'image/*',
@@ -33,7 +34,7 @@ use kartik\select2\Select2;
             ]
         ]); ?>
     </div>
-    <div class="form-group col-lg-8">
+    <div class="form-group col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12">
         <label class="control-label">Categoría</label>
         <?= Select2::widget([
             'name' => 'Post[categoria_id]',
@@ -47,7 +48,7 @@ use kartik\select2\Select2;
         ]); ?>
     </div>
 
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-12 col-xs-12">
         <?= Html::submitButton('Upload', ['class' => 'btn btn-success btn-upload-post']) ?>
     </div>
 

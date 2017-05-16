@@ -16,6 +16,7 @@ $config = [
         '@uploads' => 'uploads',
         '@avatar' => 'uploads/avatar',
         '@posts' => 'uploads/posts',
+        '@generador' => 'images/generador',
     ],
     'modules' => [
         'user' => [

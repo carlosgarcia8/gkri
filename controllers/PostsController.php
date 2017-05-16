@@ -13,6 +13,7 @@ use yii\db\Expression;
 use yii\filters\AccessControl;
 use dektrium\user\filters\AccessRule;
 use yii\helpers\Url;
+use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
@@ -46,16 +47,16 @@ class PostsController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['update', 'delete', 'moderar', 'aceptar', 'rechazar', 'view', 'upload'],
+                'only' => ['update', 'delete', 'moderar', 'aceptar', 'rechazar', 'view', 'upload', 'generador', 'generador-crear'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar', 'view', 'upload'],
+                        'actions' => ['moderar', 'update', 'delete', 'aceptar', 'rechazar', 'view', 'upload', 'generador', 'generador-crear'],
                         'roles' => ['admin'],
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['upload'],
+                        'actions' => ['upload', 'generador', 'generador-crear'],
                         'roles' => ['@'],
                     ],
                     [
@@ -220,6 +221,30 @@ class PostsController extends Controller
                 'categorias' => $categorias,
             ]);
         }
+    }
+
+    public function actionGenerador()
+    {
+        $ficheros = FileHelper::findFiles(Yii::getAlias('@generador'));
+
+        $nombres = [];
+
+        foreach ($ficheros as $fichero) {
+            array_push($nombres, explode('/', $fichero)[2]);
+        }
+
+        return $this->render('generador', [
+            'ficheros' => $nombres,
+        ]);
+    }
+
+    public function actionGeneradorCrear($fichero)
+    {
+        $ruta = Yii::getAlias('@generador') . "/$fichero";
+
+        return $this->render('generador-crear', [
+            'fichero' => $ruta,
+        ]);
     }
 
     /**
