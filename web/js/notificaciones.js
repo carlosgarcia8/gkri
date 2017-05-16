@@ -99,6 +99,15 @@ var populateNotifications = function(notificationData){
                     item['post_id'],
                     item['type']
                 ).getElement())
+            } else if (item['type'] == 6) {
+                $('.dropdown-notifications-list')
+                .append(new NotificationElement(
+                    'El usuario '+item['username']+' te ha enviado <b>mensajes nuevos</b>.',
+                    '<i class="fa fa-envelope fa-lg" aria-hidden="true"></i>',
+                    '/u/' + item['username'],
+                    item['user_related_id'],
+                    item['type']
+                ).getElement())
             }
         });
         $('.notification-link').on('click', function(e) {

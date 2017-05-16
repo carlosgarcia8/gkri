@@ -2,6 +2,7 @@
 
 use yii\bootstrap\Alert;
 use yii\helpers\Html;
+use yii\web\View;
 
 
 /* @var $this yii\web\View */
@@ -10,6 +11,7 @@ use yii\helpers\Html;
 $this->title = 'Enviar un Post';
 // $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 // $this->params['breadcrumbs'][] = $this->title;
+$this->registerJsFile('@web/js/upload-post.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
 <div class="post-create">
     <?php

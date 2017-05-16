@@ -6,6 +6,8 @@ use Yii;
 use app\models\User;
 use app\models\Message;
 use app\models\MessageForm;
+use app\models\Notificacion;
+use app\models\enums\NotificationType;
 use dektrium\user\filters\AccessRule;
 use yii\db\Query;
 use yii\filters\VerbFilter;
@@ -55,7 +57,15 @@ class MessagesController extends \yii\web\Controller
                 $message->user_id = Yii::$app->user->id;
                 $message->receptor_id = $messageForm->receptor_id;
                 $message->texto = $messageForm->texto;
-                $message->save();
+                if ($message->save()) {
+                    $notificacion = new Notificacion();
+
+                    $notificacion->type = NotificationType::MENSAJE_NUEVO;
+                    $notificacion->user_id = $message->receptor_id;
+                    $notificacion->user_related_id = $message->user_id;
+
+                    $notificacion->save();
+                }
             } else {
                 throw new BadRequestHttpException;
             }

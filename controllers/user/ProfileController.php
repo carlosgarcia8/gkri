@@ -68,7 +68,7 @@ class ProfileController extends BaseProfileController
             ->where([
                 'notificaciones.user_id' => Yii::$app->user->identity->id,
                 'seen' => false,
-                'notificaciones.type' => [NotificationType::SEGUIDOR_NUEVO, NotificationType::POST_NUEVO],
+                'notificaciones.type' => [NotificationType::SEGUIDOR_NUEVO, NotificationType::POST_NUEVO, NotificationType::MENSAJE_NUEVO],
             ]);
 
         // TODO ordenar el array por el created_by
@@ -77,16 +77,16 @@ class ProfileController extends BaseProfileController
 
     public function actionNotificationsReadAjax($type, $id)
     {
-        if (Yii::$app->user->isGuest) {
-            throw new NotFoundHttpException();
-        }
-        if (!Yii::$app->request->isAjax) {
-            throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
-        }
+        // if (Yii::$app->user->isGuest) {
+        //     throw new NotFoundHttpException();
+        // }
+        // if (!Yii::$app->request->isAjax) {
+        //     throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
+        // }
 
         if ($id == 0 && $type == -1) {
             Notificacion::updateAll(['seen' => true], ['user_id' => Yii::$app->user->identity->id]);
-        } elseif ($type == 3) {
+        } elseif ($type == 3 || $type == 6) {
             Notificacion::updateAll(['seen' => true], ['type' => $type, 'user_id' => Yii::$app->user->identity->id, 'user_related_id' => $id]);
         } else {
             Notificacion::updateAll(['seen' => true], ['type' => $type, 'post_id' => $id]);
@@ -107,6 +107,9 @@ class ProfileController extends BaseProfileController
         $messageForm = new MessageForm;
 
         if (Yii::$app->request->isPost) {
+            if (Yii::$app->user->isGuest) {
+                return $this->redirect(['/user/security/login']);
+            }
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if (!$model->upload()) {
                 $errores = '';
@@ -176,8 +179,20 @@ class ProfileController extends BaseProfileController
         $messageForm = new MessageForm;
 
         if (Yii::$app->request->isPost) {
+            if (Yii::$app->user->isGuest) {
+                return $this->redirect(['/user/security/login']);
+            }
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            $model->upload();
+            if (!$model->upload()) {
+                $errores = '';
+
+                foreach ($model->errors as $error) {
+                    $errores .= $errores . ' ' . $error[0];
+                }
+
+                \Yii::$app->getSession()->setFlash('error', $errores);
+                return $this->redirect(['/u/' . $username]);
+            }
         }
         $user = $this->finder->findUserByUsername($username);
 
@@ -236,8 +251,20 @@ class ProfileController extends BaseProfileController
         $messageForm = new MessageForm;
 
         if (Yii::$app->request->isPost) {
+            if (Yii::$app->user->isGuest) {
+                return $this->redirect(['/user/security/login']);
+            }
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            $model->upload();
+            if (!$model->upload()) {
+                $errores = '';
+
+                foreach ($model->errors as $error) {
+                    $errores .= $errores . ' ' . $error[0];
+                }
+
+                \Yii::$app->getSession()->setFlash('error', $errores);
+                return $this->redirect(['/u/' . $username]);
+            }
         }
         $user = $this->finder->findUserByUsername($username);
 

@@ -11,9 +11,13 @@ use kartik\select2\Select2;
 ?>
 
 <div class="post-form col-lg-6">
+    <div class="post-form-spinner">
+
+    </div>
 
     <?php $form = ActiveForm::begin([
         'options' => ['enctype'=>'multipart/form-data'],
+        'id' => 'upload-post-form'
     ]); ?>
     <div class="form-group col-lg-12">
         <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
@@ -44,7 +48,7 @@ use kartik\select2\Select2;
     </div>
 
     <div class="form-group col-lg-12">
-        <?= Html::submitButton('Upload', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Upload', ['class' => 'btn btn-success btn-upload-post']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

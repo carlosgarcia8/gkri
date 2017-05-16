@@ -13,7 +13,7 @@ $this->title = 'Posts';
 $this->registerJsFile('@web/js/gifs.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
-<div class="container list-view">
+<div class="container">
     <?php
     if (Yii::$app->session->getFlash('upload')) {
         echo Alert::widget([

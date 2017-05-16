@@ -12,6 +12,7 @@ class NotificationType extends BaseEnum
     const SEGUIDOR_NUEVO = 3;
     const POST_NUEVO = 4;
     const REPLY = 5;
+    const MENSAJE_NUEVO = 6;
 
     /**
      * @var array
@@ -23,5 +24,6 @@ class NotificationType extends BaseEnum
         self::SEGUIDOR_NUEVO => 'Seguidor Nuevo',
         self::POST_NUEVO => 'Post Nuevo',
         self::REPLY => 'Reply',
+        self::MENSAJE_NUEVO => 'Mensaje Nuevo',
     ];
 }
