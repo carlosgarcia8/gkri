@@ -9,7 +9,6 @@ use yii\web\View;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
@@ -24,6 +23,26 @@ if (!Yii::$app->user->isGuest) {
 
     $conversaciones = $user->getConversaciones();
 }
+
+$js = <<<EOT
+    var tour = localStorage.getItem('tour');
+
+    if (tour === null) {
+        if (location.pathname !== '/') {
+            location.pathname = '/';
+        }
+        introJs()
+            .setOption('showStepNumbers', false)
+            .setOption('nextLabel', 'Siguiente')
+            .setOption('prevLabel', 'Anterior')
+            .setOption('skipLabel', 'Terminar Tour')
+            .setOption('doneLabel', 'Terminar Tour')
+            .setOption('overlayOpacity', 0.2)
+            .start();
+        // localStorage.setItem('tour', 1);
+    }
+EOT;
+$this->registerJs($js);
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';
 // TODO poner imagen en los mensajes
@@ -61,7 +80,12 @@ $this->title = 'GKRI';
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name, 'class' => 'logo']),
+        'brandLabel' => Html::img('@web/images/logo.png', [
+            'alt'=>Yii::$app->name,
+            'class' => 'logo',
+            'data-intro'=>"¡Bienvenido! Vamos a hacer un pequeño Tour para que no te pierdas ni un detalle.",
+            'data-step'=>"1"
+        ]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -69,7 +93,7 @@ $this->title = 'GKRI';
     ]);
 
     ?>
-    <ul class="navbar-nav navbar-left nav">
+    <ul class="navbar-nav navbar-left nav" data-step="2" data-intro="Aquí están las distintas categorías, selecciona la que mas te guste y empieza a divertirte.">
         <li><a href="/gracioso">Gracioso</a></li>
         <li><a href="/amor">Amor</a></li>
         <li><a href="/series">Series</a></li>
@@ -104,7 +128,7 @@ $this->title = 'GKRI';
             </ul>
         </li>
     </ul>
-   <ul class="navbar-nav navbar-right nav">
+   <ul class="navbar-nav navbar-right nav" data-step="3" data-intro="Aquí tendrás las distintas opciones del usuario cuando hayas iniciado sesión, como ver tu perfil, las notificaciones o incluso ¡subir tu propio post!">
        <li></li>
        <li class="dropdown">
            <a data-toggle="dropdown" class="dropdown-toggle"><i id="lupa" class="glyphicon glyphicon-search"></i></a>

@@ -22,10 +22,13 @@ class AppAsset extends AssetBundle
         'css/estilos.css',
         'css/bootstrap-notifications.css',
         'css/bootstrap-notifications.min.css',
+        'css/introjs.css',
+        'css/introjs-modern.css',
     ];
     public $js = [
         'js/script.js',
         'js/isInViewport.js',
+        'js/intro.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -8,7 +8,10 @@ if ($model->extension == 'gif') : ?>
 <div class="viewport"></div>
 <?php endif; ?>
 
-<article class="item item-post-<?= $model->id ?>">
+<article class="item item-post-<?= $model->id ?>" <?php if ($index === 0) : ?>
+    data-step="4" data-position="right" data-intro="Esto es un post. Arriba veras el título y debajo
+    podrás darle voto positivo o negativo, siempre y cuando hayas iniciado sesión. Para ver los comentarios
+    solo tienes que hacer clic en la imagen o en el título. Eso es todo. Espero que disfrutes de tu paso por GKRI. :D" <?php endif; ?>>
     <header><h2><?= Html::a($model->titulo, ['/posts/view', 'id' => $model->id]) ?></h2></header>
     <?php if ($model->extension == 'gif') : ?>
     <div class="gifplayer-wrapper">
