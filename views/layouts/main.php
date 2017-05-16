@@ -39,7 +39,7 @@ $js = <<<EOT
             .setOption('doneLabel', 'Terminar Tour')
             .setOption('overlayOpacity', 0.2)
             .start();
-        // localStorage.setItem('tour', 1);
+        localStorage.setItem('tour', 1);
     }
 EOT;
 $this->registerJs($js);

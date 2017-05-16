@@ -58,6 +58,7 @@ class Notificacion extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el usuario que tiene la notificacion
      * @return \yii\db\ActiveQuery
      */
     public function getUsuario()
@@ -65,6 +66,10 @@ class Notificacion extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('notificaciones');
     }
 
+    /**
+     * Obtiene el post que tiene la notificacion
+     * @return \yii\db\ActiveQuery
+     */
     public function getPost()
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id'])->inverseOf('notificaciones');

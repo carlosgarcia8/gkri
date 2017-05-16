@@ -6,8 +6,16 @@ use yii\base\Model;
 
 class MessageForm extends Model
 {
+    /**
+     * El id del usuario que va a recibir el mensaje
+     * @var int
+     */
     public $receptor_id;
 
+    /**
+     * El texto del mensaje
+     * @var string
+     */
     public $texto;
 
     public function rules()

@@ -37,6 +37,11 @@ class FollowsController extends \yii\web\Controller
         ];
     }
 
+    /**
+     * Realiza el follow de un usuario
+     * @param  int $follow_id el id del usuario a seguir
+     * @return mixed
+     */
     public function actionFollow($follow_id)
     {
         if (!Yii::$app->request->isAjax) {
@@ -70,6 +75,11 @@ class FollowsController extends \yii\web\Controller
         return Follow::find(['follow_id' => $follow_id])->count();
     }
 
+    /**
+     * Realiza el unfollow de un usuario
+     * @param  int $follow_id el id del usuario a dejar de seguir
+     * @return mixed
+     */
     public function actionUnfollow($follow_id)
     {
         if (!Yii::$app->request->isAjax) {

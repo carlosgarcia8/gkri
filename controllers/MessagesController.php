@@ -47,6 +47,10 @@ class MessagesController extends \yii\web\Controller
         ];
     }
     // TODO cuando se haga create desde el perfil del usuario actualizar las conversaciones para traerla de nuevo, por si no existe
+    /**
+     * Crea un mensaje
+     * @return mixed
+     */
     public function actionCreate()
     {
         $messageForm = new MessageForm;
@@ -74,6 +78,11 @@ class MessagesController extends \yii\web\Controller
         }
     }
 
+    /**
+     * Obtiene los mensajes de una conversacion en concreto
+     * @param  int $contact_id el id del contacto con la que tiene una conversacion
+     * @return mixed
+     */
     public function actionObtener($contact_id)
     {
         if (!Yii::$app->request->isAjax) {

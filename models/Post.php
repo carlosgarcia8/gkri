@@ -314,6 +314,10 @@ class Post extends \yii\db\ActiveRecord
         return $this->getComentarios()->count();
     }
 
+    /**
+     * Obtiene las notificaciones que incluyen este post
+     * @return \yii\db\ActiveQuery
+     */
     public function getNotificaciones()
     {
         return $this->hasMany(Notificacion::className(), ['post_id' => 'id'])->inverseOf('post');

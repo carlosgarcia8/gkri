@@ -2,7 +2,6 @@
 
 namespace app\controllers\user;
 
-use app\models\User;
 use app\models\Follow;
 use app\models\MessageForm;
 use app\models\Notificacion;
@@ -12,6 +11,7 @@ use dektrium\user\filters\AccessRule;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use app\models\CommentModel;
 use yii\filters\AccessControl;
@@ -39,6 +39,10 @@ class ProfileController extends BaseProfileController
         ];
     }
 
+    /**
+     * Realiza la busqueda de notificaciones del usuario
+     * @return mixed
+     */
     public function actionNotificationsAjax()
     {
         if (Yii::$app->user->isGuest) {
@@ -49,7 +53,7 @@ class ProfileController extends BaseProfileController
         }
 
         $query = new Query;
-        $query->select(['notificaciones.type', 'notificaciones.post_id', 'left(posts.titulo,15) as titulo', 'count(*)'])
+        $query->select(['notificaciones.type', 'notificaciones.post_id', 'left(posts.titulo,15) as titulo', 'count(*)', 'max(notificaciones.created_at) as fecha'])
             ->from('notificaciones')
             ->join('JOIN', 'posts', 'notificaciones.post_id = posts.id')
             ->where([
@@ -62,7 +66,7 @@ class ProfileController extends BaseProfileController
         $a = $query->all();
 
         $query = new Query;
-        $query->select(['notificaciones.type', 'notificaciones.post_id', 'notificaciones.user_related_id', 'public.user.username'])
+        $query->select(['notificaciones.type', 'notificaciones.post_id', 'notificaciones.user_related_id', 'public.user.username', 'notificaciones.created_at as fecha'])
             ->from('notificaciones')
             ->join('JOIN', 'public.user', 'notificaciones.user_related_id = public.user.id')
             ->where([
@@ -71,18 +75,26 @@ class ProfileController extends BaseProfileController
                 'notificaciones.type' => [NotificationType::SEGUIDOR_NUEVO, NotificationType::POST_NUEVO, NotificationType::MENSAJE_NUEVO],
             ]);
 
-        // TODO ordenar el array por el created_by
-        return Json::encode(array_merge($a, $query->all()));
+        $data = array_merge($a, $query->all());
+
+        ArrayHelper::multisort($data, 'fecha', SORT_DESC);
+
+        return Json::encode($data);
     }
 
+    /**
+     * Cambia el estado de la/las notificaciones
+     * @param  int $type tipo de notificacion
+     * @param  int $id   id del post/comentario/user_related
+     */
     public function actionNotificationsReadAjax($type, $id)
     {
-        // if (Yii::$app->user->isGuest) {
-        //     throw new NotFoundHttpException();
-        // }
-        // if (!Yii::$app->request->isAjax) {
-        //     throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
-        // }
+        if (Yii::$app->user->isGuest) {
+            throw new NotFoundHttpException();
+        }
+        if (!Yii::$app->request->isAjax) {
+            throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
+        }
 
         if ($id == 0 && $type == -1) {
             Notificacion::updateAll(['seen' => true], ['user_id' => Yii::$app->user->identity->id]);
