@@ -30,3 +30,6 @@ exclude_paths:
 - requirements.php
 - docs/
 - guia/
+- web/js/isInViewport.js
+- web/js/jquery.memegenerator.js
+- web/js/intro.js

@@ -72,7 +72,7 @@ class FollowsController extends \yii\web\Controller
 
         $notificacion->save();
 
-        return Follow::find(['follow_id' => $follow_id])->count();
+        return User::findOne(['id' => $follow_id])->getSeguidores()->count();
     }
 
     /**
@@ -102,6 +102,6 @@ class FollowsController extends \yii\web\Controller
 
         Notificacion::deleteAll(['type' => 3, 'user_id' =>  $follow_id, 'user_related_id' => $user_id]);
 
-        return Follow::find(['follow_id' => $follow_id])->count();
+        return User::findOne(['id' => $follow_id])->getSeguidores()->count();
     }
 }

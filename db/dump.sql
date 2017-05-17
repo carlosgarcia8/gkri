@@ -47,13 +47,13 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
---
--- Name: comment; Type: TABLE; Schema: public; Owner: gkri
---
 
 drop table if exists votos cascade;
 drop table if exists posts cascade;
 drop table if exists session cascade;
+drop table if exists follows cascade;
+drop table if exists notificaciones cascade;
+drop table if exists messages cascade;
 drop table if exists votos_c cascade;
 drop table if exists categorias cascade;
 drop table if exists public.user cascade;
@@ -64,6 +64,9 @@ drop table if exists public.profile cascade;
 drop table if exists public.migration cascade;
 drop view if exists v_comment_votos;
 
+--
+-- Name: comment; Type: TABLE; Schema: public; Owner: gkri
+--
 
 CREATE TABLE comment (
     id integer NOT NULL,
@@ -163,7 +166,7 @@ ALTER TABLE categorias OWNER TO gkri;
 --
 
 CREATE SEQUENCE categorias_id_seq
-    START WITH 1
+    START WITH 16
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -180,6 +183,54 @@ ALTER SEQUENCE categorias_id_seq OWNED BY categorias.id;
 
 
 --
+-- Name: follows; Type: TABLE; Schema: public; Owner: gkri
+--
+
+CREATE TABLE follows (
+    user_id bigint NOT NULL,
+    follow_id bigint NOT NULL
+);
+
+
+ALTER TABLE follows OWNER TO gkri;
+
+--
+-- Name: messages; Type: TABLE; Schema: public; Owner: gkri
+--
+
+CREATE TABLE messages (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    receptor_id bigint NOT NULL,
+    texto character varying(255) NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE messages OWNER TO gkri;
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
+--
+
+CREATE SEQUENCE messages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE messages_id_seq OWNER TO gkri;
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gkri
+--
+
+ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
+
+
+--
 -- Name: migration; Type: TABLE; Schema: public; Owner: gkri
 --
 
@@ -190,6 +241,45 @@ CREATE TABLE migration (
 
 
 ALTER TABLE migration OWNER TO gkri;
+
+--
+-- Name: notificaciones; Type: TABLE; Schema: public; Owner: gkri
+--
+
+CREATE TABLE notificaciones (
+    id bigint NOT NULL,
+    type smallint NOT NULL,
+    user_id bigint,
+    seen boolean DEFAULT false NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    post_id bigint,
+    comment_id bigint,
+    user_related_id bigint
+);
+
+
+ALTER TABLE notificaciones OWNER TO gkri;
+
+--
+-- Name: notificaciones_id_seq; Type: SEQUENCE; Schema: public; Owner: gkri
+--
+
+CREATE SEQUENCE notificaciones_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE notificaciones_id_seq OWNER TO gkri;
+
+--
+-- Name: notificaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gkri
+--
+
+ALTER SEQUENCE notificaciones_id_seq OWNED BY notificaciones.id;
+
 
 --
 -- Name: posts; Type: TABLE; Schema: public; Owner: gkri
@@ -403,6 +493,20 @@ ALTER TABLE ONLY comment ALTER COLUMN id SET DEFAULT nextval('"Comment_id_seq"':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: gkri
 --
 
+ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY notificaciones ALTER COLUMN id SET DEFAULT nextval('notificaciones_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gkri
+--
+
 ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
 
 
@@ -424,7 +528,7 @@ ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regcl
 -- Name: Comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
 --
 
-SELECT pg_catalog.setval('"Comment_id_seq"', 4, true);
+SELECT pg_catalog.setval('"Comment_id_seq"', 1, false);
 
 
 --
@@ -473,28 +577,66 @@ COPY comment (id, entity, "entityId", content, "parentId", level, "createdBy", "
 
 
 --
+-- Data for Name: follows; Type: TABLE DATA; Schema: public; Owner: gkri
+--
+
+COPY follows (user_id, follow_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: gkri
+--
+
+COPY messages (id, user_id, receptor_id, texto, created_at) FROM stdin;
+\.
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
+--
+
+SELECT pg_catalog.setval('messages_id_seq', 1, false);
+
+
+--
 -- Data for Name: migration; Type: TABLE DATA; Schema: public; Owner: gkri
 --
 
 COPY migration (version, apply_time) FROM stdin;
-m000000_000000_base	1493545305
-m010101_100001_init_comment	1493545309
-m160629_121330_add_relatedTo_column_to_comment	1493545309
-m161109_092304_rename_comment_table	1493545309
-m161114_094902_add_url_column_to_comment_table	1493545309
-m140209_132017_init	1493545310
-m140403_174025_create_account_table	1493545310
-m140504_113157_update_tables	1493545310
-m140504_130429_create_token_table	1493545310
-m140830_171933_fix_ip_field	1493545310
-m140830_172703_change_account_table_name	1493545310
-m141222_110026_update_ip_field	1493545310
-m141222_135246_alter_username_length	1493545310
-m150614_103145_update_social_account_table	1493545310
-m150623_212711_fix_username_notnull	1493545310
-m151218_234654_add_timezone_to_profile	1493545310
-m160929_103127_add_last_login_at_to_user_table	1493545310
+m000000_000000_base	1495047295
+m010101_100001_init_comment	1495047297
+m160629_121330_add_relatedTo_column_to_comment	1495047297
+m161109_092304_rename_comment_table	1495047297
+m161114_094902_add_url_column_to_comment_table	1495047297
+m140209_132017_init	1495047298
+m140403_174025_create_account_table	1495047298
+m140504_113157_update_tables	1495047298
+m140504_130429_create_token_table	1495047298
+m140830_171933_fix_ip_field	1495047298
+m140830_172703_change_account_table_name	1495047298
+m141222_110026_update_ip_field	1495047298
+m141222_135246_alter_username_length	1495047298
+m150614_103145_update_social_account_table	1495047298
+m150623_212711_fix_username_notnull	1495047298
+m151218_234654_add_timezone_to_profile	1495047298
+m160929_103127_add_last_login_at_to_user_table	1495047298
 \.
+
+
+--
+-- Data for Name: notificaciones; Type: TABLE DATA; Schema: public; Owner: gkri
+--
+
+COPY notificaciones (id, type, user_id, seen, created_at, post_id, comment_id, user_related_id) FROM stdin;
+\.
+
+
+--
+-- Name: notificaciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
+--
+
+SELECT pg_catalog.setval('notificaciones_id_seq', 1, false);
 
 
 --
@@ -519,7 +661,6 @@ SELECT pg_catalog.setval('posts_id_seq', 1, false);
 COPY profile (user_id, name, public_email, gravatar_email, gravatar_id, location, website, bio, timezone, gender) FROM stdin;
 1	\N	\N	\N	\N	\N	\N	\N	\N	M
 \.
-
 
 --
 -- Data for Name: session; Type: TABLE DATA; Schema: public; Owner: gkri
@@ -558,7 +699,7 @@ COPY "user" (id, username, email, password_hash, auth_key, confirmed_at, unconfi
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gkri
 --
 
-SELECT pg_catalog.setval('user_id_seq', 1, false);
+SELECT pg_catalog.setval('user_id_seq', 2, false);
 
 
 --
@@ -607,6 +748,30 @@ ALTER TABLE ONLY migration
 
 ALTER TABLE ONLY categorias
     ADD CONSTRAINT pk_categorias PRIMARY KEY (id);
+
+
+--
+-- Name: pk_follows; Type: CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY follows
+    ADD CONSTRAINT pk_follows PRIMARY KEY (user_id, follow_id);
+
+
+--
+-- Name: pk_messages; Type: CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT pk_messages PRIMARY KEY (id);
+
+
+--
+-- Name: pk_notificaciones; Type: CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY notificaciones
+    ADD CONSTRAINT pk_notificaciones PRIMARY KEY (id);
 
 
 --
@@ -704,6 +869,70 @@ CREATE UNIQUE INDEX user_unique_email ON "user" USING btree (email);
 --
 
 CREATE UNIQUE INDEX user_unique_username ON "user" USING btree (username);
+
+
+--
+-- Name: fk_follows_user_follow; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY follows
+    ADD CONSTRAINT fk_follows_user_follow FOREIGN KEY (follow_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_follows_user_user; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY follows
+    ADD CONSTRAINT fk_follows_user_user FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_messages_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_messages_usuarios FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_messages_usuarios_receptor; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT fk_messages_usuarios_receptor FOREIGN KEY (receptor_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_notificaciones_comment; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY notificaciones
+    ADD CONSTRAINT fk_notificaciones_comment FOREIGN KEY (comment_id) REFERENCES comment(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_notificaciones_posts; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY notificaciones
+    ADD CONSTRAINT fk_notificaciones_posts FOREIGN KEY (post_id) REFERENCES posts(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_notificaciones_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY notificaciones
+    ADD CONSTRAINT fk_notificaciones_usuarios FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: fk_notificaciones_usuarios_related; Type: FK CONSTRAINT; Schema: public; Owner: gkri
+--
+
+ALTER TABLE ONLY notificaciones
+    ADD CONSTRAINT fk_notificaciones_usuarios_related FOREIGN KEY (user_related_id) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
