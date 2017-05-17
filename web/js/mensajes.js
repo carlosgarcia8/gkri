@@ -87,6 +87,9 @@ $('#textarea-message').on('keyup keydown', function (event) {
 
 $('.conversation').on('click', function () {
 
+    $('.conversation').removeClass('conversation-active');
+    $(this).addClass('conversation-active');
+
     var contact_id = $(this).attr('data-id');
     var contacto = $(this).find('h5').text();
     $('#textarea-message').attr('data-contact-id', contact_id);
@@ -97,6 +100,7 @@ $('.conversation').on('click', function () {
 
     if (elemPadre.length > 0) {
         elemPadre.show();
+        $('#messages .modal-title').text(contacto);
         padre.scrollTop(padre[0].scrollHeight);
     } else {
         $.ajax({
@@ -107,7 +111,7 @@ $('.conversation').on('click', function () {
         .success(function (data) {
             var messages = JSON.parse(data);
 
-            $('#messages .contact-username').text(contacto);
+            $('#messages .modal-title').text(contacto);
 
 
             padre.append('<div class="mensage-contact-'+contact_id+'"></div>');

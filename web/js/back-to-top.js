@@ -8,7 +8,7 @@ $('#btn-arriba').click(function(e){
     return false;
 });
 $(window).scroll(function() {
-    console.log(document.documentElement.scrollTop);
+
     if ($(document).height() - $(window).height() > document.documentElement.scrollTop) {
         $('#btn-arriba').css('bottom', '40px');
     } else {

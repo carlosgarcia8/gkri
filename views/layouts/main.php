@@ -46,6 +46,7 @@ EOT;
 $this->registerJs($js);
 $categorias = Categoria::find()->all();
 $this->title = 'GKRI';
+// TODO active en las categorias que se seleccionen
 // TODO poner imagen en los mensajes
 ?>
 <?php $this->beginPage() ?>
@@ -89,7 +90,7 @@ $this->title = 'GKRI';
         ]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-fixed-top menu-grande',
         ],
     ]);
 
@@ -105,7 +106,7 @@ $this->title = 'GKRI';
                 <div class="row">
                     <?php foreach ($categorias as $i => $categoria) {
                         if ($i == 0) { ?>
-                            <div class="col-sm-4">
+                            <div class="col-sm-4 col-xs-4">
                                 <ul class="multi-column-dropdown">
                                     <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
                         <?php }
@@ -113,7 +114,7 @@ $this->title = 'GKRI';
                                     <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
                                 </ul>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-4 col-xs-4">
                                 <ul class="multi-column-dropdown">
                         <?php
                         } elseif ($i == count($categorias) - 1) { ?>

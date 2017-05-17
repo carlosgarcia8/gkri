@@ -1,6 +1,7 @@
 <?php
 use app\models\MessageForm;
 use yii\widgets\ActiveForm;
+use app\models\User;
 
 $model = new MessageForm;
 ?>
@@ -24,16 +25,17 @@ $model = new MessageForm;
             <!-- Modal Body -->
             <div class="modal-body">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 panel-wrap">
-                    <div class="row header-wrap">
-                        <div class="chat-header col-sm-12">
-                            <h4>Conversaciones</h4>
-                        </div>
-                    </div>
                     <div class="row content-wrap conversaciones">
                     <!-- Distintas conversaciones -->
-                    <?php foreach ($conversaciones as $conversacion) : ?>
+                    <?php foreach ($conversaciones as $conversacion) :
+
+                        $userConversacion = User::findOne(['id' => $conversacion['user_id']]);
+                        ?>
                         <div class="conversation btn" data-id="<?= $conversacion['user_id'] ?>">
                             <div class="media-body">
+                                <span class="chat-img pull-left">
+                                    <img src="<?= $userConversacion->getAvatar() ?>" alt="User Avatar" class="little-message img-circle" />
+                                </span>
                                 <h5 class="media-heading"><?= $conversacion['username'] ?></h5>
                                 <small class="pull-right time"><?= date_format(new DateTime($conversacion['last_message']), 'd/m/Y H:i:s') ?></small>
                             </div>
@@ -42,12 +44,6 @@ $model = new MessageForm;
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 panel-wrap">
-                    <!-- Los mensajes de la conversacion -->
-                    <div class="row header-wrap">
-                        <div class="chat-header col-sm-12">
-                            <h4 class="contact-username"></h4>
-                        </div>
-                    </div>
 
                     <div class="row content-wrap messages">
 
@@ -75,7 +71,7 @@ $model = new MessageForm;
                             </div>
 
                             <div class="send-button">
-                                <a class="btn btn-disabled btn-enviar-mensaje">Enviar <i class="fa fa-send"></i></a>
+                                <a class="btn btn-disabled btn-block btn-enviar-mensaje">Enviar <i class="fa fa-send"></i></a>
                             </div>
                             <?php ActiveForm::end(); ?>
                         </div>
