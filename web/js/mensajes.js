@@ -15,6 +15,7 @@ $('#mensaje-form .btn-enviar-mensaje').on('click', function (e) {
         $(function () {
            $('#myModalNorm').modal('toggle');
            $('#message-create').show();
+           $('#messageform-texto').val('');
         });
     });
 

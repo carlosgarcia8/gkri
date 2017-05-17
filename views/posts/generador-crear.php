@@ -8,7 +8,6 @@ $js = <<<EOT
 		useBootstrap: true,
 		layout: "horizontal",
         showAdvancedSettings: false,
-        dragResizeEnabled: false,
         outputFormat: 'image/jpeg',
 		captions: [
 			"TOP TEXT",

@@ -31,5 +31,5 @@ exclude_paths:
 - docs/
 - guia/
 - web/js/isInViewport.js
-- web/js/jquery.memegenerator.js
+- web/js/jquery.memegenerator.min.js
 - web/js/intro.js
