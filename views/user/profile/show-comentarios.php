@@ -24,8 +24,10 @@ if ($profile !== null) :
 $this->registerJsFile('@web/js/gifs.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/follow.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
+$this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
 ?>
+<a href="#" id="btn-arriba"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i></a>
 <div class="row">
     <div class="alert alert-success fade in" id="message-create" style="display:none;">
         <button type="button" class="close">×</button>
