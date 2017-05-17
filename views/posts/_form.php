@@ -11,7 +11,7 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="post-form col-lg-offset-3 col-lg-6 col-sm-12 col-md-8 col-md-offset-2 template-oculto">
+<div class="post-form col-lg-offset-3 col-lg-6 col-sm-offset-1 col-xs-offset-0 col-xs-12 col-sm-10 col-md-6 col-md-offset-3 template-oculto">
     <div class="post-form-spinner">
 
     </div>
@@ -49,6 +49,7 @@ use kartik\select2\Select2;
     </div>
 
     <div class="form-group col-lg-12 col-xs-12">
+        <a href="#" class="button-volver btn btn-info">Volver</a>
         <?= Html::submitButton('Upload', ['class' => 'btn btn-success btn-upload-post']) ?>
     </div>
 

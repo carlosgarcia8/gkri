@@ -25,6 +25,27 @@ h2 a:hover {
 a {
     text-decoration: none !important;
 }
+/************ BOTON ARRIBA ************/
+
+#btn-arriba {
+    border: 1px solid #ddd;
+    color: #999;
+    border-radius: 2px;
+    bottom: 40px;
+    background-color: #FFF;
+    height: 40px;
+    position: fixed;
+    right: 40px;
+    text-align: center;
+    width: 60px;
+    transition: all 0.2s;
+    line-height: 40px;
+}
+
+#btn-arriba:hover {
+    background-color: #999;
+    color: #FFF;
+}
 
 /************ EFECTO AVATAR PROFILE/SHOW ************/
 
@@ -356,15 +377,19 @@ div.item:last-of-type article.item {
 }
 
 .button-upload {
-    background: #76B3FA;
     border-radius: 100px;
     padding: 20px 60px;
     color: #fff;
     text-decoration: none;
     font-size: 1.45em;
+    transition: all 0.3s ease 0s;
+    background: #999;
 }
 
-.gray { background: #999; }
+.button-upload:hover, .button-upload:active, .button-upload:focus {
+    background: #76B3FA;
+    color: #FFF;
+}
 
 .botones-upload {
     display: flex;
