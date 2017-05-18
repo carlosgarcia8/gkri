@@ -27,7 +27,7 @@ $config = [
             'cost' => 12,
             'admins' => ['xharly8'],
             'mailer' => [
-                'sender'                => 'globalklingonradianimaginary@gmail.com',
+                'sender'                => 'gkri@walpurgis.es',
                 'welcomeSubject'        => 'Bienvenido a GKRI',
                 'confirmationSubject'   => 'Mensaje de Confirmación',
                 'reconfirmationSubject' => 'Cambio de Email',
@@ -163,11 +163,10 @@ $config = [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'globalklingonradianimaginary@gmail.com',
+                'host' => 'walpurgis.es',
+                'username' => 'gkri@walpurgis.es',
                 'password' => getenv('SMTP_PASS'),
-                'port' => '587',
-                'encryption' => 'tls',
+                'port' => '25',
             ],
         ],
         'session' => [

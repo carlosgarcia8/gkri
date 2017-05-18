@@ -4,7 +4,7 @@ jQuery(document).ready(function () {
         $(this).next().find('ins').show();
     });
 
-    if ($( '.viewport' ).isInViewport({ tolerance: 0 }).length != 0) {
+    if ($( '.viewport' ).isInViewport({ tolerance: 0 }).length !== 0) {
         $('.viewport').isInViewport({ tolerance: 0 }).each(function() {
             $( this ).next().find('video').removeClass('video-paused').get(0).play();
             $(this).next().find('ins').hide();
@@ -27,7 +27,7 @@ jQuery(document).ready(function () {
             $(this).next().find('ins').show();
         });
 
-        if ($( '.viewport' ).isInViewport({ tolerance: 0 }).length != 0) {
+        if ($( '.viewport' ).isInViewport({ tolerance: 0 }).length !== 0) {
             $('.viewport').isInViewport({ tolerance: 0 }).each(function() {
                 $( this ).next().find('video').removeClass('video-paused').get(0).play();
                 $(this).next().find('ins').hide();

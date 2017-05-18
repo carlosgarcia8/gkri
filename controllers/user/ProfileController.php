@@ -63,7 +63,7 @@ class ProfileController extends BaseProfileController
             ])
             ->groupBy('type, post_id, titulo');
 
-        $a = $query->all();
+        $data_p = $query->all();
 
         $query = new Query;
         $query->select(['notificaciones.type', 'notificaciones.post_id', 'notificaciones.user_related_id', 'public.user.username', 'notificaciones.created_at as fecha'])
@@ -75,7 +75,7 @@ class ProfileController extends BaseProfileController
                 'notificaciones.type' => [NotificationType::SEGUIDOR_NUEVO, NotificationType::POST_NUEVO, NotificationType::MENSAJE_NUEVO],
             ]);
 
-        $data = array_merge($a, $query->all());
+        $data = array_merge($data_p, $query->all());
 
         ArrayHelper::multisort($data, 'fecha', SORT_DESC);
 

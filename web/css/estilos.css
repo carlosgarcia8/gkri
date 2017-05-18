@@ -210,6 +210,26 @@ a {
 
 /************ NAVBAR ************/
 
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+.navbar-right {
+  float: right!important;
+}
+
+.navbar-toggle {
+    display: none !important;
+}
+
 .little { /* clase para la imagen en el menu pequeña */
     width: 30px;
     height: 30px;
@@ -272,7 +292,7 @@ a {
 }
 
 .navbar-right > li:last-child {
-    display: inline-block !important;
+    display: inline-block;
     line-height: 50px !important;
 }
 
@@ -966,6 +986,25 @@ a.btn-disabled {
     background-color: #0451b7;
 }
 
+#btn-arriba {
+    display: block !important;
+}
+
+.sub-menu {
+    display: none !important;
+    font-size: 16px;
+}
+
+.sub-menu-noupload {
+    display: block !important;
+}
+
+.sub-menu-upload {
+    height: 50px;
+    line-height: 50px;
+    margin-right: 5px;
+}
+
 @media screen and (max-width: 1200px) {
     /************ AVATAR PROFILE/SHOW ************/
 
@@ -975,6 +1014,20 @@ a.btn-disabled {
 }
 
 @media screen and (max-width: 991px) {
+    /************ MODAL ************/
+    #messages .modal-body {
+        height: 400px;
+        max-height: 900px;
+        /*overflow-y: auto;*/
+        overflow: hidden;
+        padding: 0px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #messages .modal-dialog {
+        width: 620px;
+        margin: auto;
+    }
     /************ MENU USER SETTINGS  ************/
 
     .avatar-menu {
@@ -1009,6 +1062,20 @@ a.btn-disabled {
 }
 
 @media screen and (max-width: 767px) {
+    /************ MODAL ************/
+    #messages .modal-body {
+        height: 280px;
+        max-height: 900px;
+        /*overflow-y: auto;*/
+        overflow: hidden;
+        padding: 0px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #messages .modal-dialog {
+        width: 420px;
+        margin: auto;
+    }
     /************ AVATAR PROFILE/SHOW ************/
 
     .hovereffect, .nohovereffect {
@@ -1020,6 +1087,68 @@ a.btn-disabled {
     /*.menu-grande {
         display: none;
     }*/
+
+    .sub-menu {
+        display: block !important;
+    }
+
+    .dropdown-search {
+        width: 50px;
+    }
+
+    .dropdown-menu-search .navbar-form {
+        background-color: #fff !important;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: 4px;
+        width: 200px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    }
+
+    .dropdown-search a {
+        float: right;
+    }
+
+    .sub-menu-noupload {
+        display: none !important;
+    }
+
+    .navbar-header {
+        float: left;
+    }
+
+    .navbar-left li {
+        height: 50px;
+    }
+
+    .navbar-left li a  {
+        padding-top: 15px;
+    }
+
+    .navbar-nav > li > a {
+        padding-top: 15px;
+    }
+    .navbar-nav {
+        margin: 0;
+    }
+
+    .dropdown-notifications + li {
+        display: none;
+    }
+
+    .dropdown-container {
+        right: auto !important;
+        left: -140px !important;
+        width: 340px !important;
+    }
+
+    .navbar-left {
+        display: none;
+    }
+
+    .categorias-sub {
+        display: block !important;
+        float: left;
+    }
 
     .nav > li.dropdown-notifications > a {
         text-align: center;
@@ -1047,9 +1176,18 @@ a.btn-disabled {
         min-width: 240px !important;
         overflow-x: hidden;
     }
+
+    #btn-arriba {
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 576px) {
+    .dropdown-container {
+        right: auto !important;
+        left: -120px !important;
+        width: 340px !important;
+    }
     /************ AVATAR PROFILE/SHOW ************/
 
     .hovereffect, .nohovereffect {

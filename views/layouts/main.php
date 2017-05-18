@@ -130,9 +130,18 @@ $this->title = 'GKRI';
             </ul>
         </li>
     </ul>
+    <!-- <div class="categorias-sub" style="display: none;">
+        <button type="button" class="" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+        </button>
+		<a href="#" title="Menu">Menu</a>
+		<a href="#" title="Account">Account</a>
+		<a href="#" title="Settings">Settings</a>
+		<a href="#" title="Email">Email</a>
+	</div> -->
    <ul class="navbar-nav navbar-right nav" data-step="3" data-intro="Aquí tendrás las distintas opciones del usuario cuando hayas iniciado sesión, como ver tu perfil, las notificaciones o incluso ¡subir tu propio post!">
        <li></li>
-       <li class="dropdown">
+       <li class="dropdown dropdown-search">
            <a data-toggle="dropdown" class="dropdown-toggle"><i id="lupa" class="glyphicon glyphicon-search"></i></a>
            <ul class="dropdown-menu dropdown-menu-search">
                <li>
@@ -178,7 +187,13 @@ $this->title = 'GKRI';
                 <li><a href="<?= Url::to('/user/security/logout') ?>" data-method="post" tabindex="-1">Logout</a></li>
             </ul>
         </li>
-        <li><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> "><i class="fa fa-user" aria-hidden="true"></i></a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
+        <li class="sub-menu"><a href="javascript:void(0);" data-toggle="modal" data-target="#messages"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><i class="fa fa-upload" aria-hidden="true"></i>
+        <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
+</a></li>
     <?php endif; ?>
     </ul> <?php
 

@@ -45,69 +45,79 @@ var populateNotifications = function(notificationData){
 
         $(notificaciones).each(function(index, item){
 
-            if (item['type'] == 0) {
-                $('.dropdown-notifications-list')
-                .append(new NotificationElement(
-                    'Tu post "<i>'+item['titulo']+'</i>..." ha sido <b>aceptado</b>.',
-                    '<i class="fa fa-exclamation fa-lg" aria-hidden="true"></i>',
-                    '/posts/' + item['post_id'],
-                    item['post_id'],
-                    item['type']
-                ).getElement())
-            } else if (item['type'] == 1) {
-                $('.dropdown-notifications-list')
-                .append(new NotificationElement(
-                    'Hay <b>votos nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
-                    '<i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i>',
-                    '/posts/' + item['post_id'],
-                    item['post_id'],
-                    item['type']
-                ).getElement())
-            } else if (item['type'] == 2) {
-                $('.dropdown-notifications-list')
-                .append(new NotificationElement(
-                    'Hay '+item['count']+' <b>comentarios nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
-                    '<i class="fa fa-comment fa-lg" aria-hidden="true"></i>',
-                    '/posts/' + item['post_id'],
-                    item['post_id'],
-                    item['type']
-                ).getElement())
-            } else if (item['type'] == 3) {
-                $('.dropdown-notifications-list')
-                .append(new NotificationElement(
-                    'El usuario <b>'+item['username']+'</b> ha comenzado a seguirte.',
-                    '<i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>',
-                    '/u/' + item['username'],
-                    item['user_related_id'],
-                    item['type']
-                ).getElement())
-            } else if (item['type'] == 4) {
-                $('.dropdown-notifications-list')
-                .append(new NotificationElement(
-                    'El usuario <b>'+item['username']+'</b> ha publicado un <b>post nuevo</b>.',
-                    '<i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>',
-                    '/posts/' + item['post_id'],
-                    item['post_id'],
-                    item['type']
-                ).getElement())
-            } else if (item['type'] == 5) {
-                $('.dropdown-notifications-list')
-                .append(new NotificationElement(
-                    'Hay '+item['count']+' nuevos <b> replies</b> a tu comentario en el post "<i>'+item['titulo']+'</i>...".',
-                    '<i class="fa fa-commenting fa-lg" aria-hidden="true"></i>',
-                    '/posts/' + item['post_id'],
-                    item['post_id'],
-                    item['type']
-                ).getElement())
-            } else if (item['type'] == 6) {
-                $('.dropdown-notifications-list')
-                .append(new NotificationElement(
-                    'El usuario '+item['username']+' te ha enviado <b>mensajes nuevos</b>.',
-                    '<i class="fa fa-envelope fa-lg" aria-hidden="true"></i>',
-                    '/u/' + item['username'],
-                    item['user_related_id'],
-                    item['type']
-                ).getElement())
+            switch (item['type']) {
+                case 0:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'Tu post "<i>'+item['titulo']+'</i>..." ha sido <b>aceptado</b>.',
+                        '<i class="fa fa-exclamation fa-lg" aria-hidden="true"></i>',
+                        '/posts/' + item['post_id'],
+                        item['post_id'],
+                        item['type']
+                    ).getElement());
+                    break;
+                case 1:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'Hay <b>votos nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
+                        '<i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i>',
+                        '/posts/' + item['post_id'],
+                        item['post_id'],
+                        item['type']
+                    ).getElement())
+                    break;
+                case 2:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'Hay '+item['count']+' <b>comentarios nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
+                        '<i class="fa fa-comment fa-lg" aria-hidden="true"></i>',
+                        '/posts/' + item['post_id'],
+                        item['post_id'],
+                        item['type']
+                    ).getElement());
+                    break;
+                case 3:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'El usuario <b>'+item['username']+'</b> ha comenzado a seguirte.',
+                        '<i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>',
+                        '/u/' + item['username'],
+                        item['user_related_id'],
+                        item['type']
+                    ).getElement());
+                    break;
+                case 4:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'El usuario <b>'+item['username']+'</b> ha publicado un <b>post nuevo</b>.',
+                        '<i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>',
+                        '/posts/' + item['post_id'],
+                        item['post_id'],
+                        item['type']
+                    ).getElement());
+                    break;
+                case 5:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'Hay '+item['count']+' nuevos <b> replies</b> a tu comentario en el post "<i>'+item['titulo']+'</i>...".',
+                        '<i class="fa fa-commenting fa-lg" aria-hidden="true"></i>',
+                        '/posts/' + item['post_id'],
+                        item['post_id'],
+                        item['type']
+                    ).getElement());
+                    break;
+                case 6:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'El usuario '+item['username']+' te ha enviado <b>mensajes nuevos</b>.',
+                        '<i class="fa fa-envelope fa-lg" aria-hidden="true"></i>',
+                        '/u/' + item['username'],
+                        item['user_related_id'],
+                        item['type']
+                    ).getElement());
+                    break;
+                default:
+                    break;
             }
         });
         $('.notification-link').on('click', function(e) {

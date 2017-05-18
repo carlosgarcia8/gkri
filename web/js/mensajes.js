@@ -69,7 +69,7 @@ $('#message-create .close').on('click', function(e) {
 });
 
 $('#textarea-message').on('keyup keydown', function (event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
         if ($(this).val().trim().length > 0 && $(this).attr('data-contact-id')) {
             $('#mensajes-form .btn-enviar-mensaje').click();
             $('#mensajes-form .btn-enviar-mensaje').removeClass('btn-disabled');
@@ -121,7 +121,7 @@ $('.conversation').on('click', function () {
             for (var i = 0; i < messages.length; i++) {
                 var elem = $('.template-oculto > .msg').clone();
 
-                if (contact_id != messages[i]['user_id']) {
+                if (parseInt(contact_id) !== messages[i]['user_id']) {
                     elem.addClass('msg-emisor');
                     elem.find('.msg-header').append('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
                     elem.find('.msg-header').append('<strong>' + messages[i]['emisor'] + '</strong>');
