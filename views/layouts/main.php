@@ -141,6 +141,16 @@ $this->title = 'GKRI';
 		<a href="#" title="Settings">Settings</a>
 		<a href="#" title="Email">Email</a>
 	</div> -->
+    <div class="dropdown sub-menu categorias-sub">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            <i class="fa fa-bars" aria-hidden="true" title="Categorías"></i>
+        </button>
+        <ul class="dropdown-menu">
+            <?php foreach ($categorias as $i => $categoria) : ?>
+            <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
    <ul class="navbar-nav navbar-right nav" data-step="3" data-intro="Aquí tendrás las distintas opciones del usuario cuando hayas iniciado sesión, como ver tu perfil, las notificaciones o incluso ¡subir tu propio post!">
        <li></li>
        <li class="dropdown dropdown-search">
@@ -193,9 +203,8 @@ $this->title = 'GKRI';
         <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><i class="fa fa-cog" aria-hidden="true" title="Configuración"></i></a></li>
         <li class="sub-menu"><a href="javascript:void(0);" data-toggle="modal" data-target="#messages"><i class="fa fa-envelope" aria-hidden="true" title="Mensajes"></i></a></li>
         <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><i class="fa fa-sign-out" aria-hidden="true" title="Cerrar sesión"></i></a></li>
-        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><i class="fa fa-upload" aria-hidden="true" title="Upload"></i>
+        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><i class="fa fa-upload" aria-hidden="true" title="Upload"></i></a></li>
         <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
-</a></li>
     <?php endif; ?>
     </ul> <?php
 

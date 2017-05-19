@@ -1001,7 +1001,7 @@ a.btn-disabled {
 
 .sub-menu-upload {
     height: 50px;
-    line-height: 50px;
+    line-height: 55px;
     margin-right: 5px;
 }
 
@@ -1112,13 +1112,58 @@ a.btn-disabled {
         display: none;
     }*/
 
+    .categorias-sub {
+        float:left;
+        margin-left: 25px;
+        height: 35px !important;
+        overflow-y: visible;
+    }
+
+    .categorias-sub button {
+        height: 40px;
+        margin-top: 5px;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-color: #333;
+        border-radius: 4px;
+        line-height: 33px;
+    }
+
+    .dropdown.open.categorias-sub .dropdown-toggle {
+        background-color: transparent;
+        border-color: #333;
+    }
+
+    .categorias-sub .fa-bars {
+        font-size: 20px;
+    }
+
+    .categorias-sub button:focus, .categorias-sub button:active:hover,
+    .categorias-sub button:active:focus, .categorias-sub button:hover {
+        background-color: #333;
+        border-color: #333;
+        outline: none;
+    }
+
+    .categorias-sub.open > .dropdown-toggle.btn-primary {
+        background-color: #333;
+        border-color: #333;
+    }
+
+    .categorias-sub .dropdown-menu {
+        background-color: black;
+    }
+    .categorias-sub .dropdown-menu li a  {
+        color: white;
+    }
+
     .sub-menu {
         display: block !important;
         height: 50px;
     }
 
     .dropdown-search, .dropdown-notifications {
-        width: 30px;
+        width: 30px !important;
         font-size: 14px !important;
     }
 
@@ -1278,6 +1323,9 @@ a.btn-disabled {
 }
 
 @media screen and (max-width: 455px) {
+    .categorias-sub {
+        margin-left: 25px;
+    }
 
     /************ MODAL ************/
     #messages .modal-body {
@@ -1323,6 +1371,23 @@ a.btn-disabled {
         display: none;
     }
 }
+@media screen and (max-width: 425px) {
+    .categorias-sub {
+        margin-left: 0;
+    }
+
+    .navbar-header {
+        text-align: center;
+        float: none;
+        margin-left: 30% !important;
+    }
+
+    .container .navbar-collapse {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
 
 @media screen and (max-width: 375px) {
     /************ MODAL ************/
@@ -1340,12 +1405,6 @@ a.btn-disabled {
         margin: auto;
     }
 
-    .navbar-header {
-        text-align: center;
-        float: none;
-        margin-left: 30% !important;
-    }
-
     .hovereffect, .nohovereffect {
         margin-left: 14.5%;
         margin-top: 10px;
@@ -1359,5 +1418,9 @@ a.btn-disabled {
 
     .dropdown-menu-search .navbar-form {
         width: 160px;
+    }
+
+    .collapse .navbar-nav.navbar-right:last-child {
+        margin-right: -6px !important;
     }
 }

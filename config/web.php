@@ -2,7 +2,6 @@
 use app\models\Notificacion;
 use app\models\enums\NotificationType;
 use yii2mod\comments\models\CommentModel;
-use Yii;
 
 $params = require(__DIR__ . '/params.php');
 
