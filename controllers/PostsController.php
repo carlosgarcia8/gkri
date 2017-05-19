@@ -96,11 +96,12 @@ class PostsController extends Controller
      */
     public function actionIndex($categoria = null)
     {
-        $categoria = Categoria::findOne(['nombre_c' => $categoria]);
+        $categoriaModel = Categoria::findOne(['nombre_c' => $categoria]);
+        $existeCategoria = $categoriaModel !== null;
 
-        if ($categoria != null) {
+        if ($existeCategoria) {
             $dataProvider = new ActiveDataProvider([
-                'query' => $categoria->getPosts()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
+                'query' => $categoriaModel->getPosts()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
                 'pagination' => [
                     'pageSize' => 10,
                 ]
@@ -116,6 +117,8 @@ class PostsController extends Controller
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'existeCategoria' => $existeCategoria,
+            'categoria' => $categoria,
         ]);
     }
 

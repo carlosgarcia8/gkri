@@ -23,10 +23,59 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
             'body' => Yii::$app->session->getFlash('upload'),
         ]);
     } ?>
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => '_view.php',
-        'layout' => "{items}\n{pager}",
-    ]) ?>
+    <?php if(isset($categoria)) : ?>
+        <?php if ($categoria === null) : ?>
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemOptions' => ['class' => 'item'],
+            'itemView' => '_view.php',
+            'layout' => "{items}\n{pager}",
+        ]) ?>
+        <?php else : ?>
+            <?php if($existeCategoria) : ?>
+            <div class="busqueda">
+                <h4>Búsqueda</h4>
+                <h5>Estos son los posts con categoría: <?= $categoria ?></h5>
+            </div>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item'],
+                'itemView' => '_view.php',
+                'layout' => "{items}\n{pager}",
+            ]) ?>
+            <?php else : ?>
+            <h5>No existe la categoria que ha especificado: <?= $categoria ?></h5>
+            <?php endif; ?>
+        <?php endif; ?>
+    <?php else : ?>
+        <?php if(isset($titulo)) : ?>
+            <?php if ($titulo === null) : ?>
+                <?= ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'itemOptions' => ['class' => 'item'],
+                    'itemView' => '_view.php',
+                    'layout' => "{items}\n{pager}",
+                ]) ?>
+            <?php else : ?>
+            <div class="busqueda">
+                <h4>Búsqueda</h4>
+                <h5>Estos son los posts cuyo título empiezan por: "<?= $titulo ?>"</h5>
+            </div>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item'],
+                'itemView' => '_view.php',
+                'layout' => "{items}\n{pager}",
+            ]) ?>
+            <?php endif; ?>
+        <?php else : ?>
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item'],
+                'itemView' => '_view.php',
+                'layout' => "{items}\n{pager}",
+            ]) ?>
+        <?php endif; ?>
+    <?php endif; ?>
+
 </div>

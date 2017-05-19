@@ -398,6 +398,11 @@ div.item:last-of-type article.item {
 .item-imagen img, .item-imagen video {
     margin-left: 33%;
 }
+/************ BUSQUEDA ************/
+
+.busqueda {
+    margin-left: 120px;
+}
 
 /************ UPLOAD POST ************/
 
@@ -1152,9 +1157,13 @@ a.btn-disabled {
 
     .categorias-sub .dropdown-menu {
         background-color: black;
+        top: 120%;
     }
     .categorias-sub .dropdown-menu li a  {
         color: white;
+    }
+    .categorias-sub .dropdown-menu li a:hover  {
+        background-color: #555555;
     }
 
     .sub-menu {
