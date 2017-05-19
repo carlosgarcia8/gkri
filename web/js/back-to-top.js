@@ -1,4 +1,4 @@
-if (document.documentElement.scrollTop < 1200) {
+if ($(document).scrollTop() < 1200) {
     $('#btn-arriba').hide();
 }
 $('#btn-arriba').click(function(e){
@@ -7,14 +7,15 @@ $('#btn-arriba').click(function(e){
     $('html,body').animate({ scrollTop: 0 }, 'slow');
     return false;
 });
+// TODO firefox da un warning por el scroll, comprobar que es
 $(window).scroll(function() {
 
-    if ($(document).height() - $(window).height() > document.documentElement.scrollTop) {
+    if ($(document).height() - $(window).height() > $(document).scrollTop()) {
         $('#btn-arriba').css('bottom', '40px');
     } else {
         $('#btn-arriba').css('bottom', '80px');
     }
-    if (document.documentElement.scrollTop > 1200) {
+    if ($(document).scrollTop() > 1200) {
         $('#btn-arriba').show();
     } else {
         $('#btn-arriba').hide();

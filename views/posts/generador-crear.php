@@ -34,8 +34,13 @@ $this->registerJsFile('@web/js/jquery.memegenerator.min.js', ['depends' => [\yii
 $this->registerJs($js);
 ?>
 
-<div class="alert alert-success template-oculto" role="alert"></div>
+<div class="generador-create">
+    <div class="alert alert-success template-oculto" role="alert"></div>
+    <div class="col-lg-12 text-left">
+        <?= Html::a('Volver', ['/posts/generador'], ['class' => 'btn btn-primary', 'style' => 'margin-bottom: 20px;']) ?>
+    </div>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 meme-container">
-    <?= Html::img("/$fichero", ['class' => 'meme-gen-create', 'alt' => $fichero, 'id' => 'meme']) ?>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 meme-container">
+        <?= Html::img("/$fichero", ['class' => 'meme-gen-create', 'alt' => $fichero, 'id' => 'meme']) ?>
+    </div>
 </div>

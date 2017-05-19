@@ -22,7 +22,7 @@ if ($model->extension == 'gif') : ?>
     </div>
     <?php else : ?>
     <div class="">
-        <?= Html::a(Html::img($model->ruta), ['/posts/view', 'id' => $model->id]) ?>
+        <?= Html::a(Html::img($model->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $model->ruta]), ['/posts/view', 'id' => $model->id]) ?>
     </div>
     <?php endif; ?>
     <p class="item-p">

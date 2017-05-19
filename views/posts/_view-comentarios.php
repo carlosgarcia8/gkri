@@ -20,7 +20,7 @@ if ($post != null) : ?>
         </div>
         <?php else : ?>
         <div class="">
-            <?= Html::img($post->ruta) ?>
+            <?= Html::a(Html::img($post->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $model->ruta]), ['/posts/view', 'id' => $post->id]) ?>
         </div>
         <?php endif; ?>
     <p class="item-p">

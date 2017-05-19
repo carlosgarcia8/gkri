@@ -36,7 +36,7 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
     <div class="col-xs-12 col-sm-12 col-md-3">
         <?php if ($suPerfil) : ?>
         <div class="hovereffect">
-            <?= Html::img($profile->avatar, [
+            <?= Html::img($profile->avatar . '?t=' . date('d-m-Y-H:i:s'), [
                 'class' => 'img-thumbnail img-responsive',
                 'alt' => $profile->user->username,
             ]) ?>
@@ -49,7 +49,7 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
         <?php else : ?>
         <div class="nohovereffect">
-            <?= Html::img($profile->avatar, [
+            <?= Html::img($profile->avatar . '?t=' . date('d-m-Y-H:i:s'), [
                 'class' => 'img-thumbnail',
                 'alt' => $profile->user->username,
             ]) ?>

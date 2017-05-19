@@ -15,7 +15,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <?= Html::img($user->profile->getAvatar(), [
+            <?= Html::img($user->profile->getAvatar() . '?t=' . date('d-m-Y-H:i:s'), [
                 'class' => 'img-rounded little',
                 'alt' => $user->username,
             ]) ?>
@@ -40,7 +40,7 @@ $networksVisible = count(Yii::$app->authClientCollection->clients) > 0;
     </div>
 </div>
 <div class="avatar-menu">
-    <?= Html::img($user->profile->avatar, [
+    <?= Html::img($user->profile->avatar . '?t=' . date('d-m-Y-H:i:s'), [
         'class' => 'img-thumbnail imagen',
         'alt' => $user->username,
         ]) ?>

@@ -136,6 +136,10 @@ a {
     height: auto;
 }
 
+.generador-create {
+    margin-top: 15px;
+}
+
 /************ PROFILE/SHOW ************/
 
 .hovereffect + .menu-profile-info {
@@ -986,10 +990,6 @@ a.btn-disabled {
     background-color: #0451b7;
 }
 
-#btn-arriba {
-    display: block !important;
-}
-
 .sub-menu {
     display: none !important;
     font-size: 16px;
@@ -1005,6 +1005,8 @@ a.btn-disabled {
     margin-right: 5px;
 }
 
+
+
 @media screen and (max-width: 1200px) {
     /************ AVATAR PROFILE/SHOW ************/
 
@@ -1014,6 +1016,14 @@ a.btn-disabled {
 }
 
 @media screen and (max-width: 991px) {
+    .botones-upload {
+        width: 70%;
+    }
+
+    .content-wrap.messages {
+        height: 80%;
+    }
+
     /************ MODAL ************/
     #messages .modal-body {
         height: 400px;
@@ -1044,7 +1054,7 @@ a.btn-disabled {
 
     .comments-list, .comment-form-container {
         width: 100% !important;
-        min-width: 550px !important;
+        min-width: 320px !important;
     }
 
     /************ AVATAR PROFILE/SHOW ************/
@@ -1061,10 +1071,24 @@ a.btn-disabled {
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
+    .botones-upload {
+        width: 80%;
+    }
+
+    html, body {
+        width: auto !important;
+        overflow-x: hidden !important;
+    }
+    .boton-upload {
+        display: inline-block !important;
+        margin-left: 0;
+        padding: 10px 12px !important;
+    }
+
     /************ MODAL ************/
     #messages .modal-body {
-        height: 280px;
+        height: 320px;
         max-height: 900px;
         /*overflow-y: auto;*/
         overflow: hidden;
@@ -1073,7 +1097,7 @@ a.btn-disabled {
     }
 
     #messages .modal-dialog {
-        width: 420px;
+        width: 550px;
         margin: auto;
     }
     /************ AVATAR PROFILE/SHOW ************/
@@ -1090,6 +1114,12 @@ a.btn-disabled {
 
     .sub-menu {
         display: block !important;
+        height: 50px;
+    }
+
+    .dropdown-search, .dropdown-notifications {
+        width: 30px;
+        font-size: 14px !important;
     }
 
     .dropdown-search {
@@ -1183,9 +1213,37 @@ a.btn-disabled {
 }
 
 @media screen and (max-width: 576px) {
+    /************ MODAL ************/
+
+    .conversation .media-heading, .conversation small {
+        display: none;
+    }
+
+    #messages .modal-body {
+        height: 400px;
+        max-height: 900px;
+        /*overflow-y: auto;*/
+        overflow: hidden;
+        padding: 0px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #messages .modal-dialog {
+        width: 450px;
+        margin: auto;
+    }
+
+    .botones-upload {
+        width: 90%;
+    }
+
+    .comment-votos-total, .comment-date {
+        display: none;
+    }
+
     .dropdown-container {
         right: auto !important;
-        left: -120px !important;
+        left: -140px !important;
         width: 340px !important;
     }
     /************ AVATAR PROFILE/SHOW ************/
@@ -1201,6 +1259,105 @@ a.btn-disabled {
     }
 
     .item-imagen img {
-        margin-left: 5%;
+        margin-left: 0%;
+    }
+
+    .wrap > .container {
+        padding: 100px 0px 0px !important;
+    }
+
+    .container > .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .item-imagen video {
+        margin-left: 0;
+    }
+
+}
+
+@media screen and (max-width: 455px) {
+
+    /************ MODAL ************/
+    #messages .modal-body {
+        height: 370px;
+        max-height: 900px;
+        /*overflow-y: auto;*/
+        overflow: hidden;
+        padding: 0px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #messages .modal-dialog {
+        width: 400px;
+        margin: auto;
+    }
+
+    .list-view .item {
+        width: auto;
+    }
+
+    .generador-create {
+        margin-top: 30px;
+    }
+
+    .responsive-image, video {
+      height: auto;
+      width: 100%;
+    }
+
+    .post-view {
+        margin-left: 0;
+    }
+
+    .post-view .item {
+        width: auto;
+    }
+
+    .item-imagen {
+        width: auto;
+    }
+
+    .comment-action-buttons .texto-button {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    /************ MODAL ************/
+    #messages .modal-body {
+        height: 400px;
+        max-height: 900px;
+        /*overflow-y: auto;*/
+        overflow: hidden;
+        padding: 0px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #messages .modal-dialog {
+        width: 320px;
+        margin: auto;
+    }
+
+    .navbar-header {
+        text-align: center;
+        float: none;
+        margin-left: 30% !important;
+    }
+
+    .hovereffect, .nohovereffect {
+        margin-left: 14.5%;
+        margin-top: 10px;
+    }
+
+    .dropdown-container {
+        right: auto !important;
+        left: -100px !important;
+        width: 300px !important;
+    }
+
+    .dropdown-menu-search .navbar-form {
+        width: 160px;
     }
 }

@@ -19,7 +19,7 @@ $this->title = 'Posts';
                     <source src="<?= $post->ruta ?>" type="video/mp4">
                 </video>
             <?php else : ?>
-                <?= Html::a(Html::img($post->ruta), ['/posts/view', 'id' => $post->id]) ?>
+                <?= Html::a(Html::img($post->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $post->ruta]), ['/posts/view', 'id' => $post->id]) ?>
             <?php endif; ?>
             <div class="panel-body">
                 <?= Html::a('Aceptar', ['/posts/aceptar', 'id' => $post->id], ['class' => 'btn btn-success']) ?>

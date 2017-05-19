@@ -12,6 +12,7 @@ use yii\helpers\Html;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\CommentModel;
 
 AppAsset::register($this);
 $this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
@@ -45,6 +46,7 @@ $js = <<<EOT
 EOT;
 $this->registerJs($js);
 $categorias = Categoria::find()->all();
+CommentModel::deleteAll(['status' => 2]);
 $this->title = 'GKRI';
 // TODO active en las categorias que se seleccionen
 // TODO poner imagen en los mensajes
@@ -142,7 +144,7 @@ $this->title = 'GKRI';
    <ul class="navbar-nav navbar-right nav" data-step="3" data-intro="Aquí tendrás las distintas opciones del usuario cuando hayas iniciado sesión, como ver tu perfil, las notificaciones o incluso ¡subir tu propio post!">
        <li></li>
        <li class="dropdown dropdown-search">
-           <a data-toggle="dropdown" class="dropdown-toggle"><i id="lupa" class="glyphicon glyphicon-search"></i></a>
+           <a data-toggle="dropdown" class="dropdown-toggle"><i id="lupa" class="glyphicon glyphicon-search" title="Buscador"></i></a>
            <ul class="dropdown-menu dropdown-menu-search">
                <li>
                    <?php ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
@@ -157,7 +159,7 @@ $this->title = 'GKRI';
     <?php else :?>
         <li class="dropdown dropdown-notifications">
             <a data-toggle="dropdown" class="dropdown-toggle">
-              <i data-count="0" class="glyphicon glyphicon-bell notification-icon hidden-icon"></i>
+              <i data-count="0" class="glyphicon glyphicon-bell notification-icon hidden-icon" title="Notificaciones"></i>
             </a>
 
             <div class="dropdown-container">
@@ -176,7 +178,7 @@ $this->title = 'GKRI';
         </li>
         <li class="dropdown">
             <a id="imagen-avatar" class="dropdown-toggle" href="/u/xharly8" data-toggle="dropdown">
-                <?= Html::img(Yii::$app->user->identity->profile->getAvatar(), ['class' => 'img-rounded little']) ?>
+                <?= Html::img(Yii::$app->user->identity->profile->getAvatar() . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'img-rounded little']) ?>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
@@ -184,14 +186,14 @@ $this->title = 'GKRI';
                 <li><a href="<?= Url::to('/settings/profile') ?>" tabindex="-1">Configuración</a></li>
                 <li><a href="javascript:void(0);" data-toggle="modal" data-target="#messages" tabindex="-1">Mensajes</a></li>
                 <li class="divider"></li>
-                <li><a href="<?= Url::to('/user/security/logout') ?>" data-method="post" tabindex="-1">Logout</a></li>
+                <li><a href="<?= Url::to('/user/security/logout') ?>" data-method="post" tabindex="-1">Cerrar sesión</a></li>
             </ul>
         </li>
-        <li class="sub-menu"><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> "><i class="fa fa-user" aria-hidden="true"></i></a></li>
-        <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
-        <li class="sub-menu"><a href="javascript:void(0);" data-toggle="modal" data-target="#messages"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-        <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
-        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><i class="fa fa-upload" aria-hidden="true"></i>
+        <li class="sub-menu"><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> "><i class="fa fa-user" aria-hidden="true" title="Mi Perfil"></i></a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><i class="fa fa-cog" aria-hidden="true" title="Configuración"></i></a></li>
+        <li class="sub-menu"><a href="javascript:void(0);" data-toggle="modal" data-target="#messages"><i class="fa fa-envelope" aria-hidden="true" title="Mensajes"></i></a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><i class="fa fa-sign-out" aria-hidden="true" title="Cerrar sesión"></i></a></li>
+        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><i class="fa fa-upload" aria-hidden="true" title="Upload"></i>
         <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
 </a></li>
     <?php endif; ?>

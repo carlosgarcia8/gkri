@@ -24,7 +24,7 @@ $model = new MessageForm;
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 panel-wrap">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-2 panel-wrap">
                     <div class="row content-wrap conversaciones">
                     <!-- Distintas conversaciones -->
                     <?php foreach ($conversaciones as $conversacion) :
@@ -43,7 +43,7 @@ $model = new MessageForm;
                     <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 panel-wrap">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-10 panel-wrap">
 
                     <div class="row content-wrap messages">
 

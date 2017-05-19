@@ -3,13 +3,12 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii2mod\editable\Editable;
-use yii\web\View;
 
 /* @var $this \yii\web\View */
 /* @var $model \yii2mod\comments\models\CommentModel */
 /* @var $maxLevel null|integer comments max level */
 
-
+// TODO arreglar los javascript:void(0)
 ?>
 <li class="comment">
     <div class="comment-content" id="comment-list-<?= $model->id ?>" data-comment-content-id="<?php echo $model->id ?>">
@@ -20,15 +19,15 @@ use yii\web\View;
             <div class="comment-action-buttons">
                 <?php if (Yii::$app->user->isGuest) :?>
                 <?php elseif (Yii::$app->user->identity->isAdmin) :?>
-                    <?php echo Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('yii2mod.comments', 'Delete'), '#', ['data' => ['action' => 'delete', 'url' => Url::to(['/comment/default/delete', 'id' => $model->id]), 'comment-id' => $model->id]]); ?>
+                    <?php echo Html::a('<span class="glyphicon glyphicon-trash"></span> <span class="texto-button">' . Yii::t('yii2mod.comments', 'Delete') . '</span>', '#', ['data' => ['action' => 'delete', 'url' => Url::to(['/comment/default/delete', 'id' => $model->id]), 'comment-id' => $model->id]]); ?>
                 <?php elseif (!$model->isChild() && !$model->tieneHijos() && ($model->createdBy == Yii::$app->user->identity->id)) :?>
-                    <?php echo Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('yii2mod.comments', 'Delete'), '#', ['data' => ['action' => 'delete', 'url' => Url::to(['/comment/default/delete', 'id' => $model->id]), 'comment-id' => $model->id]]); ?>
+                    <?php echo Html::a('<span class="glyphicon glyphicon-trash"></span> <span class="texto-button">' . Yii::t('yii2mod.comments', 'Delete') . '</span>', '#', ['data' => ['action' => 'delete', 'url' => Url::to(['/comment/default/delete', 'id' => $model->id]), 'comment-id' => $model->id]]); ?>
                 <?php elseif ($model->isChild() && ($model->createdBy == Yii::$app->user->identity->id)) :?>
-                    <?php echo Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('yii2mod.comments', 'Delete'), '#', ['data' => ['action' => 'delete', 'url' => Url::to(['/comment/default/delete', 'id' => $model->id]), 'comment-id' => $model->id]]); ?>
+                    <?php echo Html::a('<span class="glyphicon glyphicon-trash"></span> <span class="texto-button">' . Yii::t('yii2mod.comments', 'Delete') . '</span>', '#', ['data' => ['action' => 'delete', 'url' => Url::to(['/comment/default/delete', 'id' => $model->id]), 'comment-id' => $model->id]]); ?>
                 <?php endif; ?>
 
                 <?php if (!Yii::$app->user->isGuest && ($model->level < $maxLevel || is_null($maxLevel))) : ?>
-                    <?php echo Html::a("<span class='glyphicon glyphicon-share-alt'></span> " . Yii::t('yii2mod.comments', 'Reply'), '#', ['class' => 'comment-reply', 'data' => ['action' => 'reply', 'comment-id' => $model->id]]); ?>
+                    <?php echo Html::a('<span class="glyphicon glyphicon-share-alt"></span> <span class="texto-button">' . Yii::t('yii2mod.comments', 'Reply') . '</span>', '#', ['class' => 'comment-reply', 'data' => ['action' => 'reply', 'comment-id' => $model->id]]); ?>
                 <?php endif; ?>
             </div>
             <div class="comment-author-name">

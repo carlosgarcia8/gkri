@@ -54,7 +54,7 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
                 </video>
                 <ins class="play-gif" style="display:none; top: 40%; left: 32%;">GIF</ins>
             <?php else : ?>
-                <?= Html::img($model->ruta) ?>
+                <?= Html::img($model->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $model->ruta]) ?>
             <?php endif; ?>
         </div>
         <?php if ($esAutor && !$esAdmin) : ?>
