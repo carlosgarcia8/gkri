@@ -44,6 +44,7 @@ return [
     'Delete' => 'Borrar',
     'Don\'t have an account? Sign up!' => '¿No tienes cuenta? ¡Regístrate!',
     'In order to finish your registration, we need you to enter your email address' => 'Para terminar su registro , necesitamos que introduzca su dirección de correo electrónico',
+    'In order to finish your registration, we need you to enter following fields' => 'Para terminar su registro , necesitamos que introduzca los siguientes campos',
     'Invalid or expired link' => 'Enlace no válido o caducado',
     'New email' => 'Nuevo correo electrónico',
     'New password' => 'Nueva contraseña',

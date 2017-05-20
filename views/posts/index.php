@@ -14,7 +14,7 @@ $this->registerJsFile('@web/js/gifs.js', ['depends' => [\yii\web\JqueryAsset::cl
 $this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 ?>
-<a href="#" id="btn-arriba"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i></a>
+<a href="#" id="btn-arriba"><span class="fa fa-arrow-up fa-lg" aria-hidden="true"></span></a>
 <div class="container">
     <?php
     if (Yii::$app->session->getFlash('upload')) {

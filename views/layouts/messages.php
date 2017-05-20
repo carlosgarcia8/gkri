@@ -7,7 +7,7 @@ $model = new MessageForm;
 ?>
 <!-- Modal -->
 <div class="modal fade" id="messages" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+     aria-labelledby="messages" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -71,7 +71,7 @@ $model = new MessageForm;
                             </div>
 
                             <div class="send-button">
-                                <a class="btn btn-disabled btn-block btn-enviar-mensaje">Enviar <i class="fa fa-send"></i></a>
+                                <a class="btn btn-disabled btn-block btn-enviar-mensaje">Enviar <span class="fa fa-send"></span></a>
                             </div>
                             <?php ActiveForm::end(); ?>
                         </div>

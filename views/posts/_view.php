@@ -31,18 +31,18 @@ if ($model->extension == 'gif') : ?>
     <div class="item-votes">
         <ul class="btn-vote left">
         <?php if ($model->estaUpvoteado()) : ?>
-            <li><a href="javascript:void(0);" class="vote-up voted-up" data-id="<?= $model->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-up voted-up" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
         <?php else: ?>
-            <li><a href="javascript:void(0);" class="vote-up" data-id="<?= $model->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-up" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
         <?php endif; ?>
 
         <?php if ($model->estaDownvoteado()) : ?>
-            <li><a href="javascript:void(0);" class="vote-down voted-down" data-id="<?= $model->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-down voted-down" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
         <?php else: ?>
-            <li><a href="javascript:void(0);" class="vote-down" data-id="<?= $model->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-down" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
         <?php endif; ?>
 
-            <li><a href="<?= Url::toRoute(['/posts/view', 'id' => $model->id, '#' => 'comments']) ?>"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="<?= Url::toRoute(['/posts/view', 'id' => $model->id, '#' => 'comments']) ?>"><span class="fa fa-comments fa-2x" aria-hidden="true"></span></a></li>
         </ul>
     </div>
 </article>

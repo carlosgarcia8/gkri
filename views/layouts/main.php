@@ -44,7 +44,7 @@ $js = <<<EOT
         }
     }
 
-    $('.navbar-left a').each(function(index, value) {
+    $('.navbar-left a, .categorias-sub a').each(function(index, value) {
         if ($(this).prop("href") === window.location.href) {
             $(this).parent().addClass('active');
         }
@@ -54,7 +54,6 @@ $this->registerJs($js);
 $categorias = Categoria::find()->all();
 CommentModel::deleteAll(['status' => 2]);
 $this->title = 'GKRI';
-// TODO active en las categorias que se seleccionen
 // TODO poner imagen en los mensajes
 ?>
 <?php $this->beginPage() ?>
@@ -72,7 +71,7 @@ $this->title = 'GKRI';
 <body>
 <div class="template-oculto">
     <div class="msg">
-        <!-- <span class="chat-img pull-left"> -->
+        <!-- <span  class="chat-img pull-left"> -->
             <!-- <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> -->
         <!-- </span> -->
         <div class="msg-body">
@@ -109,47 +108,36 @@ $this->title = 'GKRI';
         <li><a href="/series">Series</a></li>
         <li><a href="/wtf">WTF</a></li>
         <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle">Más<b class="caret"></b></a>
+            <a data-toggle="dropdown" class="dropdown-toggle">Más<em class="caret"></em></a>
             <ul class="dropdown-menu multi-column columns-3">
-                <div class="row">
-                    <?php foreach ($categorias as $i => $categoria) {
-                        if ($i == 0) { ?>
-                            <div class="col-sm-4 col-xs-4">
-                                <ul class="multi-column-dropdown">
-                                    <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
-                        <?php }
-                        elseif ($i == 5 || $i == 11) { ?>
-                                    <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4 col-xs-4">
-                                <ul class="multi-column-dropdown">
-                        <?php
-                        } elseif ($i == count($categorias) - 1) { ?>
-                                    <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
-                                </ul>
-                            </div>
-                        <?php
-                        } else { ?>
+            <?php foreach ($categorias as $i => $categoria) {
+                if ($i == 0) { ?>
+                    <li class="col-sm-4 col-xs-4">
+                        <ul class="multi-column-dropdown">
                             <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
-                        <?php }
-                    } ?>
-                </div>
+                <?php }
+                elseif ($i == 5 || $i == 11) { ?>
+                            <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                        </ul>
+                    </li>
+                    <li class="col-sm-4 col-xs-4">
+                        <ul class="multi-column-dropdown">
+                <?php
+                } elseif ($i == count($categorias) - 1) { ?>
+                            <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                        </ul>
+                    </li>
+                <?php
+                } else { ?>
+                    <li><a href="/<?= $categoria->nombre_c ?>"><?= $categoria->nombre ?></a></li>
+                <?php }
+            } ?>
             </ul>
         </li>
     </ul>
-    <!-- <div class="categorias-sub" style="display: none;">
-        <button type="button" class="" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-        </button>
-		<a href="#" title="Menu">Menu</a>
-		<a href="#" title="Account">Account</a>
-		<a href="#" title="Settings">Settings</a>
-		<a href="#" title="Email">Email</a>
-	</div> -->
     <div class="dropdown sub-menu categorias-sub">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            <i class="fa fa-bars" aria-hidden="true" title="Categorías"></i>
+            <span class="fa fa-bars" aria-hidden="true" title="Categorías"></span>
         </button>
         <ul class="dropdown-menu">
             <?php foreach ($categorias as $i => $categoria) : ?>
@@ -160,10 +148,11 @@ $this->title = 'GKRI';
    <ul class="navbar-nav navbar-right nav" data-step="3" data-intro="Aquí tendrás las distintas opciones del usuario cuando hayas iniciado sesión, como ver tu perfil, las notificaciones o incluso ¡subir tu propio post!">
        <li></li>
        <li class="dropdown dropdown-search">
-           <a data-toggle="dropdown" class="dropdown-toggle"><i id="lupa" class="glyphicon glyphicon-search" title="Buscador"></i></a>
+           <a data-toggle="dropdown" class="dropdown-toggle"><span id="lupa" class="glyphicon glyphicon-search" title="Buscador"></span></a>
            <ul class="dropdown-menu dropdown-menu-search">
                <li>
                    <?php ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
+                   <label for="q" style="display:none;">Buscar</label>
                    <input type="text" id="search" class="form-control" placeholder="Search" name="q">
                    <?php ActiveForm::end();?>
                </li>
@@ -175,7 +164,7 @@ $this->title = 'GKRI';
     <?php else :?>
         <li class="dropdown dropdown-notifications">
             <a data-toggle="dropdown" class="dropdown-toggle">
-              <i data-count="0" class="glyphicon glyphicon-bell notification-icon hidden-icon" title="Notificaciones"></i>
+              <span data-count="0" class="glyphicon glyphicon-bell notification-icon hidden-icon" title="Notificaciones"></span>
             </a>
 
             <div class="dropdown-container">
@@ -195,7 +184,7 @@ $this->title = 'GKRI';
         <li class="dropdown">
             <a id="imagen-avatar" class="dropdown-toggle" href="/u/xharly8" data-toggle="dropdown">
                 <?= Html::img(Yii::$app->user->identity->profile->getAvatar() . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'img-rounded little']) ?>
-                <b class="caret"></b>
+                <em class="caret"></em>
             </a>
             <ul class="dropdown-menu">
                 <li><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> " tabindex="-1">Mi Perfil</a></li>
@@ -205,11 +194,11 @@ $this->title = 'GKRI';
                 <li><a href="<?= Url::to('/user/security/logout') ?>" data-method="post" tabindex="-1">Cerrar sesión</a></li>
             </ul>
         </li>
-        <li class="sub-menu"><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> "><i class="fa fa-user" aria-hidden="true" title="Mi Perfil"></i></a></li>
-        <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><i class="fa fa-cog" aria-hidden="true" title="Configuración"></i></a></li>
-        <li class="sub-menu"><a href="javascript:void(0);" data-toggle="modal" data-target="#messages"><i class="fa fa-envelope" aria-hidden="true" title="Mensajes"></i></a></li>
-        <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><i class="fa fa-sign-out" aria-hidden="true" title="Cerrar sesión"></i></a></li>
-        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><i class="fa fa-upload" aria-hidden="true" title="Upload"></i></a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> "><span class="fa fa-user" aria-hidden="true" title="Mi Perfil"></span></a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><span class="fa fa-cog" aria-hidden="true" title="Configuración"></span></a></li>
+        <li class="sub-menu"><a href="javascript:void(0);" data-toggle="modal" data-target="#messages"><span class="fa fa-envelope" aria-hidden="true" title="Mensajes"></span></a></li>
+        <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><span class="fa fa-sign-out" aria-hidden="true" title="Cerrar sesión"></span></a></li>
+        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><span class="fa fa-upload" aria-hidden="true" title="Upload"></span></a></li>
         <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
     <?php endif; ?>
     </ul> <?php

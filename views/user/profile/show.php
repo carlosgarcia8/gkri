@@ -28,7 +28,7 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
 
 ?>
-<a href="#" id="btn-arriba"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i></a>
+<a href="#" id="btn-arriba"><span class="fa fa-arrow-up fa-lg" aria-hidden="true"></span></a>
 <div class="row">
     <div class="alert alert-success fade in" id="message-create" style="display:none;">
         <button type="button" class="close">×</button>
@@ -60,16 +60,16 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <h4><?= $this->title ?>
             <?php if (!empty($profile->gender)) : ?>
                 <?php if ($profile->gender == 'M') : ?>
-                    <i class="fa fa-mars" aria-hidden="true"></i>
+                    <span class="fa fa-mars" aria-hidden="true"></span>
                 <?php else : ?>
-                    <i class="fa fa-venus" aria-hidden="true"></i>
+                    <span class="fa fa-venus" aria-hidden="true"></span>
                 <?php endif; ?>
             <?php endif; ?>
             </h4>
             <ul style="padding: 0; list-style: none outside none;">
                 <?php if (!empty($profile->location)) : ?>
                     <li>
-                        <i class="glyphicon glyphicon-map-marker text-muted"></i> <?= Html::encode($profile->location) ?>
+                        <span class="glyphicon glyphicon-map-marker text-muted"></span> <?= Html::encode($profile->location) ?>
                     </li>
                 <?php endif; ?>
             </ul>

@@ -1,14 +1,12 @@
 <?php
-use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\widgets\ActiveForm;
 
 ?>
 
 <!-- Button trigger modal -->
 <button class="btn btn-primary" data-toggle="modal" data-target="#myModalNorm">
-    <i class="fa fa-envelope" aria-hidden="true"></i>
+    <span class="fa fa-envelope" aria-hidden="true"></span>
 </button>
 
 <!-- Modal -->

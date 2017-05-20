@@ -29,18 +29,18 @@ if ($post != null) : ?>
     <div class="item-votes">
         <ul class="btn-vote left">
         <?php if ($post->estaUpvoteado()) : ?>
-            <li><a href="javascript:void(0);" class="vote-up voted-up" data-id="<?= $post->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-up voted-up" data-id="<?= $post->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
         <?php else: ?>
-            <li><a href="javascript:void(0);" class="vote-up" data-id="<?= $post->id ?>"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-up" data-id="<?= $post->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
         <?php endif; ?>
 
         <?php if ($post->estaDownvoteado()) : ?>
-            <li><a href="javascript:void(0);" class="vote-down voted-down" data-id="<?= $post->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-down voted-down" data-id="<?= $post->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
         <?php else: ?>
-            <li><a href="javascript:void(0);" class="vote-down" data-id="<?= $post->id ?>"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="javascript:void(0);" class="vote-down" data-id="<?= $post->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
         <?php endif; ?>
 
-            <li><a href="<?= Url::toRoute(['/posts/view', 'id' => $post->id, '#' => 'comments']) ?>"><i class="fa fa-comments fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="<?= Url::toRoute(['/posts/view', 'id' => $post->id, '#' => 'comments']) ?>"><span class="fa fa-comments fa-2x" aria-hidden="true"></span></a></li>
         </ul>
     </div>
 </article>
