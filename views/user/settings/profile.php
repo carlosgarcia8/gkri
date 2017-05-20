@@ -14,6 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
+<div class="alert alert-danger fade in" id="upload-client-error" style="display:none;">
+    <button type="button" class="close">×</button>
+    <span></span>
+</div>
 
 <div class="row">
     <div class="col-md-3">

@@ -34,6 +34,10 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         <button type="button" class="close">×</button>
         Tu mensaje ha sido enviado correctamente.
     </div>
+    <div class="alert alert-danger fade in" id="upload-client-error" style="display:none;">
+        <button type="button" class="close">×</button>
+        <span></span>
+    </div>
     <div class="col-xs-12 col-sm-12 col-md-3">
         <?php if ($suPerfil) : ?>
         <div class="hovereffect">
@@ -43,7 +47,9 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             ]) ?>
             <div class="overlay">
                 <a class="upload info" href="#">Cambiar avatar</a>
-                <?php $form = ActiveForm::begin() ?>
+                <?php $form = ActiveForm::begin([
+                    'enableClientValidation' => false,
+                    ]) ?>
                     <?= $form->field($model, 'imageFile')->fileInput(['style' => 'visibility: hidden', 'label' => 'none', 'class' => 'uploadAvatar'])->label(false) ?>
                 <?php ActiveForm::end() ?>
             </div>

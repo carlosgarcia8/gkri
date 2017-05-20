@@ -152,7 +152,7 @@ $this->title = 'GKRI';
            <ul class="dropdown-menu dropdown-menu-search">
                <li>
                    <?php ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
-                   <label for="q" style="display:none;">Buscar</label>
+                   <label for="search" style="display:none;">Buscar</label>
                    <input type="text" id="search" class="form-control" placeholder="Search" name="q">
                    <?php ActiveForm::end();?>
                </li>
