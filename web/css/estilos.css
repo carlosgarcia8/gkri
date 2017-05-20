@@ -287,6 +287,10 @@ a {
     background-color: #555555;
 }
 
+.navbar-inverse .navbar-left li.active a {
+    background-color: #555555 !important;
+}
+
 .navbar-inverse .navbar-left > li > a {
     color: white !important;
 }
@@ -1111,6 +1115,12 @@ a.btn-disabled {
         margin-left: 32.5%;
     }
 
+    /************ BUSQUEDA ************/
+
+    .busqueda {
+        margin-left: 70px;
+    }
+
     /************ MENU ************/
 
     /*.menu-grande {
@@ -1267,6 +1277,14 @@ a.btn-disabled {
 }
 
 @media screen and (max-width: 576px) {
+    /************ BUSQUEDA ************/
+
+    .busqueda {
+        margin-left: 0;
+    }
+    .dropdown-search a {
+        padding-left: 6px !important;
+    }
     /************ MODAL ************/
 
     .conversation .media-heading, .conversation small {

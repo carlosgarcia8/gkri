@@ -29,18 +29,20 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
             'dataProvider' => $dataProvider,
             'itemOptions' => ['class' => 'item'],
             'itemView' => '_view.php',
+            'showOnEmpty' => true,
             'layout' => "{items}\n{pager}",
         ]) ?>
         <?php else : ?>
             <?php if($existeCategoria) : ?>
             <div class="busqueda">
                 <h4>Búsqueda</h4>
-                <h5>Estos son los posts con categoría: <?= $categoria ?></h5>
+                <h5>Hay <?= $dataProvider->getCount() ?> resultados con categoría: <?= $categoria ?></h5>
             </div>
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'itemOptions' => ['class' => 'item'],
                 'itemView' => '_view.php',
+                'showOnEmpty' => true,
                 'layout' => "{items}\n{pager}",
             ]) ?>
             <?php else : ?>
@@ -54,17 +56,19 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
                     'dataProvider' => $dataProvider,
                     'itemOptions' => ['class' => 'item'],
                     'itemView' => '_view.php',
+                    'showOnEmpty' => true,
                     'layout' => "{items}\n{pager}",
                 ]) ?>
             <?php else : ?>
             <div class="busqueda">
                 <h4>Búsqueda</h4>
-                <h5>Estos son los posts cuyo título empiezan por: "<?= $titulo ?>"</h5>
+                <h5>Hay <?= $dataProvider->getCount() ?> resultados cuyo título empiezan por: "<?= $titulo ?>"</h5>
             </div>
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'itemOptions' => ['class' => 'item'],
                 'itemView' => '_view.php',
+                'showOnEmpty' => true,
                 'layout' => "{items}\n{pager}",
             ]) ?>
             <?php endif; ?>
@@ -73,6 +77,7 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
                 'dataProvider' => $dataProvider,
                 'itemOptions' => ['class' => 'item'],
                 'itemView' => '_view.php',
+                'showOnEmpty' => true,
                 'layout' => "{items}\n{pager}",
             ]) ?>
         <?php endif; ?>

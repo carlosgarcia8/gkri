@@ -16,7 +16,7 @@ if ($model->extension == 'gif') : ?>
     <?php if ($model->extension == 'gif') : ?>
     <div class="gifplayer-wrapper">
         <video width="455" loop="loop">
-            <source src="<?= $model->ruta ?>" type="video/mp4">
+            <source src="<?= $model->ruta . '?t=' . date('d-m-Y-H:i:s') ?>" type="video/mp4">
         </video>
         <ins class="play-gif" style="display:none; top: 43%; left: 43%;">GIF</ins>
     </div>

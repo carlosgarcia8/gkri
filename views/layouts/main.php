@@ -43,6 +43,12 @@ $js = <<<EOT
             localStorage.setItem('tour', 1);
         }
     }
+
+    $('.navbar-left a').each(function(index, value) {
+        if ($(this).prop("href") === window.location.href) {
+            $(this).parent().addClass('active');
+        }
+    });
 EOT;
 $this->registerJs($js);
 $categorias = Categoria::find()->all();
@@ -103,7 +109,7 @@ $this->title = 'GKRI';
         <li><a href="/series">Series</a></li>
         <li><a href="/wtf">WTF</a></li>
         <li class="dropdown">
-            <a href="/" data-toggle="dropdown" class="dropdown-toggle">Más<b class="caret"></b></a>
+            <a data-toggle="dropdown" class="dropdown-toggle">Más<b class="caret"></b></a>
             <ul class="dropdown-menu multi-column columns-3">
                 <div class="row">
                     <?php foreach ($categorias as $i => $categoria) {

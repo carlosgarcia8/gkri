@@ -14,7 +14,7 @@ if ($post != null) : ?>
         <?php if ($post->extension == 'gif') : ?>
         <div class="gifplayer-wrapper">
             <video width="455" loop="loop" autoplay="autoplay">
-                <source src="<?= $post->ruta ?>" type="video/mp4">
+                <source src="<?= $post->ruta . '?t=' . date('d-m-Y-H:i:s')  ?>" type="video/mp4">
             </video>
             <ins class="play-gif" style="display:none; top: 40%; left: 42%;">GIF</ins>
         </div>

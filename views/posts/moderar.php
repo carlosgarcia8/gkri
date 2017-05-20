@@ -16,7 +16,7 @@ $this->title = 'Posts';
         <div class="panel panel-default">
             <?php if ($post->extension == 'gif') : ?>
                 <video width="455" loop="loop" autoplay="autoplay">
-                    <source src="<?= $post->ruta ?>" type="video/mp4">
+                    <source src="<?= $post->ruta . '?t=' . date('d-m-Y-H:i:s') ?>" type="video/mp4">
                 </video>
             <?php else : ?>
                 <?= Html::a(Html::img($post->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $post->ruta]), ['/posts/view', 'id' => $post->id]) ?>
