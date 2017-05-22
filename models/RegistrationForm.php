@@ -16,9 +16,7 @@ use Yii;
 use dektrium\user\models\RegistrationForm as BaseRegistrationForm;
 
 /**
- * Registration form collects user input on registration process, validates it and creates new User model.
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * El formulario de registro obtiene los datos del usuario, los valida y crea un nuevo modelo User
  */
 class RegistrationForm extends BaseRegistrationForm
 {
@@ -101,7 +99,7 @@ class RegistrationForm extends BaseRegistrationForm
     }
 
     /**
-     * Registers a new user account. If registration was successful it will set flash message.
+     * Registra una nueva cuenta de usuario. Mandara un mensaje flash si se ha registrado con exito
      *
      * @return bool
      */

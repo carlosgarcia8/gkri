@@ -12,6 +12,9 @@ use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\MethodNotAllowedHttpException;
 
+/**
+ * Clase FollowsController
+ */
 class FollowsController extends \yii\web\Controller
 {
     /**
@@ -97,6 +100,8 @@ class FollowsController extends \yii\web\Controller
         if ($follow === null) {
             return $this->redirect(['/']);
         }
+
+        Yii::error($follow->delete(), 'app');
 
         $follow->delete();
 

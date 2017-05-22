@@ -3,7 +3,7 @@
 namespace app\models;
 
 /**
- * This is the model class for table "votos".
+ * Este es el modelo para la tabla "votos".
  *
  * @property integer $usuario_id
  * @property integer $post_id

@@ -20,6 +20,9 @@ use Yii;
 use yii\web\UploadedFile;
 use yii\web\MethodNotAllowedHttpException;
 
+/**
+ * Clase ProfileController
+ */
 class ProfileController extends BaseProfileController
 {
     /** @inheritdoc */

@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "votos_c".
+ * Este es el modelo para la tabla  "votos_c".
  *
  * @property integer $usuario_id
  * @property integer $comentario_id

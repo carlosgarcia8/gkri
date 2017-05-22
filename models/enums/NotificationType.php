@@ -4,6 +4,9 @@ namespace app\models\enums;
 
 use yii2mod\enum\helpers\BaseEnum;
 
+/**
+ * Clase de la que hereda Notification
+ */
 class NotificationType extends BaseEnum
 {
     /**
@@ -49,6 +52,7 @@ class NotificationType extends BaseEnum
     const MENSAJE_NUEVO = 6;
 
     /**
+     * Lista de las constantes con su texto
      * @var array
      */
     public static $list = [

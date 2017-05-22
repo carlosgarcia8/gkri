@@ -5,6 +5,9 @@ namespace app\models;
 use yii2mod\comments\models\CommentModel as BaseCommentModel;
 use Yii;
 
+/**
+ * Este es el modelo para la tabla "comment".
+ */
 class CommentModel extends BaseCommentModel
 {
     /**

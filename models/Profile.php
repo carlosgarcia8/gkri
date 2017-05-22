@@ -5,6 +5,9 @@ namespace app\models;
 use dektrium\user\models\Profile as BaseProfile;
 use Yii;
 
+/**
+ * Clase modelo que hereda del Profile de yii2-user para sobreescribir funcionalidades
+ */
 class Profile extends BaseProfile
 {
     /**

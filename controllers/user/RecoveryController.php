@@ -22,11 +22,9 @@ use yii\web\NotFoundHttpException;
 use dektrium\user\controllers\RecoveryController as BaseRecoveryController;
 
 /**
- * RecoveryController manages password recovery process.
+ * RecoveryController maneja el proceso de recuperación de contraseña
  *
  * @property \dektrium\user\Module $module
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class RecoveryController extends BaseRecoveryController
 {

@@ -5,7 +5,7 @@ namespace app\models;
 use app\models\CommentModel;
 
 /**
- * This is the model class for table "comment_votos".
+ * Este es el modelo para la tabla "votos_c" que aun asi usa una vista para su fin.
  *
  * @property integer $id
  * @property string $entity

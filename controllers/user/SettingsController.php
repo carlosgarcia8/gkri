@@ -8,6 +8,9 @@ use dektrium\user\models\Profile;
 use Yii;
 use yii\web\UploadedFile;
 
+/**
+ * Clase SettingsController
+ */
 class SettingsController extends BaseSettingsController
 {
     /**

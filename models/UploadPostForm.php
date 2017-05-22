@@ -9,6 +9,9 @@ use Yii;
 use yii\imagine\Image;
 use \CloudConvert\Api;
 
+/**
+ * Formulario para la subida y creación de un post
+ */
 class UploadPostForm extends Model
 {
     /**

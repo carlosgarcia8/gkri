@@ -7,7 +7,7 @@ use yii2mod\moderation\ModerationQuery;
 use yii2mod\moderation\ModerationBehavior;
 
 /**
- * This is the model class for table "posts".
+ * Este es el modelo para la tabla "posts".
  *
  * @property integer $id
  * @property string $titulo
@@ -251,14 +251,6 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->getVotosPositivos()->count() - $this->getVotosNegativos()->count();
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    // public function getUsuarios()
-    // {
-    //     return $this->hasMany(User::className(), ['id' => 'usuario_id'])->viaTable('downvotes', ['post_id' => 'id']);
-    // }
 
     /**
      * Obtiene el usuario que ha creado este post

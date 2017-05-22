@@ -10,6 +10,7 @@ namespace app\assets;
 use yii\web\AssetBundle;
 
 /**
+ * Asset para añadir css, js y dependencias de otros assets
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */

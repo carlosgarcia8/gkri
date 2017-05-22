@@ -26,7 +26,7 @@ use yii\helpers\Json;
 use linslin\yii2\curl;
 
 /**
- * PostsController implements the CRUD actions for Post model.
+ * Clase PostsController
  */
 class PostsController extends Controller
 {
@@ -226,6 +226,11 @@ class PostsController extends Controller
         }
     }
 
+    /**
+     * Acción para el generador de posts el cual obtiene la ruta de todas las imagenes
+     * y se las manda a la vista
+     * @return mixed
+     */
     public function actionGenerador()
     {
         $ficheros = FileHelper::findFiles(Yii::getAlias('@generador'));
@@ -241,6 +246,12 @@ class PostsController extends Controller
         ]);
     }
 
+    /**
+     * Cuando se selecciona una imagen con la que generar un meme se le pasara dicho fichero
+     * a la vista generador-crear
+     * @param  string $fichero nombre del fichero
+     * @return mixed
+     */
     public function actionGeneradorCrear($fichero)
     {
         $ruta = Yii::getAlias('@generador') . "/$fichero";

@@ -2,14 +2,14 @@ Array
 (
     [0] => Array
         (
-            [line] => 20
+            [line] => 23
             [file] => controllers/FollowsController.php
             [message] => Method behaviors has no parent to inherit from in app\controllers\FollowsController.
         )
 
     [1] => Array
         (
-            [line] => 24
+            [line] => 27
             [file] => controllers/MessagesController.php
             [message] => Method behaviors has no parent to inherit from in app\controllers\MessagesController.
         )
@@ -44,14 +44,14 @@ Array
 
     [6] => Array
         (
-            [line] => 26
+            [line] => 29
             [file] => controllers/user/ProfileController.php
             [message] => Method behaviors has no parent to inherit from in app\controllers\user\ProfileController.
         )
 
     [7] => Array
         (
-            [line] => 76
+            [line] => 74
             [file] => controllers/user/RecoveryController.php
             [message] => Method behaviors has no parent to inherit from in app\controllers\user\RecoveryController.
         )
@@ -177,152 +177,124 @@ Array
 
     [25] => Array
         (
-            [line] => 94
-            [file] => models/Post.php
-            [message] => Method tableName has no parent to inherit from in app\models\Post.
-        )
-
-    [26] => Array
-        (
-            [line] => 102
-            [file] => models/Post.php
-            [message] => Method rules has no parent to inherit from in app\models\Post.
-        )
-
-    [27] => Array
-        (
-            [line] => 124
-            [file] => models/Post.php
-            [message] => Method behaviors has no parent to inherit from in app\models\Post.
-        )
-
-    [28] => Array
-        (
-            [line] => 137
-            [file] => models/Post.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Post.
-        )
-
-    [29] => Array
-        (
-            [line] => 13
+            [line] => 16
             [file] => models/Profile.php
             [message] => Method rules has no parent to inherit from in app\models\Profile.
         )
 
-    [30] => Array
+    [26] => Array
         (
-            [line] => 33
+            [line] => 36
             [file] => models/Profile.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\Profile.
         )
 
-    [31] => Array
+    [27] => Array
         (
-            [line] => 58
+            [line] => 65
             [file] => models/RecoveryForm.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\RecoveryForm.
         )
 
-    [32] => Array
+    [28] => Array
         (
-            [line] => 70
+            [line] => 77
             [file] => models/RecoveryForm.php
             [message] => Method scenarios has no parent to inherit from in app\models\RecoveryForm.
         )
 
-    [33] => Array
+    [29] => Array
         (
-            [line] => 81
+            [line] => 88
             [file] => models/RecoveryForm.php
             [message] => Method rules has no parent to inherit from in app\models\RecoveryForm.
         )
 
-    [34] => Array
+    [30] => Array
         (
-            [line] => 160
+            [line] => 167
             [file] => models/RecoveryForm.php
             [message] => Method formName has no parent to inherit from in app\models\RecoveryForm.
         )
 
-    [35] => Array
+    [31] => Array
         (
-            [line] => 49
+            [line] => 47
             [file] => models/RegistrationForm.php
             [message] => Method rules has no parent to inherit from in app\models\RegistrationForm.
         )
 
-    [36] => Array
+    [32] => Array
         (
-            [line] => 85
+            [line] => 83
             [file] => models/RegistrationForm.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\RegistrationForm.
         )
 
-    [37] => Array
+    [33] => Array
         (
-            [line] => 98
+            [line] => 96
             [file] => models/RegistrationForm.php
             [message] => Method formName has no parent to inherit from in app\models\RegistrationForm.
         )
 
-    [38] => Array
+    [34] => Array
         (
-            [line] => 65
+            [line] => 63
             [file] => models/SettingsForm.php
             [message] => Method rules has no parent to inherit from in app\models\SettingsForm.
         )
 
-    [39] => Array
+    [35] => Array
         (
-            [line] => 91
+            [line] => 89
             [file] => models/SettingsForm.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\SettingsForm.
         )
 
-    [40] => Array
+    [36] => Array
         (
-            [line] => 103
+            [line] => 101
             [file] => models/SettingsForm.php
             [message] => Method formName has no parent to inherit from in app\models\SettingsForm.
         )
 
-    [41] => Array
+    [37] => Array
         (
             [line] => 21
             [file] => models/Voto.php
             [message] => Method tableName has no parent to inherit from in app\models\Voto.
         )
 
-    [42] => Array
+    [38] => Array
         (
             [line] => 29
             [file] => models/Voto.php
             [message] => Method rules has no parent to inherit from in app\models\Voto.
         )
 
-    [43] => Array
+    [39] => Array
         (
             [line] => 44
             [file] => models/Voto.php
             [message] => Method attributeLabels has no parent to inherit from in app\models\Voto.
         )
 
-    [44] => Array
+    [40] => Array
         (
             [line] => 22
             [file] => models/VotoComentario.php
             [message] => Method tableName has no parent to inherit from in app\models\VotoComentario.
         )
 
-    [45] => Array
+    [41] => Array
         (
             [line] => 30
             [file] => models/VotoComentario.php
             [message] => Method rules has no parent to inherit from in app\models\VotoComentario.
         )
 
-    [46] => Array
+    [42] => Array
         (
             [line] => 44
             [file] => models/VotoComentario.php

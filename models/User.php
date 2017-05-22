@@ -6,6 +6,9 @@ use Yii;
 use app\models\CommentModel;
 use dektrium\user\models\User as BaseUser;
 
+/**
+ * Clase modelo User que hereda del yii2-user para sobreescribir y/o añadir algunas funcionalidades
+ */
 class User extends BaseUser
 {
     /**

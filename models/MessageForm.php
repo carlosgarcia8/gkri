@@ -4,6 +4,9 @@ namespace app\models;
 
 use yii\base\Model;
 
+/**
+ * Clase para el formulario de creación del mensaje
+ */
 class MessageForm extends Model
 {
     /**

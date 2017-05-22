@@ -3,7 +3,7 @@
 namespace app\models;
 
 /**
- * This is the model class for table "follows".
+ * Este es el modelo para la tabla "follows".
  *
  * @property integer $user_id
  * @property integer $follow_id
@@ -46,6 +46,7 @@ class Follow extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el usuario que hace el follow
      * @return \yii\db\ActiveQuery
      */
     public function getUsuario()
@@ -54,6 +55,7 @@ class Follow extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el usuario que recibe el follow
      * @return \yii\db\ActiveQuery
      */
     public function getFollow()

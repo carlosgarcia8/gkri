@@ -5,7 +5,7 @@ namespace app\models;
 use app\models\enums\NotificationType;
 
 /**
- * This is the model class for table "notificaciones".
+ * Este es el modelo para la tabla "notificaciones".
  *
  * @property integer $id
  * @property integer $type

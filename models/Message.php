@@ -3,7 +3,7 @@
 namespace app\models;
 
 /**
- * This is the model class for table "messages".
+ * Este es el modelo para la tabla "messages".
  *
  * @property integer $id
  * @property integer $user_id
@@ -54,6 +54,7 @@ class Message extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el emisor del mensaje
      * @return \yii\db\ActiveQuery
      */
     public function getEmisor()
@@ -62,6 +63,7 @@ class Message extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene el receptor del mensaje
      * @return \yii\db\ActiveQuery
      */
     public function getReceptor()

@@ -23,8 +23,6 @@ use dektrium\user\models\SettingsForm as BaseSettingsForm;
  * SettingsForm gets user's username, email and password and changes them.
  *
  * @property User $user
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class SettingsForm extends BaseSettingsForm
 {
@@ -106,7 +104,7 @@ class SettingsForm extends BaseSettingsForm
     }
 
     /**
-     * Saves new account settings.
+     * Guarda la nueva configuración de la cuenta.
      *
      * @return bool
      */
@@ -141,7 +139,7 @@ class SettingsForm extends BaseSettingsForm
     }
 
     /**
-     * Changes user's email address to given without any confirmation.
+     * Cambia la dirección de correo electrónico del usuario sin ninguna confirmación
      */
     protected function insecureEmailChange()
     {
@@ -150,6 +148,7 @@ class SettingsForm extends BaseSettingsForm
     }
 
     /**
+     * Manda un mensaje de confirmación al email del usuario con un link para confirmar el cambio de email
      * Sends a confirmation message to user's email address with link to confirm changing of email.
      */
     protected function defaultEmailChange()

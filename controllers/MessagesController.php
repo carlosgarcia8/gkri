@@ -16,6 +16,9 @@ use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 use yii\web\MethodNotAllowedHttpException;
 
+/**
+ * Clase MessagesController
+ */
 class MessagesController extends \yii\web\Controller
 {
     /**

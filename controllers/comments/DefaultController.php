@@ -13,7 +13,7 @@ use app\models\VotoComentario;
 use yii\helpers\Url;
 
 /**
- * Class DefaultController
+ * Clase DefaultController
  *
  * @package app\comments\controllers
  */

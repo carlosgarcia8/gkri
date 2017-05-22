@@ -5,11 +5,11 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "categorias".
+ * Este es el modelo para la tabla "categorias".
  *
  * @property integer $id
- * @property string $nombre
- * @property string $nombre_c
+ * @property string $nombre Nombre a mostrar
+ * @property string $nombre_c Nombre para la url
  *
  * @property Posts[] $posts
  */

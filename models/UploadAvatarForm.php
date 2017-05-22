@@ -7,6 +7,9 @@ use yii\web\UploadedFile;
 use Yii;
 use yii\imagine\Image;
 
+/**
+ * Formulario para la subida del avatar del usuario
+ */
 class UploadAvatarForm extends Model
 {
     /**

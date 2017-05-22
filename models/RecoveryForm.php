@@ -18,13 +18,20 @@ use dektrium\user\models\Token;
 use dektrium\user\models\RecoveryForm as BaseRecoveryForm;
 
 /**
- * Model for collecting data on password recovery.
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * Modelo formulario para la recuperación de la contraseña.
  */
 class RecoveryForm extends BaseRecoveryForm
 {
+    /**
+     * Escenario para cuando solicitas la recuperación
+     * @var string
+     */
     const SCENARIO_REQUEST = 'request';
+
+    /**
+     * Escenario para cuando reinicias la contraseña
+     * @var string
+     */
     const SCENARIO_RESET = 'reset';
 
     /**
@@ -91,7 +98,7 @@ class RecoveryForm extends BaseRecoveryForm
     }
 
     /**
-     * Sends recovery message.
+     * Envia el mensaje de recuperación.
      *
      * @return bool
      */
@@ -129,7 +136,7 @@ class RecoveryForm extends BaseRecoveryForm
     }
 
     /**
-     * Resets user's password.
+     * Resetea la contraseña del usuario.
      *
      * @param Token $token
      *
