@@ -1,12 +1,3 @@
--- drop table if exists usuarios cascade;
--- create table usuarios (
---     id       bigserial    constraint pk_usuarios primary key,
---     nick     varchar(100) not null constraint uq_usuarios_nick unique,
---     password char(60)     not null,
---     auth_key char(32)     not null,
---     activo   bool         not null default true
--- );
-
 drop table if exists categorias cascade;
 
 create table categorias (
@@ -22,7 +13,7 @@ values ('Gracioso', 'gracioso'), ('Cultura', 'cultura'), ('Amor', 'amor'),
     ('WTF', 'wtf'), ('Gamers', 'gamers'), ('Anime/Manga', 'anime-manga'),
     ('Humor Negro', 'humor-negro'), ('Animales', 'animales'), ('Otro', 'otro');
 
--- alter table profile add column gender char(1);
+alter table profile add column gender char(1);
 
 drop table if exists posts cascade;
 create table posts (

@@ -9,6 +9,7 @@ use yii2mod\editable\Editable;
 /* @var $maxLevel null|integer comments max level */
 
 // TODO arreglar los javascript:void(0)
+// TODO añadir el autor en los comentarios y en el propio post
 ?>
 <li class="comment">
     <div class="comment-content" id="comment-list-<?= $model->id ?>" data-comment-content-id="<?php echo $model->id ?>">

@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
+// TODO cambiar el commented por otra palabra, a saber cual
 $post = \app\models\Post::findOne(['id' => $model->entityId]);
 
 if ($post != null) : ?>
@@ -20,7 +21,7 @@ if ($post != null) : ?>
         </div>
         <?php else : ?>
         <div class="">
-            <?= Html::a(Html::img($post->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $model->ruta]), ['/posts/view', 'id' => $post->id]) ?>
+            <?= Html::a(Html::img($post->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $post->ruta]), ['/posts/view', 'id' => $post->id]) ?>
         </div>
         <?php endif; ?>
     <p class="item-p">

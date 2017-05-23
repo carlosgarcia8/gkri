@@ -55,6 +55,7 @@ $categorias = Categoria::find()->all();
 CommentModel::deleteAll(['status' => 2]);
 $this->title = 'GKRI';
 // TODO poner imagen en los mensajes
+// TODO poner boton para ir a moderar sin tener que ponerlo en la ruta
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -217,7 +218,7 @@ $this->title = 'GKRI';
         <?= $content ?>
     </div>
 </div>
-
+<?php // TODO pensar y/o preguntar sobre que poner en el footer ?>
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; GKRI <?= date('Y') ?></p>

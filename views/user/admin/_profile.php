@@ -17,8 +17,8 @@ use yii\helpers\Html;
  * @var dektrium\user\models\User $user
  * @var dektrium\user\models\Profile $profile
  */
+ // TODO Cambiar la tabla por otra cosa que tenga responsive por dios
 ?>
-
 <?php $this->beginContent('@dektrium/user/views/admin/update.php', ['user' => $user]) ?>
 
 <?php $form = ActiveForm::begin([
