@@ -21,7 +21,8 @@ Catálogo de Requisitos
 
 * [Definición detallada](requisitos.md)
 * [Cuadro resumen](requisitos.md)
-[Manual básico de usuarios
+
+Manual básico de usuarios
 --------------------------------------
 
 * [Manual](manual.md)
