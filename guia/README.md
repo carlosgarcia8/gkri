@@ -1,7 +1,8 @@
 <img src="https://github.com/carlosgarcia8/gkri/raw/master/web/images/logo.png" width="420" title="Logo GKRI">
-Global Klingon Radian Imaginary
+Guía de Global Klingon Radian Imaginary
 ==================
 
+## Índice:
 1. [Descripción general del Proyecto](descripcion-general.md)
     * [Funcionalidad principal de la aplicación](descripcion-general.md)
     * [Objetivos Generales](descripcion-general.md)

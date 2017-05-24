@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/caf9c96c/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/dbe19bdd/solarized_light.css" rel="stylesheet">
+<link href="./assets/3baaa47c/style.css" rel="stylesheet">
+<script src="./assets/3f3e3b9d/jquery.js"></script>
+<script src="./assets/caf9c96c/js/bootstrap.js"></script>
+<script src="./assets/756bff73/jssearch.js"></script>    <title>Catálogo de Requisitos - Índice: - Guía de Gkri</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w1" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía de Gkri</a></div><div id="w1-collapse" class="collapse navbar-collapse"><ul id="w2" class="navbar-nav nav"><li><a href="api/index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item active" href="#navigation-0" data-toggle="collapse" data-parent="#navigation">Índice: <b class="caret"></b></a><div id="navigation-0" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./descripcion-general.html">Descripción general del Proyecto</a>
+<a class="list-group-item" href="./instrucciones.html">Instrucciones de instalación y despliegue</a>
+<a class="list-group-item active" href="./requisitos.html">Catálogo de Requisitos</a>
+<a class="list-group-item" href="./manual.html">Manual básico de usuarios</a>
+<a class="list-group-item" href="./decisiones.html">Decisiones adoptadas y su justificación</a>
+<a class="list-group-item" href="./dificultades.html">Dificultades encontradas y soluciones aplicadas</a>
+<a class="list-group-item" href="./glosario.html">Glosario de términos</a>
+<a class="list-group-item" href="./conclusiones.html">Conclusiones</a>
+<a class="list-group-item" href="./descripcion-general.html">Funcionalidad principal de la aplicación</a>
+<a class="list-group-item" href="./descripcion-general.html">Objetivos Generales</a>
+<a class="list-group-item" href="https://github.com/carlosgarcia8/gkri">Repositorio en GitHub</a>
+<a class="list-group-item" href="https://carlosgarcia8.github.io/gkri/">Documentación</a>
+<a class="list-group-item" href="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/diagrama-clase.png">De clases</a>
+<a class="list-group-item" href="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/diagrama-logico.png">De estructura lógica de datos</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Catálogo de Requisitos <span id="catalogo-de-requisitos"></span><a href="#catalogo-de-requisitos" class="hashlink">&para;</a></h1><h3><a name="definicion-detallada">Definición detallada</a> <span id="definicion-detallada"></span><a href="#definicion-detallada" class="hashlink">&para;</a></h3><p><a href="#cuadro-resumen">Ir a Cuadro resumen</a></p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R01 </th><th>Registrar un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario entrara en la aplicación y por medio de un formulario donde le pedirá email, nombre y contraseña se registrara. Al registrarse se le enviara un correo a su email para que confirme el mismo.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/1">1</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R02 </th><th>Iniciar sesión</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario podrá iniciar sesión tanto con el correo como con el  username. También se podrá logear con google+.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/2">2</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R03 </th><th>Mostrar los Posts</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Se mostraran el autor, el titulo, la imagen, la categoría, cuantos votos  positivos tiene y unos botones de voto positivo y negativo. Irán de la  misma manera que la web  <a href="http://9gag.com">http://9gag.com</a> , y si nos vamos a un post  en concreto nos mostrara la misma información mas los comentarios.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/3">3</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R04 </th><th>Borrar un post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>En la propia sección del post subido por el usuario tendrá la opción  “delete” donde eliminara su post. El admin siempre tendrá la opción de  borrar cualquier post de la aplicación.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/4">4</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R05 </th><th>Crear un post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Un botón nos llevara a un formulario el cual hará falta rellenar con  titulo, la categoría y una imagen. La imagen deberá de controlarse un mínimo de altura y anchura correspondiente con el estilo de la  aplicación, unas extensiones permitidas y una redimension que hará la aplicación. El post se quedara en un estado de “pendiente de  moderación”, hasta que un admin no lo apruebe no pasara a la página  principal. Las imágenes que se suben podrán ser imágenes largas verticalmente por lo cual se recortaran y se le especificara al usuario que para verlo deberá de entrar en su apartado, imágenes normales en cuanto dimensión y gifs. Todas las imágenes se tendrán que re-dimensionar para que tengan la misma anchura.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/5">5</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R06 </th><th>Actualizar un post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario no tendrá permisos de actualización, pero el que tenga  permisos de admin si.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/6">6</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R07 </th><th>Re dimensionar imagen del Post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Las imágenes podrán ser tanto png, jpg como gif. Se re-dimensionaran a unas dimensiones correctas para el estilo de la aplicación,  seguramente todas deberán tener la misma anchura (unos 500px mas  o menos) y mantener el aspect ratio en cuanto a la altura.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/7">7</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R08 </th><th>Re dimensionar gif del post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Las imágenes podrán ser tanto png, jpg como gif. Se re-dimensionaran a unas dimensiones correctas para el estilo de la aplicación,  seguramente todas deberán tener la misma anchura (unos 500px mas o menos) y mantener el aspect ratio en cuanto a la altura.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Alta</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/31">31</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R09 </th><th>Cambiar configuración de la cuenta del usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario podrá cambiar su correo, su contraseña y el username. La  aplicación le pedirá siempre la contraseña actual para poder hacer cualquier cambio en la configuración de la cuenta.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/8">8</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R10 </th><th> Cambiar configuración del perfil del usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario podrá cambiar su nombre, su género, su localización y una biografía. Esta información sera visible para todos.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/9">9</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R11 </th><th>Cambiar avatar del usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>En la configuración del usuario tendrá la vista del avatar y un botón  para cambiar avatar. En el perfil del usuario si pasa el ratón por encima del avatar también le ofrecerá la posibilidad de cambiar el avatar  siempre y cuando sea su perfil.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/10">10</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R12 </th><th>Re dimensionar imagen del avatar del usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>e re dimensionara para que tenga unas medidas correctas para el estilo de la aplicación.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/11">11</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R13 </th><th>Comentar un post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario tendrá un espacio para poder escribir su comentario y luego dándole a un botón se añadirá ese comentario al post.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/32">32</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R14 </th><th>Mostrar comentarios de un post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Los comentarios se mostraran de tal manera que aquellos mas  votados se irán arriba y los menos votados o nuevo se quedaran  abajo. Los comentarios se mostraran con sus replies.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/33">33</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R15 </th><th>Comentar otro comentario (reply)</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Los comentarios se podrán escribir haciendo reply a otros comentarios de tal manera que irán de arriba a abajo, en los comentarios se les  nombrara al usuario del comentario hecho reply (ejemplo: “@iesdonana jaja me gusto tu comentario”).</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Alta</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/34">34</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R16 </th><th>Borrar comentario siendo usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario podrá eliminar el comentario siempre y cuando no tengan ningún reply por medio de un botón “delete”.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/35">35</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R17 </th><th>Moderación de posts</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Los admins deberán de entrar en dicha sección y aprobar aquellos  posts que cumplan con los principios éticos y morales y rechazar a aquellos que no los cumplan.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/36">36</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R18 </th><th>Votar positivo un post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario al pulsar sobre un botón le dará un voto positivo al post y se  actualizara usando ajax el numero de votos y el color/forma del botón. Si le vuelve a dar le quitara el voto positivo.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/37">37</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R19 </th><th>Votar negativo un post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario al pulsar sobre un botón le dará un voto negativo al post y se actualizara usando ajax el numero de votos y el color/forma del botón. Si le vuelve a dar le quitara el voto negativo.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/38">38</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R20 </th><th>Votar positivo un comentario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario al pulsar sobre un botón le dará un voto positivo al comentario y se actualizara usando ajax el numero de votos y el  color/forma del botón. Si le vuelve a dar le quitara el voto positivo.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/39">39</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R21 </th><th>Votar negativo un comentario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario al pulsar sobre un botón le dará un voto negativo al comentario y se actualizara usando ajax el numero de votos y el color/forma del botón. Si le vuelve a dar le quitara el voto negativo.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/40">40</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R22 </th><th>El usuario puede seguir a otro usuarios</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Al seguir a otro usuario se te notificara cuando ese usuario ha subido un post.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/70">70</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R23 </th><th>El usuario puede tener seguidores</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Es un sistema a lo twitter, se te notifica que tal persona te sigue y tendrás en tu perfil un contador con toda la gente que sigue y a cuantos sigues tu.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/71">71</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R24 </th><th>Notificación de comentario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Un post subido por el usuario cuando tenga un comentario nuevo le aparecerá un mensaje al usuario a través de ajax diciéndole “El post ‘ole’ tiene comentarios nuevos”.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/72">72</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R25 </th><th>notificación de reply</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>En un comentario realizado en un post cuando te hagan un reply y te nombren se te notificara.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/73">73</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R26 </th><th>Notificación de post nuevo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Cuando un usuario de los que sigues suba un nuevo post se le notificara al usuario.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/74">74</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R27 </th><th>Notificación de seguidor nuevo</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Cuando tengas un seguidor nuevo se te notificara con esa información.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/75">75</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R28 </th><th>Notificación de votos en tu post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Cuando haya votos tanto positivos como negativos se te notificara con que hay cambios en los votos del post.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/76">76</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R29 </th><th>Notificación de post aceptado</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Cuando el post que hayas subido haya sido aceptado por un admin y por lo tanto ya vaya a la página principal, se te notificara.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/77">77</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R30 </th><th>Logout del usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Podrá finalizar sesión cuando quiera simplemente pulsando el botón ‘Logout’.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/12">12</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R31 </th><th>Recordar usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>La aplicación recordara al usuario si así lo desea y así no tendrá por que volver a iniciar sesión.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/13">13</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R32 </th><th>Ver todos los usuarios</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá ver y realizar una serie de acciones con los usuarios registrados en la aplicación.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/14">14</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R33 </th><th>Confirmar un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá ver y realizar una serie de acciones con los usuarios registrados en la aplicación.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/15">15</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R34 </th><th>Convertirse en un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá entrar como ese usuario.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/16">16</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R35 </th><th>Bloquear usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá bloquear cualquier usuario que el quiera de la lista.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/17">17</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R36 </th><th>Generar nueva contraseña</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá generar nueva contraseña para el usuario y se le enviara por correo.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/18">18</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R37 </th><th>Crear nuevo usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá crear nuevo usuario rellenando el mismo formulario con correo, username y contraseña.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/19">19</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R38 </th><th>Eliminar un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá eliminar un usuario de la lista.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/20">20</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R39 </th><th>Actualizar un usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El admin podrá cambiar los datos de cualquier usuario en un menu parecido al que tiene el usuario pero con mas información.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/21">21</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R40 </th><th>Mandar email de confirmación</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Básicamente la aplicación enviando un enlace al correo del usuario hará que ese usuario este confirmado y ya pueda iniciar sesión o cambiar su contraseña.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/22">22</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R41 </th><th>Volver a enviar mensaje de confirmación</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>La aplicación podrá enviar al correo del usuario el enlace de confirmación de nuevo en el caso de que lo haya perdido o extraviado.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/23">23</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R42 </th><th>Borrar usuarios no confirmados</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>La aplicación eliminara aquellos usuarios que en el plazo de 24 horas no hayan confirmado su email.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/24">24</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R43 </th><th>Recuperar contraseña</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario si no se acuerda de su contraseña siempre tiene la opción de recuperar la contraseña, donde le enviaran un enlace al correo para que pueda asignar una nueva contraseña. Este enlace solo estará disponible por 6 horas.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/25">25</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R44 </th><th>Enviar mensaje privado a otro usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario podrá tener la opción en el perfil de otro usuario de mandarle un mensaje privado.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/78">78</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R45 </th><th>Crear mensaje privado</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario al seleccionar que quiere mandarle un mensaje privado a otro usuario se le redirigirá a un formulario donde tendrá que rellenar un texto con el mensaje.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/79">79</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R46 </th><th>Eliminar mensaje privado</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario podrá eliminar un mensaje privado enviado a otro usuario al ver los mensajes privados enviados.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/80">80</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R47 </th><th>Recibir mensaje privado de otro usuario</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario tendrá la opción de recibir mensajes privados de otros usuarios.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/81">81</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R48 </th><th>Ver mensajes privados recibidos</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario en su perfil tendrá la opción de ver todos los mensajes privados recibidos.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/82">82</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R49 </th><th>Ver mensajes privados enviados</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario en su perfil tendrá la opción de ver todos los mensajes privados enviados.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/83">83</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R50 </th><th>Notificación de mensaje privado recibido</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Se le notificara al usuario cuando haya recibido un mensaje privado ensu inbox.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/84">84</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R51 </th><th>Generador de memes</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario al querer crear un post se le dará la opción de subir una imagen de su ordenador o generarla por el generador de memes de la aplicación, la cual tendrá una serie de imágenes base y a la que tu selecciones te pedirá el texto de arriba y el texto de abajo (véase  <a href="http://memeful.com/generator">http://memeful.com/generator</a>). Una vez tenga el texto que quiera el usuario le podrá dar a upload, la aplicación generara la imagen con los textos, tendrá que rellenar el mismo formulario con titulo y demás y quedara pendiente de moderación.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Alta</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/85">85</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R52 </th><th>Mostrar un post en concreto</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Cuando se vean todos los posts al darle tanto a la imagen (cuando no sea un gif) o al titulo nos mandara al post en concreto donde ya veremos toda su información de otra manera junto a los comentarios.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/26">26</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R53 </th><th>Buscar posts por categoría</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>En el menú tendremos las distintas categorías disponibles y al pulsarlas nos mostrara los posts de esa categoría seleccionada.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/27">27</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R54 </th><th>Buscar posts por título</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>n el menú habrá un buscador donde al darle a buscar se mostraran los posts donde el titulo empiece por el texto que se haya buscado.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/28">28</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R55 </th><th>Iniciar sesión por medio de Google+</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>El usuario podrá iniciar sesión por google+ en el apartado login, solo tendrá que seleccionar que correo va a utilizar y darle permisos para poder obtener información a la aplicación.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/29">29</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R56 </th><th>Guardar las variables de sesión en la base de datos</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>La aplicación podrá guardar las variables de sesión en la base de datos para que así cuando este desplegada la aplicación pueda seguir manteniendo la sesión el usuario y no se pierda ese recordar que esta el usuario logeado.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Fácil</td></tr>
+<tr><td>Entrega planificada </td><td>v1</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/30">30</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R57 </th><th>Uso de Amazon S3</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>La aplicación guardara las imágenes y los videos/gifs que se suban en amazon s3, por tanto se tendrá que investigar como realizar esta subida y a la vez obtener los distintos archivos para luego mostrarlos.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Alta</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v1</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/41">41</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R58 </th><th>Pausar y reanudar los distintos post</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Se investigara si existe algún plugin o se tendrá que realizar para poder ser mas interactivo el trato con los gifs/videos y así poder pausar los gifs e incluso mostrar los controles por los que se podrá ir hacia atrás o hacia delante. Para esto ultimo haría falta que su formato fuera mp4.</td></tr>
+<tr><td>Prioridad </td><td>Importante</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Media</td></tr>
+<tr><td>Entrega planificada </td><td>v2</td></tr>
+<tr><td>Entrega Realizada </td><td>v2</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/42">42</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>R59 </th><th>Plugin para el generador de memes</th></tr>
+</thead>
+<tbody>
+<tr><td>Descripción larga </td><td>Habrá que investigar algún plugin el cual permita incrustar texto en las imágenes y así generarlas.</td></tr>
+<tr><td>Prioridad </td><td>Opcional</td></tr>
+<tr><td>Tipo </td><td>Funcional</td></tr>
+<tr><td>Complejidad </td><td>Alta</td></tr>
+<tr><td>Entrega planificada </td><td>v3</td></tr>
+<tr><td>Entrega Realizada </td><td>v3</td></tr>
+<tr><td>Nº incidencia </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/86">86</a></td></tr>
+</tbody>
+</table>
+<h3>Cuadro resumen <span id="cuadro-resumen"></span><a href="#cuadro-resumen" class="hashlink">&para;</a></h3><p><a href="#definicion-detallada">Ir a Definición detallada</a></p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>Código </th><th>Descripción corta </th><th>Prioridad </th><th>Tipo </th><th>Complejidad </th><th>Entrega planificada </th><th>Entrega Realizada </th><th>Nº incidencia</th></tr>
+</thead>
+<tbody>
+<tr><td>R01 </td><td>Registrar un usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/1">1</a></td></tr>
+<tr><td>R02 </td><td>Iniciar sesión </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/2">2</a></td></tr>
+<tr><td>R03 </td><td>Mostrar los posts </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/3">3</a></td></tr>
+<tr><td>R04 </td><td>Borrar un post </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/4">4</a></td></tr>
+<tr><td>R05 </td><td>Crear un post </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/5">5</a></td></tr>
+<tr><td>R06 </td><td>Actualizar un post </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/6">6</a></td></tr>
+<tr><td>R07 </td><td>Re dimensionar imagen de un post </td><td>Importante </td><td>Funcional </td><td>Media </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/7">7</a></td></tr>
+<tr><td>R08 </td><td>Re dimensinar gif de un post </td><td>Importante </td><td>Funcional </td><td>Alta </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/31">31</a></td></tr>
+<tr><td>R09 </td><td>Cambiar configuración de la cuenta de un usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/8">8</a></td></tr>
+<tr><td>R10 </td><td>Cambiar configuración del perfil del usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/9">9</a></td></tr>
+<tr><td>R11 </td><td>Cambiar avatar del usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/10">10</a></td></tr>
+<tr><td>R12 </td><td>Re dimensionar imagen del avatar del usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/11">11</a></td></tr>
+<tr><td>R13 </td><td>Comentar un post </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/32">32</a></td></tr>
+<tr><td>R14 </td><td>Mostrar comentarios de un post </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/33">33</a></td></tr>
+<tr><td>R15 </td><td>Comentar otro comentario (reply) </td><td>Importante </td><td>Funcional </td><td>Alta </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/34">34</a></td></tr>
+<tr><td>R16 </td><td>Borrar comentario siendo usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/35">35</a></td></tr>
+<tr><td>R17 </td><td>Moderación de posts </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/36">36</a></td></tr>
+<tr><td>R18 </td><td>Votar positivo un post </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/37">37</a></td></tr>
+<tr><td>R19 </td><td>Votar negativo un post </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/38">38</a></td></tr>
+<tr><td>R20 </td><td>Votar positivo un comentario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/39">39</a></td></tr>
+<tr><td>R21 </td><td>Votar negativo un comentario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/40">40</a></td></tr>
+<tr><td>R22 </td><td>El usuario puede seguir a otros usuarios </td><td>Opcional </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/70">70</a></td></tr>
+<tr><td>R23 </td><td>El usuario puede tener seguidores </td><td>Opcional </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/71">71</a></td></tr>
+<tr><td>R24 </td><td>Notificación de comentario </td><td>Importante </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/72">72</a></td></tr>
+<tr><td>R25 </td><td>Notificación de reply </td><td>Opcional </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/73">73</a></td></tr>
+<tr><td>R26 </td><td>Notificación de post nuevo </td><td>Opcional </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/74">74</a></td></tr>
+<tr><td>R27 </td><td>Notificación de seguidor nuevo </td><td>Opcional </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/75">75</a></td></tr>
+<tr><td>R28 </td><td>Notificación de votos en tu post </td><td>Importante </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/76">76</a></td></tr>
+<tr><td>R29 </td><td>Notificación de post aceptado </td><td>Importante </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/77">77</a></td></tr>
+<tr><td>R30 </td><td>Logout de usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/12">12</a></td></tr>
+<tr><td>R31 </td><td>Recordar usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/13">13</a></td></tr>
+<tr><td>R32 </td><td>Ver todos los usuarios </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/14">14</a></td></tr>
+<tr><td>R33 </td><td>Confirmar un usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/15">15</a></td></tr>
+<tr><td>R34 </td><td>Convertirse en un usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/16">16</a></td></tr>
+<tr><td>R35 </td><td>Bloquear usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/17">17</a></td></tr>
+<tr><td>R36 </td><td>Generar nueva contraseña </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/18">18</a></td></tr>
+<tr><td>R37 </td><td>Crear nuevo usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/19">19</a></td></tr>
+<tr><td>R38 </td><td>Eliminar usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/20">20</a></td></tr>
+<tr><td>R39 </td><td>Actualizar usuario </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/21">21</a></td></tr>
+<tr><td>R40 </td><td>Mandar email de confirmación </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/22">22</a></td></tr>
+<tr><td>R41 </td><td>Volver a enviar mensaje de confirmación </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/23">23</a></td></tr>
+<tr><td>R42 </td><td>Borrar usuarios no confirmados </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/24">24</a></td></tr>
+<tr><td>R43 </td><td>Recuperar contraseña </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/25">25</a></td></tr>
+<tr><td>R44 </td><td>Enviar mensaje privado a otro usuario </td><td>Opcional </td><td>Funcional </td><td>Fácil </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/78">78</a></td></tr>
+<tr><td>R45 </td><td>Crear mensaje privado </td><td>Opcional </td><td>Funcional </td><td>Fácil </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/79">79</a></td></tr>
+<tr><td>R46 </td><td>Eliminar mensaje privado </td><td>Opcional </td><td>Funcional </td><td>Fácil </td><td>v3 </td><td> </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/80">80</a></td></tr>
+<tr><td>R47 </td><td>Recibir mensaje privado de otro usuario </td><td>Opcional </td><td>Funcional </td><td>Fácil </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/81">81</a></td></tr>
+<tr><td>R48 </td><td>Ver mensajes privados recibidos </td><td>Opcional </td><td>Funcional </td><td>Fácil </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/82">82</a></td></tr>
+<tr><td>R49 </td><td>Ver mensajes privados enviados </td><td>Opcional </td><td>Funcional </td><td>Fácil </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/83">83</a></td></tr>
+<tr><td>R50 </td><td>Notificación de mensaje privado recibido </td><td>Opcional </td><td>Funcional </td><td>Media </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/84">84</a></td></tr>
+<tr><td>R51 </td><td>Generador de memes </td><td>Opcional </td><td>Funcional </td><td>Alta </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/85">85</a></td></tr>
+<tr><td>R52 </td><td>Mostrar un post en concreto </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/26">26</a></td></tr>
+<tr><td>R53 </td><td>Buscar posts por categoría </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/27">27</a></td></tr>
+<tr><td>R54 </td><td>Buscar posts por título </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/28">28</a></td></tr>
+<tr><td>R55 </td><td>Iniciar sesión por medio de google+ </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/29">29</a></td></tr>
+<tr><td>R56 </td><td>Guardar las variables de sesión en la base de datos </td><td>Importante </td><td>Funcional </td><td>Fácil </td><td>v1 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/30">30</a></td></tr>
+<tr><td>R57 </td><td>Uso de Amazon S3 </td><td>Importante </td><td>Funcional </td><td>Alta </td><td>v2 </td><td>v1 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/41">41</a></td></tr>
+<tr><td>R58 </td><td>Pausar y reanudar los distintos posts </td><td>Importante </td><td>Funcional </td><td>Media </td><td>v2 </td><td>v2 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/42">42</a></td></tr>
+<tr><td>R59 </td><td>Plugin para el generador de memes </td><td>Opcional </td><td>Funcional </td><td>Alta </td><td>v3 </td><td>v3 </td><td><a href="https://github.com/carlosgarcia8/gkri/issues/86">86</a></td></tr>
+</tbody>
+</table>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Wed, 24 May 2017 13:36:25 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
