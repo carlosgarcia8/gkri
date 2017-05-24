@@ -2,7 +2,7 @@
 Guía de Global Klingon Radian Imaginary
 ==================
 
-[Descripción general del Proyecto](descripcion-general.md)
+Descripción general del Proyecto
 ----------------------------------------------------------
 
 * [Funcionalidad principal de la aplicación](descripcion-general.md)
@@ -10,26 +10,31 @@ Guía de Global Klingon Radian Imaginary
 * [Repositorio en GitHub](https://github.com/carlosgarcia8/gkri)
 * [Documentación](https://carlosgarcia8.github.io/gkri/)
 
-[Instrucciones de instalación y despliegue](instrucciones.md)
+Instrucciones de instalación y despliegue
 ----------------------------------------------------------
 
-* En local
-* En la nube
+* [En local](instrucciones.md)
+* [En la nube](instrucciones.md)
 
-[Catálogo de Requisitos](requisitos.md)
+Catálogo de Requisitos
 ---------------------------------------
 
-* Definición detallada
-* Cuadro resumen
-
-[Manual básico de usuarios](manual.md)
+* [Definición detallada](requisitos.md)
+* [Cuadro resumen](requisitos.md)
+[Manual básico de usuarios
 --------------------------------------
 
-[Decisiones adoptadas y su justificación](decisiones.md)
+* [Manual](manual.md)
+
+Decisiones adoptadas y su justificación
 --------------------------------------------------------
 
-[Dificultades encontradas y soluciones aplicadas](dificultades.md)
+* [Decisiones](decisiones.md)
+
+Dificultades encontradas y soluciones aplicadas
 ------------------------------------------------------------------
+
+* [Dificultades](dificultades.md)
 
 Diagramas
 ---------
@@ -37,8 +42,12 @@ Diagramas
 * [De clases](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/diagrama-clase.png)
 * [De estructura lógica de datos](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/diagrama-logico.png)
 
-[Glosario de términos](glosario.md)
+Glosario de términos
 ----------------------------------
 
-[Conclusiones](conclusiones.md)
+* [Glosario](glosario.md)
+
+Conclusiones
 -------------------------------
+
+* [Conclusiones](conclusiones.md)
