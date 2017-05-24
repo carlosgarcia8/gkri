@@ -72,7 +72,7 @@ Array
 
     [10] => Array
         (
-            [line] => 13
+            [line] => 7
             [file] => controllers/SiteController.php
             [message] => No docblock for element 'app\controllers\SiteController'
         )
