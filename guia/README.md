@@ -16,8 +16,8 @@ Global Klingon Radian Imaginary
 4. [Manual básico de usuarios](manual.md)
 5. [Decisiones adoptadas y su justificación](decisiones.md)
 6. [Dificultades encontradas y soluciones aplicadas](dificultades.md)
-7. [Diagramas](diagramas.md)
-    * De clases
-    * De estructura lógica de datos
+7. Diagramas
+    * [De clases](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/diagrama-clase.png)
+    * [De estructura lógica de datos](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/diagrama-logico.png)
 8. [Glosario de términos](glosario.md)
 9. [Conclusiones](conclusiones.md)
