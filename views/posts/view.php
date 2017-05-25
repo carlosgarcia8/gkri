@@ -45,6 +45,9 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
                     <li><a href="javascript:void(0);" class="vote-down" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
                 <?php endif; ?>
                 </ul>
+                <div class="">
+                    Enviado por <?= Html::a($autor->username, ['/u/' . $autor->username]) ?> el <?= Yii::$app->formatter->asDate($model->fecha_publicacion, 'php:d M Y') ?>
+                </div>
             </div>
         </div>
         <div class="item-imagen">

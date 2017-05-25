@@ -66,7 +66,7 @@ $model = new MessageForm;
                                     'rows' => 2,
                                     'data-username' => $user->username,
                                     'id' => 'textarea-message',
-                                    'placeholder' => 'Escriba un mensaje...',
+                                    'placeholder' => 'Escriba un mensaje...(Como máximo 255 carácteres)',
                                     ])->label(false) ?>
                             </div>
 

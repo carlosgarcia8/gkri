@@ -1,6 +1,7 @@
 <?php
 
 use yii\bootstrap\Alert;
+use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\ListView;
 
@@ -22,6 +23,13 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
             'body' => Yii::$app->session->getFlash('upload'),
         ]);
     } ?>
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin) : ?>
+    <div class="busqueda">
+        <a href="<?= Url::to('/moderar') ?>" class="moderar-btn btn btn-warning">
+            Moderar
+        </a>
+    </div>
+    <?php endif; ?>
     <?php if(isset($categoria)) : ?>
         <?php if ($categoria === null) : ?>
         <?= ListView::widget([

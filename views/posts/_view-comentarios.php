@@ -2,11 +2,10 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
-// TODO cambiar el commented por otra palabra, a saber cual
 $post = \app\models\Post::findOne(['id' => $model->entityId]);
 
 if ($post != null) : ?>
-<h5><?= $profile->user->username ?> <?= Html::a('commented', ['/posts/' . $post->id . '#comment-list-' . $model->id]) ?></h5>
+<h5><?= $profile->user->username ?> <?= Html::a('comentó', ['/posts/' . $post->id . '#comment-list-' . $model->id]) ?></h5>
 <?php if ($post->extension == 'gif') : ?>
 <div class="viewport"></div>
 <?php endif; ?>

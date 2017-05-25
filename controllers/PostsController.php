@@ -139,10 +139,13 @@ class PostsController extends Controller
             $esAutor = $model->usuario_id === Yii::$app->user->identity->id;
         }
 
+        $autor = $model->getUsuario()->one();
+
         return $this->render('view', [
             'model' => $model,
             'esAdmin' => $esAdmin,
             'esAutor' => $esAutor,
+            'autor' => $autor,
         ]);
     }
 

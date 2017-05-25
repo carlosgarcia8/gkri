@@ -26,11 +26,16 @@ $('#mensajes-form .btn-enviar-mensaje').on('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
 
-    var texto = $('#textarea-message').val();
+    var texto = $('#textarea-message').val().trim();
     $('#textarea-message').val('');
     $(this).addClass('btn-disabled');
 
     var padre = $('.messages');
+
+    var img = $('.conversation-active').find('img').clone();
+    var imgUsuario = img.clone();
+    imgUsuario.attr('src', $('#imagen-avatar').find('img').attr('src'));
+
 
     var contact_id = $('#textarea-message').attr('data-contact-id');
     var username = $('#textarea-message').attr('data-username');
@@ -50,6 +55,7 @@ $('#mensajes-form .btn-enviar-mensaje').on('click', function (e) {
         var elemPadre = $('div.mensage-contact-'+contact_id);
 
         elem.addClass('msg-emisor');
+        elem.find('.msg-avatar-emisor').append(imgUsuario);
         elem.find('.msg-header').append('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
         elem.find('.msg-header').append('<strong>' + username + '</strong>');
         elem.find('small').html(fecha);
@@ -69,6 +75,13 @@ $('#message-create .close').on('click', function(e) {
 });
 
 $('#textarea-message').on('keyup keydown', function (event) {
+    if ($(this).val().trim().length > 255) {
+        $(this).css('color', 'red');
+        $('#mensajes-form .btn-enviar-mensaje').addClass('btn-disabled');
+        return;
+    } else {
+        $(this).css('color', 'black');
+    }
     if (event.keyCode === 13) {
         if ($(this).val().trim().length > 0 && $(this).attr('data-contact-id')) {
             $('#mensajes-form .btn-enviar-mensaje').click();
@@ -95,6 +108,10 @@ $('.conversation').on('click', function () {
     var contacto = $(this).find('h5').text();
     $('#textarea-message').attr('data-contact-id', contact_id);
 
+    var img = $(this).find('img').clone();
+    var imgUsuario = img.clone();
+    imgUsuario.attr('src', $('#imagen-avatar').find('img').attr('src'));
+
     var elemPadre = $('div.mensage-contact-'+contact_id);
     var padre = $('.messages');
     padre.children().hide();
@@ -120,14 +137,18 @@ $('.conversation').on('click', function () {
 
             for (var i = 0; i < messages.length; i++) {
                 var elem = $('.template-oculto > .msg').clone();
+                var imgc = img.clone();
+                var imgUsuarioc = imgUsuario.clone();
 
                 if (parseInt(contact_id) !== messages[i]['user_id']) {
                     elem.addClass('msg-emisor');
+                    elem.find('.msg-avatar-emisor').append(imgUsuarioc);
                     elem.find('.msg-header').append('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
                     elem.find('.msg-header').append('<strong>' + messages[i]['emisor'] + '</strong>');
                     elem.find('small').html(messages[i]['fecha']);
                 } else {
                     elem.addClass('msg-receptor');
+                    elem.find('.msg-avatar-receptor').append(imgc);
                     elem.find('.msg-header').prepend('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
                     elem.find('.msg-header').prepend('<strong>' + messages[i]['emisor'] + '</strong>');
                     elem.find('small').html(messages[i]['fecha']);

@@ -350,6 +350,10 @@ a {
 
 /************ POST ************/
 
+.post-author {
+    color: #00b22d;
+}
+
 .list-view { /* Cuando estamos en la lista de posts */
     margin-left: 120px;
 }
@@ -482,6 +486,10 @@ div.item:last-of-type article.item {
     font-size: 14px !important;
 }
 
+.moderar-btn {
+    text-shadow: 1px 0 2px black, 0 1px 2px black
+}
+
 /************ OPCION MAS CATEGORIAS ************/
 
 .dropdown-menu.columns-3 {
@@ -562,6 +570,9 @@ div.item:last-of-type article.item {
 
 .item-votes { /* Contenedor de la lista con clase 'left'*/
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .left { /* Contenedor de los botones para votar */
@@ -819,6 +830,7 @@ ins.play-gif{
 /* Messages Wrapper */
 .content-wrap.messages {
     height: 85%;
+    border-bottom: 1px solid #999;
 }
 
 
@@ -851,6 +863,19 @@ ins.play-gif{
     word-wrap: break-word;
     padding: 4px 10px 4px 10px;
     max-width: 80%;
+    display: flex;
+}
+
+.msg-avatar-receptor {
+    padding-right: 8px;
+}
+
+.msg-avatar-emisor {
+    padding-left: 8px;
+}
+
+.msg-body p {
+    word-break: break-all;
 }
 
 a.btn-disabled {
@@ -951,8 +976,6 @@ a.btn-disabled {
 .send-message {
     width: 100%;
     height: 100%;
-
-    box-shadow: 0 -1px 1px;
 
     display: table;
 }

@@ -64,8 +64,8 @@ class MessagesController extends \yii\web\Controller
                 $message->user_id = Yii::$app->user->id;
                 $message->receptor_id = $messageForm->receptor_id;
                 $message->texto = $messageForm->texto;
-                if (Notificacion::findOne(['type' => 6, 'user_id' => $message->receptor_id, 'seen' => false]) === null) {
-                    if ($message->save()) {
+                if ($message->save()) {
+                    if (Notificacion::findOne(['type' => 6, 'user_id' => $message->receptor_id, 'seen' => false]) === null) {
                         $notificacion = new Notificacion();
 
                         $notificacion->type = NotificationType::MENSAJE_NUEVO;

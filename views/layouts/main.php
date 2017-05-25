@@ -10,6 +10,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\NavBar;
+use yii\widgets\Pjax;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\CommentModel;
@@ -54,8 +55,6 @@ $this->registerJs($js);
 $categorias = Categoria::find()->all();
 CommentModel::deleteAll(['status' => 2]);
 $this->title = 'GKRI';
-// TODO poner imagen en los mensajes
-// TODO poner boton para ir a moderar sin tener que ponerlo en la ruta
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -76,12 +75,20 @@ $this->title = 'GKRI';
             <!-- <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> -->
         <!-- </span> -->
         <div class="msg-body">
-            <div class="msg-header">
-                <small class="text-muted">
-                    <span class="glyphicon glyphicon-time"></span>
-                </small>
+            <div class="msg-avatar-receptor">
+
             </div>
-            <p></p>
+            <div class="msg-resto">
+                <div class="msg-header">
+                    <small class="text-muted">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </small>
+                </div>
+                <p></p>
+            </div>
+            <div class="msg-avatar-emisor">
+
+            </div>
         </div>
     </div>
 </div>

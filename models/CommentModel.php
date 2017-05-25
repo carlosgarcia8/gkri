@@ -30,6 +30,11 @@ class CommentModel extends BaseCommentModel
             ->all());
     }
 
+    public function esAutor()
+    {
+        return $this->post->usuario->username === $this->getAuthorName();
+    }
+
     /**
      * Get comments tree.
      *

@@ -9,7 +9,6 @@ use yii2mod\editable\Editable;
 /* @var $maxLevel null|integer comments max level */
 
 // TODO arreglar los javascript:void(0)
-// TODO añadir el autor en los comentarios y en el propio post
 ?>
 <li class="comment">
     <div class="comment-content" id="comment-list-<?= $model->id ?>" data-comment-content-id="<?php echo $model->id ?>">
@@ -33,7 +32,12 @@ use yii2mod\editable\Editable;
             </div>
             <div class="comment-author-name">
                 <ul class="btn-vote-comment left">
+                    <?php if ($model->esAutor()) : ?>
+                    <span class="fa fa-user-circle-o post-author" aria-hidden="true" title="Autor"></span>
+                    <a href="/u/<?= $model->getAuthorName() ?> " class="author-comment"><span><?php echo $model->getAuthorName(); ?> </span></a>
+                    <?php else: ?>
                     <a href="/u/<?= $model->getAuthorName() ?> " class="author-comment"><span><?php echo $model->getAuthorName(); ?></span></a>
+                    <?php endif; ?>
                     <?php if ($model->estaUpvoteado()) : ?>
                         <li><a href="javascript:void(0);" class="comment-vote-up voted-up" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-up" aria-hidden="true"></span></a></li>
                     <?php else: ?>

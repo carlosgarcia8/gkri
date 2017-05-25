@@ -2,6 +2,8 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
+// TODO mejorar el circulo GIF por que al F12 o ser mas grande se menea mal
+
 if ($model->getRuta() !== false) :
 
 if ($model->extension == 'gif') : ?>
