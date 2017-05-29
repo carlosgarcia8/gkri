@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'location') ?>
 
-                <?= $form->field($model, 'gender')->dropDownList($genders, ['prompt' => Yii::t('user', 'Select')]) ?>
+                <?= $form->field($model, 'gender')->dropDownList($genders, ['prompt' => Yii::t('user', 'Ninguno')]) ?>
 
                 <?= $form->field($model, 'bio')->textarea() ?>
 

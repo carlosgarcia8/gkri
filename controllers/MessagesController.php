@@ -49,7 +49,7 @@ class MessagesController extends \yii\web\Controller
             ],
         ];
     }
-    // TODO cuando se haga create desde el perfil del usuario actualizar las conversaciones para traerla de nuevo, por si no existe
+
     /**
      * Crea un mensaje
      * @return mixed

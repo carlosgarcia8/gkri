@@ -1,4 +1,6 @@
-$('.btn-seguir').on('click', function () {
+$('.btn-seguir').on('click', function (e) {
+    e.preventDefault();
+
     var id = $(this).attr('data-follow-id');
 
     $.get('/follows/follow', {follow_id: id}, function(data){
@@ -18,7 +20,9 @@ $('.btn-siguiendo').on({
     }
 });
 
-$('.btn-siguiendo').on('click', function () {
+$('.btn-siguiendo').on('click', function (e) {
+    e.preventDefault();
+    
     var id = $(this).attr('data-follow-id');
 
     $.get('/follows/unfollow', {follow_id: id}, function(data){

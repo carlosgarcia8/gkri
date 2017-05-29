@@ -84,12 +84,12 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <div class="menu-follows">
             <?php if (!$suPerfil) : ?>
                 <?php if ($esSeguidor) : ?>
-                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="javascript:void(0);" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                    <a href="" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                    <a href="" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
                     <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
                 <?php else : ?>
-                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="javascript:void(0);" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                    <a href="" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                    <a href="" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
                     <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
                 <?php endif; ?>
             <?php endif; ?>

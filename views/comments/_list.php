@@ -8,7 +8,6 @@ use yii2mod\editable\Editable;
 /* @var $model \yii2mod\comments\models\CommentModel */
 /* @var $maxLevel null|integer comments max level */
 
-// TODO arreglar los javascript:void(0)
 ?>
 <li class="comment">
     <div class="comment-content" id="comment-list-<?= $model->id ?>" data-comment-content-id="<?php echo $model->id ?>">
@@ -39,15 +38,15 @@ use yii2mod\editable\Editable;
                     <a href="/u/<?= $model->getAuthorName() ?> " class="author-comment"><span><?php echo $model->getAuthorName(); ?></span></a>
                     <?php endif; ?>
                     <?php if ($model->estaUpvoteado()) : ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-up voted-up" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-up" aria-hidden="true"></span></a></li>
+                        <li><a href="" class="comment-vote-up voted-up" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-up" aria-hidden="true"></span></a></li>
                     <?php else: ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-up" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-up" aria-hidden="true"></span></a></li>
+                        <li><a href="" class="comment-vote-up" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-up" aria-hidden="true"></span></a></li>
                     <?php endif; ?>
 
                     <?php if ($model->estaDownvoteado()) : ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-down voted-down" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-down" aria-hidden="true"></span></a></li>
+                        <li><a href="" class="comment-vote-down voted-down" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-down" aria-hidden="true"></span></a></li>
                     <?php else: ?>
-                        <li><a href="javascript:void(0);" class="comment-vote-down" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-down" aria-hidden="true"></span></a></li>
+                        <li><a href="" class="comment-vote-down" data-comment-id="<?= $model->id ?>"><span class="fa fa-thumbs-down" aria-hidden="true"></span></a></li>
                     <?php endif; ?>
                     <span class="comment-votos-total comment-votos-total-<?= $model->id ?>"><?= $model->getVotosTotal(); ?> votos  |  </span>
                     <span class="comment-date"><?= $model->getPostedDate(); ?></span>

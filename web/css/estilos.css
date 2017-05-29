@@ -14,17 +14,98 @@ h2 {
     font-weight: bold;
 }
 
-h2 a {
+h4 {
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+h2 a, h4 a {
     color: black;
 }
 
-h2 a:hover {
+h2 a:hover, h4 a:hover {
     color: #09f;
 }
 
 a {
     text-decoration: none !important;
 }
+
+.footer {
+    background-color: #222 !important;
+    color: white;
+}
+
+.banner-cookie p {
+    /*margin: 0 !important;*/
+    margin-top: 10px;
+}
+
+.banner-cookie button {
+    background-color: #f1d600;
+    color: #000;
+    border-radius: 5px;
+    padding: 8px 15px;
+    outline: none;
+    margin-left: 5%;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.banner-cookie {
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    overflow: hidden;
+    text-align: center;
+}
+
+/************ TOP TEN LIST ************/
+
+.main-list {
+    width: 555px;
+}
+
+.top-ten-list {
+    width: 400px;
+    height: auto;
+    margin-left: 100px;
+}
+
+.image-top-container {
+    width: 400px;
+    height: 160px;
+}
+
+.item-top img {
+    width: 400px;
+    height: auto;
+}
+
+.container > .container {
+    display: flex;
+}
+
+.item-top {
+    overflow: hidden;
+    width: auto;
+    height: 210px;
+}
+
+.image-top {
+    border-radius: 5px 5px 5px 5px;
+}
+
 /************ BOTON ARRIBA ************/
 
 #btn-arriba {
@@ -355,7 +436,7 @@ a {
 }
 
 .list-view { /* Cuando estamos en la lista de posts */
-    margin-left: 120px;
+    margin-left: 100px;
 }
 
 .item {
@@ -404,12 +485,14 @@ div.item:last-of-type article.item {
 }
 
 .item-imagen {
-    width: 50%;
+    width: 100%;
 }
 
-.item-imagen img, .item-imagen video {
-    margin-left: 33%;
+.item-imagen .gifplayer-wrapper {
+    width: 455px;
+    margin-left: 20%;
 }
+
 /************ BUSQUEDA ************/
 
 .busqueda {
@@ -1036,10 +1119,17 @@ a.btn-disabled {
 
 
 @media screen and (max-width: 1200px) {
+    .top-ten-list {
+        display: none;
+    }
     /************ AVATAR PROFILE/SHOW ************/
 
     .hovereffect, .nohovereffect {
         margin-left: -5%;
+    }
+
+    .comments-list, .comment-form-container {
+        width: 75% !important;
     }
 }
 
@@ -1283,6 +1373,14 @@ a.btn-disabled {
         margin-left: 70px;
     }
 
+    .item-imagen .gifplayer-wrapper {
+        margin-left: 15%;
+    }
+
+    .post-view .item {
+        width: auto;
+    }
+
     /************ OPCION MAS CATEGORIAS ************/
 
     .dropdown-menu.multi-column {
@@ -1349,10 +1447,6 @@ a.btn-disabled {
         margin: 0;
     }
 
-    .item-imagen img {
-        margin-left: 0%;
-    }
-
     .wrap > .container {
         padding: 100px 0px 0px !important;
     }
@@ -1362,13 +1456,18 @@ a.btn-disabled {
         padding-right: 0;
     }
 
-    .item-imagen video {
+    .item-imagen .gifplayer-wrapper {
         margin-left: 0;
+        width: auto;
     }
 
 }
 
 @media screen and (max-width: 455px) {
+    .main-list {
+        margin-top: 10px;
+    }
+
     .categorias-sub {
         margin-left: 25px;
     }

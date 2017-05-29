@@ -12,12 +12,13 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+$genders = ['M' => Yii::t('user', 'Male'), 'F' => Yii::t('user', 'Female')];
+
 /**
  * @var yii\web\View $this
  * @var dektrium\user\models\User $user
  * @var dektrium\user\models\Profile $profile
  */
- // TODO Cambiar la tabla por otra cosa que tenga responsive por dios
 ?>
 <?php $this->beginContent('@dektrium/user/views/admin/update.php', ['user' => $user]) ?>
 
@@ -34,6 +35,7 @@ use yii\helpers\Html;
 
 <?= $form->field($profile, 'name') ?>
 <?= $form->field($profile, 'location') ?>
+<?= $form->field($profile, 'gender')->dropDownList($genders, ['prompt' => Yii::t('user', 'Ninguno')]) ?>
 <?= $form->field($profile, 'bio')->textarea() ?>
 
 <div class="form-group">

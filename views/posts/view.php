@@ -34,15 +34,15 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
             <div class="item-votes">
                 <ul class="btn-vote left">
                 <?php if ($model->estaUpvoteado()) : ?>
-                    <li><a href="javascript:void(0);" class="vote-up voted-up" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
+                    <li><a href="" class="vote-up voted-up" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
                 <?php else: ?>
-                    <li><a href="javascript:void(0);" class="vote-up" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
+                    <li><a href="" class="vote-up" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-up fa-2x" aria-hidden="true"></span></a></li>
                 <?php endif; ?>
 
                 <?php if ($model->estaDownvoteado()) : ?>
-                    <li><a href="javascript:void(0);" class="vote-down voted-down" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
+                    <li><a href="" class="vote-down voted-down" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
                 <?php else: ?>
-                    <li><a href="javascript:void(0);" class="vote-down" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
+                    <li><a href="" class="vote-down" data-id="<?= $model->id ?>"><span class="fa fa-thumbs-down fa-2x" aria-hidden="true"></span></a></li>
                 <?php endif; ?>
                 </ul>
                 <div class="">
@@ -51,14 +51,16 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
             </div>
         </div>
         <div class="item-imagen">
+            <div class="gifplayer-wrapper">
             <?php if ($model->extension == 'gif') : ?>
                 <video width="455" loop="loop" autoplay="autoplay">
                     <source src="<?= $model->ruta ?>" type="video/mp4">
                 </video>
-                <ins class="play-gif" style="display:none; top: 40%; left: 32%;">GIF</ins>
+                <ins class="play-gif" style="display:none; top: 40%; left: 44%;">GIF</ins>
             <?php else : ?>
                 <?= Html::img($model->ruta . '?t=' . date('d-m-Y-H:i:s'), ['class' => 'responsive-image', 'alt'=> $model->ruta]) ?>
             <?php endif; ?>
+            </div>
         </div>
         <?php if ($esAutor && !$esAdmin) : ?>
         <div class="text-right">
@@ -85,11 +87,13 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
 <?php
 $this->registerJs(
     "
-    $(document).on('click', '.comment-vote-up', function() {
+    $(document).on('click', '.comment-vote-up', function(e) {
+        e.preventDefault();
         votarComentario($(this).attr('data-comment-id'), true);
     });
 
-    $(document).on('click', '.comment-vote-down', function() {
+    $(document).on('click', '.comment-vote-down', function(e) {
+        e.preventDefault();
         votarComentario($(this).attr('data-comment-id'), false);
     });
 

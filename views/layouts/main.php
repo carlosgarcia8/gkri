@@ -10,10 +10,11 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\NavBar;
-use yii\widgets\Pjax;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\CommentModel;
+
+// TODO reply a los replies
 
 AppAsset::register($this);
 $this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
@@ -45,10 +46,23 @@ $js = <<<EOT
         }
     }
 
+    var cookieBanner = localStorage.getItem('cookie-banner');
+
+    if (cookieBanner === null) {
+        $('.wrap').append('<div class="banner-cookie"></div>');
+        $('.banner-cookie').append('<p>Esta página web usa cookies para asegurarse de que obtienes la mejor experiencia en nuestra aplicación.</p>');
+        $('.banner-cookie').append('<button type="button" class="banner-cookie-btn">Entendido</button>')
+        localStorage.setItem('cookie-banner', 1);
+    }
+
     $('.navbar-left a, .categorias-sub a').each(function(index, value) {
         if ($(this).prop("href") === window.location.href) {
             $(this).parent().addClass('active');
         }
+    });
+
+    $('.banner-cookie-btn').on('click', function() {
+        $('.banner-cookie').fadeOut('fast');
     });
 EOT;
 $this->registerJs($js);
@@ -71,9 +85,6 @@ $this->title = 'GKRI';
 <body>
 <div class="template-oculto">
     <div class="msg">
-        <!-- <span  class="chat-img pull-left"> -->
-            <!-- <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> -->
-        <!-- </span> -->
         <div class="msg-body">
             <div class="msg-avatar-receptor">
 
@@ -110,7 +121,7 @@ $this->title = 'GKRI';
     ]);
 
     ?>
-    <ul class="navbar-nav navbar-left nav" data-step="2" data-intro="Aquí están las distintas categorías, selecciona la que mas te guste y empieza a divertirte.">
+    <ul class="navbar-nav navbar-left nav" data-step="2" data-intro="Aquí están las distintas categorías, selecciona la que más te guste y empieza a divertirte.">
         <li><a href="/gracioso">Gracioso</a></li>
         <li><a href="/amor">Amor</a></li>
         <li><a href="/series">Series</a></li>
@@ -197,14 +208,14 @@ $this->title = 'GKRI';
             <ul class="dropdown-menu">
                 <li><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> " tabindex="-1">Mi Perfil</a></li>
                 <li><a href="<?= Url::to('/settings/profile') ?>" tabindex="-1">Configuración</a></li>
-                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#messages" tabindex="-1">Mensajes</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#messages" tabindex="-1">Mensajes</a></li>
                 <li class="divider"></li>
                 <li><a href="<?= Url::to('/user/security/logout') ?>" data-method="post" tabindex="-1">Cerrar sesión</a></li>
             </ul>
         </li>
         <li class="sub-menu"><a href="<?= Url::to('/u/' . Yii::$app->user->identity->username) ?> "><span class="fa fa-user" aria-hidden="true" title="Mi Perfil"></span></a></li>
         <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><span class="fa fa-cog" aria-hidden="true" title="Configuración"></span></a></li>
-        <li class="sub-menu"><a href="javascript:void(0);" data-toggle="modal" data-target="#messages"><span class="fa fa-envelope" aria-hidden="true" title="Mensajes"></span></a></li>
+        <li class="sub-menu"><a href="#" data-toggle="modal" data-target="#messages"><span class="fa fa-envelope" aria-hidden="true" title="Mensajes"></span></a></li>
         <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><span class="fa fa-sign-out" aria-hidden="true" title="Cerrar sesión"></span></a></li>
         <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><span class="fa fa-upload" aria-hidden="true" title="Upload"></span></a></li>
         <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
@@ -230,7 +241,6 @@ $this->title = 'GKRI';
     <div class="container">
         <p class="pull-left">&copy; GKRI <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

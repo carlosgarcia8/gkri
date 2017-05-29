@@ -1,7 +1,9 @@
 <?php
 use app\models\MessageForm;
+use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
 use app\models\User;
+use yii\helpers\Html;
 
 $model = new MessageForm;
 ?>
@@ -25,6 +27,8 @@ $model = new MessageForm;
             <!-- Modal Body -->
             <div class="modal-body">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-2 panel-wrap">
+                    <?php Pjax::begin(); ?>
+                    <?= Html::a('', '', ['id' => 'trigger-messages-pjax']) ?>
                     <div class="row content-wrap conversaciones">
                     <!-- Distintas conversaciones -->
                     <?php foreach ($conversaciones as $conversacion) :
@@ -42,6 +46,7 @@ $model = new MessageForm;
                         </div>
                     <?php endforeach; ?>
                     </div>
+                    <?php Pjax::end(); ?>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-10 panel-wrap">
 

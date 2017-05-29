@@ -99,6 +99,15 @@ class PostsController extends Controller
         $categoriaModel = Categoria::findOne(['nombre_c' => $categoria]);
         $existeCategoria = $categoriaModel !== null;
 
+        $diezMejores = Post::find()
+            ->select('posts.id, titulo, extension')
+            ->join('left join', '(select * from votos where positivo = true) as v', 'posts.id=v.post_id')
+            ->where(['not like', 'extension', 'gif'])
+            ->groupBy('id')
+            ->orderBy('count(positivo) desc')
+            ->limit(10)
+            ->all();
+
         if ($existeCategoria) {
             $dataProvider = new ActiveDataProvider([
                 'query' => $categoriaModel->getPosts()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
@@ -119,6 +128,7 @@ class PostsController extends Controller
             'dataProvider' => $dataProvider,
             'existeCategoria' => $existeCategoria,
             'categoria' => $categoria,
+            'diezMejores' => $diezMejores,
         ]);
     }
 
@@ -424,9 +434,20 @@ class PostsController extends Controller
                 'pageSize' => 10,
             ]
         ]);
+
+        $diezMejores = Post::find()
+            ->select('posts.id, titulo, extension')
+            ->join('left join', '(select * from votos where positivo = true) as v', 'posts.id=v.post_id')
+            ->where(['not like', 'extension', 'gif'])
+            ->groupBy('id')
+            ->orderBy('count(positivo) desc')
+            ->limit(10)
+            ->all();
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'titulo' => $q,
+            'diezMejores' => $diezMejores,
         ]);
     }
 

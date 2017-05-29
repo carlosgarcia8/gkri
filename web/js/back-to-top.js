@@ -7,10 +7,9 @@ $('#btn-arriba').click(function(e){
     $('html,body').animate({ scrollTop: 0 }, 'slow');
     return false;
 });
-// TODO firefox da un warning por el scroll, comprobar que es
-$(window).scroll(function() {
 
-    if ($(document).height() - $(window).height() > $(document).scrollTop()) {
+$(window).scroll(function() {
+    if ($(document).height() - $(window).height() - 10 > $(document).scrollTop()) {
         $('#btn-arriba').css('bottom', '40px');
     } else {
         $('#btn-arriba').css('bottom', '80px');

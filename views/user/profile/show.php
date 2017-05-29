@@ -67,7 +67,7 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <?php if (!empty($profile->gender)) : ?>
                 <?php if ($profile->gender == 'M') : ?>
                     <span class="fa fa-mars" aria-hidden="true"></span>
-                <?php else : ?>
+                <?php elseif ($profile->gender == 'F') : ?>
                     <span class="fa fa-venus" aria-hidden="true"></span>
                 <?php endif; ?>
             <?php endif; ?>
@@ -85,12 +85,12 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <div class="menu-follows">
             <?php if (!Yii::$app->user->isGuest && !$suPerfil) : ?>
                 <?php if ($esSeguidor) : ?>
-                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="javascript:void(0);" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                    <a href="" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                    <a href="" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
                     <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
                 <?php else : ?>
-                    <a href="javascript:void(0);" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="javascript:void(0);" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                    <a href="" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                    <a href="" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
                     <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
                 <?php endif; ?>
             <?php endif; ?>

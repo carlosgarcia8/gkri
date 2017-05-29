@@ -1,8 +1,10 @@
-$('.vote-up').on('click', function() {
+$('.vote-up').on('click', function(e) {
+    e.preventDefault();
     votar($(this).attr('data-id'), true);
 });
 
-$('.vote-down').on('click', function() {
+$('.vote-down').on('click', function(e) {
+    e.preventDefault();
     votar($(this).attr('data-id'), false);
 });
 
