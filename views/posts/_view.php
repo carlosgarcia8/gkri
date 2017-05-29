@@ -32,7 +32,7 @@ if ($model->extension == 'gif') : ?>
     </div>
     <?php endif; ?>
     <p class="item-p">
-        <span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos</span> | <span itemprop="commentCount"><?= $model->getNumeroComentarios() ?> comentarios </span itemprop="genre">| Categoría: <?= $model->categoria->nombre ?>
+        <span class="votos-total-<?= $model->id ?>"><?= $model->getVotosTotal() ?> votos</span> | <span itemprop="commentCount"><?= $model->getNumeroComentarios() ?> comentarios | </span><span itemprop="genre">Categoría: <?= $model->categoria->nombre ?></span>
     </p>
     <div class="item-votes">
         <ul class="btn-vote left">
