@@ -35,7 +35,7 @@ $('#mensaje-form .btn-enviar-mensaje').on('click', function (e) {
 
                     elem.addClass('msg-emisor');
                     elem.find('.msg-avatar-emisor').append(imgUsuario);
-                    elem.find('.msg-header').append('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
+                    elem.find('.msg-header').append('<span class="fa fa-minus fa-fw" aria-hidden="true"></span>');
                     elem.find('.msg-header').append('<strong>' + username + '</strong>');
                     elem.find('small').html(fecha);
 
@@ -91,7 +91,7 @@ $('#mensajes-form .btn-enviar-mensaje').on('click', function (e) {
 
         elem.addClass('msg-emisor');
         elem.find('.msg-avatar-emisor').append(imgUsuario);
-        elem.find('.msg-header').append('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
+        elem.find('.msg-header').append('<span class="fa fa-minus fa-fw" aria-hidden="true"></span>');
         elem.find('.msg-header').append('<strong>' + username + '</strong>');
         elem.find('small').html(fecha);
 
@@ -185,13 +185,13 @@ function eventosConversaciones() {
                     if (parseInt(contact_id) !== messages[i]['user_id']) {
                         elem.addClass('msg-emisor');
                         elem.find('.msg-avatar-emisor').append(imgUsuarioc);
-                        elem.find('.msg-header').append('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
+                        elem.find('.msg-header').append('<span class="fa fa-minus fa-fw" aria-hidden="true"></span>');
                         elem.find('.msg-header').append('<strong>' + messages[i]['emisor'] + '</strong>');
                         elem.find('small').html(messages[i]['fecha']);
                     } else {
                         elem.addClass('msg-receptor');
                         elem.find('.msg-avatar-receptor').append(imgc);
-                        elem.find('.msg-header').prepend('<i class="fa fa-minus fa-fw" aria-hidden="true"></i>');
+                        elem.find('.msg-header').prepend('<span class="fa fa-minus fa-fw" aria-hidden="true"></span>');
                         elem.find('.msg-header').prepend('<strong>' + messages[i]['emisor'] + '</strong>');
                         elem.find('small').html(messages[i]['fecha']);
                     }

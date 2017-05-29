@@ -49,8 +49,8 @@ var populateNotifications = function(notificationData){
                 case 0:
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
-                        'Tu post "<i>'+item['titulo']+'</i>..." ha sido <b>aceptado</b>.',
-                        '<i class="fa fa-exclamation fa-lg" aria-hidden="true"></i>',
+                        'Tu post "<span>'+item['titulo']+'</span>..." ha sido <b>aceptado</b>.',
+                        '<span class="fa fa-exclamation fa-lg" aria-hidden="true"></span>',
                         '/posts/' + item['post_id'],
                         item['post_id'],
                         item['type']
@@ -59,8 +59,8 @@ var populateNotifications = function(notificationData){
                 case 1:
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
-                        'Hay <b>votos nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
-                        '<i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i>',
+                        'Hay <b>votos nuevos</b> en tu post "<span>'+item['titulo']+'</span>...".',
+                        '<span class="fa fa-thumbs-up fa-lg" aria-hidden="true"></span>',
                         '/posts/' + item['post_id'],
                         item['post_id'],
                         item['type']
@@ -69,8 +69,8 @@ var populateNotifications = function(notificationData){
                 case 2:
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
-                        'Hay '+item['count']+' <b>comentarios nuevos</b> en tu post "<i>'+item['titulo']+'</i>...".',
-                        '<i class="fa fa-comment fa-lg" aria-hidden="true"></i>',
+                        'Hay '+item['count']+' <b>comentarios nuevos</b> en tu post "<span>'+item['titulo']+'</span>...".',
+                        '<span class="fa fa-comment fa-lg" aria-hidden="true"></span>',
                         '/posts/' + item['post_id'],
                         item['post_id'],
                         item['type']
@@ -80,7 +80,7 @@ var populateNotifications = function(notificationData){
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
                         'El usuario <b>'+item['username']+'</b> ha comenzado a seguirte.',
-                        '<i class="fa fa-user-plus fa-lg" aria-hidden="true"></i>',
+                        '<span class="fa fa-user-plus fa-lg" aria-hidden="true"></span>',
                         '/u/' + item['username'],
                         item['user_related_id'],
                         item['type']
@@ -90,7 +90,7 @@ var populateNotifications = function(notificationData){
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
                         'El usuario <b>'+item['username']+'</b> ha publicado un <b>post nuevo</b>.',
-                        '<i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>',
+                        '<span class="fa fa-plus-square fa-lg" aria-hidden="true"></span>',
                         '/posts/' + item['post_id'],
                         item['post_id'],
                         item['type']
@@ -99,8 +99,8 @@ var populateNotifications = function(notificationData){
                 case 5:
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
-                        'Hay '+item['count']+' nuevos <b> replies</b> a tu comentario en el post "<i>'+item['titulo']+'</i>...".',
-                        '<i class="fa fa-commenting fa-lg" aria-hidden="true"></i>',
+                        'Hay '+item['count']+' nuevos <b> replies</b> a tu comentario en el post "<span>'+item['titulo']+'</span>...".',
+                        '<span class="fa fa-commenting fa-lg" aria-hidden="true"></span>',
                         '/posts/' + item['post_id'],
                         item['post_id'],
                         item['type']
@@ -110,7 +110,7 @@ var populateNotifications = function(notificationData){
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
                         'El usuario '+item['username']+' te ha enviado <b>mensajes nuevos</b>.',
-                        '<i class="fa fa-envelope fa-lg" aria-hidden="true"></i>',
+                        '<span class="fa fa-envelope fa-lg" aria-hidden="true"></span>',
                         '/u/' + item['username'],
                         item['user_related_id'],
                         item['type']

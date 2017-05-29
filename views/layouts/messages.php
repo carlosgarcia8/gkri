@@ -35,12 +35,12 @@ $model = new MessageForm;
 
                         $userConversacion = User::findOne(['id' => $conversacion['user_id']]);
                         ?>
-                        <div class="conversation btn" data-id="<?= $conversacion['user_id'] ?>">
-                            <div class="media-body">
-                                <span class="chat-img pull-left">
+                        <div class="conversation btn" data-id="<?= $conversacion['user_id'] ?>" itemscope itemtype="http://schema.org/Conversation">
+                            <div class="media-body" itemprop="character" itemscope itemtype="http://schema.org/Person">
+                                <span class="chat-img pull-left" itemprop="address">
                                     <img src="<?= $userConversacion->getAvatar() ?>" alt="User Avatar" class="little-message img-circle" />
                                 </span>
-                                <h5 class="media-heading"><?= $conversacion['username'] ?></h5>
+                                <h5 class="media-heading" itemprop="additionalName"><?= $conversacion['username'] ?></h5>
                                 <small class="pull-right time"><?= date_format(new DateTime($conversacion['last_message']), 'd/m/Y H:i:s') ?></small>
                             </div>
                         </div>

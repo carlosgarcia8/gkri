@@ -7,6 +7,6 @@ $('#upload-post-form').on('afterValidate', function (event, messages, errorAttri
     });
     if (valido) {
         $(this).hide();
-        $('div.post-form-spinner').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> Subiendo...');
+        $('div.post-form-spinner').html('<span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span> Subiendo...');
     }
 });
