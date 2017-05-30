@@ -15,8 +15,8 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
     <h1><?= Html::encode($this->title) ?></h1>
     <?php if ($esAdmin) : ?>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '¿Seguro que deseas eliminar este Post?',

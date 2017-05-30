@@ -29,7 +29,7 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
                 Moderar
             </a>
             <a href="<?= Url::to('/user/admin') ?>" class="moderar-btn btn btn-danger">
-                Administrador
+                Administrar
             </a>
         </div>
         <?php endif; ?>

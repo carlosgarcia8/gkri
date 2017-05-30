@@ -50,7 +50,7 @@ use kartik\select2\Select2;
 
     <div class="form-group col-lg-12 col-xs-12">
         <a href="#" class="button-volver btn btn-info">Volver</a>
-        <?= Html::submitButton('Upload', ['class' => 'btn btn-success btn-upload-post']) ?>
+        <?= Html::submitButton('Enviar', ['class' => 'btn btn-success btn-upload-post']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

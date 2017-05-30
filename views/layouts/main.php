@@ -218,7 +218,7 @@ $this->title = 'GKRI';
         <li class="sub-menu"><a href="#" data-toggle="modal" data-target="#messages"><span class="fa fa-envelope" aria-hidden="true" title="Mensajes"></span></a></li>
         <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><span class="fa fa-sign-out" aria-hidden="true" title="Cerrar sesión"></span></a></li>
         <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><span class="fa fa-upload" aria-hidden="true" title="Upload"></span></a></li>
-        <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Upload</a></li>
+        <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Enviar</a></li>
     <?php endif; ?>
     </ul> <?php
 

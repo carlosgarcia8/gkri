@@ -82,25 +82,27 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
                 <p><?= Html::encode($profile->bio) ?></p>
             <?php endif; ?>
             <div class="menu-follows">
-            <?php if (!$suPerfil) : ?>
-                <?php if ($esSeguidor) : ?>
-                    <a href="" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
-                    <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
-                <?php else : ?>
-                    <a href="" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
-                    <a href="" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
-                    <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
-                <?php endif; ?>
-            <?php endif; ?>
                 <div class="row">
-                    <div class="col-sm-offset-2 col-sm-4">
-                        <h6>Siguiendo: <span class="following-total"><?= $numeroSiguiendo ?></span></h6>
+                    <div class="col-md-offset-2 col-md-4 col-sm-offset-4 col-sm-2 col-xs-offset-0 col-xs-6">
+                        <h2><strong class="following-total"> <?= $numeroSiguiendo ?> </strong></h2>
+                        <p><small>Siguiendo</small></p>
                     </div>
-                    <div class="col-sm-4">
-                        <h6>Seguidores: <span class="followers-total"><?= $numeroSeguidores ?></span></h6>
+                    <div class="col-sm-2 col-xs-6 col-md-4">
+                        <h2><strong class="followers-total"> <?= $numeroSeguidores ?> </strong></h2>
+                        <p><small>Seguidores</small></p>
                     </div>
                 </div>
+                <?php if (!Yii::$app->user->isGuest && !$suPerfil) : ?>
+                    <?php if ($esSeguidor) : ?>
+                        <a href="" class="btn btn-info btn-siguiendo" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                        <a href="" class="btn btn-success btn-seguir btn-hide" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                        <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
+                    <?php else : ?>
+                        <a href="" class="btn btn-info btn-siguiendo btn-hide" data-follow-id="<?= $profile->user->id ?>">Siguiendo</a>
+                        <a href="" class="btn btn-success btn-seguir" data-follow-id="<?= $profile->user->id ?>">Seguir</a>
+                        <?= $this->render('_message', ['model'=>$messageForm, 'username' => $this->title, 'receptor_id' => $profile->user->id]) ?>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
         <div class="menu-profile-options">

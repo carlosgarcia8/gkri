@@ -140,6 +140,7 @@ return [
     'Are you sure you want to delete this user?' => '¿Estas seguro de eliminar este usuario?',
     'Are you sure you want to unblock this user?' => '¿Está seguro de desbloquear a este usuario?',
     'Are you sure? Deleted user can not be restored' => '¿Está seguro?¡ Un usuario eliminado no puede ser restaurado!',
+    'Are you sure you want to switch to this user for the rest of this Session?' => '¿Estás seguro de querer convertirse en este usuario durante esta sesión?',
     'Bio' => 'Cuentanos sobre tí',
     'Block' => 'Bloquear',
     'Block status' => 'Estado de bloqueo',
