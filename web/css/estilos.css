@@ -905,6 +905,7 @@ ins.play-gif{
 .panel-wrap {
     height: 100%;
     padding: 0;
+    border-right: 0.4px solid #999;
 }
 
 /* Messages Wrapper */

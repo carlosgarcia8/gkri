@@ -51,8 +51,7 @@ $js = <<<EOT
     if (cookieBanner === null) {
         $('.wrap').append('<div class="banner-cookie"></div>');
         $('.banner-cookie').append('<p>Esta página web usa cookies para asegurarse de que obtienes la mejor experiencia en nuestra aplicación.</p>');
-        $('.banner-cookie').append('<button type="button" class="banner-cookie-btn">Entendido</button>')
-        localStorage.setItem('cookie-banner', 1);
+        $('.banner-cookie').append('<button type="button" class="banner-cookie-btn">Entendido</button>');
     }
 
     $('.navbar-left a, .categorias-sub a').each(function(index, value) {
@@ -63,6 +62,7 @@ $js = <<<EOT
 
     $('.banner-cookie-btn').on('click', function() {
         $('.banner-cookie').fadeOut('fast');
+        localStorage.setItem('cookie-banner', 1);
     });
 EOT;
 $this->registerJs($js);

@@ -20,7 +20,7 @@ $js = <<<EOT
                 $('.alert-success')
                     .removeClass('template-oculto')
                     .fadeIn('slow')
-                    .text('Gracias por usar el Generador de Memes. Esta ventana se cerrara en 8 segundos, ahora vuelva a la sección de Upload y elija la opción Subir un archivo del ordenador.');
+                    .text('Gracias por usar el Generador de Memes. Esta ventana se cerrará en 8 segundos, ahora vuelva a la sección de Enviar y elija la opción Subir un archivo del ordenador.');
         		$("#meme").memeGenerator("download", "meme.jpg");
                 setTimeout(function () { close();}, 8000);
         	});

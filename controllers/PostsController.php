@@ -115,6 +115,7 @@ class PostsController extends Controller
                     'pageSize' => 10,
                 ]
             ]);
+            $categoria = $categoriaModel->nombre;
         } else {
             $dataProvider = new ActiveDataProvider([
                 'query' => Post::find()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
@@ -198,7 +199,7 @@ class PostsController extends Controller
                 $model->markPending();
 
                 if ($model->save() && $model->upload()) {
-                    \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluara.');
+                    \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluará.');
                     return $this->redirect(['/']);
                 } else {
                     $model->delete();

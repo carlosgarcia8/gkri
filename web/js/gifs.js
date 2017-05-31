@@ -21,6 +21,14 @@ jQuery(document).ready(function () {
         }
     });
 
+    $('.play-gif').on('click', function () {
+        var video = $(this).prev().removeClass('video-paused').get(0);
+        if (video.paused) {
+            video.play();
+            $(this).hide();
+        }
+    });
+
     $(window).scroll(function() {
         $('.viewport:not(:in-viewport(0))').each(function(index) {
             $(this).next().find('video').addClass('video-paused').get(0).pause();
