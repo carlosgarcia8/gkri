@@ -106,13 +106,15 @@ class PostsController extends Controller
             ->groupBy('id')
             ->orderBy('count(positivo) desc')
             ->limit(10)
+            ->approved()
             ->all();
 
         if ($existeCategoria) {
             $dataProvider = new ActiveDataProvider([
                 'query' => $categoriaModel->getPosts()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
                 'pagination' => [
-                    'pageSize' => 10,
+                    'pageSize' => 8,
+                    'defaultPageSize' => 8
                 ]
             ]);
             $categoria = $categoriaModel->nombre;
@@ -120,7 +122,8 @@ class PostsController extends Controller
             $dataProvider = new ActiveDataProvider([
                 'query' => Post::find()->approved()->orderBy(['fecha_publicacion' => SORT_DESC]),
                 'pagination' => [
-                    'pageSize' => 10,
+                    'pageSize' => 8,
+                    'defaultPageSize' => 8
                 ]
             ]);
         }
@@ -363,8 +366,20 @@ class PostsController extends Controller
     {
         $post = $this->findModel($id);
 
-        $post->scenario = Post::SCENARIO_MODERAR;
-        $post->markRejected();
+        $post->delete();
+
+        $fichero = glob(Yii::getAlias('@posts/') . $id . '.*');
+
+        if (!empty($fichero)) {
+            unlink($fichero[0]);
+        }
+
+        $s3 = Yii::$app->get('s3');
+        $ficheroS3 = $fichero[0];
+
+        if ($s3->exist($ficheroS3)) {
+            $s3->delete($ficheroS3);
+        }
 
         return $this->redirect(['/moderar']);
     }
@@ -432,7 +447,8 @@ class PostsController extends Controller
                 ->where(['ilike', 'titulo', "$q%", false])
                 ->orderBy(['fecha_publicacion' => SORT_DESC]),
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 8,
+                'defaultPageSize' => 8,
             ]
         ]);
 

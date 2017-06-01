@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use app\models\User;
 use yii\helpers\Html;
 
+// TODO intentar traer los mensajes cuando haya nuevo
 $model = new MessageForm;
 ?>
 <!-- Modal -->
@@ -17,7 +18,7 @@ $model = new MessageForm;
                 <button type="button" class="close"
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
+                       <span class="sr-only">Cerrar</span>
                 </button>
                 <h4 class="modal-title text-center">
                     Mensajes Privados

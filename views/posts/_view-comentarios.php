@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
-$post = \app\models\Post::findOne(['id' => $model->entityId]);
+$post = \app\models\Post::find()->where(['id' => $model->entityId])->approved()->one();
 
 if ($post != null) : ?>
 <h5><?= $profile->user->username ?> <?= Html::a('comentó', ['/posts/' . $post->id . '#comment-list-' . $model->id]) ?></h5>

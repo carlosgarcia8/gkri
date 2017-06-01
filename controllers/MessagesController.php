@@ -65,7 +65,7 @@ class MessagesController extends \yii\web\Controller
                 $message->receptor_id = $messageForm->receptor_id;
                 $message->texto = $messageForm->texto;
                 if ($message->save()) {
-                    if (Notificacion::findOne(['type' => 6, 'user_id' => $message->receptor_id, 'seen' => false]) === null) {
+                    if (Notificacion::findOne(['type' => 6, 'user_id' => $message->receptor_id, 'user_related_id' => $message->user_id, 'seen' => false]) === null) {
                         $notificacion = new Notificacion();
 
                         $notificacion->type = NotificationType::MENSAJE_NUEVO;
@@ -106,7 +106,7 @@ class MessagesController extends \yii\web\Controller
             ->join('join', 'public.user as e', 'm.user_id=e.id')
             ->join('join', 'public.user as r', 'm.receptor_id=r.id')
             ->where("user_id=$user_id and receptor_id=$contact_id or user_id=$contact_id and receptor_id=$user_id")
-            ->orderBy('fecha desc');
+            ->orderBy('m.created_at desc');
 
         $messages = $query->all();
 

@@ -152,7 +152,8 @@ class ProfileController extends BaseProfileController
         $dataProvider = new ActiveDataProvider([
             'query' => $user->getPosts()->orderBy('fecha_confirmacion desc')->approved(),
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 8,
+                'defaultPageSize' => 8,
             ]
         ]);
 
@@ -222,9 +223,10 @@ class ProfileController extends BaseProfileController
         $profile = $this->finder->findProfileById($user->id);
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $user->getPostsVotadosPositivos(),
+            'query' => $user->getPostsVotadosPositivos()->approved(),
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 8,
+                'defaultPageSize' => 8,
             ]
         ]);
 
@@ -305,7 +307,8 @@ class ProfileController extends BaseProfileController
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 8,
+                'defaultPageSize' => 8,
             ]
         ]);
 

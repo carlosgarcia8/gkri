@@ -109,9 +109,9 @@ var populateNotifications = function(notificationData){
                 case 6:
                     $('.dropdown-notifications-list')
                     .append(new NotificationElement(
-                        'El usuario '+item['username']+' te ha enviado <b>mensajes nuevos</b>.',
+                        'El usuario <b>'+item['username']+'</b> te ha enviado <b>mensajes nuevos</b>.',
                         '<span class="fa fa-envelope fa-lg" aria-hidden="true"></span>',
-                        '/u/' + item['username'],
+                        '',
                         item['user_related_id'],
                         item['type']
                     ).getElement());
@@ -125,6 +125,11 @@ var populateNotifications = function(notificationData){
                 type: $(this).attr('data-type'),
                 id: $(this).attr('data-id')
             });
+        });
+        $('.notification-link[data-type="6"]').on('click', function (e) {
+            e.preventDefault();
+            $('#messages').modal('show');
+            $('.conversation[data-id="'+$(this).attr('data-id')+'"]').trigger('click');
         });
     } else {
         $('.notification-icon').removeClass('show-icon').addClass('hidden-icon');

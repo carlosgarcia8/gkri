@@ -28,6 +28,15 @@ h2 a, h3 a {
     color: black;
 }
 
+h4 a {
+    color: white;
+}
+
+h4 a:hover {
+    color: white;
+    text-decoration: underline !important;
+}
+
 h2 a:hover, h3 a:hover {
     color: #09f;
 }
@@ -956,7 +965,14 @@ ins.play-gif{
 }
 
 .msg-body p {
-    word-break: break-all;
+    display: inline-block;
+    text-align: left;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.msg-resto {
+    max-width: 90%;
 }
 
 a.btn-disabled {

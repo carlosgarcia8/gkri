@@ -26,7 +26,7 @@ $this->title = 'Posts';
                 <strong class="pull-right label label-default categoria-moderar">Categoría: <?= $post->categoria->nombre ?></strong>
         </div>
         <?php else : ?>
-        <header><h4>No hay posts que moderar. Vuelva mas tarde.</h4></header>
+        <header><h4>No hay posts que moderar. Vuelva más tarde.</h4></header>
         <?php endif; ?>
     </article>
 </div>
