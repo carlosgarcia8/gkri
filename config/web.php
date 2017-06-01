@@ -224,6 +224,7 @@ $config = [
 
     ],
     'language' => 'es-ES',
+    'timeZone' => 'Europe/Madrid',
     'params' => $params,
 ];
 

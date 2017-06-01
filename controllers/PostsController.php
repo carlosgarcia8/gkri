@@ -199,10 +199,35 @@ class PostsController extends Controller
                         return $this->redirect(['/upload']);
                     }
                 }
-                $model->markPending();
+
+                if (Yii::$app->user->identity->isAdmin) {
+                    $model->markApproved();
+
+                    date_default_timezone_set('Europe/Madrid');
+                    $model->fecha_confirmacion = date('Y-m-d H:i:s');
+
+                    $user = User::findOne(['id' => $model->usuario_id]);
+
+                    $seguidores = $user->getSeguidoresUser()->all();
+
+                    foreach ($seguidores as $seguidor) {
+                        $notificacion = new Notificacion();
+
+                        $notificacion->type = NotificationType::POST_NUEVO;
+                        $notificacion->user_id = $seguidor->id;
+                        $notificacion->post_id = $model->id;
+                        $notificacion->user_related_id = $model->usuario_id;
+
+                        $notificacion->save();
+                    }
+                } else {
+                    $model->markPending();
+                }
 
                 if ($model->save() && $model->upload()) {
-                    \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluará.');
+                    if (!Yii::$app->user->identity->isAdmin) {
+                        \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluará.');
+                    }
                     return $this->redirect(['/']);
                 } else {
                     $model->delete();
