@@ -6,7 +6,6 @@ use app\models\User;
 use yii\helpers\Html;
 
 // TODO intentar traer los mensajes cuando haya nuevo
-// TODO las fechas en heroku postgresql se muestran -2 horas
 $model = new MessageForm;
 ?>
 <!-- Modal -->

@@ -81,7 +81,12 @@ class UploadPostForm extends Model
 
             $s3 = Yii::$app->get('s3');
             $nombreS3 = Yii::getAlias('@posts/') . $id . '.' . $extension;
-            $s3->upload($ruta, $ruta);
+            try {
+                $s3->upload($ruta, $ruta);
+            } catch (\Exception $e) {
+                unlink(Yii::getAlias('@posts/') . $id . '.' . $extension);
+                return false;
+            }
             return true;
         } else {
             return false;

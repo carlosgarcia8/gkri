@@ -16,7 +16,6 @@ use app\models\CommentModel;
 
 // TODO reply a los replies
 // TODO notificaciones por  posts para moderar, que se te ha rechazado el post
-// TODO ver los seguidores y seguidos en plan twitter
 
 AppAsset::register($this);
 $this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
@@ -174,7 +173,7 @@ $this->title = 'GKRI';
                <li>
                    <?php ActiveForm::begin(['action' =>  ['/posts/search'], 'method' => 'get', 'options' => ['class' => 'navbar-form navbar-right','role' => 'search']]);?>
                    <label for="search" style="display:none;">Buscar</label>
-                   <input type="text" id="search" class="form-control" placeholder="Search" name="q">
+                   <input type="text" id="search" class="form-control" maxlength="100" placeholder="Search" name="q">
                    <?php ActiveForm::end();?>
                </li>
            </ul>
@@ -238,7 +237,6 @@ $this->title = 'GKRI';
         <?= $content ?>
     </div>
 </div>
-<?php // TODO pensar y/o preguntar sobre que poner en el footer ?>
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; GKRI <?= date('Y') ?></p>

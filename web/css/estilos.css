@@ -80,6 +80,26 @@ a {
     text-align: center;
 }
 
+/************ SIGUIENDO/SEGUIDORES ************/
+
+.caption {
+    text-align: center;
+    height: 140px;
+}
+
+.link-follow a {
+    color: #333;
+}
+
+.link-follow a:hover {
+    color: #09f;
+}
+
+.img-follow {
+    width: 80px;
+    height: auto;
+}
+
 /************ TOP TEN LIST ************/
 
 .main-list {
@@ -503,6 +523,10 @@ div.item:last-of-type article.item {
 
 .busqueda {
     margin-left: 120px;
+}
+
+.busqueda h5 {
+    word-wrap: break-word;
 }
 
 /************ UPLOAD POST ************/

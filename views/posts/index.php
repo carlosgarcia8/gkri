@@ -23,6 +23,13 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
                 'body' => Yii::$app->session->getFlash('upload'),
             ]);
         } ?>
+        <?php
+        if (Yii::$app->session->getFlash('error')) {
+            echo Alert::widget([
+                'options' => ['class' => 'alert-danger'],
+                'body' => Yii::$app->session->getFlash('error'),
+            ]);
+        } ?>
         <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin) : ?>
         <div class="busqueda">
             <a href="<?= Url::to('/moderar') ?>" class="moderar-btn btn btn-warning">

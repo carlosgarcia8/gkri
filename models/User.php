@@ -138,6 +138,15 @@ class User extends BaseUser
     }
 
     /**
+     * Obtiene los usuarios que estas siguiendo
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSiguiendoUser()
+    {
+        return $this->hasMany(User::className(), ['id' => 'follow_id'])->via('siguiendo');
+    }
+
+    /**
      * Obtiene los follows de los usuarios que te estan siguiendo
      * @return \yii\db\ActiveQuery
      */

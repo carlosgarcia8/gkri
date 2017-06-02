@@ -10,22 +10,21 @@
  */
 
 use yii\bootstrap\Alert;
-use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\web\View;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /**
  * @var \yii\web\View $this
  * @var \dektrium\user\models\Profile $profile
  */
 if ($profile !== null) :
-$this->registerJsFile('@web/js/gifs.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
-$this->registerJsFile('@web/js/votar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/follow.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
+
 ?>
 <a href="#" id="btn-arriba"><span class="fa fa-arrow-up fa-lg" aria-hidden="true"></span></a>
 <div class="row">
@@ -66,7 +65,7 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <?php if (!empty($profile->gender)) : ?>
                 <?php if ($profile->gender == 'M') : ?>
                     <span class="fa fa-mars" aria-hidden="true"></span>
-                <?php else : ?>
+                <?php elseif ($profile->gender == 'F') : ?>
                     <span class="fa fa-venus" aria-hidden="true"></span>
                 <?php endif; ?>
             <?php endif; ?>
@@ -114,14 +113,20 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-8">
+        <?php
+        if (Yii::$app->session->getFlash('error')) {
+            echo Alert::widget([
+                'options' => ['class' => 'alert-danger'],
+                'body' => Yii::$app->session->getFlash('error'),
+            ]);
+        } ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
-            'itemOptions' => ['class' => 'item'],
-            'itemView' => '../../posts/_view-comentarios.php',
+            'itemOptions' => ['class' => 'item-follow'],
+            'itemView' => '_follow.php',
             'layout' => "{items}\n{pager}",
-            'viewParams' => [
-                'profile' => $profile,
-            ],
+            'options' => ['class' => 'list-view-follow'],
+            'viewParams' => ['messageForm' => $messageForm],
         ]) ?>
     </div>
 </div>

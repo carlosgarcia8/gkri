@@ -36,7 +36,7 @@ class ProfileController extends BaseProfileController
                 ],
                 'rules' => [
                     ['allow' => true, 'actions' => ['index', 'notifications-ajax', 'notifications-read-ajax', 'notifications-follow-ajax'], 'roles' => ['@']],
-                    ['allow' => true, 'actions' => ['show', 'votados', 'comentarios'], 'roles' => ['?', '@']],
+                    ['allow' => true, 'actions' => ['show', 'votados', 'comentarios', 'siguiendo', 'seguidores'], 'roles' => ['?', '@']],
                 ],
             ],
         ];
@@ -325,6 +325,152 @@ class ProfileController extends BaseProfileController
         $numeroSiguiendo = $user->getSiguiendo()->count();
 
         return $this->render('show-comentarios', [
+            'profile' => $profile,
+            'model' => $model,
+            'suPerfil' => $suPerfil,
+            'dataProvider' => $dataProvider,
+            'numeroSeguidores' => $numeroSeguidores,
+            'numeroSiguiendo' => $numeroSiguiendo,
+            'esSeguidor' => $esSeguidor,
+            'messageForm' => $messageForm,
+        ]);
+    }
+
+    /**
+     * Muestra el perfil del usuario con los usuarios que sigue
+     *
+     * @param string $username
+     *
+     * @return \yii\web\Response
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function actionSiguiendo($username)
+    {
+        $model = new UploadAvatarForm;
+        $messageForm = new MessageForm;
+
+        if (Yii::$app->request->isPost) {
+            if (Yii::$app->user->isGuest) {
+                return $this->redirect(['/user/security/login']);
+            }
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if (!$model->upload()) {
+                $errores = '';
+
+                foreach ($model->errors as $error) {
+                    $errores .= $errores . ' ' . $error[0];
+                }
+
+                \Yii::$app->getSession()->setFlash('error', $errores);
+                return $this->redirect(['/u/' . $username]);
+            }
+        }
+        $user = $this->finder->findUserByUsername($username);
+
+        if ($user === null) {
+            \Yii::$app->getSession()->setFlash('nouser', 'No existe ningun usuario con ese nombre. Se le redireccionará a la página principal en 5 segundos...');
+            return $this->render('show', [
+                'profile' => null,
+                'username' => $username,
+            ]);
+        }
+
+        $profile = $this->finder->findProfileById($user->id);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $user->getSiguiendoUser(),
+            'pagination' => [
+                'pageSize' => 8,
+                'defaultPageSize' => 8,
+            ]
+        ]);
+
+        if ($profile === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $suPerfil = Yii::$app->user->id === $profile->user_id;
+
+        $esSeguidor = Follow::findOne(['user_id' => Yii::$app->user->id, 'follow_id' => $user->id]) !== null;
+
+        $numeroSeguidores = $user->getSeguidores()->count();
+
+        $numeroSiguiendo = $user->getSiguiendo()->count();
+
+        return $this->render('siguiendo', [
+            'profile' => $profile,
+            'model' => $model,
+            'suPerfil' => $suPerfil,
+            'dataProvider' => $dataProvider,
+            'numeroSeguidores' => $numeroSeguidores,
+            'numeroSiguiendo' => $numeroSiguiendo,
+            'esSeguidor' => $esSeguidor,
+            'messageForm' => $messageForm,
+        ]);
+    }
+
+    /**
+     * Muestra el perfil del usuario con los usuarios que le siguen
+     *
+     * @param string $username
+     *
+     * @return \yii\web\Response
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function actionSeguidores($username)
+    {
+        $model = new UploadAvatarForm;
+        $messageForm = new MessageForm;
+
+        if (Yii::$app->request->isPost) {
+            if (Yii::$app->user->isGuest) {
+                return $this->redirect(['/user/security/login']);
+            }
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if (!$model->upload()) {
+                $errores = '';
+
+                foreach ($model->errors as $error) {
+                    $errores .= $errores . ' ' . $error[0];
+                }
+
+                \Yii::$app->getSession()->setFlash('error', $errores);
+                return $this->redirect(['/u/' . $username]);
+            }
+        }
+        $user = $this->finder->findUserByUsername($username);
+
+        if ($user === null) {
+            \Yii::$app->getSession()->setFlash('nouser', 'No existe ningun usuario con ese nombre. Se le redireccionará a la página principal en 5 segundos...');
+            return $this->render('show', [
+                'profile' => null,
+                'username' => $username,
+            ]);
+        }
+
+        $profile = $this->finder->findProfileById($user->id);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $user->getSeguidoresUser(),
+            'pagination' => [
+                'pageSize' => 8,
+                'defaultPageSize' => 8,
+            ]
+        ]);
+
+        if ($profile === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $suPerfil = Yii::$app->user->id === $profile->user_id;
+
+        $esSeguidor = Follow::findOne(['user_id' => Yii::$app->user->id, 'follow_id' => $user->id]) !== null;
+
+        $numeroSeguidores = $user->getSeguidores()->count();
+
+        $numeroSiguiendo = $user->getSiguiendo()->count();
+
+        return $this->render('siguiendo', [
             'profile' => $profile,
             'model' => $model,
             'suPerfil' => $suPerfil,
