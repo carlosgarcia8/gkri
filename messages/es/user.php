@@ -24,6 +24,8 @@ return [
     'A message has been sent to your email address. It contains your password and a confirmation link that you must click to complete registration.' => 'Un mensaje se ha enviado a su dirección de correo electrónico. Contiene su contraseña y un enlace de confirmación que debe hacer clic para completar el registro.',
     'A new confirmation link has been sent' => 'Un nuevo enlace de confirmación ha sido enviado',
     'Account' => 'Cuenta',
+    'Time zone' => 'Zona Horaria',
+    'Select a time zone (Default: Europe/Madrid)' => 'Seleccione una zona horaria (Por defecto: Europe/Madrid)',
     'Account confirmation' => 'Confirmación de la cuenta',
     'Account details' => 'Detalles de la cuenta',
     'Account details have been updated' => 'Los detalles de la cuenta han sido actualizados',

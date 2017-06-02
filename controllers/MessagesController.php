@@ -101,15 +101,18 @@ class MessagesController extends \yii\web\Controller
         $user_id = Yii::$app->user->id;
 
         $query = new Query;
-        $query->select(['texto', "to_char(m.created_at, 'DD/MM/YYYY HH24:MI:SS') as fecha", 'm.user_id', 'm.receptor_id', 'e.username as emisor', 'r.username as receptor'])
+        $query->select(['texto', 'm.created_at as fecha', 'm.user_id', 'm.receptor_id', 'e.username as emisor', 'r.username as receptor'])
             ->from('messages as m')
             ->join('join', 'public.user as e', 'm.user_id=e.id')
             ->join('join', 'public.user as r', 'm.receptor_id=r.id')
             ->where("user_id=$user_id and receptor_id=$contact_id or user_id=$contact_id and receptor_id=$user_id")
             ->orderBy('m.created_at desc');
+        $mensajes = $query->all();
 
-        $messages = $query->all();
+        for ($i = 0; $i < count($mensajes); $i++) {
+            $mensajes[$i]['fecha'] = Yii::$app->formatter->asDatetime($mensajes[$i]['fecha'], 'php:d/m/Y H:i:s');
+        }
 
-        return Json::encode($messages);
+        return Json::encode($mensajes);
     }
 }

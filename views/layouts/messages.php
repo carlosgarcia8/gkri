@@ -43,7 +43,7 @@ $model = new MessageForm;
                                     <img src="<?= $userConversacion->getAvatar() ?>" alt="User Avatar" class="little-message img-circle" />
                                 </span>
                                 <h5 class="media-heading" itemprop="additionalName"><?= $conversacion['username'] ?></h5>
-                                <small class="pull-right time"><?= date_format(new DateTime($conversacion['last_message']), 'd/m/Y H:i:s') ?></small>
+                                <small class="pull-right time"><?= Yii::$app->formatter->asDatetime($conversacion['last_message']) ?></small>
                             </div>
                         </div>
                     <?php endforeach; ?>

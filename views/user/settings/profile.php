@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dektrium\user\helpers\Timezone;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -46,6 +48,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'location') ?>
 
                 <?= $form->field($model, 'gender')->dropDownList($genders, ['prompt' => Yii::t('user', 'Ninguno')]) ?>
+
+                <?= $form
+                    ->field($model, 'timezone')
+                    ->dropDownList(
+                        ArrayHelper::map(
+                            Timezone::getAll(),
+                            'timezone',
+                            'name'
+                        )
+                    , ['prompt' => Yii::t('user', 'Select a time zone (Default: Europe/Madrid)')]); ?>
 
                 <?= $form->field($model, 'bio')->textarea() ?>
 

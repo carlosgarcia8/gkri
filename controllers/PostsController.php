@@ -203,8 +203,9 @@ class PostsController extends Controller
                 if (Yii::$app->user->identity->isAdmin) {
                     $model->markApproved();
 
-                    date_default_timezone_set('Europe/Madrid');
-                    $model->fecha_confirmacion = date('Y-m-d H:i:s');
+                    $id = Yii::$app->user->id;
+
+                    Yii::$app->db->createCommand("UPDATE posts SET fecha_confirmacion = current_timestamp WHERE id = $id")->queryAll();
 
                     $user = User::findOne(['id' => $model->usuario_id]);
 
@@ -352,8 +353,7 @@ class PostsController extends Controller
         $post = $this->findModel($id);
 
         $post->scenario = Post::SCENARIO_MODERAR;
-        date_default_timezone_set('Europe/Madrid');
-        $post->fecha_confirmacion = date('Y-m-d H:i:s');
+        Yii::$app->db->createCommand("UPDATE posts SET fecha_confirmacion = current_timestamp WHERE id = $id")->queryAll();
         $post->markApproved();
 
         $user = User::findOne(['id' => $post->usuario_id]);
