@@ -545,6 +545,11 @@ div.item:last-of-type article.item {
     background: #999;
 }
 
+.btn-upload-post {
+    padding: 10px 40px;
+    margin-top: 20px;
+}
+
 .button-upload:hover, .button-upload:active, .button-upload:focus {
     background: #76B3FA;
     color: #FFF;
@@ -553,12 +558,32 @@ div.item:last-of-type article.item {
 .botones-upload {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
 }
 
+.post-form-spinner {
+    font-size: 40px;
+    line-height: 400px;
+}
+
+#modal-upload .close {
+    color: white;
+    font-size: 28px;
+}
+
+#modal-upload .modal-body {
+    min-height: 400px;
+}
+
+#modal-upload .modal-header {
+    background-color: #333;
+    color: white;
+    border-radius: 3px 3px 0px 0px;
+}
+
 .botones-upload .button-upload {
-    margin-top: 40px;
+    margin-top: 15px;
 }
 /************ AUTOCOMPLETE ************/
 
@@ -1555,6 +1580,10 @@ a.btn-disabled {
     }
 }
 @media screen and (max-width: 425px) {
+    .subiendo {
+        display: none;
+    }
+    
     .categorias-sub {
         margin-left: 0;
     }

@@ -65,7 +65,7 @@ $this->registerJsFile('@web/js/votar-comentarios.js', ['depends' => [\yii\web\Jq
         <?php if ($esAutor && !$esAdmin) : ?>
         <div class="text-right">
             <p >
-                <?= Html::a('DELETE', ['delete', 'id' => $model->id], [
+                <?= Html::a('ELIMINAR', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-link',
                     'data' => [
                         'confirm' => '¿Estás seguro de eliminar este Post?',

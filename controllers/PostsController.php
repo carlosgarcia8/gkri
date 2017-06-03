@@ -205,8 +205,6 @@ class PostsController extends Controller
 
                     $id = Yii::$app->user->id;
 
-                    Yii::$app->db->createCommand("UPDATE posts SET fecha_confirmacion = current_timestamp WHERE id = $id")->queryAll();
-
                     $user = User::findOne(['id' => $model->usuario_id]);
 
                     $seguidores = $user->getSeguidoresUser()->all();
@@ -228,6 +226,9 @@ class PostsController extends Controller
                 if ($model->save() && $model->upload()) {
                     if (!Yii::$app->user->identity->isAdmin) {
                         \Yii::$app->getSession()->setFlash('upload', 'Gracias por su aportación. En breve un moderador lo evaluará.');
+                    } else {
+                        \Yii::$app->getSession()->setFlash('upload', 'Tu post ha sido publicado correctamente, querido administrador :3.');
+                        Yii::$app->db->createCommand("UPDATE posts SET fecha_confirmacion = current_timestamp WHERE id = $model->id")->queryAll();
                     }
                     return $this->redirect(['/']);
                 } else {
@@ -239,10 +240,7 @@ class PostsController extends Controller
                 throw new ServerErrorHttpException('Error Interno');
             }
         } else {
-            return $this->render('create', [
-                'model' => $model,
-                'categorias' => $categorias,
-            ]);
+            return $this->redirect('/');
         }
     }
 

@@ -7,6 +7,8 @@ $('#upload-post-form').on('afterValidate', function (event, messages, errorAttri
     });
     if (valido) {
         $(this).hide();
-        $('div.post-form-spinner').html('<span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span> Subiendo...');
+        $('#modal-upload').find('h3').hide();
+        $('#modal-upload').find('.botones-upload').hide();
+        $('div.post-form-spinner').html('<span class="fa fa-spinner fa-pulse fa-2x fa-fw"></span> Subiendo...');
     }
 });

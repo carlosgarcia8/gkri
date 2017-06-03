@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\Post;
 use app\models\User;
 use app\models\Categoria;
 use yii\web\View;
@@ -27,6 +28,8 @@ if (!Yii::$app->user->isGuest) {
 
     $conversaciones = $user->getConversaciones();
 }
+$model = new Post(['scenario' => Post::SCENARIO_UPLOAD]);
+$categoriasPost = Categoria::find()->select('nombre')->indexBy('id')->column();
 
 $js = <<<EOT
     var tour = localStorage.getItem('tour');
@@ -218,8 +221,8 @@ $this->title = 'GKRI';
         <li class="sub-menu"><a href="<?= Url::to('/settings/profile') ?>"><span class="fa fa-cog" aria-hidden="true" title="Configuración"></span></a></li>
         <li class="sub-menu"><a href="#" data-toggle="modal" data-target="#messages"><span class="fa fa-envelope" aria-hidden="true" title="Mensajes"></span></a></li>
         <li class="sub-menu"><a href="<?= Url::to('/user/security/logout') ?>" data-method="post"><span class="fa fa-sign-out" aria-hidden="true" title="Cerrar sesión"></span></a></li>
-        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>"><span class="fa fa-upload" aria-hidden="true" title="Upload"></span></a></li>
-        <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="<?= Url::to('/posts/upload') ?>">Enviar</a></li>
+        <li class="sub-menu sub-menu-upload"><a class="boton-upload btn-primary" href="" data-toggle="modal" data-target="#modal-upload"><span class="fa fa-upload" aria-hidden="true" title="Upload"></span></a></li>
+        <li class="sub-menu-noupload"><a class="boton-upload btn-primary" href="" data-toggle="modal" data-target="#modal-upload">Enviar</a></li>
     <?php endif; ?>
     </ul> <?php
 
@@ -234,6 +237,7 @@ $this->title = 'GKRI';
         <?php if (isset($conversaciones)) : ?>
         <?= $this->render('messages', ['conversaciones' => $conversaciones, 'user' => $user]) ?>
         <?php endif; ?>
+        <?= $this->render('../posts/create', ['model' => $model, 'categorias' => $categoriasPost]) ?>
         <?= $content ?>
     </div>
 </div>
