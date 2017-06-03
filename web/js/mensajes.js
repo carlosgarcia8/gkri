@@ -94,6 +94,8 @@ $('#mensajes-form .btn-enviar-mensaje').on('click', function (e) {
         elemPadre.append(elem);
 
         padre.scrollTop(padre[0].scrollHeight);
+
+        $('#trigger-messages-pjax').click();
     });
 
     return false;
@@ -221,6 +223,8 @@ function mensajesAjax() {
             var padre = $('.messages');
             padre.scrollTop(padre[0].scrollHeight);
         }
+
+        $('#trigger-messages-pjax').click();
     });
 }
 
