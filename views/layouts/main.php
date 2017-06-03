@@ -16,7 +16,6 @@ use app\assets\AppAsset;
 use app\models\CommentModel;
 
 // TODO reply a los replies
-// TODO notificaciones por  posts para moderar, que se te ha rechazado el post
 
 AppAsset::register($this);
 $this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);

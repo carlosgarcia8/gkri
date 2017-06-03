@@ -116,6 +116,16 @@ var populateNotifications = function(notificationData){
                         item['type']
                     ).getElement());
                     break;
+                case 7:
+                    $('.dropdown-notifications-list')
+                    .append(new NotificationElement(
+                        'Tu post "<span>'+item['titulo']+'</span>..." ha sido <b>rechazado</b>.',
+                        '<span class="fa fa-times fa-lg" aria-hidden="true"></span>',
+                        '/posts/' + item['post_id'],
+                        item['post_id'],
+                        item['type']
+                    ).getElement());
+                    break;
                 default:
                     break;
             }

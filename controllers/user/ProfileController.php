@@ -62,7 +62,7 @@ class ProfileController extends BaseProfileController
             ->where([
                 'notificaciones.user_id' => Yii::$app->user->identity->id,
                 'seen' => false,
-                'type' => [NotificationType::POST_ACEPTADO, NotificationType::VOTADO, NotificationType::COMENTADO, NotificationType::REPLY],
+                'type' => [NotificationType::POST_ACEPTADO, NotificationType::POST_RECHAZADO, NotificationType::VOTADO, NotificationType::COMENTADO, NotificationType::REPLY],
             ])
             ->groupBy('type, post_id, titulo');
 

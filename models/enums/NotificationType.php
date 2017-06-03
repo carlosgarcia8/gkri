@@ -52,6 +52,12 @@ class NotificationType extends BaseEnum
     const MENSAJE_NUEVO = 6;
 
     /**
+     * POST RECHAZADO
+     * @var int
+     */
+    const POST_RECHAZADO = 7;
+
+    /**
      * Lista de las constantes con su texto
      * @var array
      */
@@ -63,5 +69,6 @@ class NotificationType extends BaseEnum
         self::POST_NUEVO => 'Post Nuevo',
         self::REPLY => 'Reply',
         self::MENSAJE_NUEVO => 'Mensaje Nuevo',
+        self::POST_RECHAZADO => 'Post Rechazado',
     ];
 }

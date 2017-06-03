@@ -404,6 +404,14 @@ class PostsController extends Controller
             $s3->delete($ficheroS3);
         }
 
+        $notificacion = new Notificacion();
+
+        $notificacion->type = NotificationType::POST_RECHAZADO;
+        $notificacion->user_id = $post->usuario_id;
+        $notificacion->post_id = $post->id;
+
+        $notificacion->save();
+
         return $this->redirect(['/moderar']);
     }
 
