@@ -13,7 +13,7 @@ use kartik\select2\Select2;
 <div class="post-form col-lg-offset-1 col-lg-10 col-xs-12 col-sm-12 col-sm-offset-0 col-md-offset-1 col-md-10">
 
     <div class="post-form-spinner">
-        <span class="fa fa-spinner fa-pulse fa-2x fa-fw"></span> <span class="subiendo">Subiendo...</span>
+
     </div>
 
     <?php $form = ActiveForm::begin([

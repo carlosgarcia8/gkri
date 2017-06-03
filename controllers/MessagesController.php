@@ -42,7 +42,7 @@ class MessagesController extends \yii\web\Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['create', 'obtener'],
+                        'actions' => ['create', 'obtener', 'obtener-nuevos'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -101,7 +101,7 @@ class MessagesController extends \yii\web\Controller
         $user_id = Yii::$app->user->id;
 
         $query = new Query;
-        $query->select(['texto', 'm.created_at as fecha', 'm.user_id', 'm.receptor_id', 'e.username as emisor', 'r.username as receptor'])
+        $query->select(['m.id', 'texto', 'm.created_at as fecha', 'm.user_id', 'm.receptor_id', 'e.username as emisor', 'r.username as receptor'])
             ->from('messages as m')
             ->join('join', 'public.user as e', 'm.user_id=e.id')
             ->join('join', 'public.user as r', 'm.receptor_id=r.id')
@@ -114,5 +114,44 @@ class MessagesController extends \yii\web\Controller
         }
 
         return Json::encode($mensajes);
+    }
+
+    /**
+     * Obtiene los mensajes nuevos de las conversaciones activas
+     * @param  int $contactos_activos el id del contacto con la que tiene conversaciones activas
+     * @return mixed
+     */
+    public function actionObtenerNuevos($contactos_activos)
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new MethodNotAllowedHttpException('Method Not Allowed. This url can only handle the following request methods: AJAX');
+        }
+
+        if (Yii::$app->user->isGuest) {
+            throw new BadRequestHttpException();
+        }
+        $contactos = \yii\helpers\Json::decode($contactos_activos);
+
+        $user_id = Yii::$app->user->id;
+
+        $data = [];
+
+        foreach ($contactos as $contacto) {
+            $query = new Query;
+            $query->select(['m.id', 'texto', 'm.created_at as fecha', 'm.user_id', 'm.receptor_id', 'e.username as emisor', 'r.username as receptor'])
+            ->from('messages as m')
+            ->join('join', 'public.user as e', 'm.user_id=e.id')
+            ->join('join', 'public.user as r', 'm.receptor_id=r.id')
+            ->where("user_id=$contacto[0] and receptor_id=$user_id and m.id>$contacto[1]")
+            ->orderBy('m.created_at desc');
+
+            $data = array_merge($data, $query->all());
+        }
+
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i]['fecha'] = Yii::$app->formatter->asDatetime($data[$i]['fecha'], 'php:d/m/Y H:i:s');
+        }
+
+        return Json::encode($data);
     }
 }

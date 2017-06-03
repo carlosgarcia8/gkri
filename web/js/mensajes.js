@@ -178,6 +178,52 @@ $(document).on('pjax:success', function () {
     eventosConversaciones();
 });
 
+estaMensajesAjax = false;
+
+function mensajesAjax() {
+    estaMensajesAjax = true;
+
+    var mensajesDiv = $('.messages').children();
+
+    var contactos_activos = new Array(mensajesDiv.length);
+
+    mensajesDiv.each(function(index, el) {
+        contactos_activos[index] = [$(el).attr('data-contact-id'), $(el).children('.msg-receptor').last().attr('data-m-id')];
+    });
+
+    contactos_activos = JSON.stringify(contactos_activos);
+
+    $.ajax({
+        url: '/messages/obtener-nuevos',
+        type: 'GET',
+        data: {contactos_activos: contactos_activos}
+    })
+    .success(function (data) {
+        var messages = JSON.parse(data);
+
+        for (var i = 0; i < messages.length; i++) {
+            var elem = $('.template-oculto > .msg').clone();
+            var conver = $('.conversation[data-id="'+messages[i]['user_id']+'"]');
+            var imgc = $(conver).find('img').clone();
+
+            var converMessages = $('.message-contact-' + messages[i]['user_id']);
+
+            elem.addClass('msg-receptor').attr('data-m-id', messages[i]['id']);
+            elem.find('.msg-avatar-receptor').append(imgc);
+            elem.find('.msg-header').prepend('<span class="fa fa-minus fa-fw" aria-hidden="true"></span>');
+            elem.find('.msg-header').prepend('<strong>' + messages[i]['emisor'] + '</strong>');
+            elem.find('small').html(messages[i]['fecha']);
+
+            elem.find('p').html(messages[i]['texto']);
+
+            converMessages.append(elem);
+
+            var padre = $('.messages');
+            padre.scrollTop(padre[0].scrollHeight);
+        }
+    });
+}
+
 function eventosConversaciones() {
     $('.conversation').on('click', function () {
 
@@ -212,7 +258,7 @@ function eventosConversaciones() {
                 $('#messages .modal-title').html('<a href="/u/'+contacto+'" >'+contacto+'</a>');
 
 
-                padre.append('<div class="message-contact-'+contact_id+'"></div>');
+                padre.append('<div class="message-contact-'+contact_id+'" data-contact-id="'+contact_id+'"></div>');
                 elemPadre = $('div.message-contact-'+contact_id);
 
                 for (var i = 0; i < messages.length; i++) {
@@ -221,13 +267,13 @@ function eventosConversaciones() {
                     var imgUsuarioc = imgUsuario.clone();
 
                     if (parseInt(contact_id) !== messages[i]['user_id']) {
-                        elem.addClass('msg-emisor');
+                        elem.addClass('msg-emisor').attr('data-m-id', messages[i]['id']);
                         elem.find('.msg-avatar-emisor').append(imgUsuarioc);
                         elem.find('.msg-header').append('<span class="fa fa-minus fa-fw" aria-hidden="true"></span>');
                         elem.find('.msg-header').append('<strong>' + messages[i]['emisor'] + '</strong>');
                         elem.find('small').html(messages[i]['fecha']);
                     } else {
-                        elem.addClass('msg-receptor');
+                        elem.addClass('msg-receptor').attr('data-m-id', messages[i]['id']);
                         elem.find('.msg-avatar-receptor').append(imgc);
                         elem.find('.msg-header').prepend('<span class="fa fa-minus fa-fw" aria-hidden="true"></span>');
                         elem.find('.msg-header').prepend('<strong>' + messages[i]['emisor'] + '</strong>');
@@ -240,6 +286,11 @@ function eventosConversaciones() {
                 }
                 padre.scrollTop(padre[0].scrollHeight);
 
+                if (!estaMensajesAjax) {
+                    setInterval(function(){
+                        mensajesAjax();
+                    }, 8000);
+                }
             });
         }
     });
