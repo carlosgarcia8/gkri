@@ -5,7 +5,6 @@ use yii\widgets\ActiveForm;
 use app\models\User;
 use yii\helpers\Html;
 
-// TODO intentar traer los mensajes cuando haya nuevo
 $model = new MessageForm;
 ?>
 <!-- Modal -->

@@ -348,6 +348,7 @@ class ProfileController extends BaseProfileController
     {
         $model = new UploadAvatarForm;
         $messageForm = new MessageForm;
+        $rutaActivo = 'Siguiendo';
 
         if (Yii::$app->request->isPost) {
             if (Yii::$app->user->isGuest) {
@@ -397,7 +398,7 @@ class ProfileController extends BaseProfileController
 
         $numeroSiguiendo = $user->getSiguiendo()->count();
 
-        return $this->render('siguiendo', [
+        return $this->render('follows', [
             'profile' => $profile,
             'model' => $model,
             'suPerfil' => $suPerfil,
@@ -406,6 +407,7 @@ class ProfileController extends BaseProfileController
             'numeroSiguiendo' => $numeroSiguiendo,
             'esSeguidor' => $esSeguidor,
             'messageForm' => $messageForm,
+            'rutaActivo' => $rutaActivo,
         ]);
     }
 
@@ -421,6 +423,7 @@ class ProfileController extends BaseProfileController
     {
         $model = new UploadAvatarForm;
         $messageForm = new MessageForm;
+        $rutaActivo = 'Seguidores';
 
         if (Yii::$app->request->isPost) {
             if (Yii::$app->user->isGuest) {
@@ -470,7 +473,7 @@ class ProfileController extends BaseProfileController
 
         $numeroSiguiendo = $user->getSiguiendo()->count();
 
-        return $this->render('siguiendo', [
+        return $this->render('follows', [
             'profile' => $profile,
             'model' => $model,
             'suPerfil' => $suPerfil,
@@ -479,6 +482,7 @@ class ProfileController extends BaseProfileController
             'numeroSiguiendo' => $numeroSiguiendo,
             'esSeguidor' => $esSeguidor,
             'messageForm' => $messageForm,
+            'rutaActivo' => $rutaActivo,
         ]);
     }
 }

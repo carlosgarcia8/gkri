@@ -15,8 +15,6 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\CommentModel;
 
-// TODO reply a los replies
-
 AppAsset::register($this);
 $this->registerJsFile('@web/js/autocompletar.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_END]);
 if (!Yii::$app->user->isGuest) {

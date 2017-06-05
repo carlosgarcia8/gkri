@@ -98,6 +98,7 @@ class PostsController extends Controller
     {
         $categoriaModel = Categoria::findOne(['nombre_c' => $categoria]);
         $existeCategoria = $categoriaModel !== null;
+        $enModeracion = Post::find()->pending()->count();
 
         $diezMejores = Post::find()
             ->select('posts.id, titulo, extension')
@@ -133,6 +134,7 @@ class PostsController extends Controller
             'existeCategoria' => $existeCategoria,
             'categoria' => $categoria,
             'diezMejores' => $diezMejores,
+            'enModeracion' => $enModeracion,
         ]);
     }
 

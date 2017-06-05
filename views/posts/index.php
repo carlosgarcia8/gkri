@@ -33,7 +33,7 @@ $this->registerJsFile('@web/js/back-to-top.js', ['depends' => [\yii\web\JqueryAs
         <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin) : ?>
         <div class="busqueda">
             <a href="<?= Url::to('/moderar') ?>" class="moderar-btn btn btn-warning">
-                Moderar
+                Moderar (<?= $enModeracion ?>)
             </a>
             <a href="<?= Url::to('/user/admin') ?>" class="moderar-btn btn btn-danger">
                 Administrar

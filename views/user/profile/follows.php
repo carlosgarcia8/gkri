@@ -82,14 +82,18 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
             <?php endif; ?>
             <div class="menu-follows">
                 <div class="row">
-                    <div class="col-md-offset-2 col-md-4 col-sm-offset-4 col-sm-2 col-xs-offset-0 col-xs-6">
-                        <h2><strong class="following-total"> <?= Html::a($numeroSiguiendo, ['/u/' . $profile->user->username . '/siguiendo']) ?> </strong></h2>
-                        <p><small class="link-follow"><?= Html::a('Siguiendo', ['/u/' . $profile->user->username . '/siguiendo']) ?></small></p>
-                    </div>
-                    <div class="col-sm-2 col-xs-6 col-md-4">
-                        <h2><strong class="followers-total"> <?= Html::a($numeroSeguidores, ['/u/' . $profile->user->username . '/seguidores']) ?> </strong></h2>
-                        <p><small class="link-follow"><?= Html::a('Seguidores', ['/u/' . $profile->user->username . '/seguidores']) ?></small></p>
-                    </div>
+                    <a href="<?= Url::to('/u/' . $profile->user->username . '/siguiendo') ?>">
+                        <div class="col-md-offset-2 col-md-4 col-sm-offset-4 col-sm-2 col-xs-offset-0 col-xs-6">
+                            <h2><strong class="following-total"><?= $numeroSiguiendo ?></strong></h2>
+                            <p><small class="link-follow">Siguiendo</small></p>
+                        </div>
+                    </a>
+                    <a href="<?= Url::to('/u/' . $profile->user->username . '/seguidores') ?>">
+                        <div class="col-sm-2 col-xs-6 col-md-4">
+                            <h2><strong class="followers-total"><?= $numeroSeguidores ?></strong></h2>
+                            <p><small class="link-follow">Seguidores</small></p>
+                        </div>
+                    </a>
                 </div>
                 <?php if (!Yii::$app->user->isGuest && !$suPerfil) : ?>
                     <?php if ($esSeguidor) : ?>
@@ -113,6 +117,7 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-8">
+        <h2 class="h2-follows"><?= $rutaActivo ?></h2>
         <?php
         if (Yii::$app->session->getFlash('error')) {
             echo Alert::widget([

@@ -253,6 +253,25 @@ a {
 
 /************ PROFILE/SHOW ************/
 
+.menu-follows a {
+    color: black;
+}
+
+.menu-profile-options .active a {
+    font-size: 110%;
+    font-weight: 900;
+    /*border-left: 2px solid #337ab7*/
+}
+
+.menu-follows a:hover {
+    color: #337ab7;
+}
+
+.h2-follows {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
 .hovereffect + .menu-profile-info {
     margin-top: 250px;
 }
@@ -622,10 +641,6 @@ div.item:last-of-type article.item {
 
 .categoria-moderar {
     font-size: 14px !important;
-}
-
-.moderar-btn {
-    text-shadow: 1px 0 2px black, 0 1px 2px black
 }
 
 /************ OPCION MAS CATEGORIAS ************/
@@ -1583,7 +1598,7 @@ a.btn-disabled {
     .subiendo {
         display: none;
     }
-    
+
     .categorias-sub {
         margin-left: 0;
     }
