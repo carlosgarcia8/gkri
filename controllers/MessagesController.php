@@ -137,6 +137,9 @@ class MessagesController extends \yii\web\Controller
         $data = [];
 
         foreach ($contactos as $contacto) {
+            if ($contacto[1] === null) {
+                continue;
+            }
             $query = new Query;
             $query->select(['m.id', 'texto', 'm.created_at as fecha', 'm.user_id', 'm.receptor_id', 'e.username as emisor', 'r.username as receptor'])
             ->from('messages as m')
