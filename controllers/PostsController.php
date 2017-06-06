@@ -481,6 +481,7 @@ class PostsController extends Controller
                 'defaultPageSize' => 8,
             ]
         ]);
+        $enModeracion = Post::find()->pending()->count();
 
         $diezMejores = Post::find()
             ->select('posts.id, titulo, extension')
@@ -495,6 +496,7 @@ class PostsController extends Controller
             'dataProvider' => $dataProvider,
             'titulo' => $q,
             'diezMejores' => $diezMejores,
+            'enModeracion' => $enModeracion,
         ]);
     }
 
