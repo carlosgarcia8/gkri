@@ -18,7 +18,7 @@ replies y demás.
 
 Un usuario al iniciar sesión tendrá unos privilegios como poder subir su propio post, votar, comentar, usar el generador de memes...
 
-En resumen, se plantea como un blog donde cada publicación se denomina 'Post'. Los posts consisten en imágenes (algunas veces gifs) que suelen estar acompañados de cuadros de texto que funciona como un pequeño comentario o título descriptivo de la imagen. Cualquier usuario registrado puede subir un post, solo que se queda en un estado de moderación para así poder evitar que lleguen posts con contenido no recomendable. Aun así no hace falta estar registrado para poder navegar por la aplicación, ver los distintos posts y comentarios y poder echarse unas risas.
+En resumen, se plantea como un blog donde cada publicación se denomina 'Post'. Los posts consisten en imágenes (algunas veces gifs) que suelen estar acompañadas de cuadros de texto que funcionan como un pequeño comentario o título descriptivo de la imagen. Cualquier usuario registrado puede subir un post, solo que se queda en un estado de moderación para así poder evitar que lleguen posts con contenido no recomendable. Aun así no hace falta estar registrado para poder navegar por la aplicación, ver los distintos posts y comentarios y poder echarse unas risas.
 
 ### Objetivos Generales
 * Gestionar los posts
@@ -28,7 +28,7 @@ En resumen, se plantea como un blog donde cada publicación se denomina 'Post'. 
 * Gestionar las notificaciones
 * Gestionar los mensajes privados
 * Gestionar las imágenes subidas
-* Buscar posts por distintos parámetros de busqueda
+* Buscar posts por distintos parámetros de búsqueda
 * Gestionar la generación de memes
 
 ### [Repositorio en GitHub](https://github.com/carlosgarcia8/gkri)

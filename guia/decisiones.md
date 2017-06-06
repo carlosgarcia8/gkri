@@ -12,4 +12,4 @@ ____
 ____
 
 #### No implementar el requisito 'R46 Eliminar mensaje privado'
-- Fue uno de esos requisitos que hasta que no me pare a pensarlo mas detenidamente no le veía sentido, es cierto que muchas aplicaciones web como twitter te dejan borrar el mensaje privado enviado, pero solo para tu interfaz. El mensaje sigue enviado, la otra persona lo puede ver para si mismo, solo has borrado que no lo veas tu, no le veo mucho sentido, así que no lo he implementado por la falta de aportación hacia el proyecto y su finalidad.
+- Fue uno de esos requisitos que hasta que no me pare a pensarlo más detenidamente no le veía sentido, es cierto que muchas aplicaciones web como twitter te dejan borrar el mensaje privado enviado, pero solo para tu interfaz. El mensaje sigue enviado, la otra persona lo puede ver para sí mismo, solo has borrado que no lo veas tú, no le veo mucho sentido, así que no lo he implementado por la falta de aportación hacia el proyecto y su finalidad.

@@ -186,15 +186,17 @@ class Post extends \yii\db\ActiveRecord
         }
         $ruta = "$uploadsPosts/{$fichero}";
 
-        $s3 = Yii::$app->get('s3');
-
         if (file_exists($ruta)) {
             return "/$ruta";
-        } elseif ($s3->exist($ruta)) {
-            $s3->commands()->get($ruta)->saveAs($ruta)->execute();
-            return "/$ruta";
         } else {
-            return false;
+            $s3 = Yii::$app->get('s3');
+
+            if ($s3->exist($ruta)) {
+                $s3->commands()->get($ruta)->saveAs($ruta)->execute();
+                return "/$ruta";
+            } else {
+                return false;
+            }
         }
     }
 

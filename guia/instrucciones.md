@@ -28,7 +28,7 @@ cd web
 chmod -R 777 uploads
 ```
 
-4. Instalar el *PostgreSQL* y ejecutar los siguientes comandos desde la raiz del proyecto.
+4. Instalar el *PostgreSQL* y ejecutar los siguientes comandos desde la raíz del proyecto.
 ```
 cd db
 ./init.sh
@@ -53,7 +53,7 @@ Se habrá creado una base de datos llamada `gkri` con un usuario `gkri` y contra
         - GOOGLE_ID: variable de entorno para el id de la api google+.
         - GOOGLE_PASS: variable de entorno para la key de la api google+
 
-> Recuerda que esta configuración deberá de estar como variables de entorno para evitar que esten hard-codeadas (Solo la que se especifique como tal).
+> Recuerda que esta configuración deberá de estar como variables de entorno para evitar que estén hard-codeadas (Solo la que se especifique como tal).
 
 ### En la nube
 

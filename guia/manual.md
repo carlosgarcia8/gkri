@@ -41,16 +41,17 @@ Manual básico de usuarios
 
 [<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-usuario-menu.png" width="620" title="Pantalla Usuario Menú">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-usuario-menus.png)
 
+- Si seleccionas tanto el número de seguidores/seguidos o los textos te llevara a una pantalla donde estarán los usuarios que sigues/te siguen.
+
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/siguiendo-seguidores.png" width="620" title="Pantalla Siguiendo o Seguidores">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/siguiendo-seguidores.png)
+
 ----
 
 #### Enviar un Post
-- En el apartado enviar un post, al cual se accede al pulsar Upload o Enviar en el menú, veremos dos opciones, si el archivo a enviar ya lo tienes listo pulsarías el de Elegir una imagen del ordenador, donde te llevara a un formulario muy sencillo y en el que una vez logres cumplir con las validaciones te saldría un mensaje de subiendo con una redirección a la pantalla principal y un mensaje de que el post esta pendiente te moderación.
+- En el apartado enviar un post, al cual se accede al pulsar Upload o Enviar en el menú, veremos un formulario en el cual, si el archivo a enviar ya lo tienes listo, lo rellenarias y una vez le des a enviar te saldría un mensaje de subiendo con una redirección a la pantalla principal y un mensaje de que el post esta pendiente te moderación.
 
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-1.png" width="620" title="Enviar Post 1">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-1.png)
-
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-2.png" width="620" title="Enviar Post 2">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-2.png)
-
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-3.png" width="620" title="Enviar Post 3">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-3.png)
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/modalupload.png" width="620" title="Enviar Post">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/modalupload.png)
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-3.png" width="620" title="Enviar Post Correcto">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/enviar-post-3.png)
 
 ----
 
@@ -66,7 +67,7 @@ Manual básico de usuarios
 ----
 
 #### Moderación
-- Por medio de un botón o poniendo en la ruta `moderar`, el administrador llega a ver todos los posts en moderación, saliendo de uno en uno en orden de fecha de publicación. Podra aceptar o rechazar así como ver la categoría, imagen y título que el usuario eligió.
+- Por medio de un botón o poniendo en la ruta `moderar`, el administrador llega a ver todos los posts en moderación, saliendo de uno en uno en orden de fecha de publicación. Podrá aceptar o rechazar así como ver la categoría, imagen y título que el usuario eligió.
 
 [<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-moderar.png" width="620" title="Pantalla Moderar">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-moderar.png)
 
