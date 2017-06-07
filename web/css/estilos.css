@@ -257,6 +257,10 @@ a {
     color: black;
 }
 
+.menu-follows a.btn {
+    color: white;
+}
+
 .menu-profile-options .active a {
     font-size: 110%;
     font-weight: 900;
@@ -265,6 +269,10 @@ a {
 
 .menu-follows a:hover {
     color: #337ab7;
+}
+
+.menu-follows a.btn:hover {
+    color: white;
 }
 
 .h2-follows {

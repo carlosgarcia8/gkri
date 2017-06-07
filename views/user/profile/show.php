@@ -23,7 +23,6 @@ use yii\helpers\Url;
 if ($profile !== null) :
 $js = <<<EOT
 var url = window.location.href;
-console.log(url.indexOf("posts") === -1 && url.indexOf("comentarios") === -1 && url.indexOf("votados") === -1);
 
 if (url.indexOf("posts") === -1 && url.indexOf("comentarios") === -1 && url.indexOf("votados") === -1) {
     $('.menu-profile-options > ul > li').first().addClass('active');
