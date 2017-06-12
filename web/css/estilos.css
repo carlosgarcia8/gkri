@@ -253,6 +253,10 @@ a {
 
 /************ PROFILE/SHOW ************/
 
+.avatar-menu {
+    padding-bottom: 20px;
+}
+
 .menu-follows a {
     color: black;
 }
@@ -494,6 +498,10 @@ a {
 
 .item {
     padding-bottom: 20px;
+}
+
+.responsive-image {
+    border: 1px solid rgba(0,0,0,.1);
 }
 
 .item h5 {

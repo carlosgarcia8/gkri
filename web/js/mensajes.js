@@ -178,6 +178,9 @@ eventosConversaciones();
 
 $(document).on('pjax:success', function () {
     eventosConversaciones();
+    var messages_activo = $('.messages').children(':visible').attr('data-contact-id');
+
+    $('.conversaciones').children('.conversation[data-id="'+messages_activo+'"]').addClass('conversation-active');
 });
 
 estaMensajesAjax = false;
