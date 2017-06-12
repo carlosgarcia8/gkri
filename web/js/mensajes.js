@@ -206,6 +206,8 @@ function mensajesAjax() {
     .success(function (data) {
         var messages = JSON.parse(data);
 
+        $('#trigger-messages-pjax').click();
+
         for (var i = 0; i < messages.length; i++) {
             var elem = $('.template-oculto > .msg').clone();
             var conver = $('.conversation[data-id="'+messages[i]['user_id']+'"]');
@@ -226,8 +228,6 @@ function mensajesAjax() {
             var padre = $('.messages');
             padre.scrollTop(padre[0].scrollHeight);
         }
-
-        $('#trigger-messages-pjax').click();
     });
 }
 

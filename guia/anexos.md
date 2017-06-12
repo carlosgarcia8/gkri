@@ -25,15 +25,15 @@ Anexos
 
 
 #### R77 - Comprobar diseño en distintos navegadores
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-perfil.png" width="620" title="Chrome">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/chrome.png)
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/chrome.png" width="620" title="Chrome">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/chrome.png)
 
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-perfil.png" width="620" title="Firefox">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/firefox.png)
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/firefox.png" width="620" title="Firefox">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/firefox.png)
 
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-perfil.png" width="620" title="Opera">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/opera.png)
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/opera.png" width="620" title="Opera">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/opera.png)
 
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-perfil.png" width="620" title="Edge">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/edge.png)
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/edge.png" width="620" title="Edge">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/edge.png)
 
 
 
 #### R64 - Pruebas funcionales con Codeception
-[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pantalla-perfil.png" width="620" title="Pruebas funcionales">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pruebas.png)
+[<img src="https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pruebas.png" width="620" title="Pruebas funcionales">](https://github.com/carlosgarcia8/gkri/raw/master/guia/images/pruebas.png)
