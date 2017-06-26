@@ -2,11 +2,13 @@
 
 namespace app\controllers\user;
 
+use app\models\CommentModel;
 use app\models\UploadAvatarForm;
 use dektrium\user\controllers\SettingsController as BaseSettingsController;
 use dektrium\user\models\Profile;
 use Yii;
 use yii\web\UploadedFile;
+use yii\web\NotFoundHttpException;
 
 /**
  * Clase SettingsController
@@ -60,5 +62,31 @@ class SettingsController extends BaseSettingsController
             'model' => $model,
             'genders' => $genders,
         ]);
+    }
+
+    /**
+     * Completely deletes user's account.
+     *
+     * @return \yii\web\Response
+     * @throws \Exception
+     */
+    public function actionDelete()
+    {
+        if (!$this->module->enableAccountDelete) {
+            throw new NotFoundHttpException(\Yii::t('user', 'Not found'));
+        }
+
+        $user  = \Yii::$app->user->identity;
+        $event = $this->getUserEvent($user);
+
+        \Yii::$app->user->logout();
+
+        $this->trigger(self::EVENT_BEFORE_DELETE, $event);
+        $user->delete();
+        $this->trigger(self::EVENT_AFTER_DELETE, $event);
+
+        CommentModel::deleteAll(['"createdBy"' => $user->id]);
+
+        return $this->goHome();
     }
 }

@@ -169,15 +169,7 @@ $config = [
             // 'db' => 'mydb',
             // 'sessionTable' => 'my_session',
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
+        'log' => require(__DIR__ . '/log.php'),
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
             'enablePrettyUrl' => true,
